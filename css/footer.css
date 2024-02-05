@@ -1,0 +1,248 @@
+.footer {
+  display: block;
+  box-sizing: border-box;
+  border-bottom-color: rgb(0, 0, 0);
+  border-bottom-width: 0px;
+  border-bottom-style: none;
+  border-top-color: rgb(0, 0, 0);
+  border-top-width: 0px;
+  border-top-style: none;
+  padding-bottom: 3rem;
+  padding-top: 3rem;
+  background-color: rgb(255, 255, 255);
+}
+
+.footer .footer-container {
+  max-width: 1140px;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: row wrap;
+  max-height: 150px;
+}
+
+.footer .footer-container .top {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: -10px;
+  width: calc(100% + 16px);
+  margin-left: -16px;
+  padding-bottom: 15px;
+  text-align: left;
+}
+
+.footer .footer-container .top .logo-container {
+  flex-basis: 25%;
+  -webkit-box-flex: 0;
+  flex-grow: 0;
+  max-width: 25%;
+  box-sizing: border-box;
+  margin: 0px;
+  padding-left: 16px;
+  padding-top: 25px;
+}
+
+.footer .footer-container .top .logo {
+  vertical-align: super;
+  border-style: none;
+  box-sizing: border-box;
+  width: 46px ;
+}
+
+.footer .top .text-container {
+  flex-basis: 75%;
+  -webkit-box-flex: 0;
+  flex-grow: 0;
+  max-width: 75%;
+  box-sizing: border-box;
+  margin: 0px;
+  flex-direction: row;
+  gap: 16px;
+  padding-left: 16px;
+  padding-top: 26.5px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  list-style: outside none none;
+  margin-bottom: 0px;
+  text-align: right;
+  padding-bottom: 8px;
+}
+
+.footer .top .text-container .text {
+  color: rgb(97, 97, 97);
+  text-decoration: none solid rgb(97, 97, 97);
+  background-color: rgba(0, 0, 0, 0);
+  box-sizing: border-box;
+  letter-spacing: normal;
+  font-weight: 400;
+  font-size: 12px;
+  display: block;
+  padding: 8px 16px;
+  font-family: Inter;
+}
+.footer .top .text-container .text:hover {
+  text-decoration: underline;
+}
+
+.footer .middle {
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+}
+
+.footer .middle-item {
+  flex-basis: 100%;
+  -webkit-box-flex: 0;
+  flex-grow: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0px;
+  flex-direction: row;
+}
+
+.footer .hr {
+  margin-top: 6.5px;
+  margin-bottom: 20px;
+  border-width: 0.666667px 0px 0px;
+  border-right-style: none;
+  border-bottom-style: none;
+  border-left-style: none;
+  border-right-color: rgb(33, 37, 41);
+  border-bottom-color: rgb(33, 37, 41);
+  border-left-color: rgb(33, 37, 41);
+  border-image: none;
+  border-top-style: solid;
+  border-top-color: rgb(237, 237, 237);
+  box-sizing: content-box;
+  height: 0px;
+  overflow: visible;
+  border-top-width: 0.666667px;
+}
+
+.footer .bottom {
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: column wrap;
+  width: 100vw;
+}
+
+.footer .bottom .text-container {
+  -webkit-box-flex: 0;
+  flex-grow: 0;
+  max-width: 58.3333%;
+  box-sizing: border-box;
+  margin: 0px;
+  flex-direction: row;
+}
+
+.footer .bottom .text {
+  font-size: 16px;
+  font-weight: 300;
+  box-sizing: border-box;
+  display: block;
+  padding-bottom: 22px;
+  padding-top: 12px;
+  font-family: Poppins;
+  color: rgb(56, 59, 61);
+  white-space: pre-line;
+}
+
+.footer .bottom .link-container {
+  flex-basis: 41.6667%;
+  -webkit-box-flex: 0;
+  flex-grow: 0;
+  max-width: 41.6667%;
+  box-sizing: border-box;
+  margin: 0px;
+  flex-direction: row;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  list-style: outside none none;
+  margin-bottom: 15px;
+  padding-left: 0px;
+  text-align: right;
+  padding-bottom: 8px;
+}
+
+.footer .bottom .link-item {
+  max-width: 100%;
+  color: rgb(97, 97, 97);
+  text-decoration: none solid rgb(97, 97, 97);
+  background-color: rgba(0, 0, 0, 0);
+  box-sizing: border-box;
+  width: 3rem !important;
+  padding-bottom: 0px;
+  padding-top: 8px;
+  display: block;
+  font-size: 16px;
+}
+
+.footer .bottom .link-a {
+  font-weight: 900;
+  font-family: "Font Awesome 6 Free";
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  line-height: 16px;
+  text-rendering: auto;
+  box-sizing: border-box;
+}
+
+@media only screen and (max-width: 1000px) {
+  .footer .footer-container {
+    max-width: 750px;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .footer .footer-container .top .logo-container {
+    max-width: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+  .footer .footer-container .top {
+    flex-direction: column;
+    height: fit-content;
+  }
+  .footer .footer-container .top .text-container {
+    flex-direction: row;
+    max-width: 100%;
+    width: 100%;
+  }
+  .footer .footer-container .top .logo-container .logo {
+    position: relative;
+  }
+
+  .footer .top .text-container {
+    align-items: center;
+    justify-content: center;
+  }
+.footer .middle{
+  margin-top: 7.5px;
+}
+  .footer .bottom .link-container{
+    display: none;
+  }
+  .footer .bottom .text-container {
+   max-width: 600px;
+   align-items: center;
+   justify-content: center;
+  }
+
+  .footer .bottom{
+    flex-direction: column;
+    align-items: center;
+  }
+}

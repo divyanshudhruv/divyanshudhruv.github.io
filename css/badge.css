@@ -1,0 +1,48 @@
+
+.badge {
+    box-sizing: border-box;
+    position: fixed;
+    z-index: 9999999;
+    left: 20px;
+    bottom: 20px;
+  }
+  
+  .badge .badge-item {
+    color: rgb(255, 255, 255);
+    text-decoration: none solid rgb(255, 255, 255);
+    background-color: rgb(31, 43, 63);
+    box-sizing: content-box;
+    background: rgb(31, 43, 63) none repeat scroll 0% 0% / auto padding-box
+      border-box;
+    width: 140px;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 19px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 4px 0px;
+    border-radius: 4px;
+    z-index: 9999999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6.5px 8.5px;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  .badge .badge-image {
+    vertical-align: middle;
+    border-style: none;
+    box-sizing: border-box;
+    width: 16px;
+  }
+  
+  .badge .text-1 {
+    box-sizing: border-box;
+    margin-left: 2px;
+  }
+  
+  .badge .text-2{
+    box-sizing: border-box;
+    color: rgb(255, 179, 11);
+  }
+  
