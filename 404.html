@@ -3,27 +3,55 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>404 | Not Found</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script> -->
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="shortcut icon" href="img/logo-3.svg" type="image/x-icon">
-    <script data-token="0BHTR92F128O" async src="https://cdn.splitbee.io/sb.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
 
+    <title>404 | Not Found</title>
+    <style></style>
   </head>
 
-  <body>
-    <div class="container">
-      <div class="flex-center full-height">
-        <div>
-          <div id="error_text">
-            <span class="source">404: <span data-l10n>Not Found</span></span>
-            <span class="target"></span>
-          </div>
-          <center>
-            <button onclick='location.href="/"'  data-splitbee-event="404: Back To Home">Back to Home</button>
-          </center>
-        </div>
+  <body id="body">
+    <div class="container" id="container">
+      <div class="text-top" id="text-top">Error 404 ⛔</div>
+      <div class="text-bottom" id="text-bottom">
+        Not Found &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </div>
+      <div class="button-container">
+        <div class="button" id="button" onclick="goback()">Back to Home</div>
+        &nbsp;
       </div>
     </div>
-    <script src="js/404.js"></script>
+
+    <div class="button-theme-container">
+      <div class="button-theme" id="theme"><i class="ri-sun-line"></i></div>
+    </div>
+
+    <script>
+      document.getElementById("theme").onclick = function () {
+        a = document.getElementById("theme");
+        this.classList.toggle("active");
+        document.getElementById("button").classList.toggle("active");
+
+        document.getElementById("text-top").classList.toggle("active");
+
+        document.getElementById("text-bottom").classList.toggle("active");
+        document.getElementById("body").classList.toggle("active");
+
+        if (this.classList[1] == "active")
+          a.innerHTML = '<i class="ri-moon-line"></i>';
+        else {
+          a.innerHTML = '<i class="ri-sun-line"></i>';
+        }
+      };
+
+      function goback() {
+        window.location.href = "https://divyanshudhruv.is-a.dev";
+      }
+    </script>
   </body>
 </html>
