@@ -1,5 +1,9 @@
 # 📬 My portfolio
 
+<br>
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/2f8a3d91-8d17-4d7d-bd0b-00d4181888bd/deploy-status)](https://app.netlify.com/sites/divyanshudhruv/deploys)
+
 ## 🚀 Description
 > A **`sleek`** and **`modern`** portfolio website showcasing my **`skills`** and **`projects`**. Built with cutting-edge frontend technologies, this site is designed to highlight my work and engage **`potential clients`** and **`collaborators`**.
 
