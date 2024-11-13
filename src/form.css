@@ -80,7 +80,7 @@
   width: fit-content;
   font-size: 16px;
   line-height: 1.875;
-  font-weight: 200;
+  font-weight: 250;
   align-items: center;
   justify-content: center;
   margin-top: 27px;
@@ -104,7 +104,8 @@
   display: flex;
   position: relative;
   width: 50%;
-  height: 100%;
+  height: 100%;  font-weight: 250 !important;
+
   background-color: none;
   padding-right: 60px;
   flex-wrap: wrap;
@@ -119,10 +120,10 @@
   font-family: "Inter", sans-serif;
   letter-spacing: 0.225rem;
   padding-left: calc(0.225rem + 1.26875rem);
-  font-weight: 200;
+  font-weight: 250;
   border-radius: 6px;
   color: var(--textMidDark);
-  border: solid 1px rgba(114, 132, 167, 0.149);
+  border: solid 1px rgba(26, 31, 41, 0.26);
   display: flex;
   position: relative;
   max-width: 350px;
@@ -139,12 +140,12 @@
   font-family: "Inter", sans-serif;
   letter-spacing: 0.225rem;
   padding-left: calc(0.225rem + 1.26875rem);
-  font-weight: 200;
+  font-weight: 250;
   padding-right: calc(0.225rem + 1.26875rem);
   padding-top: 17px;
   border-radius: 6px;
   color: var(--textMidDark);
-  border: solid 1px rgba(114, 132, 167, 0.149);
+  border: solid 1px rgba(26, 31, 41, 0.26);
   display: flex;
   position: relative;
   min-width: 350px;

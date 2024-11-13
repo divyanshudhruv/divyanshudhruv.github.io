@@ -41,7 +41,7 @@
     line-height: 1.6em;
     width: 75%;
     font-size: 17px;
-    font-weight: 200;
+    font-weight: 250;
     text-align: left;
     color: var(--textMidDark);
     font-family: "Inter", sans-serif;
@@ -108,7 +108,7 @@
     display: flex !important;
     position: relative;
     letter-spacing: 1.7px;
-    font-weight: 250;
+    font-weight: 300;
   }
   
   .projectSection .boxes .bottomTextC .h3 {
@@ -116,7 +116,7 @@
     line-height: 1.9em;
     width: 100%;
     font-size: 16px;
-    font-weight: 200;
+    font-weight: 250;
     max-width: 90%;
     text-align: left;
     color: var(--textMidDark);
@@ -132,7 +132,7 @@
     display: flex !important;
     position: relative;
     letter-spacing: 1px;
-    font-weight: 300;
+    font-weight: 350;
     margin-top: 30px;
     cursor: pointer;
   }
