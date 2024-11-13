@@ -1,0 +1,179 @@
+
+.container .languages {
+    display: flex;
+    position: relative;
+    max-width: 873px;
+    width: 100%;
+    min-height: 500px;
+    background-color: none;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-top: 100px;
+    flex-direction: column;
+    background-color: none;
+  }
+  
+  .container .languages .textTop {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    font-size: 45px;
+    color: var(--secondary);
+    text-align: left;
+    margin-top: 50px;
+  }
+  
+  .container .languages .textTop::before {
+    content: "";
+    position: absolute;
+    width: 35px;
+    height: 5px;
+    background-color: var(--primary);
+    top: -40px;
+  }
+  
+  .container .languages .textBottom {
+    display: flex;
+    position: relative;
+    letter-spacing: 0.025rem;
+    line-height: 1.6em;
+    width: 75%;
+    font-size: 17px;
+    font-weight: 200;
+    text-align: left;
+    color: var(--textMidDark);
+    font-family: "Inter", sans-serif;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin-top: 30px;
+    margin-bottom: 60px;
+  }
+  
+  .container .languagesWhy {
+    display: flex;
+    position: relative;
+    max-width: 873px;
+    width: fit-content;
+    min-height: 500px;
+    background-color: none;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 0px;
+    flex-direction: row;
+    gap: 50px;
+  }
+  
+  .container .languagesWhy .boxes {
+    display: flex;
+    position: relative;
+    width: 200px;
+    height: 200px;
+  
+    background-color: none;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+  
+  .languagesWhy .boxes .top {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 70px;
+    background-color: none;
+    align-items: flex-start;
+  }
+  
+  .languagesWhy .boxes .top .image {
+    display: flex;
+    position: relative;
+    width: 43px;
+    height: 43px;
+    background-color: var(--primary);
+    border-radius: 14px;
+    margin-left: 5px;
+    rotate: 45deg;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .languagesWhy .boxes .top .image i {
+    display: flex;
+    position: relative;
+    rotate: -45deg;
+    color: var(--background);
+    font-size: 24px;
+  }
+  .languagesWhy .boxes .bottom {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: calc(100% - 70px);
+    background-color: none;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+  
+  .languagesWhy .boxes .bottom .textBig {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    color: var(--secondary);
+    font-size: 19px;
+    font-weight: 300;
+  }
+  
+  .languagesWhy .boxes .bottom .textBottom {
+    display: flex;
+    position: relative;
+    width: 100%;
+    letter-spacing: 0.025rem;
+    line-height: 1.7em;
+    width: 100%;
+    font-size: 15px;
+    font-weight: 200;
+    text-align: left;
+    color: var(--textMidDark);
+    font-family: "Inter", sans-serif;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .container .languagesWhy {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      width: 100%;
+      margin-top: 75px;
+    }
+    .container .languagesWhy .boxes {
+      width: fit-content;
+      background-color: none;
+      height: fit-content;
+    }
+    .container .languagesWhy .boxes .bottom {
+      margin-top: 20px;
+      gap: 10px;
+    }
+    .container .languagesWhy .boxes .bottom .textBig {
+      font-size: 17px;
+    }
+    .container .languagesWhy .boxes .bottom .textBottom {
+      font-size: 14px;
+      height: fit-content;
+    }
+  
+    .container .languages .textBottom {
+      margin-bottom: 0px;
+    }
+  }
+  

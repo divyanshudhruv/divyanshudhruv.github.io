@@ -1,0 +1,265 @@
+
+.container .form {
+  display: flex;
+  position: relative;
+  max-width: 873px;
+  width: fit-content;
+  min-height: 500px;
+  background-color: none;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-top: 100px;
+  flex-direction: column;
+}
+
+.container .form .formC {
+  display: flex;
+  position: relative;
+  width: 100%;
+  min-height: 550px;
+  height: fit-content;
+  background-color: #ede9f940;
+  align-items: center;
+  justify-content: center;
+  margin-top: 75px;
+  border-radius: 10px;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.container .form .formC .leftC {
+  display: flex;
+  position: relative;
+  width: 50%;
+  height: 100%;
+  background-color: none;
+  padding-top: 0px;
+  padding-left: 60px;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+}
+
+.formC .leftC .textSmall {
+  display: flex;
+  position: relative;
+  font-size: 14px;
+  text-align: center;
+  justify-content: center;
+  color: var(--primary);
+  letter-spacing: 5px;
+  align-items: center;
+  width: fit-content;
+  text-transform: uppercase;
+  height: 50px;
+  min-height: 50px;
+}
+.formC .leftC .textBig {
+  display: flex;
+  position: relative;
+  font-size: 45px;
+  text-align: center;
+  justify-content: center;
+  color: var(--secondary);
+  letter-spacing: 2px;
+  align-items: center;
+  width: fit-content;
+  height: fit-content;
+  min-height: 50px;
+  text-align: left;
+}
+
+.formC .leftC .textMid {
+  display: flex;
+  position: relative;
+  color: var(--textMidDark);
+  font-family: "Inter", sans-serif;
+  letter-spacing: 0.025rem;
+  width: fit-content;
+  font-size: 16px;
+  line-height: 1.875;
+  font-weight: 200;
+  align-items: center;
+  justify-content: center;
+  margin-top: 27px;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 100%;
+  padding-right: 75px;
+}
+.formC .leftC .textMid ul {
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  position: relative;
+  list-style: inside;
+  padding-left: 10px;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.container .form .formC .rightC {
+  display: flex;
+  position: relative;
+  width: 50%;
+  height: 100%;
+  background-color: none;
+  padding-right: 60px;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin-top: 110px;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.formC .rightC input {
+  font-size: 14.3px;
+  font-family: "Inter", sans-serif;
+  letter-spacing: 0.225rem;
+  padding-left: calc(0.225rem + 1.26875rem);
+  font-weight: 200;
+  border-radius: 6px;
+  color: var(--textMidDark);
+  border: solid 1px rgba(114, 132, 167, 0.149);
+  display: flex;
+  position: relative;
+  max-width: 350px;
+  width: 100%;
+  height: 55px;
+  background-color: var(--formContainer) !important;
+  outline: none;
+}
+.formC .rightC input::placeholder {
+  color: var(--textMidDark);
+}
+.formC .rightC textarea {
+  font-size: 14.3px;
+  font-family: "Inter", sans-serif;
+  letter-spacing: 0.225rem;
+  padding-left: calc(0.225rem + 1.26875rem);
+  font-weight: 200;
+  padding-right: calc(0.225rem + 1.26875rem);
+  padding-top: 17px;
+  border-radius: 6px;
+  color: var(--textMidDark);
+  border: solid 1px rgba(114, 132, 167, 0.149);
+  display: flex;
+  position: relative;
+  min-width: 350px;
+  max-width: 350px;
+  width: 100%;
+  min-height: 100px;
+  max-height: 100px;
+  height: fit-content;
+  background-color: var(--formContainer) !important;
+  outline: none;
+}
+.formC .rightC textarea::placeholder {
+  color: var(--textMidDark);
+}
+
+.formC .rightC textarea::-webkit-scrollbar {
+  display: none;
+}
+.formC .rightC .button {
+  display: flex;
+  position: relative;
+  background-color: var(--primary);
+  color: var(--background);
+  background-image: linear-gradient(
+    193deg,
+    #9989fa 0%,
+    rgba(131, 110, 230, 0.008) 100%
+  );
+  background-position: 0% 0%;
+  background-repeat: repeat;
+  background-size: cover;
+  max-width: 210px;
+  width: 140px;
+  max-height: 52px;
+  letter-spacing: 5px;
+  font-weight: 300;
+  height: 65px;
+  border-radius: 1000px;
+  font-size: 14.3px;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.formC .rightC .button:hover {
+  background-color: var(--primaryDark);
+}
+
+@media screen and (max-width: 768px) {
+  .formC .leftC .textMid {
+    padding-right: 40px;
+  }
+  .container .form .formC {
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+
+  .formC .leftC {
+    width: 100% !important;
+    margin-top: 50px;
+    height: 50%;
+    margin-bottom: 0;
+    background-color: none;
+  }
+  .formC .rightC {
+    width: 100% !important;
+    padding-left: 65px;
+    background-color: none;
+    margin-top: 50px !important;
+    height: fit-content;
+  }
+
+  .rightC input {
+    width: 95% !important;
+  }
+  .rightC textarea {
+    width: 95% !important;
+    min-width: 110px !important;
+  }
+  .formC .leftC .textBig {
+    font-size: 2.3rem;
+  }
+}
+.container .form .textTop {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: fit-content;
+  font-size: 45px;
+  color: var(--secondary);
+  text-align: left;
+  margin-top: 50px;
+}
+
+.textTop::before {
+  content: "";
+  position: absolute;
+  width: 35px;
+  height: 5px;
+  background-color: var(--primary);
+  top: -40px;
+}
+
+.container .form .textBottom {
+  display: flex;
+  position: relative;
+  letter-spacing: 0.025rem;
+  line-height: 2em;
+  width: 75%;
+  font-size: 17px;
+  font-weight: 200;
+  text-align: left;
+  color: var(--textMidDark);
+  font-family: "Inter", sans-serif;
+  margin-top: 50px;
+  flex-wrap: wrap;
+  flex-direction: column;
+}

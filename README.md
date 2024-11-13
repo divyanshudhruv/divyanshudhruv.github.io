@@ -1,97 +1,56 @@
-<h1 align="left"> <a href="https://divyanshudhruv.is-a.dev"><code>📬 My Portfolio</code></a></h1>
-<br>
-<p align="left"><code>⚡ A self coded portfolio build with HTML, CSS and JavaScript (currently in vdraft) </code>
-    <br>
-<br>
+# 📬 My portfolio
 
-<br>
-<p align="left">  <img src="https://forthebadge.com/images/badges/built-with-love.svg" > &nbsp;&nbsp;&nbsp; <img src="https://forthebadge.com/images/badges/uses-html.svg"> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; </p>
+## 🚀 Description
+> A **`sleek`** and **`modern`** portfolio website showcasing my **`skills`** and **`projects`**. Built with cutting-edge frontend technologies, this site is designed to highlight my work and engage **`potential clients`** and **`collaborators`**.
 
 <br>
 
-<br>
+## 💻 Languages Used
+> - `HTML`
 
-## 😅 TL;DR
+>- `CSS`
 
-<br>
+> - `JavaScript`
 
-> My personal portfolio <code><a href="https://divyanshudhruv.is-a.dev">divyanshudhruv.is-a.dev</a></code> which features some of my github **projects** as well as my **skills**.
+> - `React`
 
-
-<br>
-
-## 🌱 Technology
+> - `Markdown`
 
 <br>
 
- > **`1`** HTML
- 
- > **`2`** CSS
- 
- > **`3`** JavaScript
- 
- > **`4`** Github
+## ✨ Features
+> - Interactive **`UI`** with smooth animations
+
+> - **`Responsive`** design for all devices
+
+> - Easy-to-navigate sections like **`About`**, **`Projects`**, and **`Contact`**
 
 <br>
 
-## 🚀 Features
+## 👨‍💻 Author
+> -  **[@Divyanshu Dhruv](https://github.com/divyanshudhruv)**
 
 <br>
 
-> **`1`** Minimal layout
+## 🚀 How to Run
+> 1. Clone the repo:  
+   **`git clone https://github.com/divyanshudhruv/divyanshudhruv.github.io.git`**
 
-> **`2`** Single page design
+> 2. Install dependencies:  
+   **`npm install`**
 
-> **`3`** Fully Responsive
-
-> **`4`** 404 page active
-
-<br>
-
-> ## 🌳 Tree Diagram
-
-```
-.
-└── Portfolio
-    ├── index.html
-    ├── 404.html
-    ├── style.css
-    ├── favicon.png
-    └──  icon.png
-   
-```
+> 3. Start the development server:  
+   **`npm start`**
 
 <br>
 
-## 📦 Deployment 
-
-<br>
-
-```rust
-Minifolio is deployed by Github Page and is-a.dev
-```
+## 🕹️ React + Vite
 
 
-<br>
+> This template provides a minimal setup to get React working in **`Vite`** with **`HMR`** and some **`ESLint rules`**.
 
-## ⭐ Star
+> Currently, **`two`** official plugins are available:
 
-<br>
+> - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 
-> If you like the project, give a **`Star`**
-
-<br>
-
-## 🚩 LICENSE
-
-<br>
-
-> <b><a href="https://github.com/divyanshudhruv/divyanshudhruv.github.io"><code>none</code></a></b>
-
-<br>
-
-## ✒️ Author
-
-<br>
-
-> **<code><a href="https://github.com/divyanshudhruv">@ Divyanshu Dhruv</a></code>**
+> - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
