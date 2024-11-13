@@ -26,7 +26,7 @@
     flex-wrap: wrap;
     flex-direction: column;
   }
-  
+   
   .container .contact .textSmall {
     display: flex;
     position: relative;
@@ -38,7 +38,8 @@
     align-items: center;
     width: 100%;
     text-transform: uppercase;
-  
+    font-weight: 250;
+
     height: 50px;
     min-height: 50px;
   }
@@ -64,7 +65,7 @@
     font-family: "Inter", sans-serif;
     letter-spacing: 0.025rem;
     width: 70%;
-    font-size: 16px;
+    font-size: 18px;
     line-height: 1.875;
     text-align: center;
     font-weight: 200;
@@ -112,7 +113,7 @@
     font-weight: 200;
     border-radius: 2rem;
     color: var(--textMidDark);
-    border: solid 1px rgba(114, 132, 167, 0.149);
+    border: solid 1px rgba(20, 23, 29, 0.149);
     display: flex;
     position: relative;
     min-width: 375px;
@@ -147,7 +148,7 @@
     border-radius: 100%;
     align-items: center;
     justify-content: center;
-    border: solid 1px rgba(114, 132, 167, 0.149);
+    border: solid 1px rgba(20, 23, 29, 0.149);
     color: var(--primary);
     cursor: pointer;
     transition: 0.3s !important;
@@ -160,6 +161,10 @@
     font-weight: lighter;
   }
   
+  .socials .item:hover{
+    background-color: rgba(149, 151, 156, 0.05);
+
+  }
   @media screen and (max-width: 768px) {
     .container .contact {
       width: 100%;
