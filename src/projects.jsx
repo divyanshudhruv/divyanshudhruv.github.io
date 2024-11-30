@@ -10,7 +10,7 @@ export default function Nav() {
           Interfaces, and Modern Solutions for a Better Experience
         </div>
         <div className="projectSection">
-          <div className="boxes">
+          <div className="boxes"  style={{ marginBottom: "20px" }}>
             <div className="image"></div>
             <div className="bottomTextC">
               <div className="h1">Minifolio</div>
@@ -45,6 +45,27 @@ export default function Nav() {
                 onClick={() =>
                   window.open(
                     "https://github.com/divyanshudhruv/vscode-ui-tweaks",
+                    "_blank"
+                  )
+                }
+              >
+                Live Demo
+              </div>
+            </div>
+          </div>
+          <div className="boxes">
+            <div className="image"></div>
+            <div className="bottomTextC">
+              <div className="h1">Tidyfi</div>
+              <div className="h3">
+                A simple python program that helps you to tidy up your messy
+                files and folders.
+              </div>{" "}
+              <div
+                className="link"
+                onClick={() =>
+                  window.open(
+                    "https://github.com/divyanshudhruv/Tidyfi",
                     "_blank"
                   )
                 }
