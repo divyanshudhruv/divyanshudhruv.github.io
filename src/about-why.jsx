@@ -41,7 +41,7 @@ export default function Nav() {
             </div>
           </div>
         </div>
-        <div className="boxes">
+        {/* <div className="boxes">
           <div className="top">
             <div className="image">
               <i class="ri-settings-2-line"></i>
@@ -77,7 +77,7 @@ export default function Nav() {
             <div className="textBig">Is cool</div>
             <div className="textBottom">On top of that, it looks cool.</div>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );

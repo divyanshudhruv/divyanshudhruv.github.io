@@ -19,7 +19,7 @@ export default function Nav() {
             </div>
             <div className="bottom">
               <div className="textBig">Frontend development</div>
-              <div className="textBottom">Building responsive interfaces</div>
+              <div className="textBottom">HTML, CSS, JavaScript, TypeScript, React.js, jQuery Tailwind, Bootstrap</div>
             </div>
           </div>
           <div className="boxes">
@@ -30,9 +30,7 @@ export default function Nav() {
             </div>
             <div className="bottom">
               <div className="textBig">Backend development</div>
-              <div className="textBottom">
-                Creating scalable server solutions
-              </div>
+              <div className="textBottom">Python, Java, Javascript, PHP, Node.js, Flask, Express.js, FastAPI</div>
             </div>
           </div>
           <div className="boxes">
@@ -44,7 +42,7 @@ export default function Nav() {
             <div className="bottom">
               <div className="textBig">App/Game development</div>
               <div className="textBottom">
-                Developing interactive games and apps
+                Java, Javascript, Python, P5.js, Dart, Flutter, Ionic
               </div>
             </div>
           </div>
@@ -56,9 +54,7 @@ export default function Nav() {
             </div>
             <div className="bottom">
               <div className="textBig">UI/UX Design</div>
-              <div className="textBottom">
-                Designing user-friendly experiences
-              </div>
+              <div className="textBottom">Canva, Figma, Pixso, Framer, Ant Design, IonicUI </div>
             </div>
           </div>
         </div>
