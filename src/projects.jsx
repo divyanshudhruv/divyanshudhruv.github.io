@@ -10,7 +10,8 @@ export default function Nav() {
           Interfaces, and Modern Solutions for a Better Experience
         </div>
         <div className="projectSection">
-          <div className="boxes"  style={{ marginBottom: "20px" }}>
+          <div className="boxes">
+            {/*   style={{ marginBottom: "20px" }} */}
             <div className="image"></div>
             <div className="bottomTextC">
               <div className="h1">Minifolio</div>
