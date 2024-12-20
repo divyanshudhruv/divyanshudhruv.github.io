@@ -99,7 +99,7 @@
     flex-direction: column;
     align-items: start;
     justify-content: start;
-    width: 100%;
+    width: 80%;
     margin-top: 75px;
   }
   .container .aboutWhy .boxes {
@@ -117,5 +117,16 @@
   .container .aboutWhy .boxes .bottom .textBottom {
     font-size: 14px;
     height: fit-content;
+  }
+}
+
+
+@media screen and (max-width: 1020px) {
+  .container .aboutWhy {
+    align-items: start;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 75px;
+    gap: 80px;
   }
 }

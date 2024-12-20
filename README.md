@@ -32,6 +32,7 @@
 
 <br>
 
+<!--
 ## 🚀 How to Run
 > 1. Clone the repo:  
    **`git clone https://github.com/divyanshudhruv/divyanshudhruv.github.io.git`**
@@ -43,6 +44,8 @@
    **`npm start`**
 
 <br>
+
+-->
 
 ## 🕹️ React + Vite
 
