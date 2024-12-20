@@ -31,6 +31,7 @@ export default function Nav() {
             </div>
           </div>
           <div className="boxes">
+            {/*  style={{ marginBottom: "20px" }} */}
             <div className="image"></div>
             <div className="bottomTextC">
               <div className="h1">Tidyfi</div>
@@ -95,8 +96,28 @@ export default function Nav() {
               </div>
             </div>
           </div>
-          
-          
+
+          <div className="boxes">
+            <div className="image"></div>
+            <div className="bottomTextC">
+              <div className="h1">Tidyfi</div>
+              <div className="h3">
+                A simple python program that helps you to tidy up your messy
+                files and folders.
+              </div>{" "}
+              <div
+                className="link"
+                onClick={() =>
+                  window.open(
+                    "https://github.com/divyanshudhruv/Tidyfi",
+                    "_blank"
+                  )
+                }
+              >
+                Live Demo
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>
