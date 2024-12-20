@@ -120,6 +120,7 @@
     width: 375px;
     height: 60px;
     outline: none;
+    padding-right: 30px;
   }
   
   .container .contact input::placeholder {

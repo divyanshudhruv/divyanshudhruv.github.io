@@ -131,6 +131,7 @@
   height: 55px;
   background-color: var(--formContainer) !important;
   outline: none;
+  padding-right: 25px;
 }
 .formC .rightC input::placeholder {
   color: var(--textMidDark);
