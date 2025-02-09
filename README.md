@@ -1,14 +1,16 @@
 # 📬 My portfolio
 
 ## 🚀 Description
+
 > A **`sleek`** and **`modern`** portfolio website showcasing my **`skills`** and **`projects`**. Built with cutting-edge frontend technologies, this site is designed to highlight my work and engage **`potential clients`** and **`collaborators`**.
 
 <br>
 
 ## 💻 Languages Used
+
 > - `HTML`
 
->- `CSS`
+> - `CSS`
 
 > - `JavaScript`
 
@@ -19,6 +21,7 @@
 <br>
 
 ## ✨ Features
+
 > - Interactive **`UI`** with smooth animations
 
 > - **`Responsive`** design for all devices
@@ -28,19 +31,20 @@
 <br>
 
 ## 👨‍💻 Author
-> -  **[@Divyanshu Dhruv](https://github.com/divyanshudhruv)**
+
+> - **[@Divyanshu Dhruv](https://github.com/divyanshudhruv)**
 
 <br>
 
 <!--
 ## 🚀 How to Run
-> 1. Clone the repo:  
+> 1. Clone the repo:
    **`git clone https://github.com/divyanshudhruv/divyanshudhruv.github.io.git`**
 
-> 2. Install dependencies:  
+> 2. Install dependencies:
    **`npm install`**
 
-> 3. Start the development server:  
+> 3. Start the development server:
    **`npm start`**
 
 <br>
@@ -48,7 +52,6 @@
 -->
 
 ## 🕹️ React + Vite
-
 
 > This template provides a minimal setup to get React working in **`Vite`** with **`HMR`** and some **`ESLint rules`**.
 
