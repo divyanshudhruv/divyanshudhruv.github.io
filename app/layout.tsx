@@ -10,7 +10,7 @@ import { Analytics } from "@vercel/analytics/react";
 const inter = Inter({ subsets: ["latin"] });
 import { SpeedInsights } from "@vercel/speed-insights/next";
 export const metadata = {
-  title: "Divyanshu Dhruv | Portfolio",
+  title: "Divyanshu Dhruv | Personal Portfolio",
   description:
     "Divyanshu is a full-stack developer with 8 years of experience.",
 };
