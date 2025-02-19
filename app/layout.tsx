@@ -11,8 +11,18 @@ const inter = Inter({ subsets: ["latin"] });
 import { SpeedInsights } from "@vercel/speed-insights/next";
 export const metadata = {
   title: "Divyanshu Dhruv | My Portfolio",
-  description:
-    "Divyanshu is a full-stack developer with 8 years of experience.",
+  description: "I'm a full-stack developer with 5+ years of experience.",
+  openGraph: {
+    title: "Divyanshu Dhruv | My Portfolio",
+    description: "I'm a full-stack developer with 5+ years of experience.",
+    images: ["/og.png"], // Assuming the image is at /public/og.png
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Divyanshu Dhruv | My Portfolio",
+    description: "I'm a full-stack developer with 5+ years of experience.",
+    images: ["/og.png"],
+  },
 };
 
 export default function RootLayout({
