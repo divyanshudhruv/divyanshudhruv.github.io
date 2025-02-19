@@ -38,7 +38,7 @@ export const experiencesData = [
     title: "Apprenticeship",
     location: "@WhiteHat Jr",
     description:
-      "Worked on 5+ real-world projects and participated in several coding challenges.",
+      "Worked on 15+ real-world projects and participated in several coding challenges.",
     icon: React.createElement(LuGraduationCap),
     date: "May  2020 - Dec  2022",
   },
@@ -46,7 +46,7 @@ export const experiencesData = [
     title: "Front-End Developer | UI/UX Designer",
     location: "Self Employed",
     description:
-      "I'm  working as a front-end developer for 5+ years. I also built 10+ awesome UI designs.",
+      "I'm working as a front-end developer for 5+ years. I also built 10+ awesome UI designs.",
     icon: React.createElement(CgWorkAlt),
     date: "May 2019 - present",
   },
