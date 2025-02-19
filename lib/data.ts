@@ -38,13 +38,13 @@ export const experiencesData = [
     title: "Apprenticeship",
     location: "@WhiteHat Jr",
     description:
-      "I graduated after 6 months of studying. I immediately found a job as a front-end developer.",
+      "Worked on 5+ real-world projects and participated in several coding challenges.",
     icon: React.createElement(LuGraduationCap),
     date: "May  2020 - Dec  2022",
   },
   {
     title: "Front-End Developer | UI/UX Designer",
-    location: "Self Employeed",
+    location: "Self Employed",
     description:
       "I'm  working as a front-end developer for 5+ years. I also built 10+ awesome UI designs.",
     icon: React.createElement(CgWorkAlt),
@@ -52,9 +52,9 @@ export const experiencesData = [
   },
   {
     title: "Full-Stack Developer",
-    location: "Self Employeed",
+    location: "Self Employed",
     description:
-      "I'm now a full-stack developer working as a open-source contributor. My stack includes React, Next.js, TypeScript, Tailwind, etc.",
+      "I'm now a full-stack developer, contributing to open-source projects. My stack includes React, Next.js, TypeScript, Tailwind, etc.",
     icon: React.createElement(FaReact),
     date: "Nov 2024 - present",
   },
