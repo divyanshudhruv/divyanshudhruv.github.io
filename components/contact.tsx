@@ -34,16 +34,15 @@ export default function Contact() {
       <p className="text-gray-700 -mt-6">
         Please contact me directly through this{" "}
         <a className="underline" href="#contact">
-        form
+          form
         </a>{" "}
         .
       </p>
 
       <form
         className="mt-10 flex flex-col"
-        
         action={async (formData) => {
-          const { data, error } = await sendEmail(formData);
+          const { error } = await sendEmail(formData);
 
           if (error) {
             toast.error(error);
@@ -68,7 +67,9 @@ export default function Contact() {
           required
           maxLength={5000}
         />
-        <div  className="align-end justify-start min-w-[100%] flex">        <SubmitBtn />
+        <div className="align-end justify-start min-w-[100%] flex">
+          {" "}
+          <SubmitBtn />
         </div>
       </form>
     </motion.section>
