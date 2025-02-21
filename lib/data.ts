@@ -3,6 +3,8 @@ import { CgWorkAlt } from "react-icons/cg";
 import { FaReact } from "react-icons/fa";
 import { LuGraduationCap } from "react-icons/lu";
 import corpcommentImg from "@/public/corpcomment.png";
+import another from "@/public/another.png";
+
 import rmtdevImg from "@/public/rmtdev.png";
 import wordanalyticsImg from "@/public/wordanalytics.png";
 
@@ -44,7 +46,7 @@ export const experiencesData = [
   },
   {
     title: "Front-End Developer | UI/UX Designer",
-    location: "Self Employed",
+    location: "@Self Employed",
     description:
       "I'm working as a front-end developer for 5+ years. I also built 10+ awesome UI designs and websites.",
     icon: React.createElement(CgWorkAlt),
@@ -52,7 +54,7 @@ export const experiencesData = [
   },
   {
     title: "Full-Stack Developer",
-    location: "Self Employed",
+    location: "@Self Employed",
     description:
       "I'm now a full-stack developer, contributing to open-source projects. My stack includes React, Next.js, TypeScript, Tailwind, etc.",
     icon: React.createElement(FaReact),
@@ -61,6 +63,7 @@ export const experiencesData = [
 ] as const;
 
 export const projectsData = [
+ 
   {
     title: "HelloLink",
     description: "An AI powered, open-source alternative to Linktree.",
@@ -80,6 +83,12 @@ export const projectsData = [
       "An AI-powered emoticon assistant that understands your text and suggests the perfect reactions instantly.",
     tags: ["React", "Next.js", "GeminiAI", "Tailwind", "Framer"],
     imageUrl: wordanalyticsImg,
+  }, {
+    title: "regex-simplify",
+    description:
+      "A simple tool/package to simplify regex quickly using chainable APIs.",
+    tags: ["React", "Next.js", "SCSS", "Tailwind", "OnceUI"],
+    imageUrl: another,
   },
 ] as const;
 
