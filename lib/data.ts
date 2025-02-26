@@ -4,6 +4,8 @@ import { FaReact } from "react-icons/fa";
 import { LuGraduationCap } from "react-icons/lu";
 import corpcommentImg from "@/public/corpcomment.png";
 import another from "@/public/another.png";
+import gitfolio from "@/public/gitfolio.png";
+
 
 import rmtdevImg from "@/public/rmtdev.png";
 import wordanalyticsImg from "@/public/wordanalytics.png";
@@ -63,7 +65,6 @@ export const experiencesData = [
 ] as const;
 
 export const projectsData = [
- 
   {
     title: "HelloLink",
     description: "An AI powered, open-source alternative to Linktree.",
@@ -76,6 +77,12 @@ export const projectsData = [
       "A powerful tool/package designed for dynamic localization, using JSON data",
     tags: ["React", "TypeScript", "Next.js", "Tailwind", "GeminiAI"],
     imageUrl: rmtdevImg,
+  },{
+    title: "Gitfolio",
+    description:
+      "A modern and minimal github profile card generator.",
+    tags: ["React", "Tailwind", "Typescript", "Axios"],
+    imageUrl: gitfolio,
   },
   {
     title: "Eeon",
@@ -83,13 +90,21 @@ export const projectsData = [
       "An AI-powered emoticon assistant that understands your text and suggests the perfect reactions instantly.",
     tags: ["React", "Next.js", "GeminiAI", "Tailwind", "Framer"],
     imageUrl: wordanalyticsImg,
-  }, {
+  },
+  
+  {
     title: "regex-simplify",
     description:
       "A simple tool/package to simplify regex quickly using chainable APIs.",
     tags: ["React", "Next.js", "SCSS", "Tailwind", "OnceUI"],
     imageUrl: another,
-  },
+  }
+  // {
+  //   title: "SayHalo",
+  //   description: "A AI-powered, open-source SML aggregator",
+  //   tags: ["React", "Next.js", "Tailwind", "GeminiAI", "MistralAI"],
+  //   imageUrl: another2,
+  // },
 ] as const;
 
 export const skillsData = [
