@@ -5,7 +5,9 @@ import { LuGraduationCap } from "react-icons/lu";
 import corpcommentImg from "@/public/corpcomment.png";
 import another from "@/public/another.png";
 import gitfolio from "@/public/gitfolio.png";
+import tidyfi from "@/public/tidyfi.png";
 
+import minifolio from "@/public/minifolio.png";
 
 import rmtdevImg from "@/public/rmtdev.png";
 import wordanalyticsImg from "@/public/wordanalytics.png";
@@ -77,13 +79,26 @@ export const projectsData = [
       "A powerful tool/package designed for dynamic localization, using JSON data",
     tags: ["React", "TypeScript", "Next.js", "Tailwind", "GeminiAI"],
     imageUrl: rmtdevImg,
-  },{
+  },
+  {
+    title: "Minifolio",
+    description: "A minimal portfolio template for developers.",
+    tags: ["React", "Vite", "JavaScript", "Animation"],
+    imageUrl: minifolio,
+  },
+  {
     title: "Gitfolio",
-    description:
-      "A modern and minimal github profile card generator.",
+    description: "A modern and minimal github profile card generator.",
     tags: ["React", "Tailwind", "Typescript", "Axios"],
     imageUrl: gitfolio,
   },
+  {
+    title: "Tidyfi",
+    description: "An effortless, one click python file organizer.",
+    tags: ["Python", "OS", "Flask", "Organizer", "Web"],
+    imageUrl: tidyfi,
+  },
+
   {
     title: "Eeon",
     description:
@@ -91,14 +106,14 @@ export const projectsData = [
     tags: ["React", "Next.js", "GeminiAI", "Tailwind", "Framer"],
     imageUrl: wordanalyticsImg,
   },
-  
+
   {
-    title: "regex-simplify",
+    title: "regex-simplify ",
     description:
       "A simple tool/package to simplify regex quickly using chainable APIs.",
-    tags: ["React", "Next.js", "SCSS", "Tailwind", "OnceUI"],
+    tags: ["[ONGOING]", "React", "Next.js", "SCSS", "Tailwind", "OnceUI"],
     imageUrl: another,
-  }
+  },
   // {
   //   title: "SayHalo",
   //   description: "A AI-powered, open-source SML aggregator",
