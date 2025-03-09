@@ -6,10 +6,9 @@ import corpcommentImg from "@/public/corpcomment.png";
 import another from "@/public/another.png";
 import gitfolio from "@/public/gitfolio.png";
 import tidyfi from "@/public/tidyfi.png";
-
 import minifolio from "@/public/minifolio.png";
-
 import rmtdevImg from "@/public/rmtdev.png";
+import nextImg from "@/public/next-bench.png";
 import wordanalyticsImg from "@/public/wordanalytics.png";
 
 export const links = [
@@ -68,17 +67,28 @@ export const experiencesData = [
 
 export const projectsData = [
   {
+    title: "Next Bench - Sonamii",
+    description: "Next Bench is a web application that helps students find the best institutions, offering advanced search and school comparisons.",
+    tags: ["[ONGOING]", "Next.js", "Supabase", "DrizzleORM", "MistralAI"],
+    imageUrl: nextImg,
+  },
+  {
+    title: "Strix-AI",
+    description: "A tool/package designed for dynamic localization, using JSON data.",
+    tags: ["React", "TypeScript", "Next.js", "Tailwind", "GeminiAI"],
+    imageUrl: rmtdevImg,
+  },
+  {
     title: "HelloLink",
     description: "An AI powered, open-source alternative to Linktree.",
     tags: ["React", "Next.js", "Supabase", "Tailwind", "GeminiAI"],
     imageUrl: corpcommentImg,
   },
   {
-    title: "Strix-AI",
-    description:
-      "A powerful tool/package designed for dynamic localization, using JSON data",
-    tags: ["React", "TypeScript", "Next.js", "Tailwind", "GeminiAI"],
-    imageUrl: rmtdevImg,
+    title: "regex-simplify",
+    description: "A tool/package to simplify regex quickly using chainable APIs.",
+    tags: ["[ONGOING]", "React", "Next.js", "SCSS", "Tailwind", "OnceUI"],
+    imageUrl: another,
   },
   {
     title: "Minifolio",
@@ -88,38 +98,22 @@ export const projectsData = [
   },
   {
     title: "Gitfolio",
-    description: "A modern and minimal github profile card generator.",
-    tags: ["React", "Tailwind", "Typescript", "Axios"],
+    description: "A modern and minimal GitHub profile card generator.",
+    tags: ["React", "Tailwind", "TypeScript", "Axios"],
     imageUrl: gitfolio,
   },
   {
     title: "Tidyfi",
-    description: "An effortless, one click python file organizer.",
+    description: "A one-click Python file organizer.",
     tags: ["Python", "OS", "Flask", "Organizer", "Web"],
     imageUrl: tidyfi,
   },
-
   {
     title: "Eeon",
-    description:
-      "An AI-powered emoticon assistant that understands your text and suggests the perfect reactions instantly.",
+    description: "An AI-powered emoticon assistant that understands your text and suggests the perfect reactions instantly.",
     tags: ["React", "Next.js", "GeminiAI", "Tailwind", "Framer"],
     imageUrl: wordanalyticsImg,
   },
-
-  {
-    title: "regex-simplify ",
-    description:
-      "A simple tool/package to simplify regex quickly using chainable APIs.",
-    tags: ["[ONGOING]", "React", "Next.js", "SCSS", "Tailwind", "OnceUI"],
-    imageUrl: another,
-  },
-  // {
-  //   title: "SayHalo",
-  //   description: "A AI-powered, open-source SML aggregator",
-  //   tags: ["React", "Next.js", "Tailwind", "GeminiAI", "MistralAI"],
-  //   imageUrl: another2,
-  // },
 ] as const;
 
 export const skillsData = [
