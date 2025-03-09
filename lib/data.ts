@@ -10,6 +10,9 @@ import minifolio from "@/public/minifolio.png";
 import rmtdevImg from "@/public/rmtdev.png";
 import nextImg from "@/public/next-bench.png";
 import wordanalyticsImg from "@/public/wordanalytics.png";
+import vsImg from "@/public/vscode-ui.png";
+import pocketVault from "@/public/pocketVault.png";
+import angrybirds from "@/public/angrybirds.png";
 
 export const links = [
   {
@@ -43,7 +46,7 @@ export const experiencesData = [
     title: "Apprenticeship",
     location: "@WhiteHat Jr",
     description:
-      "Worked on 15+ real-world projects and participated in several coding challenges and awesome workshops.",
+      "Worked on 20+ real-world projects and participated in several coding challenges and awesome workshops.",
     icon: React.createElement(LuGraduationCap),
     date: "May  2020 - Dec  2022",
   },
@@ -51,7 +54,7 @@ export const experiencesData = [
     title: "Front-End Developer | UI/UX Designer",
     location: "@Self Employed",
     description:
-      "I'm working as a front-end developer for 5+ years. I also built 10+ awesome UI designs and websites.",
+      "I'm working as a front-end developer for 5+ years. I also built 30+ awesome UI designs and 50+ websites.",
     icon: React.createElement(CgWorkAlt),
     date: "May 2019 - present",
   },
@@ -68,13 +71,15 @@ export const experiencesData = [
 export const projectsData = [
   {
     title: "Next Bench - Sonamii",
-    description: "Next Bench is a web application that helps students find the best institutions, offering advanced search and school comparisons.",
+    description:
+      "Next Bench is a web application that helps students find the best institutions, offering advanced search and school comparisons.",
     tags: ["[ONGOING]", "Next.js", "Supabase", "DrizzleORM", "MistralAI"],
     imageUrl: nextImg,
   },
   {
     title: "Strix-AI",
-    description: "A tool/package designed for dynamic localization, using JSON data.",
+    description:
+      "A tool/package designed for dynamic localization, using JSON data.",
     tags: ["React", "TypeScript", "Next.js", "Tailwind", "GeminiAI"],
     imageUrl: rmtdevImg,
   },
@@ -84,9 +89,11 @@ export const projectsData = [
     tags: ["React", "Next.js", "Supabase", "Tailwind", "GeminiAI"],
     imageUrl: corpcommentImg,
   },
+
   {
     title: "regex-simplify",
-    description: "A tool/package to simplify regex quickly using chainable APIs.",
+    description:
+      "A tool/package to simplify regex quickly using chainable APIs.",
     tags: ["[ONGOING]", "React", "Next.js", "SCSS", "Tailwind", "OnceUI"],
     imageUrl: another,
   },
@@ -103,6 +110,13 @@ export const projectsData = [
     imageUrl: gitfolio,
   },
   {
+    title: "Pocket Vault",
+    description:
+      " A developer's vault for storing most used npm packages, deployments, snippets, repos, tools etc.",
+    tags: ["[Stashed]", "TypeScript", "Next.js", "Tailwind"],
+    imageUrl: pocketVault,
+  },
+  {
     title: "Tidyfi",
     description: "A one-click Python file organizer.",
     tags: ["Python", "OS", "Flask", "Organizer", "Web"],
@@ -110,9 +124,24 @@ export const projectsData = [
   },
   {
     title: "Eeon",
-    description: "An AI-powered emoticon assistant that understands your text and suggests the perfect reactions instantly.",
+    description:
+      "An AI-powered emoticon assistant that understands your text and suggests the perfect reactions instantly.",
     tags: ["React", "Next.js", "GeminiAI", "Tailwind", "Framer"],
     imageUrl: wordanalyticsImg,
+  },
+
+  {
+    title: "VSCode UI Tweaks",
+    description:
+      "A collection of custom CSS and JS tweaks designed to elevate your Visual Studio Code experience!",
+    tags: ["VSCODE", "CSS", "JavaScript", "Extension"],
+    imageUrl: vsImg,
+  },
+  {
+    title: "Angry Birds 😝",
+    description: "A simple angry birds clone.",
+    tags: ["P5JS", "Javascript", "Game", "WHITEHATJR"],
+    imageUrl: angrybirds,
   },
 ] as const;
 
