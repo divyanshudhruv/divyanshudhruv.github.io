@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { projectsData } from "@/lib/data";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { useSectionInView } from "@/lib/hooks";
 
 type ProjectProps = (typeof projectsData)[number];
 
@@ -20,10 +21,15 @@ export default function Project({
   });
   const scaleProgess = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
   const opacityProgess = useTransform(scrollYProgress, [0, 1], [0.6, 1]);
+  const sectionRef = useSectionInView("Projects").ref;
 
   return (
     <motion.div
-      ref={ref}
+      ref={(node) => {
+        ref.current = node;
+        sectionRef(node);
+      }}
+      
       style={{
         scale: scaleProgess,
         opacity: opacityProgess,
