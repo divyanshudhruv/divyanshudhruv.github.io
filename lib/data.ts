@@ -11,7 +11,7 @@ import rmtdevImg from "@/public/rmtdev.png";
 import nextImg from "@/public/next-bench.png";
 import wordanalyticsImg from "@/public/wordanalytics.png";
 import vsImg from "@/public/vscode-ui.png";
-import pocketVault from "@/public/pocketVault.png";
+import pocketVault from "@/public/pocketvault.png";
 import angrybirds from "@/public/angrybirds.png";
 
 export const links = [
