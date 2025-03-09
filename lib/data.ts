@@ -129,19 +129,18 @@ export const projectsData = [
     tags: ["React", "Next.js", "GeminiAI", "Tailwind", "Framer"],
     imageUrl: wordanalyticsImg,
   },
-
+  {
+    title: "Angry Birds 😝",
+    description: "A simple angry birds clone.",
+    tags: ["P5JS", "Javascript", "Game", "WHITEHATJR"],
+    imageUrl: angrybirds,
+  },
   {
     title: "VSCode UI Tweaks",
     description:
       "A collection of custom CSS and JS tweaks designed to elevate your Visual Studio Code experience!",
     tags: ["VSCODE", "CSS", "JavaScript", "Extension"],
     imageUrl: vsImg,
-  },
-  {
-    title: "Angry Birds 😝",
-    description: "A simple angry birds clone.",
-    tags: ["P5JS", "Javascript", "Game", "WHITEHATJR"],
-    imageUrl: angrybirds,
   },
 ] as const;
 
