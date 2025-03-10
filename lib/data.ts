@@ -1,6 +1,6 @@
 import React from "react";
 import { CgWorkAlt } from "react-icons/cg";
-import { FaReact } from "react-icons/fa";
+import { FaLaptop, FaReact } from "react-icons/fa";
 import { LuGraduationCap } from "react-icons/lu";
 import corpcommentImg from "@/public/corpcomment.png";
 import another from "@/public/another.png";
@@ -65,6 +65,13 @@ export const experiencesData = [
       "I'm now a full-stack developer, contributing to open-source projects. My stack includes React, Next.js, TypeScript, Tailwind, etc.",
     icon: React.createElement(FaReact),
     date: "Nov 2024 - present",
+  },
+  {
+    title: "CTO",
+    location: "@Sonamii",
+    description: `CTO at Sonamii, leading <a href="https://next-bench-dev.vercel.app/?ref=divyanshdhruv.is-a.dev" target="_blank"><u>Next Bench</u></a> and building with Generative AI. Passionate about AI-agents, open-source, and innovation.`,
+    icon: React.createElement(FaLaptop),
+    date: "Feb 2025 - present",
   },
 ] as const;
 
