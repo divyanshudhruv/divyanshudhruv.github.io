@@ -13,6 +13,7 @@ import wordanalyticsImg from "@/public/wordanalytics.png";
 import vsImg from "@/public/vscode-ui.png";
 import pocketVault from "@/public/pocketvault.png";
 import angrybirds from "@/public/angrybirds.png";
+import data from "@/public/data.png";
 
 export const links = [
   {
@@ -77,75 +78,82 @@ export const experiencesData = [
 
 export const projectsData = [
   {
+    title: "DataDiver-AI",
+    description:
+      "A minimal tool for web scraping, transforming unstructured websites into clean JSON with the 🧠 AI-powered processing.",
+    tags: ["MistralAI", "Next.js", "TypeScript", "Tailwind", "onceui"],
+    imageUrl: data,
+  },
+  {
     title: "Next Bench - Sonamii",
     description:
-      "Next Bench is a web application that helps students find the best institutions, offering advanced search and school comparisons.",
+      "Next Bench is a web application that helps 🎓 students find the best institutions, offering advanced search and comparisons.",
     tags: ["[ONGOING]", "Next.js", "Supabase", "DrizzleORM", "MistralAI"],
     imageUrl: nextImg,
   },
   {
     title: "Strix-AI",
     description:
-      "A tool/package designed for dynamic localization, using JSON data.",
+      "A tool/package designed for dynamic 🌐 localization, using JSON data.",
     tags: ["React", "TypeScript", "Next.js", "Tailwind", "GeminiAI"],
     imageUrl: rmtdevImg,
   },
   {
     title: "HelloLink",
-    description: "An AI powered, open-source alternative to Linktree.",
+    description: "An AI powered, open-source alternative to 🌴 Linktree.",
     tags: ["React", "Next.js", "Supabase", "Tailwind", "GeminiAI"],
     imageUrl: corpcommentImg,
   },
-
+  {
+    title: "Gitfolio",
+    description: "A modern and minimal 🐈 GitHub profile card generator.",
+    tags: ["React", "Tailwind", "TypeScript", "Axios"],
+    imageUrl: gitfolio,
+  },
   {
     title: "regex-simplify",
     description:
-      "A tool/package to simplify regex quickly using chainable APIs.",
+      "A tool/package to simplify ⚙️ regex quickly using chainable APIs.",
     tags: ["[ONGOING]", "React", "Next.js", "SCSS", "Tailwind", "OnceUI"],
     imageUrl: another,
   },
   {
     title: "Minifolio",
-    description: "A minimal portfolio template for developers.",
+    description: "A minimal portfolio template for 💻 developers.",
     tags: ["React", "Vite", "JavaScript", "Animation"],
     imageUrl: minifolio,
   },
-  {
-    title: "Gitfolio",
-    description: "A modern and minimal GitHub profile card generator.",
-    tags: ["React", "Tailwind", "TypeScript", "Axios"],
-    imageUrl: gitfolio,
-  },
+
   {
     title: "Pocket Vault",
     description:
-      " A developer's vault for storing most used npm packages, deployments, snippets, repos, tools etc.",
+      " A developer's 🛟 vault for storing most used npm packages, deployments, snippets, repos, tools etc.",
     tags: ["[Stashed]", "TypeScript", "Next.js", "Tailwind"],
     imageUrl: pocketVault,
   },
   {
     title: "Tidyfi",
-    description: "A one-click Python file organizer.",
+    description: "A one-click 🐍 Python file organizer.",
     tags: ["Python", "OS", "Flask", "Organizer", "Web"],
     imageUrl: tidyfi,
   },
   {
     title: "Eeon",
     description:
-      "An AI-powered emoticon assistant that understands your text and suggests the perfect reactions instantly.",
+      "An AI-powered emoticon assistant that understands your 📃 text and suggests the perfect reactions instantly.",
     tags: ["React", "Next.js", "GeminiAI", "Tailwind", "Framer"],
     imageUrl: wordanalyticsImg,
   },
   {
     title: "Angry Birds 😝",
-    description: "A simple angry birds clone.",
+    description: "A simple angry 🐦 birds clone.",
     tags: ["P5JS", "Javascript", "Game", "WHITEHATJR"],
     imageUrl: angrybirds,
   },
   {
     title: "VSCode UI Tweaks",
     description:
-      "A collection of custom CSS and JS tweaks designed to elevate your Visual Studio Code experience!",
+      "A collection of custom CSS and JS tweaks designed to elevate your 🎨 Visual Studio Code experience!",
     tags: ["VSCODE", "CSS", "JavaScript", "Extension"],
     imageUrl: vsImg,
   },
