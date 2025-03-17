@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { BsArrowRight, BsLinkedin } from "react-icons/bs";
 import { HiOutlineStar } from "react-icons/hi";
-import { FaGithub, FaGithubAlt, FaGithubSquare } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 import { useSectionInView } from "@/lib/hooks";
 import { useActiveSectionContext } from "@/context/active-section-context";
 
