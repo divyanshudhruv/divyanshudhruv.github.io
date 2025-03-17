@@ -183,4 +183,5 @@ export const skillsData = [
   "Django",
   "Java",
   "R",
+  "C#",
 ] as const;
