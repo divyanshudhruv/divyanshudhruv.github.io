@@ -15,7 +15,7 @@
     "@vercel/speed-insights": "^1.2.0",
     "clsx": "^2.1.1",
     "framer-motion": "^12.4.4",
-    "next": "15.1.7",
+    "next": "15.2.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hot-toast": "^2.5.2",
