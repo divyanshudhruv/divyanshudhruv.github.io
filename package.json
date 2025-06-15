@@ -9,13 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@react-email/components": "^0.0.33",
+    "@react-email/components": "^0.0.36",
     "@react-email/tailwind": "^1.0.4",
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
     "clsx": "^2.1.1",
     "framer-motion": "^12.4.4",
-    "next": "15.1.7",
+    "next": "15.2.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hot-toast": "^2.5.2",
