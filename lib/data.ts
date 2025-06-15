@@ -14,6 +14,10 @@ import vsImg from "@/public/vscode-ui.png";
 import pocketVault from "@/public/pocketvault.png";
 import angrybirds from "@/public/angrybirds.png";
 import data from "@/public/data.png";
+import refolio from "@/public/re-folio.png";
+import klarity from "@/public/klarity.png";
+import coclip from "@/public/coclip.png";
+import sourceful from "@/public/sourceful.png";
 
 export const links = [
   {
@@ -78,82 +82,98 @@ export const experiencesData = [
 
 export const projectsData = [
   {
+    title: "Re-Folio",
+    description: "Transform Your Resume 📄 into a stunning portfolio - powered by AI.",
+    tags: ["Next.js", "TypeScript", "Tailwind", "onceui","SCSS"],
+    imageUrl: refolio,
+  },
+  {
+    title: "Klarity-AI",
+    description: "Turn inbox chaos into clarity with AI-powered organization.",
+    tags: ["GeminiAI", "Next.js", "TypeScript", "Tailwind", "onceui","n8n"],
+    imageUrl: klarity,
+  },
+  
+  {
+    title: "Sourceful Space",
+    description: "Transform websites into structured JSON using AI.",
+    tags: ["MistralAI", "Next.js", "TypeScript", "Tailwind", "onceui"],
+    imageUrl: sourceful,
+  },
+  {
     title: "DataDiver-AI",
-    description:
-      "A minimal tool for web scraping, transforming unstructured websites into clean JSON with the 🧠 AI-powered processing.",
+    description: "Dive into data with AI-powered web scraping.",
     tags: ["MistralAI", "Next.js", "TypeScript", "Tailwind", "onceui"],
     imageUrl: data,
   },
   {
     title: "Next Bench - Sonamii",
-    description:
-      "Next Bench is a web application that helps 🎓 students find the best institutions, offering advanced search and comparisons.",
+    description: "Advanced search for institutions and comparisons.",
     tags: ["[ONGOING]", "Next.js", "Supabase", "DrizzleORM", "MistralAI"],
     imageUrl: nextImg,
   },
   {
     title: "Strix-AI",
-    description:
-      "A tool/package designed for dynamic 🌐 localization, using JSON data.",
+    description: "Dynamic localization tool using JSON data.",
     tags: ["React", "TypeScript", "Next.js", "Tailwind", "GeminiAI"],
     imageUrl: rmtdevImg,
   },
   {
     title: "HelloLink",
-    description: "An AI powered, open-source alternative to 🌴 Linktree.",
+    description: "AI-powered alternative to Linktree.",
     tags: ["React", "Next.js", "Supabase", "Tailwind", "GeminiAI"],
     imageUrl: corpcommentImg,
   },
   {
     title: "Gitfolio",
-    description: "A modern and minimal 🐈 GitHub profile card generator.",
+    description: "Generate modern GitHub profile cards.",
     tags: ["React", "Tailwind", "TypeScript", "Axios"],
     imageUrl: gitfolio,
+  },{
+    title: "CoClip",
+    description: "AI-powered cloud clipboard for seamless content sharing.",
+    tags: ["Next.js", "TypeScript", "Tailwind", "shadcn/ui"],
+    imageUrl: coclip,
   },
   {
     title: "regex-simplify",
-    description:
-      "A tool/package to simplify ⚙️ regex quickly using chainable APIs.",
+    description: "Simplify regex with chainable APIs.",
     tags: ["[ONGOING]", "React", "Next.js", "SCSS", "Tailwind", "OnceUI"],
     imageUrl: another,
   },
   {
     title: "Minifolio",
-    description: "A minimal portfolio template for 💻 developers.",
+    description: "Minimal portfolio template for developers.",
     tags: ["React", "Vite", "JavaScript", "Animation"],
     imageUrl: minifolio,
   },
-
   {
     title: "Pocket Vault",
-    description:
-      " A developer's 🛟 vault for storing most used npm packages, deployments, snippets, repos, tools etc.",
+    description: "Store npm packages, snippets, and tools.",
     tags: ["[Stashed]", "TypeScript", "Next.js", "Tailwind"],
     imageUrl: pocketVault,
   },
   {
     title: "Tidyfi",
-    description: "A one-click 🐍 Python file organizer.",
+    description: "One-click Python file organizer.",
     tags: ["Python", "OS", "Flask", "Organizer", "Web"],
     imageUrl: tidyfi,
   },
   {
     title: "Eeon",
-    description:
-      "An AI-powered emoticon assistant that understands your 📃 text and suggests the perfect reactions instantly.",
+    description: "AI emoticon assistant for instant reactions.",
     tags: ["React", "Next.js", "GeminiAI", "Tailwind", "Framer"],
     imageUrl: wordanalyticsImg,
   },
   {
     title: "Angry Birds 😝",
-    description: "A simple angry 🐦 birds clone.",
+    description: "A simple clone of Angry Birds.",
     tags: ["P5JS", "Javascript", "Game", "WHITEHATJR"],
     imageUrl: angrybirds,
   },
   {
     title: "VSCode UI Tweaks",
-    description:
-      "A collection of custom CSS and JS tweaks designed to elevate your 🎨 Visual Studio Code experience!",
+    description: "Custom tweaks for Visual Studio Code.",
     tags: ["VSCODE", "CSS", "JavaScript", "Extension"],
     imageUrl: vsImg,
   },
