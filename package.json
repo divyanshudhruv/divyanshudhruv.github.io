@@ -22,7 +22,7 @@
     "react-icons": "^5.5.0",
     "react-intersection-observer": "^9.15.1",
     "react-vertical-timeline-component": "^3.5.3",
-    "resend": "^4.2.0"
+    "resend": "^4.6.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
