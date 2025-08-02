@@ -149,6 +149,27 @@ export default function Home() {
       desc: "Worked on 20+ real-world projects and participated in several coding challenges and awesome workshops.",
     },
   ];
+   const eduItems = [
+    {
+      link: "#",
+      text: "High School",
+      image: "https://picsum.photos/600/400?random=13",
+      desc: "Delhi Public School, Vadodara",
+    },
+    {
+      link: "#",
+      text: "Senior Secondary",
+      image: "https://picsum.photos/600/400?random=15",
+      desc: "St. Patrick's Academy, Dehradun",
+    },
+    {
+      link: "#",
+      text: "Primary",
+      image: "https://picsum.photos/600/400?random=27",
+      desc: "The Montessori School, Dehradun",
+    },
+    
+  ];
   const images_row1 = [
     "https://skillicons.dev/icons?i=html",
     "https://skillicons.dev/icons?i=css",
@@ -1013,14 +1034,7 @@ export default function Home() {
                 }}
                 className={instrument_serif.className}
               >
-                <span
-                  style={{
-                    display: "inline-block",
-                    animation: "spin 2s linear infinite",
-                  }}
-                >
-                  ✷
-                </span>{" "}
+               
                 Experience and
                 <br />
                 <span
@@ -1047,6 +1061,23 @@ export default function Home() {
             <Flex height={3}></Flex>
             <Flex style={{ paddingInline: "13vw" }} fillWidth>
               <FlowingMenu items={demoItems} />
+            </Flex>
+            <Flex fitHeight center fillWidth paddingY="s"> <span
+                  style={{
+                    display: "inline-block",
+                    animation: "spin 2s linear infinite",
+                       fontSize: "120px",
+                  textAlign: "center",
+                  lineHeight: "1",
+                  fontWeight: "lighter",
+                  color: "#031113",
+                  }}
+                >
+                  ✷
+                </span>{" "}</Flex>
+
+            <Flex style={{ paddingInline: "13vw" }} fillWidth>
+              <FlowingMenu items={eduItems} />
             </Flex>
           </Column>
           {/* <Flex height={5}></Flex>
