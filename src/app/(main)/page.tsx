@@ -65,6 +65,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ClickSpark from "@/blocks/Animations/ClickSpark/ClickSpark";
 import CircularText from "@/blocks/TextAnimations/CircularText/CircularText";
+import Threads from "@/blocks/Backgrounds/Threads/Threads";
+import Orb from "@/blocks/Backgrounds/Orb/Orb";
 const instrument_serif = Instrument_Serif({
   weight: ["400"],
   subsets: ["latin"],
@@ -572,19 +574,19 @@ export default function Home() {
           gap="128"
         >
           <LocoScrollImg />
-          <Text className={inter.className} style={{ fontWeight: "200" }}>
+          <Text className={geist_mono.className} style={{ fontWeight: "200" }}>
             {" "}
             <ScrollVelocity
               texts={[
                 "☻ Divyanshu Dhruv ☻ ☻ Divyanshu Dhruv ☻ ☻ Divyanshu Dhruv ☻ ☻ Divyanshu Dhruv ☻",
-                // "☻ Portfolio ☻ ☻ Portfolio ☻ ☻ Portfolio ☻ ☻ Portfolio ☻ ☻ Portfolio ☻",
+                "☻ Portfolio ☻ ☻ Portfolio ☻ ☻ Portfolio ☻ ☻ Portfolio ☻ ☻ Portfolio ☻",
               ]}
               velocity={30}
               parallaxStyle={{
-                fontFamily: inter.className,
+                fontFamily: geist_mono.className,
                 fontSize: "20px",
                 color: "#99FF33",
-                lineHeight: "2",
+                lineHeight: "2.3",
               }}
             ></ScrollVelocity>{" "}
           </Text>
@@ -614,7 +616,7 @@ export default function Home() {
               }}
               className={instrument_serif.className}
             >
-              I am a full-stack developer based in{" "}
+              I am a full-stack developer living in{" "}
               <span
                 style={{
                   fontStyle: "italic",
@@ -885,6 +887,16 @@ export default function Home() {
               </Magnet>
             </Column>
           </Column>
+          {/* <div
+            style={{
+              width: "100%",
+              height: "600px",
+              position: "absolute",
+              bottom: "0",
+            }}
+          >
+            <Threads amplitude={1} distance={0} enableMouseInteraction={true} />
+          </div> */}
         </Column>
         <Column
           fillWidth
@@ -1168,10 +1180,7 @@ export default function Home() {
           <Text className={instrument_serif.className}>
             {" "}
             <ScrollVelocity
-              texts={[
-                "✷ Ehhhh, that's the end",
-                // "☻ Portfolio ☻ ☻ Portfolio ☻ ☻ Portfolio ☻ ☻ Portfolio ☻ ☻ Portfolio ☻",
-              ]}
+              texts={["✷ Ehhhh, that's the end"]}
               velocity={30}
               scrollerStyle={{
                 fontFamily: instrument_serif.className,
@@ -1190,7 +1199,7 @@ export default function Home() {
           }}
           vertical="start"
           horizontal="center"
-          gap="128"
+          gap="64"
           paddingBottom="20"
         >
           {" "}
@@ -1226,10 +1235,10 @@ export default function Home() {
               <path d="M0 180 Q960 -80 1920 180 V0 H0 V180 Z" fill="#f9f4eb" />
             </svg>
           </div>
-          <Text variant="code-default-s" className={geist_mono.className}>
+          <Text variant="code-default-s" className={geist_mono.className} marginBottom="64">
             {" "}
             <Row
-              gap="40"
+              gap="32"
               style={{
                 width: "100%",
                 justifyContent: "center",
@@ -1290,13 +1299,25 @@ export default function Home() {
               </span>
             </Row>
           </Text>
-          <Column
-            fillWidth
-            horizontal="center"
-            vertical="center"
-            style={{}}
-            gap="12"
-          >
+          <Column fillWidth horizontal="center" vertical="center" gap="12" >
+            <div
+              style={{
+                width: "400px",
+                height: "400px",
+                position: "absolute",
+                top: "50%",
+                display:"flex",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+              }}
+            >
+              <Orb
+                hoverIntensity={1}
+                rotateOnHover={true}
+                hue={0}
+                forceHoverState={false}
+              />
+            </div>
             <Text
               className={geist_mono.className}
               style={{
@@ -1337,7 +1358,9 @@ export default function Home() {
                 &nbsp;Github
               </Button>
             </Magnet>
-            <Column fillWidth marginTop="20">
+            
+          </Column>
+          <Column fillWidth >
               <Row
                 fillWidth
                 horizontal="between"
@@ -1438,7 +1461,6 @@ export default function Home() {
                 </Flex>
               </Row>
             </Column>
-          </Column>
         </Column>
       </ClickSpark>
     </>
