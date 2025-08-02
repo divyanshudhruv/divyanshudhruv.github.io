@@ -82,7 +82,7 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
           return t * (2 - t);
       }
     },
-    [easing],
+    [easing]
   );
 
   useEffect(() => {
@@ -134,7 +134,15 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
     return () => {
       cancelAnimationFrame(animationId);
     };
-  }, [sparkColor, sparkSize, sparkRadius, sparkCount, duration, easeFunc, extraScale]);
+  }, [
+    sparkColor,
+    sparkSize,
+    sparkRadius,
+    sparkCount,
+    duration,
+    easeFunc,
+    extraScale,
+  ]);
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>): void => {
     const canvas = canvasRef.current;
@@ -160,6 +168,7 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
         width: "100%",
         height: "100%",
         position: "relative",
+        zIndex: "9999999999999999999999999999999999999999999999 !important",
       }}
       onClick={handleClick}
     >
@@ -169,6 +178,7 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
           position: "absolute",
           inset: 0,
           pointerEvents: "none",
+          zIndex: "9999999999999999999999999999999999999999999999 !important",
         }}
       />
       {children}
