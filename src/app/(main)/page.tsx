@@ -398,6 +398,7 @@ export default function Home() {
                   backdropFilter: "blur(10px)",
                   backgroundColor: "#08151666",
                   border: "1px solid #222",
+                  overflow: "hidden",
                 }}
               >
                 <Row center>
@@ -420,7 +421,8 @@ export default function Home() {
                 style={{
                   backdropFilter: "blur(10px)",
                   backgroundColor: "#08151666",
-                  border: "1px solid #222",
+                  border: "1px solid #222",                  overflow: "hidden",
+
                 }}
               >
                 <Row center>
@@ -446,7 +448,8 @@ export default function Home() {
                   style={{
                     backdropFilter: "blur(10px)",
                     backgroundColor: "#08151666",
-                    border: "1px solid #222",
+                    border: "1px solid #222",                  overflow: "hidden",
+
                   }}
                 >
                   <Text
@@ -522,7 +525,8 @@ export default function Home() {
                     backgroundColor: "#08151666",
                     border: "1px solid #222",
                     padding: "27px",
-                    borderRadius: "1000px",
+                    borderRadius: "1000px",                  overflow: "hidden",
+
                   }}
                 >
                   <Text
@@ -751,14 +755,15 @@ export default function Home() {
                 style={{
                   backdropFilter: "blur(10px)",
                   backgroundColor: "#40404066",
-                  border: "1px solid #222",
+                  border: "1px solid #222",                  overflow: "hidden",
+
                   padding: "27px",
                   borderRadius: "1000px",
                 }}
               >
                 <Text className={inter.className} style={{ fontSize: "12px" }}>
                   <Row center>
-                    <ShinyText text="AND A FEW MORE"></ShinyText>
+                    <ShinyText text="AND MORE"></ShinyText>
                     &nbsp;&nbsp;&nbsp;
                     <ArrowUpRight
                       size={19}
@@ -862,7 +867,8 @@ export default function Home() {
                   weight="default"
                   size="l"
                   style={{
-                    backdropFilter: "blur(10px)",
+                    backdropFilter: "blur(10px)",                  overflow: "hidden",
+
                     backgroundColor: "#40404066",
                     border: "1px solid #222",
                     padding: "27px",
@@ -874,7 +880,7 @@ export default function Home() {
                     style={{ fontSize: "12px" }}
                   >
                     <Row center>
-                      <ShinyText text="AND MORE"></ShinyText>
+                      <ShinyText text="AND A FEW MORE"></ShinyText>
                       &nbsp;&nbsp;&nbsp;
                       <ArrowUpRight
                         size={19}
@@ -1148,7 +1154,8 @@ export default function Home() {
                     size="l"
                     style={{
                       backdropFilter: "blur(10px)",
-                      backgroundColor: "#081516",
+                      backgroundColor: "#081516",                  overflow: "hidden",
+
                       border: "1px solid #222",
                       padding: "20px",
                     }}
@@ -1312,10 +1319,10 @@ export default function Home() {
               }}
             >
               <Orb
-                hoverIntensity={1}
+                hoverIntensity={0.6}
                 rotateOnHover={true}
                 hue={0}
-                forceHoverState={false}
+                forceHoverState={true}
               />
             </div>
             <Text
@@ -1345,7 +1352,8 @@ export default function Home() {
                   fontSize: "12px",
                   letterSpacing: "0.13em",
                   padding: "10px 22px",
-                  marginTop: "8px",
+                  marginTop: "8px",                  overflow: "hidden",
+
                   boxShadow: "0 2px 8px #00000010",
                   transition: "background 0.2s, color 0.2s",
                   cursor: "pointer",
