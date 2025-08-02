@@ -51,12 +51,14 @@ import { BiArchive, BiHome } from "react-icons/bi";
 import { GiSettingsKnobs } from "react-icons/gi";
 import { MdAccountBalanceWallet } from "react-icons/md";
 import LocomotiveScroll from "locomotive-scroll";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import FlowingMenu from "@/blocks/Components/FlowingMenu/FlowingMenu";
 import BounceCards from "@/blocks/Components/BounceCards/BounceCards";
 import LightRays from "@/blocks/Backgrounds/LightRays/LightRays";
 import { IoArrowDownSharp } from "react-icons/io5";
 import Lenis from "lenis";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 const instrument_serif = Instrument_Serif({
   weight: ["400"],
   subsets: ["latin"],
@@ -97,12 +99,6 @@ const pt_serif = PT_Serif({
 });
 
 export default function Home() {
-  const scroll = new LocomotiveScroll();
-  const target = document.querySelector("#js-target");
-
-  if (target) {
-    scroll.scrollTo("#navbar");
-  }
   const items = [
     {
       icon: <House size={18} />,
@@ -277,6 +273,13 @@ export default function Home() {
     autoRaf: true,
   });
 
+  const scrollContainer = document.querySelector("[data-scroll-container]");
+  if (scrollContainer instanceof HTMLElement) {
+    const scroll = new LocomotiveScroll({
+      el: scrollContainer,
+      smooth: true,
+    });
+  }
   return (
     <>
       {" "}
@@ -513,54 +516,7 @@ export default function Home() {
         paddingX="m"
         gap="128"
       >
-        {/** Decorative SVGs only on left and right borders, random vertical positions, 7-8 custom images */}
-        {["left", "right"].map((side) => {
-          // List of decorative images (add your own SVGs here)
-          const images = [
-            { src: "/donut.svg", alt: "Donut" },
-            { src: "/pyramid.svg", alt: "Pyramid" },
-            { src: "/pill.svg", alt: "Pill" },
-          ];
-          // Pick 4 random images for each side (or as many as you want)
-          const count = 3;
-          // Shuffle and slice
-          const shuffled = images
-            .map((img) => ({ ...img, sort: Math.random() }))
-            .sort((a, b) => a.sort - b.sort)
-            .slice(0, count);
-
-          return shuffled.map((img, idx) => {
-            // Random top between 5% and 85%, spread out a bit
-            // Alternate vertical positions for left/right, with a gap between images
-            // For left: start at 10%, then 30%, 50%, etc. For right: 20%, 40%, 60%, etc.
-            const baseGap = 40; // percent
-            const offset = side === "left" ? 10 : 20;
-            const top = `${offset + idx * baseGap}%`;
-            // Random opacity and size for variety
-            const opacity = 1; // Between 0.5 and 1
-
-            return (
-              <img
-                key={side + "-" + img.src + "-" + idx}
-                src={img.src}
-                alt={img.alt}
-                style={{
-                  position: "absolute",
-                  [side]: 0,
-                  top,
-                  width: 230,
-                  height: 230,
-                  zIndex: 1,
-                  pointerEvents: "none",
-                  opacity,
-                  userSelect: "none",
-                }}
-                draggable={false}
-              />
-            );
-          });
-        })}
-
+        <LocoScrollImg />
         <Text className={inter.className} style={{ fontWeight: "200" }}>
           {" "}
           <ScrollVelocity
@@ -588,7 +544,7 @@ export default function Home() {
             backgroundColor: "#9887FF",
             boxShadow: "inset 0 25px 25px -25px #1d1d1d",
             borderRadius: "40px",
-            border: "1px solid #888",
+            border: "1.2px solid #999",
           }}
         >
           <Text
@@ -704,12 +660,31 @@ export default function Home() {
               description="A modern portfolio website showcasing my work and skills."
               image="https://divyanshudhruv.is-a.dev/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fre-folio.94817651.png&w=3840&q=95"
             />
+
             <Projects
-              title="KLARITY AI"
-              tags={["n8n", "next.js"]}
-              description="A powerful AI automation platform that simplifies workflows and enhances productivity."
-              image="https://divyanshudhruv.is-a.dev/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fnext-bench.ddc02675.png&w=1920&q=95"
+              title="sigmn."
+              tags={["n8n", "solana", "next.js"]}
+              description="An NFT Marketplace for Artists and Collectors."
+              image="/sigms.webp"
             />
+            {/* <Projects
+              title="HEHE,  IDK"
+              tags={["BG"]}
+              description="Some random stuff from internet."
+              image="/anime.png"
+            /> */}
+            {/* <Projects
+              title="nextbench"
+              tags={["vite", "supabase"]}
+              description="AI education platform with interactive coding challenges."
+              image="/m2.png"
+            />
+             <Projects
+              title="regex simplify"
+              tags={["javascript", "regex"]}
+              description="A tool to simplify and optimize regular expressions."
+              image="/i4.png"
+            /> */}
           </Grid>
         </Column>
 
@@ -804,7 +779,7 @@ export default function Home() {
                 size="l"
                 style={{
                   backdropFilter: "blur(10px)",
-                  backgroundColor: "#08151666",
+                  backgroundColor: "#40404066",
                   border: "1px solid #222",
                   padding: "27px",
                   borderRadius: "1000px",
@@ -884,6 +859,7 @@ function Projects({
         aspectRatio="4/3"
         unoptimized
         radius="xl-8"
+        objectFit="cover"
       />
       <Row fillWidth horizontal="between" paddingX="s">
         <Text
@@ -948,5 +924,91 @@ function Projects({
         </Text>
       </Flex>
     </Card>
+  );
+}
+gsap.registerPlugin(ScrollTrigger);
+
+function LocoScrollImg() {
+  const images = [
+    { src: "/donut.svg", alt: "Donut" },
+    { src: "/pyramid.svg", alt: "Pyramid" },
+    { src: "/pill.svg", alt: "Pill" },
+    { src: "/sphere.svg", alt: "Sphere" },
+    { src: "/cube.svg", alt: "Cube" },
+  ];
+  const count = 3;
+  const sides = ["left", "right"];
+  // Generate speed factors for each side and image
+  const speedFactorsBySide = sides.map(() =>
+    Array.from({ length: count }, () => 1.5 + Math.random() * 1.5)
+  );
+
+  // Refs for all images
+  const imgRefs = useRef<(HTMLImageElement | null)[][]>(
+    Array.from({ length: sides.length }, () => Array(count).fill(null))
+  );
+
+  useEffect(() => {
+    imgRefs.current.forEach((sideRefs, sideIdx) => {
+      sideRefs.forEach((img, idx) => {
+        if (!img) return;
+        const speed = speedFactorsBySide[sideIdx][idx];
+        gsap.to(img, {
+          y: () => `-${speed * 200}px`,
+          ease: "none",
+          scrollTrigger: {
+            trigger: img,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+      });
+    });
+    return () => {
+      ScrollTrigger.getAll().forEach((st) => st.kill());
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return (
+    <>
+      {sides.map((side, sideIdx) => {
+        const shuffled = images
+          .map((img) => ({ ...img, sort: Math.random() }))
+          .sort((a, b) => a.sort - b.sort)
+          .slice(0, count);
+        const speedFactors = speedFactorsBySide[sideIdx];
+        return shuffled.map((img, idx) => {
+          const baseGap = 30; // percent
+          const offset = side === "left" ? 10 : 20;
+          const top = `${offset + idx * baseGap}%`;
+
+          const size = 110 + speedFactors[idx] * 85; // px
+          return (
+            <img
+              key={side + "-" + img.src + "-" + idx}
+              ref={(el) => {
+                imgRefs.current[sideIdx][idx] = el;
+              }}
+              src={img.src}
+              alt={img.alt}
+              style={{
+                position: "absolute",
+                [side]: 0,
+                top,
+                width: size,
+                height: size,
+                zIndex: 1,
+                pointerEvents: "none",
+                opacity: 1,
+                userSelect: "none",
+              }}
+              draggable={true}
+            />
+          );
+        });
+      })}
+    </>
   );
 }
