@@ -109,7 +109,7 @@ const effects = {
 const meta = {
   home: {
     path: "/",
-    title: "Once UI for Next.js",
+    title: "Divyanshu Dhruv",
     description:
       "An open-source design system and component library for Next.js that emphasizes easy styling and accessibility in UI development.",
     image: "/images/og/home.jpg",

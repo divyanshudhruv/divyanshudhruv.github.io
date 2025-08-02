@@ -421,8 +421,8 @@ export default function Home() {
                 style={{
                   backdropFilter: "blur(10px)",
                   backgroundColor: "#08151666",
-                  border: "1px solid #222",                  overflow: "hidden",
-
+                  border: "1px solid #222",
+                  overflow: "hidden",
                 }}
               >
                 <Row center>
@@ -448,8 +448,8 @@ export default function Home() {
                   style={{
                     backdropFilter: "blur(10px)",
                     backgroundColor: "#08151666",
-                    border: "1px solid #222",                  overflow: "hidden",
-
+                    border: "1px solid #222",
+                    overflow: "hidden",
                   }}
                 >
                   <Text
@@ -525,8 +525,8 @@ export default function Home() {
                     backgroundColor: "#08151666",
                     border: "1px solid #222",
                     padding: "27px",
-                    borderRadius: "1000px",                  overflow: "hidden",
-
+                    borderRadius: "1000px",
+                    overflow: "hidden",
                   }}
                 >
                   <Text
@@ -755,7 +755,8 @@ export default function Home() {
                 style={{
                   backdropFilter: "blur(10px)",
                   backgroundColor: "#40404066",
-                  border: "1px solid #222",                  overflow: "hidden",
+                  border: "1px solid #222",
+                  overflow: "hidden",
 
                   padding: "27px",
                   borderRadius: "1000px",
@@ -867,7 +868,8 @@ export default function Home() {
                   weight="default"
                   size="l"
                   style={{
-                    backdropFilter: "blur(10px)",                  overflow: "hidden",
+                    backdropFilter: "blur(10px)",
+                    overflow: "hidden",
 
                     backgroundColor: "#40404066",
                     border: "1px solid #222",
@@ -963,8 +965,8 @@ export default function Home() {
                 className={inter.className}
                 style={{ textTransform: "uppercase" }}
               >
-                Why do programmers prefer dark mode? Because light attracts
-                bugs!
+                Why do programmers prefer dark mode?{" "}
+                <i>Because light attracts bugs!</i>
               </Text>{" "}
               <Row>
                 {[
@@ -1109,6 +1111,94 @@ export default function Home() {
             </Flex>
           </Column>
           <Column fillWidth horizontal="center" vertical="start" style={{}}>
+            <Flex style={{ paddingInline: "13vw" }} fillWidth>
+              {" "}
+              <Column fillWidth horizontal="center" paddingBottom="m" gap="20">
+                <Text
+                  className={inter.className}
+                  style={{ textTransform: "uppercase" }}
+                >
+                  CONTACT ME USING THIS FORM&nbsp;
+                  <i><b>DIRECTLY!</b></i>
+                </Text>{" "}
+                <Row>
+                  {[
+                    {
+                      svg: (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 20 20"
+                          fill="none"
+                          aria-hidden="true"
+                          className="icon"
+                          style={{ width: "100%", height: "100%" }}
+                        >
+                          <path
+                            fill="currentColor"
+                            d="M10 0h10v10H10zM0 10h10v10H0z"
+                          ></path>
+                        </svg>
+                      ),
+                      bg: "#e5daf6",
+                    },
+                    {
+                      svg: (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 20 20"
+                          aria-hidden="true"
+                          className="icon"
+                          style={{ width: "100%", height: "100%" }}
+                        >
+                          <path
+                            d="M20 0H6v2h2v4h2v2h2v2h2V8h2V6h2V2h2V0ZM6 10v2H4v2H2v4H0v2h14v-2h-2v-4h-2v-2H8v-2H6Z"
+                            fill="currentColor"
+                          ></path>
+                        </svg>
+                      ),
+                      bg: "#ffd2f3",
+                    },
+                    {
+                      svg: (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 20 20"
+                          aria-hidden="true"
+                          className="icon"
+                          style={{ width: "100%", height: "100%" }}
+                        >
+                          <path
+                            fill="currentColor"
+                            fillRule="evenodd"
+                            d="M0 0h20v20H0V0Zm4 16v-2H2V6h2V4h2V2h8v2h2v2h2v8h-2v2h-2v2H6v-2H4Z"
+                            clipRule="evenodd"
+                          ></path>
+                        </svg>
+                      ),
+                      bg: "#fcdca6",
+                    },
+                  ].map(({ svg, bg }, i) => (
+                    <div
+                      key={i}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        background: bg,
+                        width: 23,
+                        height: 27,
+                        marginLeft: i === 0 ? "0" : "10px",
+                        padding: "5px",
+                      }}
+                    >
+                      {svg}
+                    </div>
+                  ))}
+                </Row>
+              </Column>
+            </Flex>
             <Text
               style={{
                 fontSize: "120px",
@@ -1131,15 +1221,28 @@ export default function Home() {
                 Me
               </span>
             </Text>
-            <Flex height={3}></Flex>
-            <IoArrowDownSharp color="#7a5a37" size={100} fontWeight={10} />
-            <Flex height={3}></Flex>{" "}
+            {/* <Flex height={3}></Flex>
+            <IoArrowDownSharp color="#7a5a37" size={100} fontWeight={10} />*/}
+            <Flex height={3}></Flex>{" "} 
             <Column
               fillWidth
               fitHeight
               style={{ paddingInline: "25vw" }}
               gap="20"
             >
+              {/* <Text
+                className={inter.className}
+                style={{
+                  fontSize: "20px",
+                  textAlign: "center",
+                  lineHeight: "1.5",
+                  fontWeight: "400",
+                  color: "#031113",
+                  fontStyle: "italic",
+                }}
+              >
+                Please contact me directly through this form .
+              </Text> */}
               <Input
                 id=""
                 height="m"
@@ -1154,7 +1257,8 @@ export default function Home() {
                     size="l"
                     style={{
                       backdropFilter: "blur(10px)",
-                      backgroundColor: "#081516",                  overflow: "hidden",
+                      backgroundColor: "#081516",
+                      overflow: "hidden",
 
                       border: "1px solid #222",
                       padding: "20px",
@@ -1242,7 +1346,11 @@ export default function Home() {
               <path d="M0 180 Q960 -80 1920 180 V0 H0 V180 Z" fill="#f9f4eb" />
             </svg>
           </div>
-          <Text variant="code-default-s" className={geist_mono.className} marginBottom="64">
+          <Text
+            variant="code-default-s"
+            className={geist_mono.className}
+            marginBottom="64"
+          >
             {" "}
             <Row
               gap="32"
@@ -1306,14 +1414,14 @@ export default function Home() {
               </span>
             </Row>
           </Text>
-          <Column fillWidth horizontal="center" vertical="center" gap="12" >
+          <Column fillWidth horizontal="center" vertical="center" gap="12">
             <div
               style={{
                 width: "400px",
                 height: "400px",
                 position: "absolute",
                 top: "50%",
-                display:"flex",
+                display: "flex",
                 left: "50%",
                 transform: "translate(-50%, -50%)",
               }}
@@ -1352,7 +1460,8 @@ export default function Home() {
                   fontSize: "12px",
                   letterSpacing: "0.13em",
                   padding: "10px 22px",
-                  marginTop: "8px",                  overflow: "hidden",
+                  marginTop: "8px",
+                  overflow: "hidden",
 
                   boxShadow: "0 2px 8px #00000010",
                   transition: "background 0.2s, color 0.2s",
@@ -1366,109 +1475,108 @@ export default function Home() {
                 &nbsp;Github
               </Button>
             </Magnet>
-            
           </Column>
-          <Column fillWidth >
-              <Row
-                fillWidth
-                horizontal="between"
-                style={{
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  padding: "0 2vw",
-                  marginTop: "48px",
-                  paddingTop: "24px",
-                }}
-              >
-                <Row gap="8" center>
-                  <Text
-                    className={geist_mono.className}
-                    style={{
-                      fontSize: "12px",
-                      color: "#999",
-                      letterSpacing: "0.08em",
-                    }}
-                  >
-                    ©2025 DIVYANSHU DHRUV
-                  </Text>
-                </Row>
-                <Column center>
-                  <Text
-                    className={geist_mono.className}
-                    style={{
-                      fontSize: "13px",
-                      color: "#999",
-                      fontWeight: 400,
-                      letterSpacing: "0.08em",
-                      marginBottom: "2px",
-                    }}
-                  >
-                    <RealtimeIST />
-                    &nbsp;IST
-                  </Text>
-                </Column>
-                <Column center>
-                  <Text
-                    className={geist_mono.className}
-                    style={{
-                      fontSize: "13px",
-                      color: "#999",
-                      fontWeight: 400,
-                      letterSpacing: "0.08em",
-                      marginBottom: "2px",
-                      textTransform: "uppercase",
-                    }}
-                  >
-                    THANKYOU FOR VISITING
-                  </Text>
-                </Column>
+          <Column fillWidth>
+            <Row
+              fillWidth
+              horizontal="between"
+              style={{
+                alignItems: "center",
+                justifyContent: "space-between",
+                padding: "0 2vw",
+                marginTop: "48px",
+                paddingTop: "24px",
+              }}
+            >
+              <Row gap="8" center>
+                <Text
+                  className={geist_mono.className}
+                  style={{
+                    fontSize: "12px",
+                    color: "#999",
+                    letterSpacing: "0.08em",
+                  }}
+                >
+                  ©2025 DIVYANSHU DHRUV
+                </Text>
               </Row>
+              <Column center>
+                <Text
+                  className={geist_mono.className}
+                  style={{
+                    fontSize: "13px",
+                    color: "#999",
+                    fontWeight: 400,
+                    letterSpacing: "0.08em",
+                    marginBottom: "2px",
+                  }}
+                >
+                  <RealtimeIST />
+                  &nbsp;IST
+                </Text>
+              </Column>
+              <Column center>
+                <Text
+                  className={geist_mono.className}
+                  style={{
+                    fontSize: "13px",
+                    color: "#999",
+                    fontWeight: 400,
+                    letterSpacing: "0.08em",
+                    marginBottom: "2px",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  THANKYOU FOR VISITING
+                </Text>
+              </Column>
+            </Row>
 
-              <Row
-                fillWidth
-                horizontal="between"
+            <Row
+              fillWidth
+              horizontal="between"
+              style={{
+                alignItems: "center",
+                justifyContent: "space-between",
+                padding: "0 2vw",
+                paddingTop: "24px",
+              }}
+            >
+              <Flex>
+                {" "}
+                <SvgSparkle />
+              </Flex>
+              <Text
+                className={geist_mono.className}
                 style={{
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  padding: "0 2vw",
-                  paddingTop: "24px",
+                  fontSize: "8px",
+                  color: "#999",
+                  letterSpacing: "0.08em",
                 }}
               >
-                <Flex>
-                  {" "}
-                  <SvgSparkle />
-                </Flex>
-                <Text
-                  className={geist_mono.className}
-                  style={{
-                    fontSize: "8px",
-                    color: "#999",
-                    letterSpacing: "0.08em",
-                  }}
-                >
-                  ONCE UI
-                </Text>
-                <Row gap="8" center>
-                  <SvgSparkle />
-                  <SvgSparkle />
-                  <SvgSparkle />
-                </Row>
-                <Text
-                  className={geist_mono.className}
-                  style={{
-                    fontSize: "8px",
-                    color: "#999",
-                    letterSpacing: "0.08em",
-                  }}
-                >
-                  01XD8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </Text>
-                <Flex>
-                  {" "}
-                  <SvgSparkle />
-                </Flex>
+                ONCE UI
+              </Text>
+              <Row gap="8" center>
+                <SvgSparkle />
+                <SvgSparkle />
+                <SvgSparkle />
               </Row>
-            </Column>
+              <Text
+                className={geist_mono.className}
+                style={{
+                  fontSize: "8px",
+                  color: "#999",
+                  letterSpacing: "0.08em",
+                }}
+              >
+                01XD8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </Text>
+              <Flex>
+                {" "}
+                <SvgSparkle />
+              </Flex>
+            </Row>
+          </Column>
         </Column>
       </ClickSpark>
     </>
@@ -1617,8 +1725,10 @@ function Projects({
     </Card>
   );
 }
-gsap.registerPlugin(ScrollTrigger);
+
 function LocoScrollImg() {
+  gsap.registerPlugin(ScrollTrigger);
+
   const images = [
     { src: "/donut.svg", alt: "Donut" },
     { src: "/pyramid.svg", alt: "Pyramid" },
@@ -1667,39 +1777,39 @@ function LocoScrollImg() {
   return (
     <>
       {sides.map((side, sideIdx) => {
-      // Shuffle images for each side to ensure randomness and no repeats
-      const shuffledImages = [...images]
-        .sort(() => Math.random() - 0.5)
-        .slice(0, count);
-      const speedFactors = speedFactorsBySide[sideIdx];
-      return shuffledImages.map((img, idx) => {
-        const baseGap = 30; // percent
-        const offset = side === "left" ? 10 : 20;
-        const top = `${offset + idx * baseGap}%`;
-        const size = 110 + speedFactors[idx] * 85; // px
-        return (
-        <img
-          key={side + "-" + img.src + "-" + idx}
-          ref={(el) => {
-          imgRefs.current[sideIdx][idx] = el;
-          }}
-          src={img.src}
-          alt={img.alt}
-          style={{
-          position: "absolute",
-          [side]: 0,
-          top,
-          width: size,
-          height: size,
-          zIndex: 1,
-          pointerEvents: "none",
-          opacity: 1,
-          userSelect: "none",
-          }}
-          draggable={true}
-        />
-        );
-      });
+        // Shuffle images for each side to ensure randomness and no repeats
+        const shuffledImages = [...images]
+          .sort(() => Math.random() - 0.5)
+          .slice(0, count);
+        const speedFactors = speedFactorsBySide[sideIdx];
+        return shuffledImages.map((img, idx) => {
+          const baseGap = 30; // percent
+          const offset = side === "left" ? 10 : 20;
+          const top = `${offset + idx * baseGap}%`;
+          const size = 125 + speedFactors[idx] * 85; // px
+          return (
+            <img
+              key={side + "-" + img.src + "-" + idx}
+              ref={(el) => {
+                imgRefs.current[sideIdx][idx] = el;
+              }}
+              src={img.src}
+              alt={img.alt}
+              style={{
+                position: "absolute",
+                [side]: 0,
+                top,
+                width: size,
+                height: size,
+                zIndex: 1,
+                pointerEvents: "none",
+                opacity: 1,
+                userSelect: "none",
+              }}
+              draggable={true}
+            />
+          );
+        });
       })}
     </>
   );
