@@ -140,7 +140,7 @@ export const ScrollVelocity: React.FC<ScrollVelocityProps> = ({
     const spans = [];
     for (let i = 0; i < numCopies!; i++) {
       spans.push(
-        <span className={className} key={i} ref={i === 0 ? copyRef : null} style={{fontWeight:"100",lineHeight:"1.2"}}>
+        <span className={className} key={i} ref={i === 0 ? copyRef : null} style={{fontWeight:"100",lineHeight:"1.1"}}>
           {children}
         </span>,
       );

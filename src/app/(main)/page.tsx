@@ -7,6 +7,7 @@ import Dock from "@/blocks/Components/Dock/Dock";
 import GradientText from "@/blocks/TextAnimations/GradientText/GradientText";
 import ScrollVelocity from "@/blocks/TextAnimations/ScrollVelocity/ScrollVelocity";
 import ShinyText from "@/blocks/TextAnimations/ShinyText/ShinyText";
+
 import {
   Heading,
   Text,
@@ -20,14 +21,19 @@ import {
   ThemeSwitcher,
   Flex,
   StatusIndicator,
+  Grid,
+  Card,
+  Media,
+  Tag,
 } from "@once-ui-system/core";
 import {
   ArchiveIcon,
+  ArrowDown,
   ArrowUpRight,
   GitPullRequestIcon,
   House,
   SettingsIcon,
-  Tag,
+  TagIcon,
 } from "lucide-react";
 
 import {
@@ -44,6 +50,7 @@ import {
 import { BiArchive, BiHome } from "react-icons/bi";
 import { GiSettingsKnobs } from "react-icons/gi";
 import { MdAccountBalanceWallet } from "react-icons/md";
+import LocomotiveScroll from "locomotive-scroll";
 const instrument_serif = Instrument_Serif({
   weight: ["400"],
   subsets: ["latin"],
@@ -84,6 +91,12 @@ const pt_serif = PT_Serif({
 });
 
 export default function Home() {
+  const scroll = new LocomotiveScroll();
+  const target = document.querySelector("#js-target");
+
+  if (target) {
+    scroll.scrollTo("#navbar");
+  }
   const items = [
     {
       icon: <House size={18} />,
@@ -101,7 +114,7 @@ export default function Home() {
       onClick: () => alert("Profile!"),
     },
     {
-      icon: <Tag size={18} fontWeight={100} />,
+      icon: <TagIcon size={18} fontWeight={100} />,
       label: "Settings",
       onClick: () => alert("Settings!"),
     },
@@ -131,7 +144,7 @@ export default function Home() {
       <Column
         fillWidth
         style={{ minHeight: "100vh", minWidth: "100vw" }}
-        vertical="start"
+        vertical="center"
         horizontal="center"
         padding="xs"
         paddingX="m"
@@ -150,7 +163,19 @@ export default function Home() {
           xGap={12}
           yGap={3}
         />
-        <Row paddingX="m" horizontal="between" fillWidth>
+        <Row
+          paddingX="m"
+          horizontal="between"
+          fillWidth
+          id="navbar"
+          style={{
+            position: "fixed",
+            top: "16px",
+            left: 0,
+            right: 0,
+            zIndex: 1000,
+          }}
+        >
           <Row gap="16">
             {" "}
             <Button
@@ -266,6 +291,7 @@ export default function Home() {
               </GradientText>
             </span>
           </Text>
+
           <Flex marginTop="32">
             {" "}
             <Magnet magnetStrength={10}>
@@ -317,7 +343,7 @@ export default function Home() {
         style={{
           minHeight: "100vh",
           minWidth: "100vw",
-          boxShadow: "inset 0 25px 25px -25px #222",
+          boxShadow: "inset 0 25px 25px -25px #444444cc",
         }}
         vertical="start"
         horizontal="center"
@@ -352,7 +378,7 @@ export default function Home() {
             backgroundColor: "#9887FF",
             boxShadow: "inset 0 25px 25px -25px #1d1d1d",
             borderRadius: "40px",
-            border: "1px solid #aaa",
+            border: "1px solid #888",
           }}
         >
           <Text
@@ -370,9 +396,9 @@ export default function Home() {
             I am a full-stack developer based in{" "}
             <span
               style={{
-              fontStyle: "italic",
-              display: "inline",
-              fontWeight: 700,
+                fontStyle: "italic",
+                display: "inline",
+                fontWeight: 700,
               }}
               className={instrument_serif.className}
             >
@@ -380,6 +406,48 @@ export default function Home() {
             </span>
           </Text>
         </Flex>
+
+        <Column fillWidth horizontal="center" vertical="start">
+          <Text
+            style={{
+              fontSize: "120px",
+              textAlign: "center",
+              lineHeight: "1",
+              fontWeight: "lighter",
+
+              color: "#fff3e8",
+            }}
+            className={instrument_serif.className}
+          >
+            Some selected <br></br>
+            <span
+              style={{
+                fontStyle: "italic",
+                color: "#99FF33",
+              }}
+              className={instrument_serif.className}
+            >
+              Works
+            </span>
+          </Text>
+          <Flex height={3}></Flex>
+          <ArrowDown color="#99FF33" size={100} />
+
+          <Grid columns={2} fitWidth gap="160" marginTop="64">
+            <Projects
+              title="refolio"
+              tags={["Next.js", "Tailwind CSS", "TypeScript"]}
+              description="A modern portfolio website showcasing my work and skills."
+              image="https://divyanshudhruv.is-a.dev/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fre-folio.94817651.png&w=3840&q=95"
+            />
+            <Projects
+              title="KLARITY AI"
+              tags={["n8n", "next.js", "Tailwind CSS", "TypeScript"]}
+              description="A powerful AI automation platform that simplifies workflows and enhances productivity."
+              image="https://divyanshudhruv.is-a.dev/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fnext-bench.ddc02675.png&w=1920&q=95"
+            />
+          </Grid>
+        </Column>
       </Column>
     </>
   );
@@ -404,5 +472,98 @@ function SvgSparkle() {
         ></path>
       </svg>
     </>
+  );
+}
+type ProjectsProps = {
+  title: string;
+  statusColor?: string;
+  image: string;
+  tags: string[];
+  description: string;
+};
+
+function Projects({
+  title,
+  statusColor = "moss",
+  image,
+  tags,
+  description,
+}: ProjectsProps) {
+  return (
+    <Card
+      direction="column"
+      background="transparent"
+      minWidth={33}
+      maxWidth={33}
+      overflow="hidden"
+      radius="xl-8"
+      border="transparent"
+      gap="16"
+      paddingBottom="32"
+    >
+      <Media
+        src={image}
+        fillWidth
+        aspectRatio="4/3"
+        unoptimized
+        radius="xl-8"
+      />
+      <Row fillWidth horizontal="between">
+        <Text
+          style={{
+            fontSize: "18px",
+            fontWeight: "bold",
+            color: "#FFF3E8",
+            lineHeight: "1.1",
+            textAlign: "left",
+            padding: "0.5rem 1rem",
+            textTransform: "uppercase",
+          }}
+          className={poppins.className}
+        >
+          <Row center>
+            <StatusIndicator color={"moss"}></StatusIndicator>&nbsp;&nbsp;{" "}
+            {title}
+          </Row>
+        </Text>
+        <Row fitWidth gap="8">
+          {tags.map((tag) => (
+            <Tag
+              key={tag}
+              variant="info"
+              fitWidth
+              fitHeight
+              padding="4"
+              background="transparent"
+              style={{
+                padding: "0.6rem 0.6rem",
+                backgroundColor: "transparent",
+                borderColor: "#ffffff26",
+                borderWidth: "1px",
+                borderRadius: "1000px",
+                textTransform: "uppercase",
+              }}
+            >
+              <Text
+                className={poppins.className}
+                style={{ fontSize: "12px", color: "#ffffff70",            textTransform: "uppercase",
+ }}
+              >
+                {tag}
+              </Text>
+            </Tag>
+          ))}
+        </Row>
+      </Row>
+      <Text
+        className={inter.className}
+        style={{
+          fontSize: "13px",
+          color: "#666",
+        }}
+      >
+        {description}
+      </Text>
+    </Card>
   );
 }

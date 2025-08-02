@@ -15,6 +15,7 @@
     "classnames": "^2.5.1",
     "framer-motion": "^12.23.12",
     "gsap": "^3.13.0",
+    "locomotive-scroll": "^4.1.4",
     "lucide-react": "^0.536.0",
     "next": "15.3.2",
     "react": "19.0.0",
@@ -25,6 +26,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
+    "@types/locomotive-scroll": "^4.1.4",
     "@types/node": "20.17.23",
     "@types/react": "19.0.1",
     "@types/react-dom": "19.0.2",
