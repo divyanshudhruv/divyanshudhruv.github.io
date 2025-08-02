@@ -60,3 +60,49 @@
   color: #fff;
   transform: translateX(-50%);
 }
+
+@keyframes dock-bump-out {
+  0% {
+    transform: translateY(0) scaleY(1);
+  }
+
+  30% {
+    transform: translateY(-8%) scaleY(1.05);
+  }
+
+  60% {
+    transform: translateY(80%) scaleY(0.98);
+  }
+
+  100% {
+    transform: translateY(150%) scaleY(0.95);
+  }
+}
+
+@keyframes dock-bump-in {
+  0% {
+    transform: translateY(150%) scaleY(0.95);
+  }
+
+  40% {
+    transform: translateY(-10%) scaleY(1.08);
+  }
+
+  70% {
+    transform: translateY(8%) scaleY(0.98);
+  }
+
+  100% {
+    transform: translateY(0) scaleY(1);
+  }
+}
+
+.dock-hidden {
+  animation: dock-bump-out 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  animation-fill-mode: forwards;
+}
+
+.dock-visible {
+  animation: dock-bump-in 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  animation-fill-mode: forwards;
+}
