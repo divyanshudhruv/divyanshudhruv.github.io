@@ -1508,8 +1508,8 @@ function SvgSparkle() {
         style={{ width: "1.3em", height: "1.3em", verticalAlign: "middle" }}
       >
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M9 5H11V7H13V9H15V11H13V13H11V15H9V13H7V11H5V9H7V7H9V5Z"
           fill="#FFF3E8"
         ></path>
@@ -1618,7 +1618,6 @@ function Projects({
   );
 }
 gsap.registerPlugin(ScrollTrigger);
-
 function LocoScrollImg() {
   const images = [
     { src: "/donut.svg", alt: "Donut" },
@@ -1629,10 +1628,13 @@ function LocoScrollImg() {
   ];
   const count = 3;
   const sides = ["left", "right"];
-  // Generate speed factors for each side and image
-  const speedFactorsBySide = sides.map(() =>
-    Array.from({ length: count }, () => 1.5 + Math.random() * 1.5)
-  );
+  // Use the first `count` images in order for both sides
+  const fixedImagesBySide = sides.map(() => images.slice(0, count));
+  // Fixed speed factors for each image (can be customized)
+  const speedFactorsBySide = [
+    [1.5, 2.0, 2.5],
+    [1.8, 2.2, 2.7],
+  ];
 
   // Refs for all images
   const imgRefs = useRef<(HTMLImageElement | null)[][]>(
@@ -1665,40 +1667,39 @@ function LocoScrollImg() {
   return (
     <>
       {sides.map((side, sideIdx) => {
-        const shuffled = images
-          .map((img) => ({ ...img, sort: Math.random() }))
-          .sort((a, b) => a.sort - b.sort)
-          .slice(0, count);
-        const speedFactors = speedFactorsBySide[sideIdx];
-        return shuffled.map((img, idx) => {
-          const baseGap = 30; // percent
-          const offset = side === "left" ? 10 : 20;
-          const top = `${offset + idx * baseGap}%`;
-
-          const size = 110 + speedFactors[idx] * 85; // px
-          return (
-            <img
-              key={side + "-" + img.src + "-" + idx}
-              ref={(el) => {
-                imgRefs.current[sideIdx][idx] = el;
-              }}
-              src={img.src}
-              alt={img.alt}
-              style={{
-                position: "absolute",
-                [side]: 0,
-                top,
-                width: size,
-                height: size,
-                zIndex: 1,
-                pointerEvents: "none",
-                opacity: 1,
-                userSelect: "none",
-              }}
-              draggable={true}
-            />
-          );
-        });
+      // Shuffle images for each side to ensure randomness and no repeats
+      const shuffledImages = [...images]
+        .sort(() => Math.random() - 0.5)
+        .slice(0, count);
+      const speedFactors = speedFactorsBySide[sideIdx];
+      return shuffledImages.map((img, idx) => {
+        const baseGap = 30; // percent
+        const offset = side === "left" ? 10 : 20;
+        const top = `${offset + idx * baseGap}%`;
+        const size = 110 + speedFactors[idx] * 85; // px
+        return (
+        <img
+          key={side + "-" + img.src + "-" + idx}
+          ref={(el) => {
+          imgRefs.current[sideIdx][idx] = el;
+          }}
+          src={img.src}
+          alt={img.alt}
+          style={{
+          position: "absolute",
+          [side]: 0,
+          top,
+          width: size,
+          height: size,
+          zIndex: 1,
+          pointerEvents: "none",
+          opacity: 1,
+          userSelect: "none",
+          }}
+          draggable={true}
+        />
+        );
+      });
       })}
     </>
   );
