@@ -7,6 +7,7 @@ import classNames from "classnames";
 import { baseURL, meta, fonts, style, dataStyle } from "@/resources/once-ui.config";
 import { Meta, Schema, Column, Flex, LayoutProvider } from "@once-ui-system/core";
 import { Providers } from '@/components/Providers';
+import LocomotiveScroll from 'locomotive-scroll';
 
 export async function generateMetadata() {
   return Meta.generate({
@@ -47,6 +48,8 @@ export default function RootLayout({
         path={meta.home.path}
       />
       <head>
+        <script noModule src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.6.0/polyfill.min.js" crossOrigin="anonymous"></script>
+<script noModule src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=Object.assign%2CElement.prototype.append%2CNodeList.prototype.forEach%2CCustomEvent%2Csmoothscroll" crossOrigin="anonymous"></script>
         <script
           id="theme-init"
           dangerouslySetInnerHTML={{
