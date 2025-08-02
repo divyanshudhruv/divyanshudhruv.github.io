@@ -16,6 +16,7 @@ interface BounceCardsProps {
   easeType?: string;
   transformStyles?: string[];
   enableHover?: boolean;
+  theme?: "light" | "dark";
 }
 
 export default function BounceCards({
@@ -34,6 +35,7 @@ export default function BounceCards({
     "rotate(2deg) translate(170px)",
   ],
   enableHover = false,
+  theme= "light",
 }: BounceCardsProps) {
   useEffect(() => {
     gsap.fromTo(
@@ -144,6 +146,8 @@ export default function BounceCards({
         transform: transformStyles[idx] ?? "none",
         borderRadius: "50px",
         flex: "0 1 auto",
+
+        border: "4px solid #fff",
         }}
         onMouseEnter={() => pushSiblings(idx)}
         onMouseLeave={resetSiblings}

@@ -17,11 +17,25 @@
 }
 
 .menu__item {
-  flex: 1;
+
   position: relative;
   overflow: hidden;
   text-align: center;
-  box-shadow: 0 -1px #fff;
+  height: fit-content;
+  padding-block: 64px !important;
+  border-top: 1px solid #0a090722;
+}
+
+.menu__item:last-child {
+  border-bottom: 1px solid #0a090722;
+  ;
+}
+
+.menu__item-desc {
+  font-size: 2vh;
+  font-weight: 200;
+  text-transform: none !important;
+  color: #1e160e
 }
 
 .menu__item-link {
@@ -35,8 +49,10 @@
   text-decoration: none;
   white-space: nowrap;
   font-weight: 600;
-  color: #fff;
-  font-size: 4vh;
+  color: #060010;
+  font-size: 9vh;
+  font-weight: 100;
+  font-family: "Instrument Serif", serif;
 }
 
 .menu__item-link:hover {
@@ -97,7 +113,7 @@
   background-position: 50% 50%;
 }
 
-.menu__item-link:hover + .marquee {
+.menu__item-link:hover+.marquee {
   transform: translate3d(0, 0%, 0);
 }
 

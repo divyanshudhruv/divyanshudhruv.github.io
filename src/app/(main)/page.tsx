@@ -126,23 +126,27 @@ export default function Home() {
   const demoItems = [
     {
       link: "#",
-      text: "Mojave",
-      image: "https://picsum.photos/600/400?random=1",
+      text: "CTO",
+      image: "https://picsum.photos/600/400?random=5",
+      desc: "CTO at Sonamii, leading Next Bench and building with Generative AI. Passionate about AI-agents, open-source, and innovation.",
     },
     {
       link: "#",
-      text: "Sonoma",
+      text: "Full Stack Developer",
       image: "https://picsum.photos/600/400?random=2",
+      desc: "I'm now a full-stack developer, contributing to open-source projects. My stack includes React, Next.js, TypeScript, Tailwind, etc.",
     },
     {
       link: "#",
-      text: "Monterey",
+      text: "Frontend Developer",
       image: "https://picsum.photos/600/400?random=3",
+      desc: "I'm working as a front-end developer for 5+ years. I also built 30+ awesome UI designs and 50+ websites.",
     },
     {
       link: "#",
-      text: "Sequoia",
+      text: "Apprentice",
       image: "https://picsum.photos/600/400?random=4",
+      desc: "Worked on 20+ real-world projects and participated in several coding challenges and awesome workshops.",
     },
   ];
   const images_row1 = [
@@ -184,7 +188,18 @@ export default function Home() {
     "https://skillicons.dev/icons?i=vscode",
     "https://skillicons.dev/icons?i=bash",
   ];
+  const education_row1 = [
+    "/spa.png",
 
+    "https://i.pinimg.com/736x/1d/5b/65/1d5b651263a4c831fa6ef4e28bef3eaf.jpg",
+    "https://tse4.mm.bing.net/th/id/OIP.6ApXHS-og78F4IEE0VcLrQHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+  ];
+
+  const education_row1_styles = [
+    "rotate(5deg) translate(-100px)",
+    "rotate(0deg) translate(0px)",
+    "rotate(-3deg) translate(100px)",
+  ];
   const images_row4 = [
     "https://skillicons.dev/icons?i=codepen",
     "https://skillicons.dev/icons?i=arduino",
@@ -275,13 +290,6 @@ export default function Home() {
     autoRaf: true,
   });
 
-  const scrollContainer = document.querySelector("[data-scroll-container]");
-  if (scrollContainer instanceof HTMLElement) {
-    const scroll = new LocomotiveScroll({
-      el: scrollContainer,
-      smooth: true,
-    });
-  }
   return (
     <>
       {" "}
@@ -526,8 +534,7 @@ export default function Home() {
           style={{
             minHeight: "100vh",
             minWidth: "100vw",
-            boxShadow:
-              "inset 0 25px 25px -25px #444444cc, inset 0 -25px 25px -25px #444444cc",
+            boxShadow: "inset 0 25px 25px -25px #444444cc",
           }}
           vertical="start"
           horizontal="center"
@@ -720,7 +727,7 @@ export default function Home() {
               >
                 <Text className={inter.className} style={{ fontSize: "12px" }}>
                   <Row center>
-                    <ShinyText text="AND MORE"></ShinyText>
+                    <ShinyText text="AND A FEW MORE"></ShinyText>
                     &nbsp;&nbsp;&nbsp;
                     <ArrowUpRight
                       size={19}
@@ -783,7 +790,7 @@ export default function Home() {
                 alignItems: "center",
                 justifyContent: "center",
               }}
-              paddingBottom="xl"
+              paddingBottom="m"
             >
               <BounceCards
                 className="custom-bounceCards"
@@ -862,14 +869,56 @@ export default function Home() {
           }}
           vertical="start"
           horizontal="center"
-          paddingTop="xl"
-          paddingX="m"
-          gap="128"
         >
-          <Column fillWidth horizontal="center" vertical="start">
+          {" "}
+          <div
+            style={{
+              backgroundColor: "transparent",
+              height: "180px",
+              position: "relative",
+              width: "100vw",
+            }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              width: "100vw",
+              height: "180px",
+              top: 0,
+              left: 0,
+              zIndex: 2,
+              pointerEvents: "none",
+              overflow: "hidden",
+            }}
+          >
+            <svg
+              width="100%"
+              height="100%"
+              viewBox="0 0 1920 180"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              style={{ display: "block" }}
+              preserveAspectRatio="none"
+            >
+              <path d="M0 180 Q960 -80 1920 180 V0 H0 V180 Z" fill="#031113" />
+            </svg>
+          </div>
+          <Column
+            fillWidth
+            horizontal="center"
+            vertical="start"
+            paddingTop="xl"
+            paddingX="m"
+          >
             <Row fillWidth horizontal="between" paddingBottom="m">
-              <Text className={inter.className}>SOME RANDOM TEXTS</Text>
-              <Text className={inter.className} style={{textTransform:"uppercase"}}>CTO at Sonamii, leading Next Bench and building with Generative AI.</Text>{" "}
+              <Text className={inter.className}>SOME RANDOM JOKES</Text>
+              <Text
+                className={inter.className}
+                style={{ textTransform: "uppercase" }}
+              >
+                Why do programmers prefer dark mode? Because light attracts
+                bugs!
+              </Text>{" "}
               <Row>
                 {[
                   {
@@ -929,7 +978,7 @@ export default function Home() {
                     bg: "#fcdca6",
                   },
                 ].map(({ svg, bg }, i) => (
-                    <div
+                  <div
                     key={i}
                     style={{
                       display: "flex",
@@ -941,40 +990,81 @@ export default function Home() {
                       marginLeft: i === 0 ? "5.5vw" : "10px",
                       padding: "5px",
                     }}
-                    >
+                  >
                     {svg}
-                    </div>
+                  </div>
                 ))}
               </Row>
             </Row>
-
-            <Text
-              style={{
-                fontSize: "120px",
-                textAlign: "center",
-                lineHeight: "1",
-                fontWeight: "lighter",
-
-                color: "#031113",
-              }}
-              className={instrument_serif.className}
+            <Row
+              fillWidth
+              horizontal="center"
+              fitHeight
+              style={{ paddingInline: "13vw" }}
             >
-              Experience and<br></br>
-              <span
+              {" "}
+              <Text
                 style={{
-                  fontStyle: "italic",
-                  color: "#7a5a37ff",
+                  fontSize: "120px",
                   textAlign: "center",
+                  lineHeight: "1",
+                  fontWeight: "lighter",
+                  color: "#031113",
                 }}
                 className={instrument_serif.className}
               >
-                Education
-              </span>
-            </Text>
+                <span
+                  style={{
+                    display: "inline-block",
+                    animation: "spin 2s linear infinite",
+                  }}
+                >
+                  ✷
+                </span>{" "}
+                Experience and
+                <br />
+                <span
+                  style={{
+                    fontStyle: "italic",
+                    color: "#7a5a37ff",
+                    textAlign: "center",
+                  }}
+                  className={instrument_serif.className}
+                >
+                  Education
+                </span>
+              </Text>
+            </Row>
+            <style>
+              {`
+              @keyframes spin {
+                100% { transform: rotate(360deg); }
+              }
+              `}
+            </style>
             <Flex height={4}></Flex>
             <IoArrowDownSharp color="#7a5a37ff" size={100} />
             <Flex height={3}></Flex>
+            <Flex style={{ paddingInline: "13vw" }} fillWidth>
+              <FlowingMenu items={demoItems} />
+            </Flex>
           </Column>
+          {/* <Flex height={5}></Flex>
+          <Flex center>
+            {" "}
+            <BounceCards
+              className="custom-bounceCards"
+              images={education_row1}
+              containerWidth={500}
+              containerHeight={250}
+              animationDelay={1.4}
+              animationStagger={0.08}
+              easeType="elastic.out(1, 0.5)"
+              transformStyles={education_row1_styles}
+              enableHover={false}
+              theme="dark"
+            />
+          </Flex> */}
         </Column>
       </ClickSpark>
     </>

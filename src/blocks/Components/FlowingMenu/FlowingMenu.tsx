@@ -6,11 +6,18 @@ import React from "react";
 import { gsap } from "gsap";
 
 import "./FlowingMenu.css";
+import { Row } from "@once-ui-system/core";
+import { Poppins } from "next/font/google";
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900", "100", "200", "300"],
+});
 
 interface MenuItemProps {
   link: string;
   text: string;
   image: string;
+  desc?: string;
 }
 
 interface FlowingMenuProps {
@@ -29,7 +36,7 @@ const FlowingMenu: React.FC<FlowingMenuProps> = ({ items = [] }) => {
   );
 };
 
-const MenuItem: React.FC<MenuItemProps> = ({ link, text, image }) => {
+const MenuItem: React.FC<MenuItemProps> = ({ link, text, image, desc }) => {
   const itemRef = React.useRef<HTMLDivElement>(null);
   const marqueeRef = React.useRef<HTMLDivElement>(null);
   const marqueeInnerRef = React.useRef<HTMLDivElement>(null);
@@ -46,15 +53,16 @@ const MenuItem: React.FC<MenuItemProps> = ({ link, text, image }) => {
     mouseX: number,
     mouseY: number,
     width: number,
-    height: number,
+    height: number
   ): "top" | "bottom" => {
     const topEdgeDist = distMetric(mouseX, mouseY, width / 2, 0);
     const bottomEdgeDist = distMetric(mouseX, mouseY, width / 2, height);
     return topEdgeDist < bottomEdgeDist ? "top" : "bottom";
   };
 
-  const handleMouseEnter = (ev: React.MouseEvent<HTMLAnchorElement>) => {
-    if (!itemRef.current || !marqueeRef.current || !marqueeInnerRef.current) return;
+  const handleMouseEnter = (ev: React.MouseEvent<HTMLDivElement>) => {
+    if (!itemRef.current || !marqueeRef.current || !marqueeInnerRef.current)
+      return;
     const rect = itemRef.current.getBoundingClientRect();
     const x = ev.clientX - rect.left;
     const y = ev.clientY - rect.top;
@@ -67,8 +75,9 @@ const MenuItem: React.FC<MenuItemProps> = ({ link, text, image }) => {
       .to([marqueeRef.current, marqueeInnerRef.current], { y: "0%" }, 0);
   };
 
-  const handleMouseLeave = (ev: React.MouseEvent<HTMLAnchorElement>) => {
-    if (!itemRef.current || !marqueeRef.current || !marqueeInnerRef.current) return;
+  const handleMouseLeave = (ev: React.MouseEvent<HTMLDivElement>) => {
+    if (!itemRef.current || !marqueeRef.current || !marqueeInnerRef.current)
+      return;
     const rect = itemRef.current.getBoundingClientRect();
     const x = ev.clientX - rect.left;
     const y = ev.clientY - rect.top;
@@ -79,7 +88,7 @@ const MenuItem: React.FC<MenuItemProps> = ({ link, text, image }) => {
     tl.to(marqueeRef.current, { y: edge === "top" ? "-101%" : "101%" }, 0).to(
       marqueeInnerRef.current,
       { y: edge === "top" ? "101%" : "-101%" },
-      0,
+      0
     );
   };
 
@@ -87,21 +96,29 @@ const MenuItem: React.FC<MenuItemProps> = ({ link, text, image }) => {
     return Array.from({ length: 4 }).map((_, idx) => (
       <React.Fragment key={idx}>
         <span>{text}</span>
-        <div className="marquee__img" style={{ backgroundImage: `url(${image})` }} />
+        <div
+          className="marquee__img"
+          style={{ backgroundImage: `url(${image})` }}
+        />
       </React.Fragment>
     ));
-  }, [text, image]);
+  }, [text, image, desc]);
 
   return (
     <div className="menu__item" ref={itemRef}>
-      <a
+      <div
         className="menu__item-link"
-        href={link}
+        onClick={() => window.open(link, "_blank")}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        {text}
-      </a>
+        <Row horizontal="between" fillWidth paddingX="m" vertical="center">
+          <div>{text}</div>
+          <div className={`menu__item-desc ${poppins.className}`}>
+            {desc && desc.length > 40 ? desc.slice(0, 40) + "..." : desc}
+          </div>
+        </Row>
+      </div>
       <div className="marquee" ref={marqueeRef}>
         <div className="marquee__inner-wrap" ref={marqueeInnerRef}>
           <div className="marquee__inner" aria-hidden="true">
