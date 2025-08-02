@@ -25,6 +25,8 @@ import {
   Card,
   Media,
   Tag,
+  Input,
+  Textarea,
 } from "@once-ui-system/core";
 import {
   ArchiveIcon,
@@ -32,6 +34,7 @@ import {
   ArrowUpRight,
   GitPullRequestIcon,
   House,
+  Send,
   SettingsIcon,
   TagIcon,
 } from "lucide-react";
@@ -46,6 +49,7 @@ import {
   Noto_Serif,
   Source_Serif_4,
   PT_Serif,
+  Geist_Mono,
 } from "next/font/google";
 import { BiArchive, BiHome } from "react-icons/bi";
 import { GiSettingsKnobs } from "react-icons/gi";
@@ -70,6 +74,11 @@ const poppins = Poppins({
   subsets: ["latin"],
 });
 const inter = Inter({
+  weight: ["400", "700", "800", "900", "600", "500", "300", "200", "100"],
+  subsets: ["latin"],
+});
+
+const geist_mono = Geist_Mono({
   weight: ["400", "700", "800", "900", "600", "500", "300", "200", "100"],
   subsets: ["latin"],
 });
@@ -149,7 +158,7 @@ export default function Home() {
       desc: "Worked on 20+ real-world projects and participated in several coding challenges and awesome workshops.",
     },
   ];
-   const eduItems = [
+  const eduItems = [
     {
       link: "#",
       text: "High School",
@@ -168,7 +177,6 @@ export default function Home() {
       image: "https://picsum.photos/600/400?random=27",
       desc: "The Montessori School, Dehradun",
     },
-    
   ];
   const images_row1 = [
     "https://skillicons.dev/icons?i=html",
@@ -878,24 +886,24 @@ export default function Home() {
             </Column>
           </Column>
         </Column>
-
         <Column
           fillWidth
           style={{
             minHeight: "100vh",
             minWidth: "100vw",
-            boxShadow:
-              "inset 0 25px 25px -25px #1c1c1ccc, inset 0 -25px 25px -25px #171717ff",
+            boxShadow: "inset 0 25px 25px -25px #1c1c1ccc",
             backgroundColor: "#F9F4EB",
           }}
           vertical="start"
           horizontal="center"
+          gap="128"
+          paddingBottom="64"
         >
           {" "}
           <div
             style={{
               backgroundColor: "transparent",
-              height: "180px",
+              height: "50px",
               position: "relative",
               width: "100vw",
             }}
@@ -932,7 +940,7 @@ export default function Home() {
             paddingX="m"
           >
             <Row fillWidth horizontal="between" paddingBottom="m">
-              <Text className={inter.className}>SOME RANDOM JOKES</Text>
+              <Text className={inter.className}>SOME RANDOM JOKE</Text>
               <Text
                 className={inter.className}
                 style={{ textTransform: "uppercase" }}
@@ -1034,7 +1042,6 @@ export default function Home() {
                 }}
                 className={instrument_serif.className}
               >
-               
                 Experience and
                 <br />
                 <span
@@ -1062,46 +1069,403 @@ export default function Home() {
             <Flex style={{ paddingInline: "13vw" }} fillWidth>
               <FlowingMenu items={demoItems} />
             </Flex>
-            <Flex fitHeight center fillWidth paddingY="s"> <span
-                  style={{
-                    display: "inline-block",
-                    animation: "spin 2s linear infinite",
-                       fontSize: "120px",
+            <Flex fitHeight center fillWidth paddingY="s">
+              {" "}
+              <span
+                style={{
+                  display: "inline-block",
+                  animation: "spin 2s linear infinite",
+                  fontSize: "120px",
                   textAlign: "center",
                   lineHeight: "1",
                   fontWeight: "lighter",
                   color: "#031113",
-                  }}
-                >
-                  ✷
-                </span>{" "}</Flex>
+                }}
+              >
+                ✷
+              </span>{" "}
+            </Flex>
 
             <Flex style={{ paddingInline: "13vw" }} fillWidth>
               <FlowingMenu items={eduItems} />
             </Flex>
           </Column>
-          {/* <Flex height={5}></Flex>
-          <Flex center>
+          <Column fillWidth horizontal="center" vertical="start" style={{}}>
+            <Text
+              style={{
+                fontSize: "120px",
+                textAlign: "center",
+                lineHeight: "1",
+                fontWeight: "lighter",
+
+                color: "#031113",
+              }}
+              className={instrument_serif.className}
+            >
+              Contact <br></br>
+              <span
+                style={{
+                  fontStyle: "italic",
+                  color: "#7a5a37",
+                }}
+                className={instrument_serif.className}
+              >
+                Me
+              </span>
+            </Text>
+            <Flex height={3}></Flex>
+            <IoArrowDownSharp color="#7a5a37" size={100} fontWeight={10} />
+            <Flex height={3}></Flex>{" "}
+            <Column
+              fillWidth
+              fitHeight
+              style={{ paddingInline: "25vw" }}
+              gap="20"
+            >
+              <Input
+                id=""
+                height="m"
+                placeholder="Your email"
+                style={{ padding: "50px !important" }}
+              />
+              <Textarea id="" placeholder="Your message" lines={15} />
+              <Row fillWidth horizontal="start">
+                <Magnet magnetStrength={0}>
+                  <Button
+                    weight="default"
+                    size="l"
+                    style={{
+                      backdropFilter: "blur(10px)",
+                      backgroundColor: "#081516",
+                      border: "1px solid #222",
+                      padding: "20px",
+                    }}
+                  >
+                    <Text
+                      className={inter.className}
+                      style={{ fontSize: "12px" }}
+                    >
+                      <Row center>
+                        SEND &nbsp;&nbsp;&nbsp;
+                        <ArrowUpRight
+                          size={19}
+                          color={"#fff"}
+                          fontWeight={100}
+                        />
+                      </Row>
+                    </Text>
+                  </Button>
+                </Magnet>
+              </Row>
+            </Column>
+          </Column>
+        </Column>{" "}
+        <Flex
+          style={{ backgroundColor: "#f9f4eb" }}
+          className={instrument_serif.className}
+          paddingTop="m"
+        >
+          <Text className={instrument_serif.className}>
             {" "}
-            <BounceCards
-              className="custom-bounceCards"
-              images={education_row1}
-              containerWidth={500}
-              containerHeight={250}
-              animationDelay={1.4}
-              animationStagger={0.08}
-              easeType="elastic.out(1, 0.5)"
-              transformStyles={education_row1_styles}
-              enableHover={false}
-              theme="dark"
-            />
-          </Flex> */}
+            <ScrollVelocity
+              texts={[
+                "✷ Ehhhh, that's the end",
+                // "☻ Portfolio ☻ ☻ Portfolio ☻ ☻ Portfolio ☻ ☻ Portfolio ☻ ☻ Portfolio ☻",
+              ]}
+              velocity={30}
+              scrollerStyle={{
+                fontFamily: instrument_serif.className,
+                fontSize: "200px",
+              }}
+            ></ScrollVelocity>{" "}
+          </Text>
+        </Flex>
+        <Column
+          fillWidth
+          style={{
+            minHeight: "fit-content",
+            minWidth: "100vw",
+            boxShadow: "inset 0 25px 25px -25px #1c1c1ccc",
+            backgroundColor: "#031113",
+          }}
+          vertical="start"
+          horizontal="center"
+          gap="128"
+          paddingBottom="20"
+        >
+          {" "}
+          <div
+            style={{
+              backgroundColor: "transparent",
+              height: "50px",
+              position: "relative",
+              width: "100vw",
+            }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              width: "100vw",
+              height: "180px",
+              top: 0,
+              left: 0,
+              zIndex: 2,
+              pointerEvents: "none",
+              overflow: "hidden",
+            }}
+          >
+            <svg
+              width="100%"
+              height="100%"
+              viewBox="0 0 1920 180"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              style={{ display: "block" }}
+              preserveAspectRatio="none"
+            >
+              <path d="M0 180 Q960 -80 1920 180 V0 H0 V180 Z" fill="#f9f4eb" />
+            </svg>
+          </div>
+          <Text variant="code-default-s" className={geist_mono.className}>
+            {" "}
+            <Row
+              gap="40"
+              style={{
+                width: "100%",
+                justifyContent: "center",
+                alignItems: "center",
+                letterSpacing: "0.1em",
+                fontSize: "12px",
+                color: "#88857C",
+                fontWeight: 100,
+              }}
+            >
+              <span style={{ color: "#bdb7ad", fontWeight: 600 }}>
+                01&nbsp;
+                <span
+                  style={{
+                    color: "#666",
+                    fontWeight: 700,
+                    letterSpacing: "0.12em",
+                  }}
+                >
+                  DEFINE
+                </span>
+              </span>
+              <span style={{ color: "#bdb7ad", fontWeight: 600 }}>
+                02&nbsp;
+                <span
+                  style={{
+                    color: "#666",
+                    fontWeight: 700,
+                    letterSpacing: "0.12em",
+                  }}
+                >
+                  DESIGN
+                </span>
+              </span>
+              <span style={{ color: "#bdb7ad", fontWeight: 600 }}>
+                03&nbsp;
+                <span
+                  style={{
+                    color: "#666",
+                    fontWeight: 700,
+                    letterSpacing: "0.12em",
+                  }}
+                >
+                  BUILD
+                </span>
+              </span>
+              <span style={{ color: "#bdb7ad", fontWeight: 600 }}>
+                04&nbsp;
+                <span
+                  style={{
+                    color: "#666",
+                    fontWeight: 700,
+                    letterSpacing: "0.12em",
+                  }}
+                >
+                  RUN
+                </span>
+              </span>
+            </Row>
+          </Text>
+          <Column
+            fillWidth
+            horizontal="center"
+            vertical="center"
+            style={{}}
+            gap="12"
+          >
+            <Text
+              className={geist_mono.className}
+              style={{
+                color: "#666",
+                fontSize: "20px",
+                textAlign: "center",
+                fontWeight: 400,
+                lineHeight: 1.2,
+                marginBottom: "8px",
+              }}
+            >
+              A portfolio by
+              <br />☻ Divyanshu Dhruv ☻
+            </Text>
+            <Magnet magnetStrength={10}>
+              <Button
+                weight="default"
+                size="m"
+                style={{
+                  backgroundColor: "#ffe600",
+                  color: "#222",
+                  borderRadius: "1000px",
+                  fontWeight: 600,
+                  fontFamily: geist_mono.className,
+                  fontSize: "12px",
+                  letterSpacing: "0.13em",
+                  padding: "10px 22px",
+                  marginTop: "8px",
+                  boxShadow: "0 2px 8px #00000010",
+                  transition: "background 0.2s, color 0.2s",
+                  cursor: "pointer",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "10px",
+                }}
+              >
+                <span style={{ fontSize: "20px", marginRight: "8px" }}>↩</span>
+                &nbsp;Github
+              </Button>
+            </Magnet>
+            <Column fillWidth marginTop="20">
+              <Row
+                fillWidth
+                horizontal="between"
+                style={{
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  padding: "0 2vw",
+                  marginTop: "48px",
+                  paddingTop: "24px",
+                }}
+              >
+                <Row gap="8" center>
+                  <Text
+                    className={geist_mono.className}
+                    style={{
+                      fontSize: "12px",
+                      color: "#999",
+                      letterSpacing: "0.08em",
+                    }}
+                  >
+                    ©2025 DIVYANSHU DHRUV
+                  </Text>
+                </Row>
+                <Column center>
+                  <Text
+                    className={geist_mono.className}
+                    style={{
+                      fontSize: "13px",
+                      color: "#999",
+                      fontWeight: 400,
+                      letterSpacing: "0.08em",
+                      marginBottom: "2px",
+                    }}
+                  >
+                    <RealtimeIST />
+                    &nbsp;IST
+                  </Text>
+                </Column>
+                <Column center>
+                  <Text
+                    className={geist_mono.className}
+                    style={{
+                      fontSize: "13px",
+                      color: "#999",
+                      fontWeight: 400,
+                      letterSpacing: "0.08em",
+                      marginBottom: "2px",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    THANKYOU FOR VISITING
+                  </Text>
+                </Column>
+              </Row>
+
+              <Row
+                fillWidth
+                horizontal="between"
+                style={{
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  padding: "0 2vw",
+                  paddingTop: "24px",
+                }}
+              >
+                <Flex>
+                  {" "}
+                  <SvgSparkle />
+                </Flex>
+                <Text
+                  className={geist_mono.className}
+                  style={{
+                    fontSize: "8px",
+                    color: "#999",
+                    letterSpacing: "0.08em",
+                  }}
+                >
+                  ONCE UI
+                </Text>
+                <Row gap="8" center>
+                  <SvgSparkle />
+                  <SvgSparkle />
+                  <SvgSparkle />
+                </Row>
+                <Text
+                  className={geist_mono.className}
+                  style={{
+                    fontSize: "8px",
+                    color: "#999",
+                    letterSpacing: "0.08em",
+                  }}
+                >
+                  01XD8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </Text>
+                <Flex>
+                  {" "}
+                  <SvgSparkle />
+                </Flex>
+              </Row>
+            </Column>
+          </Column>
         </Column>
       </ClickSpark>
     </>
   );
 }
-
+function RealtimeIST() {
+  const [time, setTime] = useState(() => getISTTime());
+  useEffect(() => {
+    const interval = setInterval(() => setTime(getISTTime()), 1000);
+    return () => clearInterval(interval);
+  }, []);
+  return <span style={{ fontVariantNumeric: "tabular-nums" }}>{time}</span>;
+}
+function getISTTime() {
+  const now = new Date();
+  // IST is UTC+5:30
+  const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+  const ist = new Date(utc + 5.5 * 60 * 60000);
+  return ist
+    .toLocaleTimeString("en-GB", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+      timeZone: "Asia/Kolkata",
+    })
+    .replace(/:/g, ":");
+}
 function SvgSparkle() {
   return (
     <>
@@ -1117,7 +1481,7 @@ function SvgSparkle() {
           fill-rule="evenodd"
           clip-rule="evenodd"
           d="M9 5H11V7H13V9H15V11H13V13H11V15H9V13H7V11H5V9H7V7H9V5Z"
-          fill="currentColor"
+          fill="#FFF3E8"
         ></path>
       </svg>
     </>
