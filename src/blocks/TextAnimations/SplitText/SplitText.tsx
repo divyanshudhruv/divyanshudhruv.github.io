@@ -1,7 +1,3 @@
-/*
-	Installed from https://reactbits.dev/ts/default/
-*/
-
 import React, { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -10,7 +6,7 @@ import { SplitText as GSAPSplitText } from "gsap/SplitText";
 gsap.registerPlugin(ScrollTrigger, GSAPSplitText);
 
 export interface SplitTextProps {
-  text: string;
+  children: React.ReactNode;
   className?: string;
   delay?: number;
   duration?: number;
@@ -25,7 +21,7 @@ export interface SplitTextProps {
 }
 
 const SplitText: React.FC<SplitTextProps> = ({
-  text,
+  children,
   className = "",
   delay = 100,
   duration = 0.6,
@@ -43,7 +39,7 @@ const SplitText: React.FC<SplitTextProps> = ({
   const scrollTriggerRef = useRef<ScrollTrigger | null>(null);
 
   useEffect(() => {
-    if (typeof window === "undefined" || !ref.current || !text) return;
+    if (typeof window === "undefined" || !ref.current) return;
 
     const el = ref.current;
 
@@ -140,7 +136,7 @@ const SplitText: React.FC<SplitTextProps> = ({
       }
     };
   }, [
-    text,
+    children,
     delay,
     duration,
     ease,
@@ -164,7 +160,7 @@ const SplitText: React.FC<SplitTextProps> = ({
         wordWrap: "break-word",
       }}
     >
-      {text}
+      {children}
     </p>
   );
 };

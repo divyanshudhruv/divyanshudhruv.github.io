@@ -51,6 +51,12 @@ import { BiArchive, BiHome } from "react-icons/bi";
 import { GiSettingsKnobs } from "react-icons/gi";
 import { MdAccountBalanceWallet } from "react-icons/md";
 import LocomotiveScroll from "locomotive-scroll";
+import { useEffect, useRef } from "react";
+import FlowingMenu from "@/blocks/Components/FlowingMenu/FlowingMenu";
+import BounceCards from "@/blocks/Components/BounceCards/BounceCards";
+import LightRays from "@/blocks/Backgrounds/LightRays/LightRays";
+import { IoArrowDownSharp } from "react-icons/io5";
+import Lenis from "lenis";
 const instrument_serif = Instrument_Serif({
   weight: ["400"],
   subsets: ["latin"],
@@ -119,6 +125,157 @@ export default function Home() {
       onClick: () => alert("Settings!"),
     },
   ];
+  const demoItems = [
+    {
+      link: "#",
+      text: "Mojave",
+      image: "https://picsum.photos/600/400?random=1",
+    },
+    {
+      link: "#",
+      text: "Sonoma",
+      image: "https://picsum.photos/600/400?random=2",
+    },
+    {
+      link: "#",
+      text: "Monterey",
+      image: "https://picsum.photos/600/400?random=3",
+    },
+    {
+      link: "#",
+      text: "Sequoia",
+      image: "https://picsum.photos/600/400?random=4",
+    },
+  ];
+  const images_row1 = [
+    "https://skillicons.dev/icons?i=html",
+    "https://skillicons.dev/icons?i=css",
+    "https://skillicons.dev/icons?i=javascript",
+    "https://skillicons.dev/icons?i=typescript",
+    "https://skillicons.dev/icons?i=react",
+    "https://skillicons.dev/icons?i=threejs",
+    "https://skillicons.dev/icons?i=p5js",
+
+    "https://skillicons.dev/icons?i=vercel",
+    "https://skillicons.dev/icons?i=tailwind",
+    "https://skillicons.dev/icons?i=bootstrap",
+  ];
+
+  const images_row2 = [
+    "https://skillicons.dev/icons?i=firebase",
+    "https://skillicons.dev/icons?i=python",
+    "https://skillicons.dev/icons?i=supabase",
+    "https://skillicons.dev/icons?i=mysql",
+    "https://skillicons.dev/icons?i=java",
+    "https://skillicons.dev/icons?i=bun",
+    "https://skillicons.dev/icons?i=figma",
+    "https://skillicons.dev/icons?i=obsidian",
+    "https://skillicons.dev/icons?i=vue",
+    "https://skillicons.dev/icons?i=angular",
+  ];
+
+  const images_row3 = [
+    "https://skillicons.dev/icons?i=rabbitmq",
+    "https://skillicons.dev/icons?i=django",
+    "https://skillicons.dev/icons?i=docker",
+    "https://skillicons.dev/icons?i=dotnet",
+    "https://skillicons.dev/icons?i=anaconda",
+    "https://skillicons.dev/icons?i=git",
+    "https://skillicons.dev/icons?i=npm",
+    "https://skillicons.dev/icons?i=robloxstudio",
+    "https://skillicons.dev/icons?i=vscode",
+    "https://skillicons.dev/icons?i=bash",
+  ];
+
+  const images_row4 = [
+    "https://skillicons.dev/icons?i=codepen",
+    "https://skillicons.dev/icons?i=arduino",
+    "https://skillicons.dev/icons?i=flask",
+    "https://skillicons.dev/icons?i=gcp",
+    "https://skillicons.dev/icons?i=git",
+    "https://skillicons.dev/icons?i=npm",
+    "https://skillicons.dev/icons?i=discord",
+    "https://skillicons.dev/icons?i=gitlab",
+    "https://skillicons.dev/icons?i=pnpm",
+  ];
+
+  const images_row5 = [
+    "https://skillicons.dev/icons?i=gherkin",
+    "https://skillicons.dev/icons?i=graphql",
+    "https://skillicons.dev/icons?i=htmx",
+    "https://skillicons.dev/icons?i=md",
+    "https://skillicons.dev/icons?i=matlab",
+    "https://skillicons.dev/icons?i=mongodb",
+    "https://skillicons.dev/icons?i=nextjs",
+    "https://skillicons.dev/icons?i=tensorflow",
+    "https://skillicons.dev/icons?i=terraform",
+    "https://skillicons.dev/icons?i=nodejs",
+  ];
+
+  const getTransformStyles = (images: string[]) =>
+    images.map((_, i) => {
+      const gap = 100;
+      const center = (images.length - 1) / 2;
+      const offset = (i - center) * gap;
+      const totalWidth = images.length * gap;
+      let translateX;
+      if (totalWidth < 500) {
+        const spacing = 500 / images.length;
+        translateX = i * spacing - 500 / 2 + spacing / 2;
+      } else {
+        translateX = offset;
+      }
+      let rotate = 0;
+      if (i % 3 === 0) {
+        rotate = -8;
+      } else if (i % 3 === 1) {
+        rotate = 7;
+      }
+      return `translateX(${translateX}px) rotate(${rotate}deg)`;
+    });
+
+  const transformStyles_row1 = getTransformStyles(images_row1);
+  const transformStyles_row2 = getTransformStyles(images_row2);
+  const transformStyles_row3 = getTransformStyles(images_row3);
+  const transformStyles_row4 = getTransformStyles(images_row4);
+  const transformStyles_row5 = getTransformStyles(images_row5);
+
+  useEffect(() => {
+    let scroll: LocomotiveScroll | null = null;
+    let savedScrollY = 0;
+
+    // Restore scroll position from localStorage
+    if (typeof window !== "undefined") {
+      savedScrollY = Number(localStorage.getItem("scrollY") || 0);
+    }
+
+    // LocomotiveScroll initialization
+    scroll = new LocomotiveScroll();
+
+    // Scroll to saved position after initialization
+    setTimeout(() => {
+      if (scroll && savedScrollY) {
+        scroll.scrollTo(savedScrollY, { duration: 0, disableLerp: true });
+      }
+    }, 100);
+
+    // Save scroll position on scroll
+    const onScroll = (obj: { scroll: { y: number } }) => {
+      if (obj && obj.scroll && typeof obj.scroll.y === "number") {
+        localStorage.setItem("scrollY", String(obj.scroll.y));
+      }
+    };
+
+    scroll.on("scroll", onScroll);
+
+    // Cleanup
+    return () => {
+      scroll && scroll.destroy();
+    };
+  }, []);
+  const lenis = new Lenis({
+    autoRaf: true,
+  });
 
   return (
     <>
@@ -143,7 +300,12 @@ export default function Home() {
       /> */}
       <Column
         fillWidth
-        style={{ minHeight: "100vh", minWidth: "100vw" }}
+        style={{
+          minHeight: "100vh",
+          minWidth: "100vw",
+          maxWidth: "100vw",
+          overflowX: "hidden",
+        }}
         vertical="center"
         horizontal="center"
         padding="xs"
@@ -351,12 +513,60 @@ export default function Home() {
         paddingX="m"
         gap="128"
       >
+        {/** Decorative SVGs only on left and right borders, random vertical positions, 7-8 custom images */}
+        {["left", "right"].map((side) => {
+          // List of decorative images (add your own SVGs here)
+          const images = [
+            { src: "/donut.svg", alt: "Donut" },
+            { src: "/pyramid.svg", alt: "Pyramid" },
+            { src: "/pill.svg", alt: "Pill" },
+          ];
+          // Pick 4 random images for each side (or as many as you want)
+          const count = 3;
+          // Shuffle and slice
+          const shuffled = images
+            .map((img) => ({ ...img, sort: Math.random() }))
+            .sort((a, b) => a.sort - b.sort)
+            .slice(0, count);
+
+          return shuffled.map((img, idx) => {
+            // Random top between 5% and 85%, spread out a bit
+            // Alternate vertical positions for left/right, with a gap between images
+            // For left: start at 10%, then 30%, 50%, etc. For right: 20%, 40%, 60%, etc.
+            const baseGap = 40; // percent
+            const offset = side === "left" ? 10 : 20;
+            const top = `${offset + idx * baseGap}%`;
+            // Random opacity and size for variety
+            const opacity = 1; // Between 0.5 and 1
+
+            return (
+              <img
+                key={side + "-" + img.src + "-" + idx}
+                src={img.src}
+                alt={img.alt}
+                style={{
+                  position: "absolute",
+                  [side]: 0,
+                  top,
+                  width: 230,
+                  height: 230,
+                  zIndex: 1,
+                  pointerEvents: "none",
+                  opacity,
+                  userSelect: "none",
+                }}
+                draggable={false}
+              />
+            );
+          });
+        })}
+
         <Text className={inter.className} style={{ fontWeight: "200" }}>
           {" "}
           <ScrollVelocity
             texts={[
-              "☻ Divyanshu Dhruv ☻ ☻ Divyanshu Dhruv ☻",
-              "☻ Portfolio ☻ ☻ Portfolio ☻",
+              "☻ Divyanshu Dhruv ☻ ☻ Divyanshu Dhruv ☻ ☻ Divyanshu Dhruv ☻ ☻ Divyanshu Dhruv ☻",
+              "☻ Portfolio ☻ ☻ Portfolio ☻ ☻ Portfolio ☻ ☻ Portfolio ☻ ☻ Portfolio ☻",
             ]}
             velocity={30}
             parallaxStyle={{
@@ -370,10 +580,10 @@ export default function Home() {
 
         <Flex
           center
-          minWidth={44}
-          maxWidth={44}
-          maxHeight={28}
-          minHeight={28}
+          minWidth={48}
+          maxWidth={48}
+          maxHeight={29}
+          minHeight={29}
           style={{
             backgroundColor: "#9887FF",
             boxShadow: "inset 0 25px 25px -25px #1d1d1d",
@@ -406,8 +616,61 @@ export default function Home() {
             </span>
           </Text>
         </Flex>
+        {/* <Column fillWidth horizontal="center" vertical="start" maxWidth={70} gap="32">
+          <Text
+            style={{
+              fontSize: "70px",
+              textAlign: "center",
+              lineHeight: "1",
+              fontWeight: "lighter",
 
-        <Column fillWidth horizontal="center" vertical="start">
+              color: "#99FF33",
+            }}
+            className={instrument_serif.className}
+          >
+            About Me
+          </Text>
+
+          <Text
+            className={inter.className}
+            style={{
+              color: "#b4b4b4ff",
+              fontSize: "22px",
+              textAlign: "center",
+              lineHeight: "1.7",
+              fontWeight: 400,
+              letterSpacing: "0.01em",
+              marginTop: "12px",
+              marginBottom: "12px",
+              display: "inline", // Prevent block-level elements from breaking lines
+            }}
+          >
+            I'm a passionate full-stack developer who loves{" "}
+            <b style={{ display: "inline", fontWeight: 700 }}>coding</b>.{" "}
+            I enjoy building innovative projects, exploring new technologies, and working with{" "}
+            <b style={{ display: "inline", fontWeight: 700 }}>React, Next.js, TypeScript, and Supabase</b>.{" "}
+            <i style={{ display: "inline" }}>
+              <u style={{ display: "inline" }}>My favorite part of coding</u>
+            </i>{" "}
+            is designing clean and efficient UI/UX while solving complex problems.{" "}
+            I <u style={{ display: "inline" }}>love</u> experimenting with new frameworks and constantly improving my skills.{" "}
+            Besides coding, I play <b style={{ display: "inline", fontWeight: 700 }}>guitar and piano</b>, creating my own music.{" "}
+            I also enjoy gaming, with <b style={{ display: "inline", fontWeight: 700 }}>Minecraft</b> being one of my all-time favorites.
+            <br />
+            <br />
+            <i style={{ display: "inline" }}>
+              <b style={{ display: "inline", fontWeight: 700 }}>When I'm not coding</b>
+            </i>
+            , I enjoy playing video games, watching movies, and dabbling with{" "}
+            <b style={{ display: "inline", fontWeight: 700 }}>Arduino</b>.{" "}
+            I also enjoy <b style={{ display: "inline", fontWeight: 700 }}>learning new things</b>.{" "}
+            I am currently learning about <b style={{ display: "inline", fontWeight: 700 }}>Web3 and DSA</b>.{" "}
+            I'm also learning how to play the guitar like a{" "}
+            <u style={{ display: "inline" }}>pro</u>.
+          </Text>
+        </Column> */}
+
+        <Column fillWidth horizontal="center" vertical="start" style={{}}>
           <Text
             style={{
               fontSize: "120px",
@@ -427,11 +690,12 @@ export default function Home() {
               }}
               className={instrument_serif.className}
             >
-              Works
+              Work
             </span>
           </Text>
           <Flex height={3}></Flex>
-          <ArrowDown color="#99FF33" size={100} />
+          <IoArrowDownSharp color="#99FF33" size={100} fontWeight={10} />
+          <Flex height={3}></Flex>
 
           <Grid columns={2} fitWidth gap="160" marginTop="64">
             <Projects
@@ -442,11 +706,124 @@ export default function Home() {
             />
             <Projects
               title="KLARITY AI"
-              tags={["n8n", "next.js", "Tailwind CSS", "TypeScript"]}
+              tags={["n8n", "next.js"]}
               description="A powerful AI automation platform that simplifies workflows and enhances productivity."
               image="https://divyanshudhruv.is-a.dev/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fnext-bench.ddc02675.png&w=1920&q=95"
             />
           </Grid>
+        </Column>
+
+        <Column fillWidth horizontal="center" vertical="start">
+          <Text
+            style={{
+              fontSize: "120px",
+              textAlign: "center",
+              lineHeight: "1",
+              fontWeight: "lighter",
+
+              color: "#fff3e8",
+            }}
+            className={instrument_serif.className}
+          >
+            My awesome<br></br>
+            <span
+              style={{
+                fontStyle: "italic",
+                color: "#9887FF",
+                textAlign: "center",
+              }}
+              className={instrument_serif.className}
+            >
+              Skills
+            </span>
+          </Text>
+          <Flex height={4}></Flex>
+          <IoArrowDownSharp color="#9887FF" size={100} />
+          <Flex height={3}></Flex>
+          {/* <div style={{ width: "100%", height: "100%", position: "absolute",top:"40px" }}>
+            <LightRays
+              raysOrigin="top-center"
+              raysColor="#9887FF77"
+              raysSpeed={1.5}
+              lightSpread={0.8}
+              rayLength={1.2}
+              followMouse={true}
+              mouseInfluence={0.1}
+              noiseAmount={0.1}
+              distortion={0.05}
+              className="custom-rays"
+            />
+          </div> */}
+
+          <Column
+            fillWidth
+            center
+            style={{
+              minWidth: "100vw",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <BounceCards
+              className="custom-bounceCards"
+              images={images_row1}
+              containerWidth={500}
+              containerHeight={250}
+              animationDelay={1}
+              animationStagger={0.08}
+              easeType="elastic.out(1, 0.5)"
+              transformStyles={transformStyles_row1}
+              enableHover={false}
+            />
+            <BounceCards
+              className="custom-bounceCards"
+              images={images_row2}
+              containerWidth={500}
+              containerHeight={250}
+              animationDelay={1.2}
+              animationStagger={0.08}
+              easeType="elastic.out(1, 0.5)"
+              transformStyles={transformStyles_row2}
+              enableHover={false}
+            />
+            <BounceCards
+              className="custom-bounceCards"
+              images={images_row3}
+              containerWidth={500}
+              containerHeight={250}
+              animationDelay={1.4}
+              animationStagger={0.08}
+              easeType="elastic.out(1, 0.5)"
+              transformStyles={transformStyles_row3}
+              enableHover={false}
+            />
+            <Flex height={2}></Flex>
+            <Magnet magnetStrength={10}>
+              <Button
+                weight="default"
+                size="l"
+                style={{
+                  backdropFilter: "blur(10px)",
+                  backgroundColor: "#08151666",
+                  border: "1px solid #222",
+                  padding: "27px",
+                  borderRadius: "1000px",
+                }}
+              >
+                <Text className={inter.className} style={{ fontSize: "12px" }}>
+                  <Row center>
+                    <ShinyText text="AND MORE"></ShinyText>
+                    &nbsp;&nbsp;&nbsp;
+                    <ArrowUpRight
+                      size={19}
+                      color={"#9887FF"}
+                      fontWeight={100}
+                    />
+                  </Row>
+                </Text>
+              </Button>
+            </Magnet>
+          </Column>
         </Column>
       </Column>
     </>
@@ -508,7 +885,7 @@ function Projects({
         unoptimized
         radius="xl-8"
       />
-      <Row fillWidth horizontal="between">
+      <Row fillWidth horizontal="between" paddingX="s">
         <Text
           style={{
             fontSize: "18px",
@@ -546,8 +923,11 @@ function Projects({
             >
               <Text
                 className={poppins.className}
-                style={{ fontSize: "12px", color: "#ffffff70",            textTransform: "uppercase",
- }}
+                style={{
+                  fontSize: "12px",
+                  color: "#ffffff70",
+                  textTransform: "uppercase",
+                }}
               >
                 {tag}
               </Text>
@@ -555,15 +935,18 @@ function Projects({
           ))}
         </Row>
       </Row>
-      <Text
-        className={inter.className}
-        style={{
-          fontSize: "13px",
-          color: "#666",
-        }}
-      >
-        {description}
-      </Text>
+      <Flex paddingX="s">
+        {" "}
+        <Text
+          className={inter.className}
+          style={{
+            fontSize: "13px",
+            color: "#666",
+          }}
+        >
+          {description}
+        </Text>
+      </Flex>
     </Card>
   );
 }
