@@ -59,6 +59,8 @@ import { IoArrowDownSharp } from "react-icons/io5";
 import Lenis from "lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ClickSpark from "@/blocks/Animations/ClickSpark/ClickSpark";
+import CircularText from "@/blocks/TextAnimations/CircularText/CircularText";
 const instrument_serif = Instrument_Serif({
   weight: ["400"],
   subsets: ["latin"],
@@ -301,278 +303,295 @@ export default function Home() {
         slowDuration={0.5}
         zIndex={1000000}
       /> */}
-      <Column
-        fillWidth
-        style={{
-          minHeight: "100vh",
-          minWidth: "100vw",
-          maxWidth: "100vw",
-          overflowX: "hidden",
-        }}
-        vertical="center"
-        horizontal="center"
-        padding="xs"
-        paddingX="m"
-        gap="104"
+      <ClickSpark
+        sparkColor="#fff"
+        sparkSize={11}
+        sparkRadius={20}
+        sparkCount={6}
+        duration={500}
       >
-        <Waves
-          lineColor="#444748"
-          backgroundColor="#031113"
-          waveSpeedX={0.02}
-          waveSpeedY={0.01}
-          waveAmpX={40}
-          waveAmpY={20}
-          friction={0.9}
-          tension={0.01}
-          maxCursorMove={120}
-          xGap={12}
-          yGap={3}
-        />
-        <Row
-          paddingX="m"
-          horizontal="between"
+        <Column
           fillWidth
-          id="navbar"
           style={{
-            position: "fixed",
-            top: "16px",
-            left: 0,
-            right: 0,
-            zIndex: 1000,
+            minHeight: "100vh",
+            minWidth: "100vw",
+            maxWidth: "100vw",
+            overflowX: "hidden",
           }}
+          vertical="center"
+          horizontal="center"
+          padding="xs"
+          paddingX="m"
+          gap="104"
         >
-          <Row gap="16">
-            {" "}
-            <Button
-              weight="default"
-              size="l"
-              style={{
-                backdropFilter: "blur(10px)",
-                backgroundColor: "#08151666",
-                border: "1px solid #222",
-              }}
-            >
-              <Row center>
-                <Text
-                  className={instrument_serif.className}
+          <Waves
+            lineColor="#444748"
+            backgroundColor="#031113"
+            waveSpeedX={0.02}
+            waveSpeedY={0.01}
+            waveAmpX={40}
+            waveAmpY={20}
+            friction={0.9}
+            tension={0.01}
+            maxCursorMove={120}
+            xGap={12}
+            yGap={3}
+          />
+          <Row
+            paddingX="m"
+            horizontal="between"
+            fillWidth
+            id="navbar"
+            style={{
+              position: "fixed",
+              top: "16px",
+              left: 0,
+              right: 0,
+              zIndex: 1000,
+            }}
+          >
+            <Row gap="16">
+              {" "}
+              <Button
+                weight="default"
+                size="l"
+                style={{
+                  backdropFilter: "blur(10px)",
+                  backgroundColor: "#08151666",
+                  border: "1px solid #222",
+                }}
+              >
+                <Row center>
+                  <Text
+                    className={instrument_serif.className}
+                    style={{
+                      fontSize: "15px",
+                      color: "#FFF3E8",
+                      letterSpacing: "0.5px",
+                      fontWeight: "600",
+                    }}
+                  >
+                    Divyanshu Dhruv
+                  </Text>
+                </Row>
+              </Button>
+              <Button
+                weight="default"
+                size="l"
+                style={{
+                  backdropFilter: "blur(10px)",
+                  backgroundColor: "#08151666",
+                  border: "1px solid #222",
+                }}
+              >
+                <Row center>
+                  <Text
+                    className={inter.className}
+                    style={{ fontSize: "12px" }}
+                  >
+                    <Row center>
+                      <StatusIndicator color="moss" size="m" />
+                      &nbsp;&nbsp;&nbsp;
+                      <ShinyText text="Available for any collaboration"></ShinyText>
+                    </Row>
+                  </Text>
+                </Row>
+              </Button>
+            </Row>
+            <Flex>
+              {" "}
+              <Magnet magnetStrength={10}>
+                <Button
+                  weight="default"
+                  size="l"
                   style={{
-                    fontSize: "15px",
-                    color: "#FFF3E8",
-                    letterSpacing: "0.5px",
-                    fontWeight: "600",
+                    backdropFilter: "blur(10px)",
+                    backgroundColor: "#08151666",
+                    border: "1px solid #222",
                   }}
                 >
-                  Divyanshu Dhruv
-                </Text>
-              </Row>
-            </Button>
-            <Button
-              weight="default"
-              size="l"
-              style={{
-                backdropFilter: "blur(10px)",
-                backgroundColor: "#08151666",
-                border: "1px solid #222",
-              }}
-            >
-              <Row center>
-                <Text className={inter.className} style={{ fontSize: "12px" }}>
-                  <Row center>
-                    <StatusIndicator color="moss" size="m" />
-                    &nbsp;&nbsp;&nbsp;
-                    <ShinyText text="Available for any collaboration"></ShinyText>
-                  </Row>
-                </Text>
-              </Row>
-            </Button>
+                  <Text
+                    className={inter.className}
+                    style={{ fontSize: "12px" }}
+                  >
+                    <Row center>
+                      <ShinyText text="VISIT MY GITHUB"></ShinyText>
+                      &nbsp;&nbsp;&nbsp;
+                      <ArrowUpRight
+                        size={19}
+                        color={"#99FF33"}
+                        fontWeight={100}
+                      />
+                    </Row>
+                  </Text>
+                </Button>
+              </Magnet>
+            </Flex>
           </Row>
-          <Flex>
-            {" "}
-            <Magnet magnetStrength={10}>
-              <Button
-                weight="default"
-                size="l"
-                style={{
-                  backdropFilter: "blur(10px)",
-                  backgroundColor: "#08151666",
-                  border: "1px solid #222",
-                }}
-              >
-                <Text className={inter.className} style={{ fontSize: "12px" }}>
-                  <Row center>
-                    <ShinyText text="VISIT MY GITHUB"></ShinyText>
-                    &nbsp;&nbsp;&nbsp;
-                    <ArrowUpRight
-                      size={19}
-                      color={"#99FF33"}
-                      fontWeight={100}
-                    />
-                  </Row>
-                </Text>
-              </Button>
-            </Magnet>
-          </Flex>
-        </Row>
 
-        <Column center maxWidth={70} fillWidth gap="32">
-          <Text
-            style={{
-              color: "#FFF3E8",
-              fontSize: "16px",
-              textAlign: "center",
-              lineHeight: "1",
-              fontWeight: "300",
-            }}
-          >
-            ☻ Stop scrolling & start building ☻
-          </Text>
-          <Text
-            style={{
-              color: "#FFF3E8",
-              fontSize: "140px",
-              textAlign: "center",
-              lineHeight: "1",
-              fontWeight: "lighter",
-              display: "inline", // Ensure inline
-              whiteSpace: "pre-line", // Preserve line breaks if any
-            }}
-            className={instrument_serif.className}
-          >
-            look, i actually finished crafting
-            <span
+          <Column center maxWidth={70} fillWidth gap="32">
+            <Text
               style={{
-                color: "#8db3ff",
-                fontStyle: "italic",
+                color: "#FFF3E8",
+                fontSize: "16px",
+                textAlign: "center",
+                lineHeight: "1",
+                fontWeight: "300",
+              }}
+            >
+              ☻ Stop scrolling & start building ☻
+            </Text>
+            <Text
+              style={{
+                color: "#FFF3E8",
+                fontSize: "140px",
+                textAlign: "center",
+                lineHeight: "1",
+                fontWeight: "lighter",
                 display: "inline", // Ensure inline
+                whiteSpace: "pre-line", // Preserve line breaks if any
               }}
               className={instrument_serif.className}
             >
-              <GradientText
-                animationSpeed={2}
-                showBorder={false}
-                colors={["#99FF33"]}
-              >
-                &nbsp;my portfolio!
-              </GradientText>
-            </span>
-          </Text>
-
-          <Flex marginTop="32">
-            {" "}
-            <Magnet magnetStrength={10}>
-              <Button
-                weight="default"
-                size="l"
+              look, i actually finished crafting
+              <span
                 style={{
-                  backdropFilter: "blur(10px)",
-                  backgroundColor: "#08151666",
-                  border: "1px solid #222",
-                  padding: "27px",
-                  borderRadius: "1000px",
+                  color: "#8db3ff",
+                  fontStyle: "italic",
+                  display: "inline", // Ensure inline
                 }}
+                className={instrument_serif.className}
               >
-                <Text className={inter.className} style={{ fontSize: "12px" }}>
-                  <Row center>
-                    <ShinyText text="LET'S WORK TOGETHER"></ShinyText>
-                    &nbsp;&nbsp;&nbsp;
-                    <ArrowUpRight
-                      size={19}
-                      color={"#99FF33"}
-                      fontWeight={100}
-                    />
-                  </Row>
-                </Text>
-              </Button>
-            </Magnet>
-          </Flex>
-        </Column>
-        <div
-          style={{
-            position: "fixed",
-            left: "50%",
-            bottom: "4px",
-            transform: "translateX(-50%)",
-            zIndex: 10,
-          }}
-        >
-          <Dock
-            items={items}
-            panelHeight={68}
-            baseItemSize={50}
-            magnification={70}
-          />
-        </div>
-      </Column>
-      <Column
-        fillWidth
-        style={{
-          minHeight: "100vh",
-          minWidth: "100vw",
-          boxShadow: "inset 0 25px 25px -25px #444444cc",
-        }}
-        vertical="start"
-        horizontal="center"
-        padding="m"
-        paddingX="m"
-        gap="128"
-      >
-        <LocoScrollImg />
-        <Text className={inter.className} style={{ fontWeight: "200" }}>
-          {" "}
-          <ScrollVelocity
-            texts={[
-              "☻ Divyanshu Dhruv ☻ ☻ Divyanshu Dhruv ☻ ☻ Divyanshu Dhruv ☻ ☻ Divyanshu Dhruv ☻",
-              "☻ Portfolio ☻ ☻ Portfolio ☻ ☻ Portfolio ☻ ☻ Portfolio ☻ ☻ Portfolio ☻",
-            ]}
-            velocity={30}
-            parallaxStyle={{
-              fontFamily: inter.className,
-              fontSize: "20px",
-              color: "#99FF33",
-              lineHeight: "2",
-            }}
-          ></ScrollVelocity>{" "}
-        </Text>
+                <GradientText
+                  animationSpeed={2}
+                  showBorder={false}
+                  colors={["#99FF33"]}
+                >
+                  &nbsp;my portfolio!
+                </GradientText>
+              </span>
+            </Text>
 
-        <Flex
-          center
-          minWidth={48}
-          maxWidth={48}
-          maxHeight={29}
-          minHeight={29}
-          style={{
-            backgroundColor: "#9887FF",
-            boxShadow: "inset 0 25px 25px -25px #1d1d1d",
-            borderRadius: "40px",
-            border: "1.2px solid #999",
-          }}
-        >
-          <Text
+            <Flex marginTop="32">
+              {" "}
+              <Magnet magnetStrength={10}>
+                <Button
+                  weight="default"
+                  size="l"
+                  style={{
+                    backdropFilter: "blur(10px)",
+                    backgroundColor: "#08151666",
+                    border: "1px solid #222",
+                    padding: "27px",
+                    borderRadius: "1000px",
+                  }}
+                >
+                  <Text
+                    className={inter.className}
+                    style={{ fontSize: "12px" }}
+                  >
+                    <Row center>
+                      <ShinyText text="LET'S WORK TOGETHER"></ShinyText>
+                      &nbsp;&nbsp;&nbsp;
+                      <ArrowUpRight
+                        size={19}
+                        color={"#99FF33"}
+                        fontWeight={100}
+                      />
+                    </Row>
+                  </Text>
+                </Button>
+              </Magnet>
+            </Flex>
+          </Column>
+          <div
             style={{
-              fontSize: "90px",
-              textAlign: "center",
-              lineHeight: "1.1",
-              fontWeight: "lighter",
-              display: "inline", // Ensure inline
-              whiteSpace: "pre-line", // Preserve line breaks if any
-              color: "#031113",
+              position: "fixed",
+              left: "50%",
+              bottom: "4px",
+              transform: "translateX(-50%)",
+              zIndex: 10,
             }}
-            className={instrument_serif.className}
           >
-            I am a full-stack developer based in{" "}
-            <span
+            <Dock
+              items={items}
+              panelHeight={68}
+              baseItemSize={50}
+              magnification={70}
+            />
+          </div>
+        </Column>
+        <Column
+          fillWidth
+          style={{
+            minHeight: "100vh",
+            minWidth: "100vw",
+            boxShadow:
+              "inset 0 25px 25px -25px #444444cc, inset 0 -25px 25px -25px #444444cc",
+          }}
+          vertical="start"
+          horizontal="center"
+          padding="m"
+          paddingX="m"
+          gap="128"
+        >
+          <LocoScrollImg />
+          <Text className={inter.className} style={{ fontWeight: "200" }}>
+            {" "}
+            <ScrollVelocity
+              texts={[
+                "☻ Divyanshu Dhruv ☻ ☻ Divyanshu Dhruv ☻ ☻ Divyanshu Dhruv ☻ ☻ Divyanshu Dhruv ☻",
+                // "☻ Portfolio ☻ ☻ Portfolio ☻ ☻ Portfolio ☻ ☻ Portfolio ☻ ☻ Portfolio ☻",
+              ]}
+              velocity={30}
+              parallaxStyle={{
+                fontFamily: inter.className,
+                fontSize: "20px",
+                color: "#99FF33",
+                lineHeight: "2",
+              }}
+            ></ScrollVelocity>{" "}
+          </Text>
+
+          <Flex
+            center
+            minWidth={48}
+            maxWidth={48}
+            maxHeight={29}
+            minHeight={29}
+            style={{
+              backgroundColor: "#9887FF",
+              boxShadow: "inset 0 25px 25px -25px #1d1d1d",
+              borderRadius: "40px",
+              border: "1.2px solid #999",
+            }}
+          >
+            <Text
               style={{
-                fontStyle: "italic",
-                display: "inline",
-                fontWeight: 700,
+                fontSize: "90px",
+                textAlign: "center",
+                lineHeight: "1.1",
+                fontWeight: "lighter",
+                display: "inline", // Ensure inline
+                whiteSpace: "pre-line", // Preserve line breaks if any
+                color: "#031113",
               }}
               className={instrument_serif.className}
             >
-              Vadodara, India
-            </span>
-          </Text>
-        </Flex>
-        {/* <Column fillWidth horizontal="center" vertical="start" maxWidth={70} gap="32">
+              I am a full-stack developer based in{" "}
+              <span
+                style={{
+                  fontStyle: "italic",
+                  display: "inline",
+                  fontWeight: 700,
+                }}
+                className={instrument_serif.className}
+              >
+                Vadodara, India
+              </span>
+            </Text>
+          </Flex>
+          {/* <Column fillWidth horizontal="center" vertical="start" maxWidth={70} gap="32">
           <Text
             style={{
               fontSize: "70px",
@@ -626,54 +645,54 @@ export default function Home() {
           </Text>
         </Column> */}
 
-        <Column fillWidth horizontal="center" vertical="start" style={{}}>
-          <Text
-            style={{
-              fontSize: "120px",
-              textAlign: "center",
-              lineHeight: "1",
-              fontWeight: "lighter",
-
-              color: "#fff3e8",
-            }}
-            className={instrument_serif.className}
-          >
-            Some selected <br></br>
-            <span
+          <Column fillWidth horizontal="center" vertical="start" style={{}}>
+            <Text
               style={{
-                fontStyle: "italic",
-                color: "#99FF33",
+                fontSize: "120px",
+                textAlign: "center",
+                lineHeight: "1",
+                fontWeight: "lighter",
+
+                color: "#fff3e8",
               }}
               className={instrument_serif.className}
             >
-              Work
-            </span>
-          </Text>
-          <Flex height={3}></Flex>
-          <IoArrowDownSharp color="#99FF33" size={100} fontWeight={10} />
-          <Flex height={3}></Flex>
+              Some selected <br></br>
+              <span
+                style={{
+                  fontStyle: "italic",
+                  color: "#99FF33",
+                }}
+                className={instrument_serif.className}
+              >
+                Work
+              </span>
+            </Text>
+            <Flex height={3}></Flex>
+            <IoArrowDownSharp color="#99FF33" size={100} fontWeight={10} />
+            <Flex height={3}></Flex>
 
-          <Grid columns={2} fitWidth gap="160" marginTop="64">
-            <Projects
-              title="refolio"
-              tags={["Next.js", "Tailwind CSS", "TypeScript"]}
-              description="A modern portfolio website showcasing my work and skills."
-              image="https://divyanshudhruv.is-a.dev/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fre-folio.94817651.png&w=3840&q=95"
-            />
+            <Grid columns={2} fitWidth gap="160" marginTop="64">
+              <Projects
+                title="refolio"
+                tags={["Next.js", "Tailwind CSS", "TypeScript"]}
+                description="A modern portfolio website showcasing my work and skills."
+                image="https://divyanshudhruv.is-a.dev/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fre-folio.94817651.png&w=3840&q=95"
+              />
 
-            <Projects
-              title="sigmn."
-              tags={["n8n", "solana", "next.js"]}
-              description="An NFT Marketplace for Artists and Collectors."
-              image="/sigms.webp"
-            />
-            {/* <Projects
+              <Projects
+                title="sigmn."
+                tags={["n8n", "solana", "next.js"]}
+                description="An NFT Marketplace for Artists and Collectors."
+                image="/sigms.webp"
+              />
+              {/* <Projects
               title="HEHE,  IDK"
               tags={["BG"]}
               description="Some random stuff from internet."
               image="/anime.png"
             /> */}
-            {/* <Projects
+              {/* <Projects
               title="nextbench"
               tags={["vite", "supabase"]}
               description="AI education platform with interactive coding challenges."
@@ -685,94 +704,8 @@ export default function Home() {
               description="A tool to simplify and optimize regular expressions."
               image="/i4.png"
             /> */}
-          </Grid>
-        </Column>
-
-        <Column fillWidth horizontal="center" vertical="start">
-          <Text
-            style={{
-              fontSize: "120px",
-              textAlign: "center",
-              lineHeight: "1",
-              fontWeight: "lighter",
-
-              color: "#fff3e8",
-            }}
-            className={instrument_serif.className}
-          >
-            My awesome<br></br>
-            <span
-              style={{
-                fontStyle: "italic",
-                color: "#9887FF",
-                textAlign: "center",
-              }}
-              className={instrument_serif.className}
-            >
-              Skills
-            </span>
-          </Text>
-          <Flex height={4}></Flex>
-          <IoArrowDownSharp color="#9887FF" size={100} />
-          <Flex height={3}></Flex>
-          {/* <div style={{ width: "100%", height: "100%", position: "absolute",top:"40px" }}>
-            <LightRays
-              raysOrigin="top-center"
-              raysColor="#9887FF77"
-              raysSpeed={1.5}
-              lightSpread={0.8}
-              rayLength={1.2}
-              followMouse={true}
-              mouseInfluence={0.1}
-              noiseAmount={0.1}
-              distortion={0.05}
-              className="custom-rays"
-            />
-          </div> */}
-
-          <Column
-            fillWidth
-            center
-            style={{
-              minWidth: "100vw",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <BounceCards
-              className="custom-bounceCards"
-              images={images_row1}
-              containerWidth={500}
-              containerHeight={250}
-              animationDelay={1}
-              animationStagger={0.08}
-              easeType="elastic.out(1, 0.5)"
-              transformStyles={transformStyles_row1}
-              enableHover={false}
-            />
-            <BounceCards
-              className="custom-bounceCards"
-              images={images_row2}
-              containerWidth={500}
-              containerHeight={250}
-              animationDelay={1.2}
-              animationStagger={0.08}
-              easeType="elastic.out(1, 0.5)"
-              transformStyles={transformStyles_row2}
-              enableHover={false}
-            />
-            <BounceCards
-              className="custom-bounceCards"
-              images={images_row3}
-              containerWidth={500}
-              containerHeight={250}
-              animationDelay={1.4}
-              animationStagger={0.08}
-              easeType="elastic.out(1, 0.5)"
-              transformStyles={transformStyles_row3}
-              enableHover={false}
-            />
-            <Flex height={2}></Flex>
+            </Grid>
+            <Flex height={3}></Flex>
             <Magnet magnetStrength={10}>
               <Button
                 weight="default"
@@ -791,7 +724,7 @@ export default function Home() {
                     &nbsp;&nbsp;&nbsp;
                     <ArrowUpRight
                       size={19}
-                      color={"#9887FF"}
+                      color={"#99FF33"}
                       fontWeight={100}
                     />
                   </Row>
@@ -799,8 +732,251 @@ export default function Home() {
               </Button>
             </Magnet>
           </Column>
+
+          <Column fillWidth horizontal="center" vertical="start">
+            <Text
+              style={{
+                fontSize: "120px",
+                textAlign: "center",
+                lineHeight: "1",
+                fontWeight: "lighter",
+
+                color: "#fff3e8",
+              }}
+              className={instrument_serif.className}
+            >
+              My awesome<br></br>
+              <span
+                style={{
+                  fontStyle: "italic",
+                  color: "#9887FF",
+                  textAlign: "center",
+                }}
+                className={instrument_serif.className}
+              >
+                Skills
+              </span>
+            </Text>
+            <Flex height={4}></Flex>
+            <IoArrowDownSharp color="#9887FF" size={100} />
+            <Flex height={3}></Flex>
+            {/* <div style={{ width: "100%", height: "100%", position: "absolute",top:"40px" }}>
+            <LightRays
+              raysOrigin="top-center"
+              raysColor="#9887FF77"
+              raysSpeed={1.5}
+              lightSpread={0.8}
+              rayLength={1.2}
+              followMouse={true}
+              mouseInfluence={0.1}
+              noiseAmount={0.1}
+              distortion={0.05}
+              className="custom-rays"
+            />
+          </div> */}
+
+            <Column
+              fillWidth
+              center
+              style={{
+                minWidth: "100vw",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+              paddingBottom="xl"
+            >
+              <BounceCards
+                className="custom-bounceCards"
+                images={images_row1}
+                containerWidth={500}
+                containerHeight={250}
+                animationDelay={1}
+                animationStagger={0.08}
+                easeType="elastic.out(1, 0.5)"
+                transformStyles={transformStyles_row1}
+                enableHover={false}
+              />
+              <BounceCards
+                className="custom-bounceCards"
+                images={images_row2}
+                containerWidth={500}
+                containerHeight={250}
+                animationDelay={1.2}
+                animationStagger={0.08}
+                easeType="elastic.out(1, 0.5)"
+                transformStyles={transformStyles_row2}
+                enableHover={false}
+              />
+              <BounceCards
+                className="custom-bounceCards"
+                images={images_row3}
+                containerWidth={500}
+                containerHeight={250}
+                animationDelay={1.4}
+                animationStagger={0.08}
+                easeType="elastic.out(1, 0.5)"
+                transformStyles={transformStyles_row3}
+                enableHover={false}
+              />
+              <Flex height={2}></Flex>
+              <Magnet magnetStrength={10}>
+                <Button
+                  weight="default"
+                  size="l"
+                  style={{
+                    backdropFilter: "blur(10px)",
+                    backgroundColor: "#40404066",
+                    border: "1px solid #222",
+                    padding: "27px",
+                    borderRadius: "1000px",
+                  }}
+                >
+                  <Text
+                    className={inter.className}
+                    style={{ fontSize: "12px" }}
+                  >
+                    <Row center>
+                      <ShinyText text="AND MORE"></ShinyText>
+                      &nbsp;&nbsp;&nbsp;
+                      <ArrowUpRight
+                        size={19}
+                        color={"#9887FF"}
+                        fontWeight={100}
+                      />
+                    </Row>
+                  </Text>
+                </Button>
+              </Magnet>
+            </Column>
+          </Column>
         </Column>
-      </Column>
+
+        <Column
+          fillWidth
+          style={{
+            minHeight: "100vh",
+            minWidth: "100vw",
+            boxShadow:
+              "inset 0 25px 25px -25px #1c1c1ccc, inset 0 -25px 25px -25px #171717ff",
+            backgroundColor: "#F9F4EB",
+          }}
+          vertical="start"
+          horizontal="center"
+          paddingTop="xl"
+          paddingX="m"
+          gap="128"
+        >
+          <Column fillWidth horizontal="center" vertical="start">
+            <Row fillWidth horizontal="between" paddingBottom="m">
+              <Text className={inter.className}>SOME RANDOM TEXTS</Text>
+              <Text className={inter.className} style={{textTransform:"uppercase"}}>CTO at Sonamii, leading Next Bench and building with Generative AI.</Text>{" "}
+              <Row>
+                {[
+                  {
+                    svg: (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="none"
+                        aria-hidden="true"
+                        className="icon"
+                        style={{ width: "100%", height: "100%" }}
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M10 0h10v10H10zM0 10h10v10H0z"
+                        ></path>
+                      </svg>
+                    ),
+                    bg: "#e5daf6",
+                  },
+                  {
+                    svg: (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 20 20"
+                        aria-hidden="true"
+                        className="icon"
+                        style={{ width: "100%", height: "100%" }}
+                      >
+                        <path
+                          d="M20 0H6v2h2v4h2v2h2v2h2V8h2V6h2V2h2V0ZM6 10v2H4v2H2v4H0v2h14v-2h-2v-4h-2v-2H8v-2H6Z"
+                          fill="currentColor"
+                        ></path>
+                      </svg>
+                    ),
+                    bg: "#ffd2f3",
+                  },
+                  {
+                    svg: (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 20 20"
+                        aria-hidden="true"
+                        className="icon"
+                        style={{ width: "100%", height: "100%" }}
+                      >
+                        <path
+                          fill="currentColor"
+                          fillRule="evenodd"
+                          d="M0 0h20v20H0V0Zm4 16v-2H2V6h2V4h2V2h8v2h2v2h2v8h-2v2h-2v2H6v-2H4Z"
+                          clipRule="evenodd"
+                        ></path>
+                      </svg>
+                    ),
+                    bg: "#fcdca6",
+                  },
+                ].map(({ svg, bg }, i) => (
+                    <div
+                    key={i}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      background: bg,
+                      width: 23,
+                      height: 27,
+                      marginLeft: i === 0 ? "5.5vw" : "10px",
+                      padding: "5px",
+                    }}
+                    >
+                    {svg}
+                    </div>
+                ))}
+              </Row>
+            </Row>
+
+            <Text
+              style={{
+                fontSize: "120px",
+                textAlign: "center",
+                lineHeight: "1",
+                fontWeight: "lighter",
+
+                color: "#031113",
+              }}
+              className={instrument_serif.className}
+            >
+              Experience and<br></br>
+              <span
+                style={{
+                  fontStyle: "italic",
+                  color: "#7a5a37ff",
+                  textAlign: "center",
+                }}
+                className={instrument_serif.className}
+              >
+                Education
+              </span>
+            </Text>
+            <Flex height={4}></Flex>
+            <IoArrowDownSharp color="#7a5a37ff" size={100} />
+            <Flex height={3}></Flex>
+          </Column>
+        </Column>
+      </ClickSpark>
     </>
   );
 }
