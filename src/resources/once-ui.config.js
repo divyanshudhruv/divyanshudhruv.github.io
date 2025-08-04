@@ -60,7 +60,7 @@ const dataStyle = {
   tick: {
     fill: "var(--neutral-on-background-weak)",
     fontSize: 11,
-    line: false
+    line: false,
   },
 };
 
@@ -109,13 +109,13 @@ const effects = {
 const meta = {
   home: {
     path: "/",
-    title: "Divyanshu Dhruv",
+    title:
+      "Divyanshu Dhruv ✷ Full Stack Developer | OS Contributor | Design Engineer | Student",
     description:
-      "An open-source design system and component library for Next.js that emphasizes easy styling and accessibility in UI development.",
-    image: "/images/og/home.jpg",
-    canonical: "https://once-ui.com",
+      "Divyanshu Dhruv ✷ Full-stack developer | I build innovative projects | Skilled in React, Next.js, TypeScript | Focused on clean UI/UX | I love solving problems | Always learning new tech.",
+    image: "",
+    canonical: "https://divyanshudhruv.is-a.dev",
     robots: "index,follow",
-    alternates: [{ href: "https://once-ui.com", hrefLang: "en" }],
   },
   // add more routes and reference them in page.tsx
 };
@@ -123,17 +123,17 @@ const meta = {
 // default schema data
 const schema = {
   logo: "",
-  type: "Organization",
-  name: "Once UI",
+  type: "Website",
+  name: "Portfolio",
   description: meta.home.description,
-  email: "lorant@once-ui.com",
+  email: "divyanshudhruv@proton.me",
 };
 
 // social links
 const social = {
-  twitter: "https://www.twitter.com/_onceui",
-  linkedin: "https://www.linkedin.com/company/once-ui/",
-  discord: "https://discord.com/invite/5EyAQ4eNdS",
+  twitter: "https://www.twitter.com/",
+  linkedin: "https://www.linkedin.com/in/divyanshudhruv/",
+  github: "https://github.com/divyanshudhruv",
 };
 
 export { baseURL, fonts, style, meta, schema, social, effects, dataStyle };
