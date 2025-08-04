@@ -36,14 +36,13 @@ export default function Home() {
           <LocoScrollFlatImg />
           <Experience />
           <Contact />
-           <ScrollTextFooter />
+          <ScrollTextFooter />
         </Column>
         <Footer />
       </ClickSpark>
     </>
   );
 }
-
 function LocoScrollImg() {
   gsap.registerPlugin(ScrollTrigger);
 
@@ -54,7 +53,7 @@ function LocoScrollImg() {
     { src: "/pill.svg", alt: "Pill" },
     { src: "/sphere.svg", alt: "Sphere" },
     { src: "/cube.svg", alt: "Cube" },
-    { src: "/cone.svg", alt: "Cone" },
+    { src: "/donut.svg", alt: "Donut" },
   ];
   const count = 3;
   const sides = ["left", "right"];
@@ -62,6 +61,11 @@ function LocoScrollImg() {
   const speedFactorsBySide = [
     [1.5, 2.0, 2.5],
     [1.8, 2.2, 2.7],
+  ];
+  // Rotation directions: alternate between 1 and -1 for each image
+  const rotationDirectionsBySide = [
+    [1, -1, 1],
+    [-1, 1, -1],
   ];
 
   // Refs for all images
@@ -74,8 +78,10 @@ function LocoScrollImg() {
       sideRefs.forEach((img, idx) => {
         if (!img) return;
         const speed = speedFactorsBySide[sideIdx][idx];
+        const rotationDir = rotationDirectionsBySide[sideIdx][idx];
         gsap.to(img, {
           y: () => `-${speed * 200}px`,
+          rotation: () => rotationDir * 30,
           ease: "none",
           scrollTrigger: {
             trigger: img,
@@ -102,7 +108,7 @@ function LocoScrollImg() {
           const baseGap = 30; // percent
           const offset = side === "left" ? 10 : 20;
           const top = `${offset + idx * baseGap}%`;
-          const size = 138 + speedFactors[idx] * 85; // px
+          const size = 160 + speedFactors[idx] * 85; // px
           return (
             <img
               key={side + "-" + img.src + "-" + idx}
@@ -148,7 +154,12 @@ function LocoScrollFlatImg() {
   // Fixed speed factors for each image (can be customized)
   const speedFactorsBySide = [
     [1.5, 2.0, 2.5],
-    [1.8, 2.2, 2.7],
+    [1.8, 2.2, 2.1],
+  ];
+  // Rotation directions: alternate between 1 and -1 for each image
+  const rotationDirectionsBySide = [
+    [1, -1, 1],
+    [1, -1, -1],
   ];
 
   // Refs for all images
@@ -161,8 +172,10 @@ function LocoScrollFlatImg() {
       sideRefs.forEach((img, idx) => {
         if (!img) return;
         const speed = speedFactorsBySide[sideIdx][idx];
+        const rotationDir = rotationDirectionsBySide[sideIdx][idx];
         gsap.to(img, {
           y: () => `-${speed * 200}px`,
+          rotation: () => rotationDir * 40,
           ease: "none",
           scrollTrigger: {
             trigger: img,

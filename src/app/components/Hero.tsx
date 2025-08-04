@@ -99,7 +99,7 @@ export default function Hero() {
               fontWeight: "300",
             }}
           >
-            ☻ Hello, I study, play and code. ☻
+           ☻<i>  I <b><u>study</u></b>, play and code. </i>☻
           </Text>
           <Text
             style={{

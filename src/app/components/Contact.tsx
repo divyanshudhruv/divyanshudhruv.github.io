@@ -201,17 +201,18 @@ export default function Contact() {
           <Column
             fillWidth
             fitHeight
-            style={{ paddingInline: "25vw" }}
+            style={{ paddingLeft: "15vw", paddingRight: "15vw" }}
             gap="20"
           >
-            <Input
+            <Flex fillWidth>  <Input
               id=""
               height="m"
               placeholder="Your email"
               style={{ padding: "50px !important" }}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-            />
+            /></Flex>
+            
             <Textarea
               id=""
               placeholder="Your message"
