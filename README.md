@@ -1,62 +1,33 @@
-# 📬 My portfolio
+# 📬 My Portfolio
 
 ## 🚀 Description
 
-> A **`sleek`** and **`modern`** portfolio website showcasing my **`skills`** and **`projects`**. Built with cutting-edge frontend technologies , this site is designed to highlight my work and exprience.
+> Welcome to my **`sleek`** and **`modern`** portfolio website! This site is a dynamic showcase of my **`skills`**, **`projects`**, and professional **`experience`**. Built with cutting-edge frontend technologies, it features animated components and smooth scrolling for an engaging user experience. Explore my work, learn about my journey, and discover how I bring ideas to life through code.
 
 <br>
 
-## 💻 Languages Used
+## 💻 Languages & Technologies Used
 
 > - `React`
-
 > - `JavaScript`
-
 > - `TypeScript`
-
 > - `NextJS`
-
-> - `Markdown`
+> - `CSS Modules`
+> - `Framer Motion` (for animations)
+> - `Once Ui` (for UI components)
 
 <br>
 
 ## ✨ Features
 
-> - Interactive **`UI`** with smooth animations
-
-> - **`Responsive`** design for all devices
-
-> - Easy-to-navigate sections like **`About`**, **`Projects`**, and **`Contact`**
+> - Visually appealing **`UI`** with interactive and animated components
+> - **`Smooth scroll`** navigation for seamless transitions between sections
+> - **`Responsive`** design optimized for all devices
+> - Well-organized sections: **`About`**, **`Projects`**, **`Skills`**, and **`Contact`**
+> - Easy-to-update content using Markdown and modular components
 
 <br>
 
 ## 👨‍💻 Author
 
 > - **[@Divyanshu Dhruv](https://github.com/divyanshudhruv)**
-
-<br>
-
-<!--
-## 🚀 How to Run
-> 1. Clone the repo:
-   **`git clone https://github.com/divyanshudhruv/divyanshudhruv.github.io.git`**
-
-> 2. Install dependencies:
-   **`npm install`**
-
-> 3. Start the development server:
-   **`npm start`**
-
-<br>
-
--->
-
-## 🕹️ React + Vite
-
-> This template provides a minimal setup to get React working in **`Vite`** with **`HMR`** and some **`ESLint rules`**.
-
-> Currently, **`two`** official plugins are available:
-
-> - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-
-> - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
