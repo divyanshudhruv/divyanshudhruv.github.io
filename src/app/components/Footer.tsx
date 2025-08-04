@@ -9,7 +9,6 @@ import { useEffect, useState } from "react";
 
 import React from "react";
 
-
 const geist_mono = Geist_Mono({
   weight: ["400", "700", "800", "900", "600", "500", "300", "200", "100"],
   subsets: ["latin"],
@@ -33,8 +32,7 @@ export default function Footer() {
         paddingY="16"
         paddingTop="40"
       >
-        
-          {/* <div
+        {/* <div
             style={{
               position: "absolute",
               width: "100vw",
@@ -58,139 +56,137 @@ export default function Footer() {
               <path d="M0 180 Q960 -80 1920 180 V0 H0 V180 Z" fill="#f9f4eb" />
             </svg>
           </div> */}
-          <Text
-            variant="code-default-s"
-            className={geist_mono.className}
+        <Text variant="code-default-s" className={geist_mono.className}>
+          {" "}
+          <Row
+            gap="32"
+            style={{
+              width: "100%",
+              justifyContent: "center",
+              alignItems: "center",
+              letterSpacing: "0.1em",
+              fontSize: "12px",
+              color: "#88857C",
+              fontWeight: 100,
+            }}
           >
-            {" "}
-            <Row
-              gap="32"
-              style={{
-                width: "100%",
-                justifyContent: "center",
-                alignItems: "center",
-                letterSpacing: "0.1em",
-                fontSize: "12px",
-                color: "#88857C",
-                fontWeight: 100,
-              }}
-            >
-              <span style={{ color: "#bdb7ad", fontWeight: 600 }}>
-                01&nbsp;
-                <span
-                  style={{
-                    color: "#666",
-                    fontWeight: 700,
-                    letterSpacing: "0.12em",
-                  }}
-                >
-                  DEFINE
-                </span>
+            <span style={{ color: "#bdb7ad", fontWeight: 600 }}>
+              01&nbsp;
+              <span
+                style={{
+                  color: "#666",
+                  fontWeight: 700,
+                  letterSpacing: "0.12em",
+                }}
+              >
+                DEFINE
               </span>
-              <span style={{ color: "#bdb7ad", fontWeight: 600 }}>
-                02&nbsp;
-                <span
-                  style={{
-                    color: "#666",
-                    fontWeight: 700,
-                    letterSpacing: "0.12em",
-                  }}
-                >
-                  DESIGN
-                </span>
+            </span>
+            <span style={{ color: "#bdb7ad", fontWeight: 600 }}>
+              02&nbsp;
+              <span
+                style={{
+                  color: "#666",
+                  fontWeight: 700,
+                  letterSpacing: "0.12em",
+                }}
+              >
+                DESIGN
               </span>
-              <span style={{ color: "#bdb7ad", fontWeight: 600 }}>
-                03&nbsp;
-                <span
-                  style={{
-                    color: "#666",
-                    fontWeight: 700,
-                    letterSpacing: "0.12em",
-                  }}
-                >
-                  BUILD
-                </span>
+            </span>
+            <span style={{ color: "#bdb7ad", fontWeight: 600 }}>
+              03&nbsp;
+              <span
+                style={{
+                  color: "#666",
+                  fontWeight: 700,
+                  letterSpacing: "0.12em",
+                }}
+              >
+                BUILD
               </span>
-              <span style={{ color: "#bdb7ad", fontWeight: 600 }}>
-                04&nbsp;
-                <span
-                  style={{
-                    color: "#666",
-                    fontWeight: 700,
-                    letterSpacing: "0.12em",
-                  }}
-                >
-                  RUN
-                </span>
+            </span>
+            <span style={{ color: "#bdb7ad", fontWeight: 600 }}>
+              04&nbsp;
+              <span
+                style={{
+                  color: "#666",
+                  fontWeight: 700,
+                  letterSpacing: "0.12em",
+                }}
+              >
+                RUN
               </span>
-            </Row>
-          </Text>
-          <Column fillWidth horizontal="center" vertical="center" gap="12">
-            <div
-              style={{
-                width: "400px",
-                height: "400px",
-                position: "absolute",
-                top: "50%",
-                display: "flex",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-              }}
-            >
-               {/* <Orb
+            </span>
+          </Row>
+        </Text>
+        <Column fillWidth horizontal="center" vertical="center" gap="12">
+          <div
+            style={{
+              width: "400px",
+              height: "400px",
+              position: "absolute",
+              top: "50%",
+              display: "flex",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+            }}
+          >
+            {/* <Orb
                 hoverIntensity={0.6}
                 rotateOnHover={true}
                 hue={0}
                 forceHoverState={false}
               />  */}
-            </div>
-            <Text
-              className={geist_mono.className}
+          </div>
+          <Text
+            className={geist_mono.className}
+            style={{
+              color: "#999",
+              fontSize: "20px",
+              textAlign: "center",
+              fontWeight: 400,
+              lineHeight: 1.2,
+              marginBottom: "8px",
+            }}
+          >
+            A portfolio by
+            <br />
+            me
+          </Text>
+          <Magnet magnetStrength={10}>
+            <Button
+              weight="default"
+              size="m"
               style={{
-                color: "#999",
-                fontSize: "20px",
-                textAlign: "center",
-                fontWeight: 400,
-                lineHeight: 1.2,
-                marginBottom: "8px",
-              }}
-            >
-              A portfolio by
-              <br />me
-            </Text>
-            <Magnet magnetStrength={10}>
-              <Button
-                weight="default"
-                size="m"
-                style={{
-                  backgroundColor: "#ffe600",
-                  color: "#222",
-                  borderRadius: "1000px",
-                  fontWeight: 600,
-                  fontFamily: geist_mono.className,
-                  fontSize: "12px",
-                  letterSpacing: "0.13em",
-                  padding: "10px 22px",
-                  marginTop: "8px",
-                  overflow: "hidden",
+                backgroundColor: "#ffe600",
+                color: "#222",
+                borderRadius: "1000px",
+                fontWeight: 600,
+                fontFamily: geist_mono.className,
+                fontSize: "12px",
+                letterSpacing: "0.13em",
+                padding: "10px 22px",
+                marginTop: "8px",
+                overflow: "hidden",
 
-                  boxShadow: "0 2px 8px #00000010",
-                  transition: "background 0.2s, color 0.2s",
-                  cursor: "pointer",
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "10px",
-                }}
-                onClick={() =>
-                  window.open("https://github.com/divyanshudhruv", "_blank")
-                }
-              >
-                <span style={{ fontSize: "20px", marginRight: "8px" }}>↩</span>
-                &nbsp;Github
-              </Button>
-            </Magnet>
-          </Column> 
-        <Column fillWidth gap="4">
+                boxShadow: "0 2px 8px #00000010",
+                transition: "background 0.2s, color 0.2s",
+                cursor: "pointer",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "10px",
+              }}
+              onClick={() =>
+                window.open("https://github.com/divyanshudhruv", "_blank")
+              }
+            >
+              <span style={{ fontSize: "20px", marginRight: "8px" }}>↩</span>
+              &nbsp;Github
+            </Button>
+          </Magnet>
+        </Column>
+        <Column fillWidth gap="4" className="footer-column-to-row">
           <Row
             fillWidth
             horizontal="between"
@@ -199,6 +195,7 @@ export default function Footer() {
               justifyContent: "space-between",
               padding: "0 2vw",
             }}
+            className="footer-row-to-column"
           >
             <Row gap="8" center>
               <Text
@@ -251,6 +248,7 @@ export default function Footer() {
               justifyContent: "space-between",
               padding: "0 2vw",
             }}
+            className="footer-row-to-column"
           >
             <Flex>
               {" "}
@@ -266,7 +264,7 @@ export default function Footer() {
             >
               ONCE UI
             </Text>
-            <Row gap="8" center>
+            <Row gap="8" center className="footer-icons-row-margin" style={{ marginRight: "24px" }}>
               <SvgSparkle />
               <SvgSparkle />
               <SvgSparkle />
@@ -279,7 +277,7 @@ export default function Footer() {
                 letterSpacing: "0.08em",
               }}
             >
-              01XD8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              01XD8
             </Text>
             <Flex>
               {" "}

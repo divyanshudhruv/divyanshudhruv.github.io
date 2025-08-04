@@ -112,9 +112,9 @@ const MenuItem: React.FC<MenuItemProps> = ({ link, text, image, desc }) => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <Row horizontal="between" fillWidth paddingX="m" vertical="center">
-          <div>{text}</div>
-          <div className={`menu__item-desc ${poppins.className}`}>
+        <Row horizontal="between" fillWidth paddingX="m" vertical="center" className="menu-container-row">
+          <div className="menu-item-text">{text}</div>
+          <div className={`menu__item-desc ${poppins.className} flowing-menu-description`}>
             {desc && desc.length > 40 ? desc.slice(0, 40) + "..." : desc}
           </div>
         </Row>

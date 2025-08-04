@@ -55,7 +55,7 @@ const projectsData = [
       "https://divyanshudhruv.is-a.dev/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fre-folio.94817651.png&w=3840&q=95",
     href: "https://re-folio.vercel.app",
   },
-{
+  {
     title: "Kanba",
     tags: ["OS Contributor", "Tailwind CSS", "TypeScript"],
     description: "A Kanban board application for task management.",
@@ -68,7 +68,8 @@ const projectsData = [
     description: "An alternative to linktree",
     image: "/hello-link.png",
     href: "https://hellolink.vercel.app",
-  },   {
+  },
+  {
     title: "Sourceful Space",
     tags: ["JAVASCRIPT", "NEXTJS", "ONCEUI"],
     description: "Space for open-source projects and startups.",
@@ -76,8 +77,6 @@ const projectsData = [
       "https://framerusercontent.com/images/oevZjkSNUHoeeER1iv27eFxaCk.png?scale-down-to=512",
     href: "https://sourceful-space.vercel.app",
   },
-
- 
 ];
 
 export default function Projects() {
@@ -126,6 +125,7 @@ export default function Projects() {
             borderRadius: "40px",
             border: "1.2px solid #999",
           }}
+          className="location-container"
         >
           <Text
             style={{
@@ -191,7 +191,13 @@ export default function Projects() {
           />
           <Flex height={3}></Flex>
 
-          <Grid columns={2} fitWidth gap="160" marginTop="64">
+          <Grid
+            columns={2}
+            fitWidth
+            marginTop="64"
+            className="projects-grid"
+            style={{ gap: "5vw" }}
+          >
             {projectsData.map((project) => (
               <ProjectCards
                 key={project.title}
@@ -254,88 +260,91 @@ function ProjectCards({
   href,
 }: ProjectsProps) {
   return (
-    <Card
-      direction="column"
-      background="transparent"
-      minWidth={33}
-      maxWidth={33}
-      overflow="hidden"
-      radius="xl-8"
-      border="transparent"
-      gap="16"
-      paddingBottom="32"
-      {...(href ? { href } : {})}
-    >
-      <Media
-        src={image}
-        fillWidth
-        aspectRatio="4/3"
-        unoptimized
+    <Flex fillWidth>
+      <Card
+        direction="column"
+        background="transparent"
+        minWidth={33}
+        minHeight={33}
+        overflow="hidden"
         radius="xl-8"
-        objectFit="cover"
-      />
-      <Row fillWidth horizontal="between" paddingX="s">
-        <Text
-          style={{
-            fontSize: "18px",
-            fontWeight: "bold",
-            color: "#FFF3E8",
-            lineHeight: "1.1",
-            textAlign: "left",
-            padding: "0.5rem 1rem",
-            textTransform: "uppercase",
-          }}
-          className={poppins.className}
-        >
-          <Row center>
-            <StatusIndicator color={"moss"}></StatusIndicator>&nbsp;&nbsp;{" "}
-            {title}
-          </Row>
-        </Text>
-        <Row fitWidth gap="8">
-          {tags.map((tag) => (
-            <Tag
-              key={tag}
-              variant="info"
-              fitWidth
-              fitHeight
-              padding="4"
-              background="transparent"
-              style={{
-                padding: "0.6rem 0.6rem",
-                backgroundColor: "transparent",
-                borderColor: "#ffffff26",
-                borderWidth: "1px",
-                borderRadius: "1000px",
-                textTransform: "uppercase",
-              }}
-            >
-              <Text
-                className={poppins.className}
+        border="transparent"
+        gap="16"
+        paddingBottom="32"
+        {...(href ? { href } : {})}
+        className="project-card"
+      >
+        <Media
+          src={image}
+          fillWidth
+          aspectRatio="4/3"
+          unoptimized
+          radius="xl-8"
+          objectFit="cover"
+        />
+        <Row fillWidth horizontal="between" paddingX="s">
+          <Text
+            style={{
+              fontSize: "18px",
+              fontWeight: "bold",
+              color: "#FFF3E8",
+              lineHeight: "1.1",
+              textAlign: "left",
+              padding: "0.5rem 1rem",
+              textTransform: "uppercase",
+            }}
+            className={poppins.className}
+          >
+            <Row center>
+              <StatusIndicator color={"moss"}></StatusIndicator>&nbsp;&nbsp;{" "}
+              {title}
+            </Row>
+          </Text>
+          <Row fitWidth gap="8">
+            {tags.map((tag) => (
+              <Tag
+                key={tag}
+                variant="info"
+                fitWidth
+                fitHeight
+                padding="4"
+                background="transparent"
                 style={{
-                  fontSize: "12px",
-                  color: "#ffffff70",
+                  padding: "0.6rem 0.6rem",
+                  backgroundColor: "transparent",
+                  borderColor: "#ffffff26",
+                  borderWidth: "1px",
+                  borderRadius: "1000px",
                   textTransform: "uppercase",
                 }}
               >
-                {tag}
-              </Text>
-            </Tag>
-          ))}
+                <Text
+                  className={poppins.className}
+                  style={{
+                    fontSize: "12px",
+                    color: "#ffffff70",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  {tag}
+                </Text>
+              </Tag>
+            ))}
+          </Row>
         </Row>
-      </Row>
-      <Flex paddingX="s">
-        {" "}
-        <Text
-          className={inter.className}
-          style={{
-            fontSize: "13px",
-            color: "#666",
-          }}
-        >
-          {description}
-        </Text>
-      </Flex>
-    </Card>
+        <Flex paddingX="s">
+          {" "}
+          <Text
+            className={inter.className}
+            style={{
+              fontSize: "13px",
+              color: "#666",
+            }}
+          >
+            {description}
+          </Text>
+        </Flex>
+      </Card>
+    </Flex>
   );
 }

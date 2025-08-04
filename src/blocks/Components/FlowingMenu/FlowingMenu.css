@@ -38,6 +38,32 @@
   color: #1e160e
 }
 
+@media (max-width: 1050px) {
+
+  .menu__item-desc {
+    display: none !important;
+  }
+
+  .menu-container-row {
+    justify-content: center !important;
+  }
+
+  .menu-item-text {
+    font-size: 60px !important;
+  }
+
+}
+
+@media (max-width: 720px) {
+
+
+  .menu-item-text {
+    font-size: 40px !important;
+  }
+  
+
+}
+
 .menu__item-link {
   display: flex;
   align-items: center;
