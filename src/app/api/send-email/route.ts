@@ -33,8 +33,8 @@ export async function POST(req: NextRequest) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: email, // Use your verified sender email here
-        to: TO_EMAIL, // Use the recipient email from your environment variable
+        from: "divyanshudhruv24@gmail.com", // Use your verified sender email here
+        to: "divyanshudhruv24@gmail.com", // Use the recipient email from your environment variable
         subject: "New Message",
         html: `<p>Message from: ${email}</p><div>${text}</div>`,
         reply_to: email,
@@ -45,7 +45,9 @@ export async function POST(req: NextRequest) {
 
     if (!response.ok) {
       return NextResponse.json(
-        { error: data.error || "Failed to send email: " + JSON.stringify(data) },
+        {
+          error: data.error || "Failed to send email: " + JSON.stringify(data),
+        },
         { status: response.status }
       );
     }

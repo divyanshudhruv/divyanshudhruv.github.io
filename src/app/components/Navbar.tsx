@@ -69,13 +69,6 @@ import CircularText from "@/blocks/TextAnimations/CircularText/CircularText";
 import Threads from "@/blocks/Backgrounds/Threads/Threads";
 import Orb from "@/blocks/Backgrounds/Orb/Orb";
 import React from "react";
-import Navbar from "../components/Navbar";
-import Hero from "../components/Hero";
-import Projects from "../components/Projects";
-import Skills from "../components/Skills";
-import Experience from "../components/Experience";
-
-import Footer from "../components/Footer";
 const instrument_serif = Instrument_Serif({
   weight: ["400"],
   subsets: ["latin"],
@@ -120,46 +113,98 @@ const pt_serif = PT_Serif({
   weight: ["400", "700"],
 });
 
-export default function Home() {
+export default function Navbar() {
   return (
     <>
-      <ClickSpark
-        sparkColor="#fff"
-        sparkSize={11}
-        sparkRadius={20}
-        sparkCount={6}
-        duration={500}
+      <Row
+        paddingX="m"
+        horizontal="between"
+        fillWidth
+        id="navbar"
+        style={{
+          position: "fixed",
+          top: "16px",
+          left: 0,
+          right: 0,
+          zIndex: 1000,
+        }}
       >
-        {/* navbar */}
-    <Navbar/>
-    <Hero/>
-    <Projects/>
-    <Skills/>
-    <Experience/>
-        {/* hero */}
-        {/* Projects/Skills */}
-        {/* Experience */}
-        <Flex
-          style={{ backgroundColor: "#f9f4eb" }}
-          className={instrument_serif.className}
-          paddingTop="m"
-          paddingBottom="m"
-        >
-          <Text className={instrument_serif.className}>
-            {" "}
-            <ScrollVelocity
-              texts={["✷ Ehhhh, that's the end"]}
-              velocity={30}
-              scrollerStyle={{
-                fontFamily: instrument_serif.className,
-                fontSize: "200px",
+        <Row gap="16">
+          {" "}
+          <Button
+            weight="default"
+            size="l"
+            style={{
+              backdropFilter: "blur(10px)",
+              backgroundColor: "#08151666",
+              border: "1px solid #222",
+              overflow: "hidden",
+            }}
+            href="#top"
+          >
+            <Row center>
+              <Text
+                className={instrument_serif.className}
+                style={{
+                  fontSize: "15px",
+                  color: "#FFF3E8",
+                  letterSpacing: "0.5px",
+                  fontWeight: "600",
+                }}
+              >
+                Divyanshu Dhruv
+              </Text>
+            </Row>
+          </Button>
+          <Button
+            weight="default"
+            size="l"
+            style={{
+              backdropFilter: "blur(10px)",
+              backgroundColor: "#08151666",
+              border: "1px solid #222",
+              overflow: "hidden",
+              cursor: "default",
+            }}
+          >
+            <Row center>
+              <Text className={inter.className} style={{ fontSize: "12px" }}>
+                <Row center>
+                  <StatusIndicator color="moss" size="m" />
+                  &nbsp;&nbsp;&nbsp;
+                  <ShinyText text="Available for any collaboration"></ShinyText>
+                </Row>
+              </Text>
+            </Row>
+          </Button>
+        </Row>
+        <Flex>
+          {" "}
+          <Magnet magnetStrength={10}>
+            <Button
+              weight="default"
+              size="l"
+              style={{
+                backdropFilter: "blur(10px)",
+                backgroundColor: "#08151666",
+                border: "1px solid #222",
+                overflow: "hidden",
               }}
-            ></ScrollVelocity>{" "}
-          </Text>
+              onClick={() =>
+                window.open("https://github.com/divyanshudhruv", "_blank")
+              }
+            >
+              <Text className={inter.className} style={{ fontSize: "12px" }}>
+                <Row center>
+                  <ShinyText text="VISIT MY GITHUB"></ShinyText>
+                  &nbsp;&nbsp;&nbsp;
+                  <ArrowUpRight size={19} color={"#99FF33"} fontWeight={100} />
+                </Row>
+              </Text>
+            </Button>
+          </Magnet>
         </Flex>
-<Footer/>
-        {/* Footer */}
-      </ClickSpark>
+      </Row>
     </>
   );
 }
