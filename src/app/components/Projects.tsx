@@ -51,8 +51,7 @@ const projectsData = [
     title: "Re-folio",
     tags: ["Next.js", "Tailwind CSS", "TypeScript"],
     description: "A modern portfolio website showcasing my work and skills.",
-    image:
-      "https://divyanshudhruv.is-a.dev/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fre-folio.94817651.png&w=3840&q=95",
+    image: "/refolio.png",
     href: "https://re-folio.vercel.app",
   },
   {

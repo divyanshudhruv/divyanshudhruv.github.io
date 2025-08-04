@@ -15,7 +15,7 @@ export default function ScrollTextFooter() {
         paddingTop="m"
         paddingBottom="m"
       >
-        <Text className={instrument_serif.className}>
+        <Text className={instrument_serif.className} style={{color: "#031113"}}>
           {" "}
           <ScrollVelocity
             texts={["✷ Ehhhh, that's the end"]}
