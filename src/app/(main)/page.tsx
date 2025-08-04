@@ -27,6 +27,7 @@ import {
   Tag,
   Input,
   Textarea,
+  useToast,
 } from "@once-ui-system/core";
 import {
   ArchiveIcon,
@@ -34,6 +35,7 @@ import {
   ArrowUpRight,
   GitPullRequestIcon,
   House,
+  MessageCircle,
   Send,
   SettingsIcon,
   TagIcon,
@@ -54,7 +56,6 @@ import {
 import { BiArchive, BiHome } from "react-icons/bi";
 import { GiSettingsKnobs } from "react-icons/gi";
 import { MdAccountBalanceWallet } from "react-icons/md";
-import LocomotiveScroll from "locomotive-scroll";
 import { useEffect, useRef, useState } from "react";
 import FlowingMenu from "@/blocks/Components/FlowingMenu/FlowingMenu";
 import BounceCards from "@/blocks/Components/BounceCards/BounceCards";
@@ -67,6 +68,7 @@ import ClickSpark from "@/blocks/Animations/ClickSpark/ClickSpark";
 import CircularText from "@/blocks/TextAnimations/CircularText/CircularText";
 import Threads from "@/blocks/Backgrounds/Threads/Threads";
 import Orb from "@/blocks/Backgrounds/Orb/Orb";
+import React from "react";
 const instrument_serif = Instrument_Serif({
   weight: ["400"],
   subsets: ["latin"],
@@ -116,69 +118,74 @@ export default function Home() {
     {
       icon: <House size={18} />,
       label: "Home",
-      onClick: () => alert("Home!"),
+      onClick: () => (window.location.href = "#"),
     },
     {
       icon: <ArchiveIcon size={18} />,
       label: "Archive",
-      onClick: () => alert("Archive!"),
+      onClick: () => (window.location.href = "#projects"),
     },
     {
       icon: <GitPullRequestIcon size={18} />,
-      label: "Profile",
-      onClick: () => alert("Profile!"),
+      label: "Skill",
+      onClick: () => (window.location.href = "#skills"),
     },
     {
       icon: <TagIcon size={18} fontWeight={100} />,
-      label: "Settings",
-      onClick: () => alert("Settings!"),
+      label: "Experience",
+      onClick: () => (window.location.href = "#experiences"),
+    },
+    {
+      icon: <MessageCircle size={18} />,
+      label: "Contact",
+      onClick: () => (window.location.href = "#contact"),
     },
   ];
   const demoItems = [
     {
-      link: "#",
+      link: "",
       text: "CTO",
       image: "https://picsum.photos/600/400?random=5",
       desc: "CTO at Sonamii, leading Next Bench and building with Generative AI. Passionate about AI-agents, open-source, and innovation.",
     },
     {
-      link: "#",
+      link: "",
       text: "Full Stack Developer",
       image: "https://picsum.photos/600/400?random=2",
       desc: "I'm now a full-stack developer, contributing to open-source projects. My stack includes React, Next.js, TypeScript, Tailwind, etc.",
     },
     {
-      link: "#",
+      link: "",
       text: "Frontend Developer",
       image: "https://picsum.photos/600/400?random=3",
       desc: "I'm working as a front-end developer for 5+ years. I also built 30+ awesome UI designs and 50+ websites.",
     },
     {
-      link: "#",
-      text: "Apprentice",
+      link: "",
+      text: "Novice",
       image: "https://picsum.photos/600/400?random=4",
       desc: "Worked on 20+ real-world projects and participated in several coding challenges and awesome workshops.",
     },
   ];
   const eduItems = [
     {
-      link: "#",
+      link: "",
       text: "High School",
       image: "https://picsum.photos/600/400?random=13",
-      desc: "Delhi Public School, Vadodara",
+      desc: "DPSV, Vadodara",
     },
-    {
-      link: "#",
-      text: "Senior Secondary",
-      image: "https://picsum.photos/600/400?random=15",
-      desc: "St. Patrick's Academy, Dehradun",
-    },
-    {
-      link: "#",
-      text: "Primary",
-      image: "https://picsum.photos/600/400?random=27",
-      desc: "The Montessori School, Dehradun",
-    },
+    // {
+    //   link: "#",
+    //   text: "Senior Secondary",
+    //   image: "https://picsum.photos/600/400?random=15",
+    //   desc: "St. Patrick's Academy, Dehradun",
+    // },
+    // {
+    //   link: "#",
+    //   text: "Primary",
+    //   image: "https://picsum.photos/600/400?random=27",
+    //   desc: "The Montessori School, Dehradun",
+    // },
   ];
   const images_row1 = [
     "https://skillicons.dev/icons?i=html",
@@ -284,42 +291,41 @@ export default function Home() {
   const transformStyles_row4 = getTransformStyles(images_row4);
   const transformStyles_row5 = getTransformStyles(images_row5);
 
-  useEffect(() => {
-    let scroll: LocomotiveScroll | null = null;
-    let savedScrollY = 0;
-
-    // Restore scroll position from localStorage
-    if (typeof window !== "undefined") {
-      savedScrollY = Number(localStorage.getItem("scrollY") || 0);
-    }
-
-    // LocomotiveScroll initialization
-    scroll = new LocomotiveScroll();
-
-    // Scroll to saved position after initialization
-    setTimeout(() => {
-      if (scroll && savedScrollY) {
-        scroll.scrollTo(savedScrollY, { duration: 0, disableLerp: true });
-      }
-    }, 100);
-
-    // Save scroll position on scroll
-    const onScroll = (obj: { scroll: { y: number } }) => {
-      if (obj && obj.scroll && typeof obj.scroll.y === "number") {
-        localStorage.setItem("scrollY", String(obj.scroll.y));
-      }
-    };
-
-    scroll.on("scroll", onScroll);
-
-    // Cleanup
-    return () => {
-      scroll && scroll.destroy();
-    };
-  }, []);
   const lenis = new Lenis({
     autoRaf: true,
   });
+
+  const [email, setEmail] = useState("");
+  const [text, setText] = useState("");
+
+  const { addToast } = useToast();
+
+  function handleSendEmailResend() {
+    if (!email || !text) {
+      addToast({ message: "Please fill in all fields.", variant: "danger" });
+      return;
+    }
+    fetch("/api/send-email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, text }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          addToast({ message: "Email sent successfully!", variant: "success" });
+        } else {
+          addToast({
+            message: `Failed to send email. ${res.statusText}`,
+            variant: "danger",
+          });
+        }
+      })
+      .catch(() => {
+        addToast({ message: "An error occurred.", variant: "danger" });
+      });
+  }
 
   return (
     <>
@@ -357,6 +363,7 @@ export default function Home() {
             maxWidth: "100vw",
             overflowX: "hidden",
           }}
+          id="nav"
           vertical="center"
           horizontal="center"
           padding="xs"
@@ -400,6 +407,7 @@ export default function Home() {
                   border: "1px solid #222",
                   overflow: "hidden",
                 }}
+                href="#top"
               >
                 <Row center>
                   <Text
@@ -423,6 +431,7 @@ export default function Home() {
                   backgroundColor: "#08151666",
                   border: "1px solid #222",
                   overflow: "hidden",
+                  cursor: "default",
                 }}
               >
                 <Row center>
@@ -451,6 +460,9 @@ export default function Home() {
                     border: "1px solid #222",
                     overflow: "hidden",
                   }}
+                  onClick={() =>
+                    window.open("https://github.com/divyanshudhruv", "_blank")
+                  }
                 >
                   <Text
                     className={inter.className}
@@ -481,7 +493,7 @@ export default function Home() {
                 fontWeight: "300",
               }}
             >
-              ☻ Stop scrolling & start building ☻
+              ☻ Hello, I study, play and code. ☻
             </Text>
             <Text
               style={{
@@ -528,6 +540,12 @@ export default function Home() {
                     borderRadius: "1000px",
                     overflow: "hidden",
                   }}
+                  onClick={() =>
+                    window.open(
+                      "https://www.linkedin.com/in/divyanshudhruv",
+                      "_blank"
+                    )
+                  }
                 >
                   <Text
                     className={inter.className}
@@ -687,7 +705,13 @@ export default function Home() {
           </Text>
         </Column> */}
 
-          <Column fillWidth horizontal="center" vertical="start" style={{}}>
+          <Column
+            fillWidth
+            horizontal="center"
+            vertical="start"
+            style={{}}
+            id="projects"
+          >
             <Text
               style={{
                 fontSize: "120px",
@@ -711,7 +735,12 @@ export default function Home() {
               </span>
             </Text>
             <Flex height={3}></Flex>
-            <IoArrowDownSharp color="#99FF33" size={100} fontWeight={10} />
+            <IoArrowDownSharp
+              color="#99FF33"
+              size={100}
+              fontWeight={10}
+              className="down-arrow"
+            />
             <Flex height={3}></Flex>
 
             <Grid columns={2} fitWidth gap="160" marginTop="64">
@@ -761,6 +790,9 @@ export default function Home() {
                   padding: "27px",
                   borderRadius: "1000px",
                 }}
+                onClick={() =>
+                  window.open("https://github.com/divyanshudhruv", "_blank")
+                }
               >
                 <Text className={inter.className} style={{ fontSize: "12px" }}>
                   <Row center>
@@ -777,7 +809,13 @@ export default function Home() {
             </Magnet>
           </Column>
 
-          <Column fillWidth horizontal="center" vertical="start">
+          <Column
+            fillWidth
+            horizontal="center"
+            vertical="start"
+            style={{}}
+            id="skills"
+          >
             <Text
               style={{
                 fontSize: "120px",
@@ -798,11 +836,15 @@ export default function Home() {
                 }}
                 className={instrument_serif.className}
               >
-                Skills
+                Skillsets
               </span>
             </Text>
             <Flex height={4}></Flex>
-            <IoArrowDownSharp color="#9887FF" size={100} />
+            <IoArrowDownSharp
+              color="#9887FF"
+              size={100}
+              className="down-arrow"
+            />
             <Flex height={3}></Flex>
             {/* <div style={{ width: "100%", height: "100%", position: "absolute",top:"40px" }}>
             <LightRays
@@ -876,6 +918,9 @@ export default function Home() {
                     padding: "27px",
                     borderRadius: "1000px",
                   }}
+                  onClick={() =>
+                    window.open("https://github.com/divyanshudhruv", "_blank")
+                  }
                 >
                   <Text
                     className={inter.className}
@@ -918,8 +963,9 @@ export default function Home() {
           horizontal="center"
           gap="128"
           paddingBottom="64"
+          id="experiences"
         >
-          {" "}
+          <LocoScrollFlatImg />{" "}
           <div
             style={{
               backgroundColor: "transparent",
@@ -1084,7 +1130,11 @@ export default function Home() {
               `}
             </style>
             <Flex height={4}></Flex>
-            <IoArrowDownSharp color="#7a5a37ff" size={100} />
+            <IoArrowDownSharp
+              color="#7a5a37ff"
+              size={100}
+              className="down-arrow"
+            />
             <Flex height={3}></Flex>
             <Flex style={{ paddingInline: "13vw" }} fillWidth>
               <FlowingMenu items={demoItems} />
@@ -1110,7 +1160,13 @@ export default function Home() {
               <FlowingMenu items={eduItems} />
             </Flex>
           </Column>
-          <Column fillWidth horizontal="center" vertical="start" style={{}}>
+          <Column
+            fillWidth
+            horizontal="center"
+            vertical="start"
+            style={{}}
+            id="contact"
+          >
             <Flex style={{ paddingInline: "13vw" }} fillWidth>
               {" "}
               <Column fillWidth horizontal="center" paddingBottom="m" gap="20">
@@ -1119,7 +1175,9 @@ export default function Home() {
                   style={{ textTransform: "uppercase" }}
                 >
                   CONTACT ME USING THIS FORM&nbsp;
-                  <i><b>DIRECTLY!</b></i>
+                  <i>
+                    <b>DIRECTLY!</b>
+                  </i>
                 </Text>{" "}
                 <Row>
                   {[
@@ -1223,33 +1281,28 @@ export default function Home() {
             </Text>
             {/* <Flex height={3}></Flex>
             <IoArrowDownSharp color="#7a5a37" size={100} fontWeight={10} />*/}
-            <Flex height={3}></Flex>{" "} 
+            <Flex height={3}></Flex>{" "}
             <Column
               fillWidth
               fitHeight
               style={{ paddingInline: "25vw" }}
               gap="20"
             >
-              {/* <Text
-                className={inter.className}
-                style={{
-                  fontSize: "20px",
-                  textAlign: "center",
-                  lineHeight: "1.5",
-                  fontWeight: "400",
-                  color: "#031113",
-                  fontStyle: "italic",
-                }}
-              >
-                Please contact me directly through this form .
-              </Text> */}
               <Input
                 id=""
                 height="m"
                 placeholder="Your email"
                 style={{ padding: "50px !important" }}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
-              <Textarea id="" placeholder="Your message" lines={15} />
+              <Textarea
+                id=""
+                placeholder="Your message"
+                lines={15}
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+              />
               <Row fillWidth horizontal="start">
                 <Magnet magnetStrength={0}>
                   <Button
@@ -1263,6 +1316,7 @@ export default function Home() {
                       border: "1px solid #222",
                       padding: "20px",
                     }}
+                    onClick={handleSendEmailResend}
                   >
                     <Text
                       className={inter.className}
@@ -1426,12 +1480,12 @@ export default function Home() {
                 transform: "translate(-50%, -50%)",
               }}
             >
-              <Orb
+              {/* <Orb
                 hoverIntensity={0.6}
                 rotateOnHover={true}
                 hue={0}
-                forceHoverState={true}
-              />
+                forceHoverState={false}
+              /> */}
             </div>
             <Text
               className={geist_mono.className}
@@ -1470,6 +1524,9 @@ export default function Home() {
                   alignItems: "center",
                   gap: "10px",
                 }}
+                onClick={() =>
+                  window.open("https://github.com/divyanshudhruv", "_blank")
+                }
               >
                 <span style={{ fontSize: "20px", marginRight: "8px" }}>↩</span>
                 &nbsp;Github
@@ -1738,8 +1795,6 @@ function LocoScrollImg() {
   ];
   const count = 3;
   const sides = ["left", "right"];
-  // Use the first `count` images in order for both sides
-  const fixedImagesBySide = sides.map(() => images.slice(0, count));
   // Fixed speed factors for each image (can be customized)
   const speedFactorsBySide = [
     [1.5, 2.0, 2.5],
@@ -1805,6 +1860,95 @@ function LocoScrollImg() {
                 pointerEvents: "none",
                 opacity: 1,
                 userSelect: "none",
+              }}
+              draggable={true}
+            />
+          );
+        });
+      })}
+    </>
+  );
+}
+
+// Add this style tag to inject the animation keyframes and class
+function LocoScrollFlatImg() {
+  gsap.registerPlugin(ScrollTrigger);
+
+  const images = [
+    { src: "/shape1.svg", alt: "Shape 1" },
+    { src: "/shape2.svg", alt: "Shape 2" },
+    { src: "/shape3.svg", alt: "Shape 3" },
+    { src: "/shape4.svg", alt: "Shape 4" },
+    { src: "/shape5.svg", alt: "Shape 5" },
+  ];
+  const count = 3;
+  const sides = ["left", "right"];
+  // Fixed speed factors for each image (can be customized)
+  const speedFactorsBySide = [
+    [1.5, 2.0, 2.5],
+    [1.8, 2.2, 2.7],
+  ];
+
+  // Refs for all images
+  const imgRefs = useRef<(HTMLImageElement | null)[][]>(
+    Array.from({ length: sides.length }, () => Array(count).fill(null))
+  );
+
+  useEffect(() => {
+    imgRefs.current.forEach((sideRefs, sideIdx) => {
+      sideRefs.forEach((img, idx) => {
+        if (!img) return;
+        const speed = speedFactorsBySide[sideIdx][idx];
+        gsap.to(img, {
+          y: () => `-${speed * 200}px`,
+          ease: "none",
+          scrollTrigger: {
+            trigger: img,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+      });
+    });
+    return () => {
+      ScrollTrigger.getAll().forEach((st) => st.kill());
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return (
+    <>
+      {sides.map((side, sideIdx) => {
+        // Shuffle images for each side to ensure randomness and no repeats
+        const shuffledImages = [...images]
+          .sort(() => Math.random() - 0.5)
+          .slice(0, count);
+        const speedFactors = speedFactorsBySide[sideIdx];
+        return shuffledImages.map((img, idx) => {
+          const baseGap = 30; // percent
+          const offset = side === "left" ? 10 : 20;
+          const top = `${offset + idx * baseGap}%`;
+          const size = 75 + speedFactors[idx] * 85; // px
+          return (
+            <img
+              key={side + "-" + img.src + "-" + idx}
+              ref={(el) => {
+                imgRefs.current[sideIdx][idx] = el;
+              }}
+              src={img.src}
+              alt={img.alt}
+              style={{
+                position: "absolute",
+                [side]: 0,
+                top,
+                width: size,
+                height: size,
+                zIndex: 1,
+                pointerEvents: "none",
+                userSelect: "none",
+                transition: "opacity 0.3s, transform 0.3s",
+                opacity: 1,
               }}
               draggable={true}
             />
