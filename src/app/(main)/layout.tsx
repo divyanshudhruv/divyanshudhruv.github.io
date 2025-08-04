@@ -18,7 +18,6 @@ export async function generateMetadata() {
     canonical: meta.home.canonical,
     image: meta.home.image,
     robots: meta.home.robots,
-    alternates: meta.home.alternates,
   });
 }
 
