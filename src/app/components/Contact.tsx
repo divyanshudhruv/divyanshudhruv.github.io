@@ -69,13 +69,6 @@ import CircularText from "@/blocks/TextAnimations/CircularText/CircularText";
 import Threads from "@/blocks/Backgrounds/Threads/Threads";
 import Orb from "@/blocks/Backgrounds/Orb/Orb";
 import React from "react";
-import Navbar from "../components/Navbar";
-import Hero from "../components/Hero";
-import Projects from "../components/Projects";
-import Skills from "../components/Skills";
-import Experience from "../components/Experience";
-
-import Footer from "../components/Footer";
 const instrument_serif = Instrument_Serif({
   weight: ["400"],
   subsets: ["latin"],
@@ -119,47 +112,3 @@ const pt_serif = PT_Serif({
   subsets: ["latin"],
   weight: ["400", "700"],
 });
-
-export default function Home() {
-  return (
-    <>
-      <ClickSpark
-        sparkColor="#fff"
-        sparkSize={11}
-        sparkRadius={20}
-        sparkCount={6}
-        duration={500}
-      >
-        {/* navbar */}
-    <Navbar/>
-    <Hero/>
-    <Projects/>
-    <Skills/>
-    <Experience/>
-        {/* hero */}
-        {/* Projects/Skills */}
-        {/* Experience */}
-        <Flex
-          style={{ backgroundColor: "#f9f4eb" }}
-          className={instrument_serif.className}
-          paddingTop="m"
-          paddingBottom="m"
-        >
-          <Text className={instrument_serif.className}>
-            {" "}
-            <ScrollVelocity
-              texts={["✷ Ehhhh, that's the end"]}
-              velocity={30}
-              scrollerStyle={{
-                fontFamily: instrument_serif.className,
-                fontSize: "200px",
-              }}
-            ></ScrollVelocity>{" "}
-          </Text>
-        </Flex>
-<Footer/>
-        {/* Footer */}
-      </ClickSpark>
-    </>
-  );
-}
