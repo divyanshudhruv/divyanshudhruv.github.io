@@ -88,7 +88,11 @@ export default function Contact() {
             <Column fillWidth horizontal="center" paddingBottom="m" gap="20">
               <Text
                 className={inter.className + " contact-text"}
-                style={{ textTransform: "uppercase", textAlign: "center" }}
+                style={{
+                  textTransform: "uppercase",
+                  textAlign: "center",
+                  color: "#031113",
+                }}
               >
                 CONTACT ME USING THIS FORM&nbsp;
                 <i>
@@ -105,7 +109,11 @@ export default function Contact() {
                         fill="none"
                         aria-hidden="true"
                         className="icon"
-                        style={{ width: "100%", height: "100%" }}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          color: "#031113",
+                        }}
                       >
                         <path
                           fill="currentColor"
@@ -123,7 +131,11 @@ export default function Contact() {
                         viewBox="0 0 20 20"
                         aria-hidden="true"
                         className="icon"
-                        style={{ width: "100%", height: "100%" }}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          color: "#031113",
+                        }}
                       >
                         <path
                           d="M20 0H6v2h2v4h2v2h2v2h2V8h2V6h2V2h2V0ZM6 10v2H4v2H2v4H0v2h14v-2h-2v-4h-2v-2H8v-2H6Z"
@@ -141,7 +153,11 @@ export default function Contact() {
                         viewBox="0 0 20 20"
                         aria-hidden="true"
                         className="icon"
-                        style={{ width: "100%", height: "100%" }}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          color: "#031113",
+                        }}
                       >
                         <path
                           fill="currentColor"
@@ -204,7 +220,11 @@ export default function Contact() {
             style={{ paddingLeft: "15vw", paddingRight: "15vw" }}
             gap="20"
           >
-            <Flex fillWidth style={{ minWidth: "100% !important" }}>
+            <Flex
+              fillWidth
+              style={{ minWidth: "100% !important" }}
+              data-theme="light"
+            >
               {" "}
               <Input
                 id=""
@@ -213,26 +233,36 @@ export default function Contact() {
                 style={{ padding: "50px !important" }}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                data-theme="light"
+              />
+            </Flex>
+            <Flex
+              fillWidth
+              style={{ minWidth: "100% !important" }}
+              data-theme="light"
+            >
+              {" "}
+              <Textarea
+                id=""
+                placeholder="Your message"
+                lines={15}
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+                data-theme="light"
               />
             </Flex>
 
-            <Textarea
-              id=""
-              placeholder="Your message"
-              lines={15}
-              value={text}
-              onChange={(e) => setText(e.target.value)}
-            />
             <Row fillWidth horizontal="start">
               <Magnet magnetStrength={0}>
                 <Button
                   weight="default"
                   size="l"
+                  data-theme="dark"
                   style={{
                     backdropFilter: "blur(10px)",
                     backgroundColor: "#081516",
                     overflow: "hidden",
-
+                    color: "#fff",
                     border: "1px solid #222",
                     padding: "20px",
                   }}

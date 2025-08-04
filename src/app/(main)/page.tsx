@@ -143,12 +143,14 @@ function LocoScrollFlatImg() {
 
   // 6 images, 3 per side, fixed order
   const images = [
-    { src: "/shape1.svg", alt: "Shape 1" },
     { src: "/shape2.svg", alt: "Shape 2" },
-    { src: "/shape3.svg", alt: "Shape 3" },
     { src: "/shape4.svg", alt: "Shape 4" },
     { src: "/shape5.svg", alt: "Shape 5" },
-    { src: "/shape1.svg", alt: "Shape 6" },
+
+    { src: "/shape5.svg", alt: "Shape 3" },
+    { src: "/shape2.svg", alt: "Shape 1" },
+
+    { src: "/shape4.svg", alt: "Shape 6" },
   ];
   const count = 3;
   const sides = ["left", "right"];
