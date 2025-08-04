@@ -129,6 +129,7 @@ function LocoScrollImg() {
                 userSelect: "none",
               }}
               draggable={true}
+              className="loco-scroll-img"
             />
           );
         });
@@ -224,6 +225,7 @@ function LocoScrollFlatImg() {
                 opacity: 1,
               }}
               draggable={true}
+              className="loco-scroll-img"
             />
           );
         });

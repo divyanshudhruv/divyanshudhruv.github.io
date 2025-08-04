@@ -101,36 +101,39 @@ export default function Hero() {
           >
            ☻<i>  I <b><u>study</u></b>, play and code. </i>☻
           </Text>
-          <Text
+        <Text
             style={{
-              color: "#FFF3E8",
-              fontSize: "140px",
-              textAlign: "center",
-              lineHeight: "1",
-              fontWeight: "lighter",
-              display: "inline", // Ensure inline
-              whiteSpace: "pre-line", // Preserve line breaks if any
+                color: "#FFF3E8",
+                fontSize: "clamp(48px, 12vw, 140px)", // Responsive font size
+                textAlign: "center",
+                lineHeight: "1",
+                fontWeight: "lighter",
+                display: "inline-block", // Allow wrapping
+                whiteSpace: "normal", // Allow wrapping
+                wordBreak: "break-word", // Break long words if needed
             }}
-            className={instrument_serif.className}
-          >
+            className={instrument_serif.className + " text-hero"}
+        >
             look, i actually finished crafting
             <span
-              style={{
-                color: "#8db3ff",
-                fontStyle: "italic",
-                display: "inline", // Ensure inline
-              }}
-              className={instrument_serif.className}
+                style={{
+                    color: "#8db3ff",
+                    fontStyle: "italic",
+                    display: "inline",
+                    whiteSpace: "normal",
+                    wordBreak: "break-word",
+                }}
+                className={instrument_serif.className + " text-hero"}
             >
-              <GradientText
-                animationSpeed={2}
-                showBorder={false}
-                colors={["#99FF33"]}
-              >
-                &nbsp;my portfolio!
-              </GradientText>
+                <GradientText
+                    animationSpeed={2}
+                    showBorder={false}
+                    colors={["#99FF33"]}
+                >
+                    &nbsp;my portfolio!
+                </GradientText>
             </span>
-          </Text>
+        </Text>
 
           <Flex marginTop="32">
             {" "}

@@ -99,6 +99,7 @@ export default function Navbar() {
               overflow: "hidden",
               cursor: "default",
             }}
+            className="available-button"
           >
             <Row center>
               <Text className={inter.className} style={{ fontSize: "12px" }}>

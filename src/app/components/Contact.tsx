@@ -87,8 +87,8 @@ export default function Contact() {
             {" "}
             <Column fillWidth horizontal="center" paddingBottom="m" gap="20">
               <Text
-                className={inter.className}
-                style={{ textTransform: "uppercase" }}
+                className={inter.className + " contact-text"}
+                style={{ textTransform: "uppercase", textAlign: "center" }}
               >
                 CONTACT ME USING THIS FORM&nbsp;
                 <i>
@@ -204,15 +204,18 @@ export default function Contact() {
             style={{ paddingLeft: "15vw", paddingRight: "15vw" }}
             gap="20"
           >
-            <Flex fillWidth>  <Input
-              id=""
-              height="m"
-              placeholder="Your email"
-              style={{ padding: "50px !important" }}
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            /></Flex>
-            
+            <Flex fillWidth style={{ minWidth: "100% !important" }}>
+              {" "}
+              <Input
+                id=""
+                height="m"
+                placeholder="Your email"
+                style={{ padding: "50px !important" }}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </Flex>
+
             <Textarea
               id=""
               placeholder="Your message"

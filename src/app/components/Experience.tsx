@@ -138,10 +138,11 @@ export default function Experience() {
           id="experiences"
         >
           <Row fillWidth horizontal="between" paddingBottom="m">
-            <Text className={inter.className}>SOME RANDOM JOKE</Text>
+            <Text className={inter.className} style={{textAlign:"left"}}>SOME RANDOM JOKE</Text>
             <Text
               className={inter.className}
-              style={{ textTransform: "uppercase" }}
+              style={{ textTransform: "uppercase", textAlign: "right" }}
+
             >
               Why do programmers prefer dark mode?{" "}
               <i>Because light attracts bugs!</i>

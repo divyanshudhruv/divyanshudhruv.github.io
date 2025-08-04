@@ -90,34 +90,55 @@ const images_row5 = [
   "https://skillicons.dev/icons?i=terraform",
   "https://skillicons.dev/icons?i=nodejs",
 ];
-
-const getTransformStyles = (images: string[]) =>
-  images.map((_, i) => {
-    const gap = 100;
-    const center = (images.length - 1) / 2;
-    const offset = (i - center) * gap;
-    const totalWidth = images.length * gap;
-    let translateX;
-    if (totalWidth < 500) {
-      const spacing = 500 / images.length;
-      translateX = i * spacing - 500 / 2 + spacing / 2;
-    } else {
-      translateX = offset;
-    }
-    let rotate = 0;
-    if (i % 3 === 0) {
-      rotate = -8;
-    } else if (i % 3 === 1) {
-      rotate = 7;
-    }
-    return `translateX(${translateX}px) rotate(${rotate}deg)`;
-  });
-
-const transformStyles_row1 = getTransformStyles(images_row1);
-const transformStyles_row2 = getTransformStyles(images_row2);
-const transformStyles_row3 = getTransformStyles(images_row3);
-
 export default function Skills() {
+  const [gap, setGap] = React.useState(100);
+
+  React.useEffect(() => {
+    function updateGap() {
+      if (window.innerWidth <= 800) {
+        setGap(60);
+      } else if (window.innerWidth <= 1080) {
+        setGap(65);
+      } else {
+        setGap(100);
+      }
+    }
+    if (typeof window !== "undefined") {
+      updateGap();
+      window.addEventListener("resize", updateGap);
+      return () => window.removeEventListener("resize", updateGap);
+    }
+  }, []);
+
+  const getTransformStyles = (images: string[]) => {
+    // Check window width if running in browser
+
+    // Use gap from state
+    return images.map((_, i) => {
+      const center = (images.length - 1) / 2;
+      const offset = (i - center) * gap;
+      const totalWidth = images.length * gap;
+      let translateX;
+      if (totalWidth < 500) {
+        const spacing = 500 / images.length;
+        translateX = i * spacing - 500 / 2 + spacing / 2;
+      } else {
+        translateX = offset;
+      }
+      let rotate = 0;
+      if (i % 3 === 0) {
+        rotate = -8;
+      } else if (i % 3 === 1) {
+        rotate = 7;
+      }
+      return `translateX(${translateX}px) rotate(${rotate}deg)`;
+    });
+  };
+
+  const transformStyles_row1 = getTransformStyles(images_row1);
+  const transformStyles_row2 = getTransformStyles(images_row2);
+  const transformStyles_row3 = getTransformStyles(images_row3);
+
   return (
     <>
       <Column
