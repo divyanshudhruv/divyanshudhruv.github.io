@@ -4,20 +4,8 @@ import Magnet from "@/blocks/Animations/Magnet/Magnet";
 
 import ShinyText from "@/blocks/TextAnimations/ShinyText/ShinyText";
 
-import {
-  Text,
-  Button,
- 
-  Row,
-  Flex,
-  StatusIndicator,
-
-} from "@once-ui-system/core";
-import {
- 
-  ArrowUpRight,
-
-} from "lucide-react";
+import { Text, Button, Row, Flex, StatusIndicator } from "@once-ui-system/core";
+import { ArrowUpRight } from "lucide-react";
 
 import {
   Instrument_Serif,
@@ -42,9 +30,6 @@ const inter = Inter({
   weight: ["400", "700", "800", "900", "600", "500", "300", "200", "100"],
   subsets: ["latin"],
 });
-
-
-
 
 export default function Navbar() {
   return (
