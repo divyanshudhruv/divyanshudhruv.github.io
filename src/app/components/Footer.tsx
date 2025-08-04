@@ -31,16 +31,10 @@ export default function Footer() {
         horizontal="center"
         gap="80"
         paddingY="16"
+        paddingTop="40"
       >
-         <div
-            style={{
-              backgroundColor: "transparent",
-              height: "50px",
-              position: "relative",
-              width: "100vw",
-            }}
-          />
-          <div
+        
+          {/* <div
             style={{
               position: "absolute",
               width: "100vw",
@@ -63,7 +57,7 @@ export default function Footer() {
             >
               <path d="M0 180 Q960 -80 1920 180 V0 H0 V180 Z" fill="#f9f4eb" />
             </svg>
-          </div>
+          </div> */}
           <Text
             variant="code-default-s"
             className={geist_mono.className}
@@ -196,7 +190,7 @@ export default function Footer() {
               </Button>
             </Magnet>
           </Column> 
-        <Column fillWidth>
+        <Column fillWidth gap="4">
           <Row
             fillWidth
             horizontal="between"

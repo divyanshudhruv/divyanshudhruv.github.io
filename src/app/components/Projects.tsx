@@ -46,6 +46,40 @@ const geist_mono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const projectsData = [
+  {
+    title: "Re-folio",
+    tags: ["Next.js", "Tailwind CSS", "TypeScript"],
+    description: "A modern portfolio website showcasing my work and skills.",
+    image:
+      "https://divyanshudhruv.is-a.dev/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fre-folio.94817651.png&w=3840&q=95",
+    href: "https://re-folio.vercel.app",
+  },
+{
+    title: "Kanba",
+    tags: ["OS Contributor", "Tailwind CSS", "TypeScript"],
+    description: "A Kanban board application for task management.",
+    image: "/kanba.png",
+    href: "https://kanba.co",
+  },
+  {
+    title: "Hellolink",
+    tags: ["Vite", "Supabase"],
+    description: "An alternative to linktree",
+    image: "/hello-link.png",
+    href: "https://hellolink.vercel.app",
+  },   {
+    title: "Sourceful Space",
+    tags: ["JAVASCRIPT", "NEXTJS", "ONCEUI"],
+    description: "Space for open-source projects and startups.",
+    image:
+      "https://framerusercontent.com/images/oevZjkSNUHoeeER1iv27eFxaCk.png?scale-down-to=512",
+    href: "https://sourceful-space.vercel.app",
+  },
+
+ 
+];
+
 export default function Projects() {
   return (
     <>
@@ -158,19 +192,16 @@ export default function Projects() {
           <Flex height={3}></Flex>
 
           <Grid columns={2} fitWidth gap="160" marginTop="64">
-            <ProjectCards
-              title="refolio"
-              tags={["Next.js", "Tailwind CSS", "TypeScript"]}
-              description="A modern portfolio website showcasing my work and skills."
-              image="https://divyanshudhruv.is-a.dev/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fre-folio.94817651.png&w=3840&q=95"
-            />
-
-            <ProjectCards
-              title="sigmn."
-              tags={["n8n", "solana", "next.js"]}
-              description="An NFT Marketplace for Artists and Collectors."
-              image="/sigms.webp"
-            />
+            {projectsData.map((project) => (
+              <ProjectCards
+                key={project.title}
+                title={project.title}
+                tags={project.tags}
+                description={project.description}
+                image={project.image}
+                href={project.href}
+              />
+            ))}
           </Grid>
           <Flex height={3}></Flex>
           <Magnet magnetStrength={10}>
@@ -205,14 +236,13 @@ export default function Projects() {
   );
 }
 
-
-
 type ProjectsProps = {
   title: string;
   statusColor?: string;
   image: string;
   tags: string[];
   description: string;
+  href?: string;
 };
 
 function ProjectCards({
@@ -221,6 +251,7 @@ function ProjectCards({
   image,
   tags,
   description,
+  href,
 }: ProjectsProps) {
   return (
     <Card
@@ -233,6 +264,7 @@ function ProjectCards({
       border="transparent"
       gap="16"
       paddingBottom="32"
+      {...(href ? { href } : {})}
     >
       <Media
         src={image}
