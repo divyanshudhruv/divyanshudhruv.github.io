@@ -61,3 +61,28 @@ body {
   width: 0;
   height: 0;
 } 
+@keyframes arrow-down {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+    animation-timing-function: ease-in-out;
+  }
+  
+  50% {
+    transform: translateY(10);
+    opacity: 1;
+    animation-timing-function: ease-in-out;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+    animation-timing-function: ease-in-out;
+  }
+}
+
+.down-arrow {
+  display: inline-block;
+  animation: arrow-down 1.2s ease-in-out infinite;
+}
+
