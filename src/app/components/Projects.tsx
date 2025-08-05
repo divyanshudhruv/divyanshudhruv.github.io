@@ -16,6 +16,7 @@ import {
   Card,
   Media,
   Tag,
+  Scroller,
 } from "@once-ui-system/core";
 import { ArrowUpRight } from "lucide-react";
 
@@ -99,8 +100,8 @@ export default function Projects() {
           {" "}
           <ScrollVelocity
             texts={[
-              "☻ Divyanshu Dhruv ☻ ☻ Divyanshu Dhruv ☻ ☻ Divyanshu Dhruv ☻ ☻ Divyanshu Dhruv ☻",
-              "☻ Portfolio ☻ ☻ Portfolio ☻ ☻ Portfolio ☻ ☻ Portfolio ☻ ☻ Portfolio ☻",
+              "☻ Divyanshu Dhruv ☻ Divyanshu Dhruv ☻ Divyanshu Dhruv ☻ Divyanshu Dhruv",
+              "☻ Portfolio ☻ Portfolio ☻ Portfolio ☻ Portfolio ☻ Portfolio",
             ]}
             velocity={30}
             parallaxStyle={{
@@ -136,7 +137,7 @@ export default function Projects() {
               whiteSpace: "pre-line", // Preserve line breaks if any
               color: "#031113",
             }}
-            className={instrument_serif.className}
+            className={instrument_serif.className + " location-text"}
           >
             I am a full-stack developer living in{" "}
             <span
@@ -168,7 +169,7 @@ export default function Projects() {
 
               color: "#fff3e8",
             }}
-            className={instrument_serif.className}
+            className={instrument_serif.className + " text-hero"}
           >
             Some selected <br></br>
             <span
@@ -192,10 +193,10 @@ export default function Projects() {
 
           <Grid
             columns={2}
-            fitWidth
+            fillWidth
             marginTop="64"
             className="projects-grid"
-            style={{ gap: "5vw" }}
+            style={{ gap: "5vw", minWidth: "100vw !important" }}
           >
             {projectsData.map((project) => (
               <ProjectCards
@@ -259,19 +260,17 @@ function ProjectCards({
   href,
 }: ProjectsProps) {
   return (
-    <Flex fillWidth>
+    <Flex fillWidth style={{ maxWidth: "100vw" }} className="project-card">
       <Card
         direction="column"
         background="transparent"
-        minWidth={33}
-        minHeight={33}
         overflow="hidden"
         radius="xl-8"
         border="transparent"
         gap="16"
         paddingBottom="32"
-        {...(href ? { href } : {})}
-        className="project-card"
+        fillWidth
+        fillHeight
       >
         <Media
           src={image}
@@ -293,43 +292,50 @@ function ProjectCards({
               textTransform: "uppercase",
             }}
             className={poppins.className}
+            onClick={() => {
+              if (href) {
+                window.open(href, "_blank");
+              }
+            }}
           >
             <Row center>
               <StatusIndicator color={"moss"}></StatusIndicator>&nbsp;&nbsp;{" "}
               {title}
             </Row>
-          </Text>
-          <Row fitWidth gap="8">
-            {tags.map((tag) => (
-              <Tag
-                key={tag}
-                variant="info"
-                fitWidth
-                fitHeight
-                padding="4"
-                background="transparent"
-                style={{
-                  padding: "0.6rem 0.6rem",
-                  backgroundColor: "transparent",
-                  borderColor: "#ffffff26",
-                  borderWidth: "1px",
-                  borderRadius: "1000px",
-                  textTransform: "uppercase",
-                }}
-              >
-                <Text
-                  className={poppins.className}
+          </Text>{" "}
+          <Scroller direction="row" maxWidth={12} fadeColor="transparent">
+            <Row fitWidth gap="8">
+              {tags.map((tag) => (
+                <Tag
+                  key={tag}
+                  variant="info"
+                  fitWidth
+                  fitHeight
+                  padding="4"
+                  background="transparent"
                   style={{
-                    fontSize: "12px",
-                    color: "#ffffff70",
+                    padding: "0.6rem 0.6rem",
+                    backgroundColor: "transparent",
+                    borderColor: "#ffffff26",
+                    borderWidth: "1px",
+                    borderRadius: "1000px",
                     textTransform: "uppercase",
                   }}
                 >
-                  {tag}
-                </Text>
-              </Tag>
-            ))}
-          </Row>
+                  <Text
+                    className={poppins.className}
+                    style={{
+                      fontSize: "12px",
+                      color: "#ffffff70",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    {tag}
+                  </Text>
+                </Tag>
+              ))}
+            </Row>
+          </Scroller>
         </Row>
         <Flex paddingX="s">
           {" "}
