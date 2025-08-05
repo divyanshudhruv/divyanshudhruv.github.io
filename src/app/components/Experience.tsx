@@ -104,6 +104,7 @@ export default function Experience() {
             position: "relative",
             width: "100vw",
           }}
+          className="svg-header-experience"
         />
         <div
           style={{
@@ -116,6 +117,7 @@ export default function Experience() {
             pointerEvents: "none",
             overflow: "hidden",
           }}
+          className="svg-header-experience"
         >
           <svg
             width="100%"
@@ -147,7 +149,11 @@ export default function Experience() {
             </Text>
             <Text
               className={inter.className + " text-joke-2"}
-              style={{ textTransform: "uppercase", textAlign: "right", color: "#031113" }}
+              style={{
+                textTransform: "uppercase",
+                textAlign: "right",
+                color: "#031113",
+              }}
               data-theme="dark"
             >
               Why do programmers prefer dark mode?{" "}
@@ -163,7 +169,11 @@ export default function Experience() {
                       fill="none"
                       aria-hidden="true"
                       className="icon"
-                      style={{ width: "100%", height: "100%",color:"#031113" }}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        color: "#031113",
+                      }}
                     >
                       <path
                         fill="currentColor"
@@ -181,7 +191,11 @@ export default function Experience() {
                       viewBox="0 0 20 20"
                       aria-hidden="true"
                       className="icon"
-                      style={{ width: "100%", height: "100%",color:"#031113" }}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        color: "#031113",
+                      }}
                     >
                       <path
                         d="M20 0H6v2h2v4h2v2h2v2h2V8h2V6h2V2h2V0ZM6 10v2H4v2H2v4H0v2h14v-2h-2v-4h-2v-2H8v-2H6Z"
@@ -199,7 +213,11 @@ export default function Experience() {
                       viewBox="0 0 20 20"
                       aria-hidden="true"
                       className="icon"
-                      style={{ width: "100%", height: "100%",color:"#031113" }}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        color: "#031113",
+                      }}
                     >
                       <path
                         fill="currentColor"
@@ -245,7 +263,7 @@ export default function Experience() {
                 fontWeight: "lighter",
                 color: "#031113",
               }}
-            className={instrument_serif.className + " text-hero"}
+              className={instrument_serif.className + " text-hero"}
             >
               Experience and
               <br />

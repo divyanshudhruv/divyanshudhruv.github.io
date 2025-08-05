@@ -96,7 +96,7 @@ export default function Projects() {
         paddingX="m"
         gap="128"
       >
-        <Text className={geist_mono.className} style={{ fontWeight: "200" }}>
+        <Text className={geist_mono.className + " scroll-velocity-text"} style={{ fontWeight: "200" }}>
           {" "}
           <ScrollVelocity
             texts={[
