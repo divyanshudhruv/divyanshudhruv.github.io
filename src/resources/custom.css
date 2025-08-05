@@ -92,6 +92,7 @@ body {
 @media (max-width: 1160px) {
   .projects-grid {
     grid-template-columns: 1fr !important;
+    background-color: antiquewhite;
   }
 }
 
@@ -130,13 +131,37 @@ body {
 
 @media (max-width: 520px) {
   .text-hero {
-    font-size: 80px !important;
+    font-size: 84px !important;
+  }
+
+  .location-text {
+    font-size: 50px !important;
+  }
+
+  .text-joke-1 {
+    display: none !important;
+  }
+
+  .contact-text {
+    font-size: 10px !important;
+  }
+
+  .down-arrow {
+    font-size: 10px !important;
+    size: 10px !important;
+    scale: 0.7 !important;
+  }
+
+  .text-joke-2 {
+    font-size: 10px !important;
+    text-align: left !important;
   }
 
   .footer-column-to-row {
     flex-direction: row !important;
     padding-inline: 5vw !important;
   }
+
   .footer-row-to-column {
     flex-direction: column !important;
     align-items: start !important;
@@ -145,7 +170,8 @@ body {
   .footer-row-to-column:nth-of-type(2) {
     align-items: end !important;
   }
-  .footer-icons-row-margin{
+
+  .footer-icons-row-margin {
     margin-right: 0 !important;
   }
 }

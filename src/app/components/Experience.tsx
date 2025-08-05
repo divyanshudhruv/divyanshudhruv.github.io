@@ -139,14 +139,14 @@ export default function Experience() {
         >
           <Row fillWidth horizontal="between" paddingBottom="m">
             <Text
-              className={inter.className}
+              className={inter.className + " text-joke-1"}
               style={{ textAlign: "left", color: "#031113" }}
               data-theme="dark"
             >
               SOME RANDOM JOKE
             </Text>
             <Text
-              className={inter.className}
+              className={inter.className + " text-joke-2"}
               style={{ textTransform: "uppercase", textAlign: "right", color: "#031113" }}
               data-theme="dark"
             >
@@ -245,7 +245,7 @@ export default function Experience() {
                 fontWeight: "lighter",
                 color: "#031113",
               }}
-              className={instrument_serif.className}
+            className={instrument_serif.className + " text-hero"}
             >
               Experience and
               <br />

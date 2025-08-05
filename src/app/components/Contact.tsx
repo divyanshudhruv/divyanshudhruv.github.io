@@ -198,7 +198,7 @@ export default function Contact() {
 
               color: "#031113",
             }}
-            className={instrument_serif.className}
+            className={instrument_serif.className + " text-hero"}
           >
             Contact <br></br>
             <span

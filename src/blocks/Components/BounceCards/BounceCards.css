@@ -9,6 +9,8 @@
   align-items: center;
   width: 200px;
   height: 400px;
+  max-width: 100vw !important;
+  overflow: scroll;
 }
 
 .card {
@@ -36,7 +38,7 @@
     border-radius: 42.5px !important;
   }
 
-  .bounceCardsContainer{
+  .bounceCardsContainer {
     height: 180px !important;
   }
 }
@@ -47,7 +49,7 @@
     border-radius: 40.5px !important;
   }
 
-  .bounceCardsContainer{
+  .bounceCardsContainer {
     height: 220px !important;
   }
 }

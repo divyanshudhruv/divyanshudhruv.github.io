@@ -170,7 +170,7 @@ export default function Skills() {
 
               color: "#fff3e8",
             }}
-            className={instrument_serif.className}
+            className={instrument_serif.className + " text-hero"}
           >
             My awesome<br></br>
             <span
