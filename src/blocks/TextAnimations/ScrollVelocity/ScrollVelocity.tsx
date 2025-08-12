@@ -34,6 +34,11 @@ interface VelocityTextProps {
   scrollerStyle?: React.CSSProperties;
 }
 
+import { Instrument_Serif } from "next/font/google";
+const instrumentSerif = Instrument_Serif({
+  weight: ["400"],
+  subsets: ["latin"],
+});
 interface ScrollVelocityProps {
   scrollContainerRef?: React.RefObject<HTMLElement>;
   texts: string[];
@@ -171,8 +176,10 @@ export const ScrollVelocity: React.FC<ScrollVelocityProps> = ({
           scrollerClassName={scrollerClassName}
           parallaxStyle={parallaxStyle}
           scrollerStyle={scrollerStyle}
+          
         >
-          {text}&nbsp;
+          <span className={instrumentSerif.className} style={{ fontWeight: "100", lineHeight: "1.1" }}>          {text}&nbsp;
+</span>
         </VelocityText>
       ))}
     </section>
