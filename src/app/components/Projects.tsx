@@ -96,7 +96,10 @@ export default function Projects() {
         paddingX="m"
         gap="128"
       >
-        <Text className={geist_mono.className + " scroll-velocity-text"} style={{ fontWeight: "200" }}>
+        <Text
+          className={inter.className + " scroll-velocity-text"}
+          style={{ fontWeight: "200" }}
+        >
           {" "}
           <ScrollVelocity
             texts={[
@@ -196,7 +199,11 @@ export default function Projects() {
             fillWidth
             marginTop="64"
             className="projects-grid"
-            style={{ gap: "5vw", minWidth: "100vw !important" }}
+            style={{
+              gap: "5vw",
+              minWidth: "10% ",
+              maxWidth: "1000px !important",
+            }}
           >
             {projectsData.map((project) => (
               <ProjectCards

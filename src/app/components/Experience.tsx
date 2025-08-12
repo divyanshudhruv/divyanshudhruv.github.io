@@ -45,7 +45,7 @@ const demoItems = [
     link: "",
     text: "Full Stack Developer",
     image: "https://picsum.photos/600/400?random=2",
-    desc: "I'm now a full-stack developer, contributing to open-source projects. My stack includes React, Next.js, TypeScript, Tailwind, etc.",
+    desc: "As a Full-stack developer, I'm contributing to open-source projects. My stack includes React, Next.js, TypeScript, Tailwind, etc.",
   },
   {
     link: "",
@@ -55,15 +55,15 @@ const demoItems = [
   },
   {
     link: "",
-    text: "Novice",
-    image: "https://picsum.photos/600/400?random=4",
+    text: "Intern",
+    image: "https://picsum.photos/600/400?random=5",
     desc: "Worked on 20+ real-world projects and participated in several coding challenges and awesome workshops.",
   },
 ];
 const eduItems = [
   {
     link: "",
-    text: "High School",
+    text: "Highschooler",
     image: "https://picsum.photos/600/400?random=13",
     desc: "DPSV, Vadodara",
   },
@@ -296,7 +296,7 @@ export default function Experience() {
           <Flex style={{ paddingInline: "13vw" }} fillWidth>
             <FlowingMenu items={demoItems} />
           </Flex>
-          <Flex fitHeight center fillWidth paddingY="s">
+          {/* <Flex fitHeight center fillWidth paddingY="s">
             {" "}
             <span
               style={{
@@ -315,7 +315,7 @@ export default function Experience() {
 
           <Flex style={{ paddingInline: "13vw" }} fillWidth>
             <FlowingMenu items={eduItems} />
-          </Flex>
+          </Flex> */}
         </Column>
       </Column>{" "}
     </>
