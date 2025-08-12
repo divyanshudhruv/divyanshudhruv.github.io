@@ -54,7 +54,7 @@ const images_row2 = [
 ];
 
 const images_row3 = [
-  "https://skillicons.dev/icons?i=rabbitmq",
+  "https://skillicons.dev/icons?i=arduino",
   "https://skillicons.dev/icons?i=django",
   "https://skillicons.dev/icons?i=docker",
   "https://skillicons.dev/icons?i=dotnet",
