@@ -19,6 +19,13 @@ import {
   SegmentedControl,
   Text,
 } from "@once-ui-system/core";
+import {
+  MinimalCard,
+  MinimalCardDescription,
+  MinimalCardImage,
+  MinimalCardTitle,
+} from "@/components/ui/minimal-card";
+
 import NeumorphButton from "@/components/ui/neumorph-button";
 import LogosWorkedWith from "@/components/logos-worked-with";
 import { FlickeringGrid } from "@/components/magicui/flickering-grid";
@@ -64,7 +71,10 @@ export default function Home() {
           radius="xl-8"
           overflow="hidden"
           center
-          style={{ backgroundColor: colors.background_light,minHeight:"fit-content" }}
+          style={{
+            backgroundColor: colors.background_light,
+            minHeight: "fit-content",
+          }}
         >
           <Column fillWidth fitHeight horizontal="center" vertical="start">
             {/* Nav */}
@@ -250,8 +260,12 @@ export default function Home() {
           direction="column"
           center
           paddingY="xl"
+          gap="32"
           paddingX="l"
-          style={{ backgroundColor: colors.background_light,minHeight:"fit-content" }}
+          style={{
+            backgroundColor: colors.background_light,
+            minHeight: "fit-content",
+          }}
         >
           <Row fillWidth vertical="center" horizontal="between">
             <Text
@@ -279,7 +293,10 @@ export default function Home() {
               />
             </Row>
           </Row>
-          <Grid columns={2} fillWidth fitHeight></Grid>
+          <Flex height={1}></Flex>
+          <Grid columns={2} fillWidth fitHeight gap="40">
+            <MinimalCardDemo />
+          </Grid>
         </Flex>
       </Flex>
     </>
@@ -299,5 +316,35 @@ export function FlickeringGridDemo() {
         />
       </Fade>
     </Row>
+  );
+}
+const cards = [
+  { src: "https://divyanshudhruv.is-a.dev/kanba.png", alt: "Card Image 1" },
+  { src: "https://divyanshudhruv.is-a.dev/refolio.png", alt: "Card Image 2" },
+  {
+    src: "https://divyanshudhruv.is-a.dev/hello-link.png",
+    alt: "Card Image 3",
+  },
+  {
+    src: "https://framerusercontent.com/images/oevZjkSNUHoeeER1iv27eFxaCk.png?scale-down-to=512",
+    alt: "Card Image 4",
+  },
+];
+
+function MinimalCardDemo() {
+  return (
+    <>
+      {cards.map((card) => (
+        <MinimalCard>
+         
+            {" "}
+            <MinimalCardImage
+              src={card.src}
+              alt={card.alt}
+              style={{ minHeight: "450px" }}
+            />
+        </MinimalCard>
+      ))}
+    </>
   );
 }
