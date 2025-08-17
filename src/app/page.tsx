@@ -11,6 +11,8 @@ import {
   IconButton,
   LogoCloud,
   Media,
+  NavIcon,
+  Particle,
   Row,
   Scroller,
   SegmentedControl,
@@ -496,18 +498,22 @@ const cards = [
   {
     src: "https://divyanshudhruv.is-a.dev/kanba.png",
     alt: "Kanba Project Screenshot",
+    href: "https://kanba.co",
   },
   {
     src: "https://divyanshudhruv.is-a.dev/refolio.png",
     alt: "Refolio Project Screenshot",
+    href: "https://re-folio.vercel.app",
   },
   {
     src: "https://divyanshudhruv.is-a.dev/hello-link.png",
     alt: "Hello Link Project Screenshot",
+    href: "https://hellolink.vercel.app",
   },
   {
     src: "https://framerusercontent.com/images/oevZjkSNUHoeeER1iv27eFxaCk.png?scale-down-to=512",
     alt: "Framer Project Screenshot",
+    href: "https://sourceful-space.vercel.app",
   },
 ];
 
@@ -646,6 +652,11 @@ function MinimalCardDemo() {
             className="minimal-card-hover-wrapper"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
+            onClick={() => {
+              setTimeout(() => {
+                window.open(card.href, "_blank");
+              }, 500);
+            }}
           >
             <MinimalCard
               style={{
@@ -660,13 +671,10 @@ function MinimalCardDemo() {
                 return (
                   <MinimalCardImage
                     ref={imgRef}
+                    className="minimal-card-image"
                     src={card.src}
                     alt={card.alt}
                     title={card.alt}
-                    style={{
-                      minHeight: "450px",
-                      transition: "transform 0.2s cubic-bezier(.4,0,.2,1)",
-                    }}
                     onMouseEnter={() => {
                       if (imgRef.current) {
                         imgRef.current.style.transform = "scale(0.95)";
@@ -933,6 +941,7 @@ function StackCard({ logoSrc, name, description, link }: StackCardProps) {
       padding="2"
       radius="s-4"
       maxWidth={25}
+      className="stack-card"
       style={{
         transition:
           "transform 0.18s cubic-bezier(.4,0,.2,1), background 0.18s cubic-bezier(.4,0,.2,1)",
@@ -1084,11 +1093,13 @@ export default function Home() {
                 top: "20px",
                 zIndex: "999999",
               }}
+              className="nav-container"
             >
               <Flex
                 vertical="center"
                 gap="12"
                 fitWidth
+                horizontal="center"
                 height={3.2}
                 radius="m"
                 background="neutral-medium"
@@ -1125,19 +1136,30 @@ export default function Home() {
                   </span>
                 </Text>
               </Flex>
-              <Flex fitWidth height={3.2} gap="20">
+              <Flex
+                fitWidth
+                height={3.2}
+                gap="20"
+                className="nav-links-container"
+              >
                 <Row
                   fitWidth
                   fillHeight
                   border="neutral-medium"
                   center
+                  vertical="center"
                   padding="s"
                   radius="m"
                   style={{
                     backgroundColor: colors.background_light,
                   }}
+                  className="nav-links"
                 >
-                  <Button variant="tertiary" weight="default">
+                  <Button
+                    variant="tertiary"
+                    weight="default"
+                    className="nav-links"
+                  >
                     <Text
                       style={{
                         fontFamily: inter_tight.style.fontFamily,
@@ -1148,7 +1170,11 @@ export default function Home() {
                       Resume
                     </Text>
                   </Button>
-                  <Button variant="tertiary" weight="default">
+                  <Button
+                    variant="tertiary"
+                    weight="default"
+                    className="nav-links"
+                  >
                     <Text
                       style={{
                         fontFamily: inter_tight.style.fontFamily,
@@ -1159,7 +1185,11 @@ export default function Home() {
                       About
                     </Text>
                   </Button>
-                  <Button variant="tertiary" weight="default">
+                  <Button
+                    variant="tertiary"
+                    weight="default"
+                    className="nav-links"
+                  >
                     <Text
                       style={{
                         fontFamily: inter_tight.style.fontFamily,
@@ -1170,7 +1200,11 @@ export default function Home() {
                       Project
                     </Text>
                   </Button>
-                  <Button variant="tertiary" weight="default">
+                  <Button
+                    variant="tertiary"
+                    weight="default"
+                    className="nav-links"
+                  >
                     <Text
                       style={{
                         fontFamily: inter_tight.style.fontFamily,
@@ -1182,7 +1216,27 @@ export default function Home() {
                     </Text>
                   </Button>
                 </Row>
-                <Button size="l" weight="default">
+                <Button
+                  size="l"
+                  weight="default"
+                  style={{
+                    background: "#222",
+                    color: "#fff",
+                    fontFamily: inter_tight.style.fontFamily,
+                  }}
+                  onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => {
+                    (e.currentTarget as HTMLButtonElement).style.background =
+                      "#0a0a0a";
+
+                    (e.currentTarget as HTMLButtonElement).style.transition =
+                      "background 0.18s cubic-bezier(.4,0,.2,1), color 0.18s cubic-bezier(.4,0,.2,1)";
+                  }}
+                  onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => {
+                    (e.currentTarget as HTMLButtonElement).style.background =
+                      "#222";
+                    (e.currentTarget as HTMLButtonElement).style.color = "#fff";
+                  }}
+                >
                   <Text
                     style={{
                       fontFamily: inter_tight.style.fontFamily,
@@ -1199,7 +1253,7 @@ export default function Home() {
             {/* Hero */}
             <Flex center fillWidth fitHeight paddingTop="xl" direction="column">
               <Column fillWidth fitHeight center paddingTop="xl" gap="l">
-                <Flex height={0.25}></Flex>
+                <Flex height={0.25} className="hero-flex-top"></Flex>
                 <Text
                   style={{
                     fontFamily: fraunces.style.fontFamily,
@@ -1210,6 +1264,7 @@ export default function Home() {
                     maxWidth: "1000px",
                   }}
                   align="center"
+                  className="hero-text"
                 >
                   Hello, I'm Divyanshu. Delighted to have you explore my
                   portfolio. I craft awesome applications for{" "}
@@ -1266,7 +1321,10 @@ export default function Home() {
                   >
                     I've worked with
                   </Text>
-<Flex height={0.05}></Flex>
+                  <Flex
+                    height={0.05}
+                    className="logos-worked-with-separator"
+                  ></Flex>
                   <LogosWorkedWith />
                   <Flex style={{ width: "100vw" }}>
                     <FlickeringGridDemo color={colors.primary} />
@@ -1292,7 +1350,13 @@ export default function Home() {
             minHeight: "fit-content",
           }}
         >
-          <Row fillWidth vertical="center" horizontal="between">
+          <Row
+            fillWidth
+            vertical="center"
+            horizontal="between"
+            gap="16"
+            className="project-row-filter"
+          >
             <Text
               style={{
                 fontFamily: fraunces.style.fontFamily,
@@ -1319,9 +1383,9 @@ export default function Home() {
             </Row>
           </Row>
           <Flex height={1}></Flex>
-          <Grid columns={2} fillWidth fitHeight gap="40">
+          <div className="project-grid">
             <MinimalCardDemo />
-          </Grid>
+          </div>
           {/* Four accent squares at each corner */}
           <Column
             fillWidth
@@ -1362,6 +1426,7 @@ export default function Home() {
           }}
         >
           <Flex
+            className="about-me-container"
             gap="64"
             fillWidth
             fitHeight
@@ -1494,14 +1559,7 @@ export default function Home() {
                 </Scroller>
               </Column>
             </Column>
-            <Flex
-              fillHeight
-              vertical="start"
-              style={{
-                minWidth: "580px",
-                maxWidth: "620px",
-              }}
-            >
+            <Flex fillHeight vertical="start" className="about-me-image">
               <MinimalAboutCard
                 src="https://wallpaperaccess.com/full/3496338.jpg"
                 alt="Designer in coat"
@@ -1525,7 +1583,7 @@ export default function Home() {
             minHeight: "fit-content",
           }}
         >
-          <Column gap="40" fillWidth>
+          <Column gap="40" fillWidth maxWidth={95}>
             <Row vertical="center" horizontal="start" fillWidth>
               <Text
                 style={{
@@ -1539,7 +1597,7 @@ export default function Home() {
               >
                 Experience
               </Text>
-            </Row>
+            </Row>{" "}
             <Column gap="20" fillWidth>
               {[
                 {
@@ -1577,58 +1635,73 @@ export default function Home() {
                     paddingBottom: "18px",
                   }}
                 >
-                  <Row gap="16" vertical="center">
-                    <Media
-                      src={exp.logo}
-                      width={1.5}
-                      height={1.5}
-                      radius="s"
-                      style={{
-                        background: "#f5f5f5",
-                        objectFit: "cover",
-                      }}
-                      unoptimized
-                      alt={exp.name}
-                      title={exp.name}
-                    />
-                    <Text
-                      style={{
-                        fontFamily: inter_tight.style.fontFamily,
-                        fontSize: "1em",
-                        color: colors.text,
-                      }}
-                    >
-                      {exp.name}
-                    </Text>
-                  </Row>
-                  <Row gap="24" vertical="center">
-                    <Text
-                      style={{
-                        fontFamily: inter_tight.style.fontFamily,
-                        fontSize: "1em",
-                        color: colors.text_gray,
-                        fontWeight: 400,
-                      }}
-                    >
-                      {exp.role}
-                    </Text>
-                    <Text
-                      style={{
-                        fontFamily: "monospace",
-                        fontSize: "1em",
-                        color: colors.text_gray_light,
-                        fontWeight: 400,
-                        letterSpacing: "0.5px",
-                      }}
-                    >
-                      {exp.period}
-                    </Text>
-                  </Row>
+                  {" "}
+                  <Scroller
+                    direction="row"
+                    style={{ maxWidth: "90vw" }}
+                    className="experience-scroller"
+                    fillWidth
+                  >
+                    <Row gap="16" vertical="center" fillWidth>
+                      <Media
+                        src={exp.logo}
+                        width={1.5}
+                        height={1.5}
+                        minWidth={1.5}
+                        minHeight={1.5}
+                        radius="s"
+                        style={{
+                          background: "#f5f5f5",
+                          objectFit: "cover",
+                        }}
+                        unoptimized
+                        alt={exp.name}
+                        title={exp.name}
+                      />
+                      <Text
+                        style={{
+                          fontFamily: inter_tight.style.fontFamily,
+                          fontSize: "1em",
+                          color: colors.text,
+                          minWidth: "fit-content",
+                        }}
+                      >
+                        {exp.name}
+                      </Text>
+                    </Row>
+                    <Row gap="24" vertical="center">
+                      <Text
+                        style={{
+                          fontFamily: inter_tight.style.fontFamily,
+                          fontSize: "1em",
+                          color: colors.text_gray,
+                          fontWeight: 400,
+                          minWidth: "350px",
+                          textAlign: "right",
+                        }}
+                      >
+                        {exp.role}
+                      </Text>
+                      <Text
+                        style={{
+                          fontFamily: "monospace",
+                          fontSize: "1em",
+                          color: colors.text_gray_light,
+                          fontWeight: 400,
+                          letterSpacing: "0.5px",
+                          minWidth: "fit-content",
+                          textAlign: "right",
+                        }}
+                      >
+                        {exp.period}
+                      </Text>
+                    </Row>{" "}
+                  </Scroller>
                 </Row>
-              ))}
-            </Column>
+              ))}{" "}
+            </Column>{" "}
           </Column>
-          <Column gap="40" fillWidth>
+          <Column gap="40" fillWidth maxWidth={95}>
             <Row vertical="center" horizontal="start" fillWidth>
               <Text
                 style={{
@@ -1644,7 +1717,7 @@ export default function Home() {
               </Text>
             </Row>
             <Flex fillWidth center fitHeight>
-              <Grid gap="20" columns={3} fillWidth>
+              <Grid gap="20" columns={4} fillWidth className="stack-grid">
                 <StackCard
                   logoSrc="https://framerusercontent.com/images/ZmOuFXkoGoEpOrAIJdOqFqdcs0.png"
                   name="Framer"
@@ -1719,6 +1792,26 @@ export default function Home() {
           }}
           data-theme="dark"
         >
+          <Particle
+            fillWidth
+            fillHeight
+            height={24}
+            density={250}
+            position="absolute"
+            style={{ zIndex: 99999, top: 0 }}
+            opacity={50}
+          />
+          <Particle
+            fillWidth
+            fillHeight
+            height={24}
+            density={250}
+            position="absolute"
+            style={{ zIndex: 99999, bottom: 0 }}
+            opacity={50}
+            color="neutral-alpha-strong"
+          />
+
           <div
             style={{
               position: "relative",
@@ -1726,8 +1819,9 @@ export default function Home() {
               height: "100%",
               minWidth: "100%",
               overflow: "hidden",
-              maxHeight: "800px",
+              maxHeight: "100%",
             }}
+            className="footer-background"
           >
             <img
               src="https://i.redd.it/j7pt9senwgp71.png"
@@ -1800,9 +1894,22 @@ export default function Home() {
                   boxShadow: "0 2px 16px rgba(0,0,0,0.12)",
                   padding: "16px 32px",
                   fontWeight: 500,
+                  zIndex: 9999999999999,
                 }}
                 aria-label="Message me on LinkedIn"
                 title="Message me on LinkedIn"
+                onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => {
+                  (e.currentTarget as HTMLButtonElement).style.background =
+                    "#222";
+                  (e.currentTarget as HTMLButtonElement).style.color = "#fff";
+                  (e.currentTarget as HTMLButtonElement).style.transition =
+                    "background 0.18s cubic-bezier(.4,0,.2,1), color 0.18s cubic-bezier(.4,0,.2,1)";
+                }}
+                onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => {
+                  (e.currentTarget as HTMLButtonElement).style.background =
+                    "#fff";
+                  (e.currentTarget as HTMLButtonElement).style.color = "#222";
+                }}
               >
                 Message me on LinkedIn
               </Button>
