@@ -2,7 +2,7 @@ import { Row } from "@once-ui-system/core";
 
 export default function LogosWorkedWith() {
   return (
-    <Row gap="40" center style={{scale:"0.6"}}>
+    <Row gap="64" center style={{scale:"0.6"}}>
       <svg
         width="222"
         height="40"
