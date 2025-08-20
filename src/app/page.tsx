@@ -23,7 +23,7 @@ import NeumorphButton from "@/components/ui/neumorph-button";
 import LogosWorkedWith from "@/components/logos-worked-with";
 import { FlickeringGrid } from "@/components/magicui/flickering-grid";
 import { Meteors } from "@/components/magicui/meteors";
-import { ArrowUp, ArrowUpRight, Star } from "lucide-react";
+import { ArrowUp, ArrowUpRight, Menu, Star } from "lucide-react";
 
 const fraunces = Fraunces({
   weight: ["400", "100", "200", "300", "500", "600", "700", "800", "900"],
@@ -235,7 +235,7 @@ const skills = [
   {
     icon: (
       <img
-        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ruby/ruby-original.svg"
+        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg"
         alt="Ruby"
         width={17}
         height={17}
@@ -243,7 +243,7 @@ const skills = [
         aria-label="Ruby"
       />
     ),
-    label: "Ruby",
+    label: "Arduino",
   },
   {
     icon: (
@@ -258,19 +258,7 @@ const skills = [
     ),
     label: "Go",
   },
-  {
-    icon: (
-      <img
-        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-original.svg"
-        alt="Rust"
-        width={17}
-        height={17}
-        style={{ borderRadius: "4px" }}
-        aria-label="Rust"
-      />
-    ),
-    label: "Rust",
-  },
+
   {
     icon: (
       <img
@@ -284,19 +272,7 @@ const skills = [
     ),
     label: "Docker",
   },
-  {
-    icon: (
-      <img
-        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg"
-        alt="Kubernetes"
-        width={17}
-        height={17}
-        style={{ borderRadius: "4px" }}
-        aria-label="Kubernetes"
-      />
-    ),
-    label: "Kubernetes",
-  },
+
   {
     icon: (
       <img
@@ -362,32 +338,7 @@ const skills = [
     ),
     label: "Next.js",
   },
-  {
-    icon: (
-      <img
-        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg"
-        alt="Vue.js"
-        width={17}
-        height={17}
-        style={{ borderRadius: "4px" }}
-        aria-label="Vue.js"
-      />
-    ),
-    label: "Vue.js",
-  },
-  {
-    icon: (
-      <img
-        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg"
-        alt="Redux"
-        width={17}
-        height={17}
-        style={{ borderRadius: "4px" }}
-        aria-label="Redux"
-      />
-    ),
-    label: "Redux",
-  },
+
   {
     icon: (
       <img
@@ -401,19 +352,7 @@ const skills = [
     ),
     label: "Sass",
   },
-  {
-    icon: (
-      <img
-        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webpack/webpack-original.svg"
-        alt="Webpack"
-        width={17}
-        height={17}
-        style={{ borderRadius: "4px" }}
-        aria-label="Webpack"
-      />
-    ),
-    label: "Webpack",
-  },
+
   {
     icon: (
       <img
@@ -491,6 +430,12 @@ const skills = [
       />
     ),
     label: "Linux",
+  },
+  {
+    icon: (
+     <></>
+    ),
+    label: "And more",
   },
 ];
 
@@ -1046,6 +991,24 @@ function FlickeringGridDemo({ color }: { color: string }) {
 export default function Home() {
   const [githubButtonClicked, setGithubButtonClicked] = useState(false);
 
+  const [navFixed, setNavFixed] = React.useState(false);
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setNavFixed(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      const navContainer = document.querySelector(".nav-container");
+      if (navContainer instanceof HTMLElement) {
+        navContainer.style.top = navFixed ? "0px" : "20px";
+      }
+    }
+  }, [navFixed]);
   return (
     <>
       <Flex
@@ -1092,6 +1055,7 @@ export default function Home() {
                 position: "fixed",
                 top: "20px",
                 zIndex: "999999",
+                transition: "0.3s",
               }}
               className="nav-container"
             >
@@ -1174,6 +1138,7 @@ export default function Home() {
                     variant="tertiary"
                     weight="default"
                     className="nav-links"
+                    href="#about"
                   >
                     <Text
                       style={{
@@ -1189,6 +1154,7 @@ export default function Home() {
                     variant="tertiary"
                     weight="default"
                     className="nav-links"
+                    href="#projects"
                   >
                     <Text
                       style={{
@@ -1204,6 +1170,7 @@ export default function Home() {
                     variant="tertiary"
                     weight="default"
                     className="nav-links"
+                    href="#experience"
                   >
                     <Text
                       style={{
@@ -1349,6 +1316,7 @@ export default function Home() {
             backgroundColor: colors.background_light,
             minHeight: "fit-content",
           }}
+          id="projects"
         >
           <Row
             fillWidth
@@ -1424,6 +1392,7 @@ export default function Home() {
             backgroundColor: colors.background_light,
             minHeight: "fit-content",
           }}
+          id="about"
         >
           <Flex
             className="about-me-container"
@@ -1582,6 +1551,7 @@ export default function Home() {
             backgroundColor: colors.background_light,
             minHeight: "fit-content",
           }}
+          id="experience"
         >
           <Column gap="40" fillWidth maxWidth={95}>
             <Row vertical="center" horizontal="start" fillWidth>
@@ -1642,7 +1612,12 @@ export default function Home() {
                     className="experience-scroller"
                     fillWidth
                   >
-                    <Row gap="16" vertical="center" fillWidth>
+                    <Row
+                      gap="16"
+                      vertical="center"
+                      fillWidth
+                      horizontal="start"
+                    >
                       <Media
                         src={exp.logo}
                         width={1.5}
@@ -1663,7 +1638,7 @@ export default function Home() {
                           fontFamily: inter_tight.style.fontFamily,
                           fontSize: "1em",
                           color: colors.text,
-                          minWidth: "fit-content",
+                          minWidth: "150px",
                         }}
                       >
                         {exp.name}
@@ -1676,7 +1651,8 @@ export default function Home() {
                           fontSize: "1em",
                           color: colors.text_gray,
                           fontWeight: 400,
-                          minWidth: "350px",
+                          minWidth: "300px",
+                          width: "fit-content",
                           textAlign: "right",
                         }}
                       >
@@ -1910,6 +1886,12 @@ export default function Home() {
                     "#fff";
                   (e.currentTarget as HTMLButtonElement).style.color = "#222";
                 }}
+                onClick={() =>
+                  window.open(
+                    "https://linkedin.com/in/divyanshudhruv",
+                    "_blank"
+                  )
+                }
               >
                 Message me on LinkedIn
               </Button>
