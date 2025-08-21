@@ -20,6 +20,7 @@ import {
   SegmentedControl,
   Text,
 } from "@once-ui-system/core";
+import { ReactLenis, useLenis } from "lenis/react";
 import { MinimalCard, MinimalCardImage } from "@/components/ui/minimal-card";
 import NeumorphButton from "@/components/ui/neumorph-button";
 import LogosWorkedWith from "@/components/logos-worked-with";
@@ -876,9 +877,16 @@ type StackCardProps = {
   name: string;
   description: string;
   link: string;
+  bgDark?: boolean;
 };
 
-function StackCard({ logoSrc, name, description, link }: StackCardProps) {
+function StackCard({
+  logoSrc,
+  name,
+  description,
+  link,
+  bgDark,
+}: StackCardProps) {
   return (
     <Row
       fillWidth
@@ -918,7 +926,11 @@ function StackCard({ logoSrc, name, description, link }: StackCardProps) {
           minWidth={2.5}
           minHeight={2.5}
           radius="s"
-          style={{ background: "#fff" }}
+          style={{
+            background: bgDark
+              ? colors.background_dark
+              : colors.background_light,
+          }}
           unoptimized
           alt={name}
           title={name}
@@ -989,6 +1001,8 @@ function FlickeringGridDemo({ color }: { color: string }) {
 }
 
 export default function Home() {
+  const lenis = useLenis((lenis) => {});
+
   const [githubButtonClicked, setGithubButtonClicked] = useState(false);
 
   const [navFixed, setNavFixed] = React.useState(false);
@@ -1011,6 +1025,8 @@ export default function Home() {
   }, [navFixed]);
   return (
     <>
+      {" "}
+      {/* <ReactLenis root /> */}
       <Flex
         fillWidth
         fitHeight
@@ -1134,7 +1150,8 @@ export default function Home() {
                     >
                       Resume
                     </Text>
-                  </Button> <Button
+                  </Button>{" "}
+                  <Button
                     variant="tertiary"
                     weight="default"
                     className="nav-links"
@@ -1166,7 +1183,6 @@ export default function Home() {
                       About
                     </Text>
                   </Button>
-                 
                   <Button
                     variant="tertiary"
                     weight="default"
@@ -1213,7 +1229,6 @@ export default function Home() {
                       fontSize: "1.1em",
                     }}
                     variant="body-default-l"
-
                   >
                     Email me
                   </Text>
@@ -1504,13 +1519,16 @@ export default function Home() {
                     }
                     overlay={
                       <Card
-                       style={{minWidth:"fit-content"}}
+                        style={{ minWidth: "fit-content" }}
                         radius="m"
                         direction="column"
                         border="neutral-alpha-medium"
                         padding="s"
                       >
-                       <Text onBackground="neutral-weak"> My awesome Private Repository </Text>
+                        <Text onBackground="neutral-weak">
+                          {" "}
+                          My awesome Private Repository{" "}
+                        </Text>
                       </Card>
                     }
                   />
@@ -1803,11 +1821,30 @@ export default function Home() {
                   description="Graphic design"
                   link="https://slime.com/"
                 />
-                <StackCard
+                {/* <StackCard
                   logoSrc="https://avatars.githubusercontent.com/u/201123854?s=200&v=4"
                   name="Nextbench"
                   description="Educational insights"
                   link="https://next-bench-dev.vercel.app"
+                />{" "} */}
+                <StackCard
+                  logoSrc="https://docs.once-ui.com/trademark/icon-dark.svg"
+                  name="Once UI"
+                  description="Design system"
+                  link="https://once-ui.com"
+                  bgDark={true}
+                />
+                <StackCard
+                  logoSrc="https://ai-bot.cn/wp-content/uploads/2024/11/Windsurf-logo.png"
+                  name="Windsurf"
+                  description="AI-powered IDE"
+                  link=""
+                />
+                <StackCard
+                  logoSrc="https://cms.pixso.net/images/home/format-pix.png"
+                  name="Pixso"
+                  description="Figma alternative"
+                  link="https://pixso.net/"
                 />
               </Grid>
             </Flex>
@@ -1919,12 +1956,51 @@ export default function Home() {
                 <br />
                 chat about how we can bring it to life!
               </h2>
-              <Button
-                size="l"
-                weight="default"
-                style={{
-                  background: "#fff",
-                  color: "#222",
+              <Row fitWidth center gap="8">
+                {" "}
+                <Button
+                  size="l"
+                  weight="default"
+                  style={{
+                    background: "#fff",
+                    color: "#222",
+                    fontFamily: inter_tight.style.fontFamily,
+                    fontSize: "1.2em",
+                    borderRadius: "12px",
+                    boxShadow: "0 2px 16px rgba(0,0,0,0.12)",
+                    padding: "16px 32px",
+                    fontWeight: 500,
+                    zIndex: 9999999999999,
+                  }}
+                  aria-label="Message me on LinkedIn"
+                  title="Message me on LinkedIn"
+                  onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => {
+                    (e.currentTarget as HTMLButtonElement).style.background =
+                      "#222";
+                    (e.currentTarget as HTMLButtonElement).style.color = "#fff";
+                    (e.currentTarget as HTMLButtonElement).style.transition =
+                      "background 0.18s cubic-bezier(.4,0,.2,1), color 0.18s cubic-bezier(.4,0,.2,1)";
+                  }}
+                  onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => {
+                    (e.currentTarget as HTMLButtonElement).style.background =
+                      "#fff";
+                    (e.currentTarget as HTMLButtonElement).style.color = "#222";
+                  }}
+                  onClick={() =>
+                    window.open(
+                      "https://linkedin.com/in/divyanshudhruv",
+                      "_blank"
+                    )
+                  }
+                >
+                  Message me on LinkedIn
+                </Button>
+                <Button
+                  size="l"
+                  weight="default"
+                  style={{
+                  background: "#222",
+                  color: "#fff",
                   fontFamily: inter_tight.style.fontFamily,
                   fontSize: "1.2em",
                   borderRadius: "12px",
@@ -1932,30 +2008,28 @@ export default function Home() {
                   padding: "16px 32px",
                   fontWeight: 500,
                   zIndex: 9999999999999,
-                }}
-                aria-label="Message me on LinkedIn"
-                title="Message me on LinkedIn"
-                onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => {
-                  (e.currentTarget as HTMLButtonElement).style.background =
-                    "#222";
-                  (e.currentTarget as HTMLButtonElement).style.color = "#fff";
-                  (e.currentTarget as HTMLButtonElement).style.transition =
-                    "background 0.18s cubic-bezier(.4,0,.2,1), color 0.18s cubic-bezier(.4,0,.2,1)";
-                }}
-                onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => {
+                  }}
+                  aria-label="Email Me"
+                  title="Email Me"
+                  onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => {
                   (e.currentTarget as HTMLButtonElement).style.background =
                     "#fff";
                   (e.currentTarget as HTMLButtonElement).style.color = "#222";
-                }}
-                onClick={() =>
-                  window.open(
-                    "https://linkedin.com/in/divyanshudhruv",
-                    "_blank"
-                  )
-                }
-              >
-                Message me on LinkedIn
-              </Button>
+                  (e.currentTarget as HTMLButtonElement).style.transition =
+                    "background 0.18s cubic-bezier(.4,0,.2,1), color 0.18s cubic-bezier(.4,0,.2,1)";
+                  }}
+                  onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => {
+                  (e.currentTarget as HTMLButtonElement).style.background =
+                    "#222";
+                  (e.currentTarget as HTMLButtonElement).style.color = "#fff";
+                  }}
+                  onClick={() =>
+                  window.open("mailto:divyanshudhruv@proton.me", "_blank")
+                  }
+                >
+                  Email Me
+                </Button>
+              </Row>
             </div>
             <div
               style={{
