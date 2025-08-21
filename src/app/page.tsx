@@ -4,7 +4,9 @@ import React, { useState } from "react";
 import { Fraunces, Inter_Tight } from "next/font/google";
 import {
   Button,
+  Card,
   Column,
+  CursorCard,
   Fade,
   Flex,
   Grid,
@@ -432,9 +434,7 @@ const skills = [
     label: "Linux",
   },
   {
-    icon: (
-     <></>
-    ),
+    icon: <></>,
     label: "And more",
   },
 ];
@@ -1091,12 +1091,13 @@ export default function Home() {
                   <span
                     style={{
                       fontFamily: "monospace",
-                      fontSize: "0.9em",
+                      fontSize: "0.7em",
+                      fontWeight: "bold",
                       marginLeft: "3px",
                     }}
                     aria-label="India Flag"
                   >
-                    🇮🇳
+                    IN
                   </span>
                 </Text>
               </Flex>
@@ -1133,6 +1134,21 @@ export default function Home() {
                     >
                       Resume
                     </Text>
+                  </Button> <Button
+                    variant="tertiary"
+                    weight="default"
+                    className="nav-links"
+                    href="#projects"
+                  >
+                    <Text
+                      style={{
+                        fontFamily: inter_tight.style.fontFamily,
+                        fontSize: "1.1em",
+                      }}
+                      onBackground="neutral-weak"
+                    >
+                      Project
+                    </Text>
                   </Button>
                   <Button
                     variant="tertiary"
@@ -1150,22 +1166,7 @@ export default function Home() {
                       About
                     </Text>
                   </Button>
-                  <Button
-                    variant="tertiary"
-                    weight="default"
-                    className="nav-links"
-                    href="#projects"
-                  >
-                    <Text
-                      style={{
-                        fontFamily: inter_tight.style.fontFamily,
-                        fontSize: "1.1em",
-                      }}
-                      onBackground="neutral-weak"
-                    >
-                      Project
-                    </Text>
-                  </Button>
+                 
                   <Button
                     variant="tertiary"
                     weight="default"
@@ -1203,6 +1204,7 @@ export default function Home() {
                       "#222";
                     (e.currentTarget as HTMLButtonElement).style.color = "#fff";
                   }}
+                  href="mailto:divyanshudhruv@proton.me"
                 >
                   <Text
                     style={{
@@ -1211,6 +1213,7 @@ export default function Home() {
                       fontSize: "1.1em",
                     }}
                     variant="body-default-l"
+
                   >
                     Email me
                   </Text>
@@ -1353,7 +1356,34 @@ export default function Home() {
           <Flex height={1}></Flex>
           <div className="project-grid">
             <MinimalCardDemo />
-          </div>
+          </div>{" "}
+          <Row fillWidth center style={{ scale: 0.9 }}>
+            <NeumorphButton
+              loading={githubButtonClicked}
+              size="large"
+              style={{
+                paddingInline: "24px",
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                setGithubButtonClicked(true);
+                setTimeout(() => {
+                  window.open("https://github.com/divyanshudhruv", "_blank");
+                  setGithubButtonClicked(false);
+                }, 800);
+              }}
+            >
+              <Text
+                variant="body-default-xl"
+                style={{
+                  fontFamily: inter_tight.style.fontFamily,
+                  letterSpacing: "0.6px",
+                }}
+              >
+                View more
+              </Text>
+            </NeumorphButton>
+          </Row>
           {/* Four accent squares at each corner */}
           <Column
             fillWidth
@@ -1445,15 +1475,46 @@ export default function Home() {
                 <br />
                 <br />
                 Along the way, I've built plenty of side projects, some of which
-                have found their way into my own{" "}
-                <a
-                  href="https://divyanshudhruv.is-a.dev/project-graveyard"
-                  style={{ color: colors.text_link }}
-                  aria-label="Project Graveyard"
-                  title="Project Graveyard"
+                you can find in my{" "}
+                <div
+                  style={{
+                    display: "inline-block",
+                    verticalAlign: "baseline",
+                  }}
                 >
-                  project graveyard 🥀
-                </a>
+                  <CursorCard
+                    placement="right"
+                    maxWidth={24}
+                    style={{
+                      display: "inline",
+                      verticalAlign: "baseline",
+                    }}
+                    trigger={
+                      <span>
+                        {" "}
+                        <a
+                          href="https://divyanshudhruv.is-a.dev/project-graveyard"
+                          style={{ color: colors.text_link, display: "inline" }}
+                          aria-label="Project Graveyard"
+                          title="Project Graveyard"
+                        >
+                          project graveyard 🥀🥀
+                        </a>
+                      </span>
+                    }
+                    overlay={
+                      <Card
+                       style={{minWidth:"fit-content"}}
+                        radius="m"
+                        direction="column"
+                        border="neutral-alpha-medium"
+                        padding="s"
+                      >
+                       <Text onBackground="neutral-weak"> My awesome Private Repository </Text>
+                      </Card>
+                    }
+                  />
+                </div>
                 . I love sharing my experiments and failures as much as my
                 successes—each project is a step forward!
               </Text>
