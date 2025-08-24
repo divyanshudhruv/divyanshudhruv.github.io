@@ -87,10 +87,11 @@ export default function Home() {
         fillWidth
         fitHeight
         padding="m"
+        paddingBottom="0"
         style={{
           backgroundColor: colors.background_dark,
-          height: "100vh",
-          maxHeight: "100vh",
+          height: "105vh",
+          maxHeight: "105vh",
         }}
         gap="4"
         direction="column"
@@ -104,7 +105,7 @@ export default function Home() {
           center
           style={{
             backgroundColor: colors.background_light,
-            maxHeight: "calc(100vh - 32px)",
+            maxHeight: "calc(100vh + 30px)",
           }}
         >
           <Flex
