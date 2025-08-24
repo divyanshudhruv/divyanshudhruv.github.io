@@ -1473,11 +1473,52 @@ export default function Home() {
                   lineHeight: "1.6",
                 }}
               >
-                Hi! I'm Divyanshu Dhruv, 17, a passionate full-stack developer who loves
-                coding and building innovative projects. I enjoy exploring new
-                technologies and working with React, Next.js, TypeScript, and
-                Supabase. My favorite part of coding is designing clean and
-                efficient UI/UX while solving complex problems.
+                Hi! I'm Divyanshu Dhruv,{" "}
+                <div
+                  style={{
+                    display: "inline-block",
+                    verticalAlign: "baseline",
+                  }}
+                >
+                  <CursorCard
+                    placement="right"
+                    maxWidth={24}
+                    style={{
+                      display: "inline",
+                      verticalAlign: "baseline",
+                    }}
+                    trigger={
+                      <span
+                        style={{
+                          color: colors.text_link,
+                          display: "inline",
+                          cursor: "pointer",
+                        }}
+                      >
+                        <u>17</u>
+                      </span>
+                    }
+                    overlay={
+                      <Card
+                        style={{ minWidth: "fit-content" }}
+                        radius="m"
+                        direction="column"
+                        border="neutral-alpha-medium"
+                        padding="s"
+                      >
+                        <Text onBackground="neutral-weak">
+                          {" "}
+                          17 years old :)
+                        </Text>
+                      </Card>
+                    }
+                  />
+                </div>
+                , a passionate full-stack developer who loves coding and
+                building innovative projects. I enjoy exploring new technologies
+                and working with React, Next.js, TypeScript, and Supabase. My
+                favorite part of coding is designing clean and efficient UI/UX
+                while solving complex problems.
                 <br />
                 <br />
                 I love experimenting with new frameworks and constantly
@@ -1999,32 +2040,32 @@ export default function Home() {
                   size="l"
                   weight="default"
                   style={{
-                  background: "#222",
-                  color: "#fff",
-                  fontFamily: inter_tight.style.fontFamily,
-                  fontSize: "1.2em",
-                  borderRadius: "12px",
-                  boxShadow: "0 2px 16px rgba(0,0,0,0.12)",
-                  padding: "16px 32px",
-                  fontWeight: 500,
-                  zIndex: 9999999999999,
+                    background: "#222",
+                    color: "#fff",
+                    fontFamily: inter_tight.style.fontFamily,
+                    fontSize: "1.2em",
+                    borderRadius: "12px",
+                    boxShadow: "0 2px 16px rgba(0,0,0,0.12)",
+                    padding: "16px 32px",
+                    fontWeight: 500,
+                    zIndex: 9999999999999,
                   }}
                   aria-label="Email Me"
                   title="Email Me"
                   onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => {
-                  (e.currentTarget as HTMLButtonElement).style.background =
-                    "#fff";
-                  (e.currentTarget as HTMLButtonElement).style.color = "#222";
-                  (e.currentTarget as HTMLButtonElement).style.transition =
-                    "background 0.18s cubic-bezier(.4,0,.2,1), color 0.18s cubic-bezier(.4,0,.2,1)";
+                    (e.currentTarget as HTMLButtonElement).style.background =
+                      "#fff";
+                    (e.currentTarget as HTMLButtonElement).style.color = "#222";
+                    (e.currentTarget as HTMLButtonElement).style.transition =
+                      "background 0.18s cubic-bezier(.4,0,.2,1), color 0.18s cubic-bezier(.4,0,.2,1)";
                   }}
                   onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => {
-                  (e.currentTarget as HTMLButtonElement).style.background =
-                    "#222";
-                  (e.currentTarget as HTMLButtonElement).style.color = "#fff";
+                    (e.currentTarget as HTMLButtonElement).style.background =
+                      "#222";
+                    (e.currentTarget as HTMLButtonElement).style.color = "#fff";
                   }}
                   onClick={() =>
-                  window.open("mailto:divyanshudhruv@proton.me", "_blank")
+                    window.open("mailto:divyanshudhruv@proton.me", "_blank")
                   }
                 >
                   Email Me
