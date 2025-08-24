@@ -113,7 +113,7 @@ const meta = {
       "Divyanshu Dhruv ✷ Full Stack Developer | OS Contributor | Design Engineer | Student",
     description:
       "Divyanshu Dhruv ✷ Full-stack developer | I build innovative projects | Skilled in React, Next.js, TypeScript | Focused on clean UI/UX | I love solving problems | Always learning new tech.",
-    image: "",
+    image: "/og.png",
     canonical: "https://divyanshudhruv.is-a.dev",
     robots: "index,follow",
   },
