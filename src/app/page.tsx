@@ -1473,7 +1473,7 @@ export default function Home() {
                   lineHeight: "1.6",
                 }}
               >
-                Hi! I'm Divyanshu, a passionate full-stack developer who loves
+                Hi! I'm Divyanshu Dhruv, 17, a passionate full-stack developer who loves
                 coding and building innovative projects. I enjoy exploring new
                 technologies and working with React, Next.js, TypeScript, and
                 Supabase. My favorite part of coding is designing clean and
