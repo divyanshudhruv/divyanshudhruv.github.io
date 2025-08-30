@@ -27,6 +27,9 @@ import LogosWorkedWith from "@/components/logos-worked-with";
 import { FlickeringGrid } from "@/components/magicui/flickering-grid";
 import { Meteors } from "@/components/magicui/meteors";
 import { ArrowUp, ArrowUpRight, Menu, Star } from "lucide-react";
+import SplitText from "@/blocks/TextAnimations/SplitText/SplitText";
+import GradualBlurMemo from "@/blocks/Animations/GradualBlur/GradualBlur";
+import AnimatedContent from "@/blocks/Animations/AnimatedContent/AnimatedContent";
 
 const fraunces = Fraunces({
   weight: ["400", "100", "200", "300", "500", "600", "700", "800", "900"],
@@ -1075,164 +1078,205 @@ export default function Home() {
               }}
               className="nav-container"
             >
-              <Flex
-                vertical="center"
-                gap="12"
-                fitWidth
-                horizontal="center"
-                height={3.2}
-                radius="m"
-                background="neutral-medium"
-                overflow="hidden"
-                paddingRight="16"
+              <AnimatedContent
+                distance={150}
+                direction="horizontal"
+                reverse={true}
+                duration={1.2}
+                ease="bounce.out"
+                initialOpacity={0.2}
+                animateOpacity
+                scale={1}
+                threshold={0.2}
+                delay={0.3}
               >
-                <Media
-                  fillHeight
-                  fillWidth
+                <Flex
+                  vertical="center"
+                  gap="12"
+                  fitWidth
+                  horizontal="center"
                   height={3.2}
-                  width={3.2}
-                  src="/me.webp"
-                  unoptimized
                   radius="m"
-                  border="neutral-strong"
-                  alt="Vadodara Location"
-                  title="Vadodara Location"
-                />
-                <Text
-                  onBackground="neutral-medium"
-                  variant="body-default-l"
-                  style={{ fontFamily: inter_tight.style.fontFamily }}
+                  background="neutral-medium"
+                  overflow="hidden"
+                  paddingRight="16"
                 >
-                  Vadodara, India{" "}
-                  <span
-                    style={{
-                      fontFamily: "monospace",
-                      fontSize: "0.7em",
-                      fontWeight: "bold",
-                      marginLeft: "3px",
-                    }}
-                    aria-label="India Flag"
+                  <Media
+                    fillHeight
+                    fillWidth
+                    height={3.2}
+                    width={3.2}
+                    src="/me.webp"
+                    unoptimized
+                    radius="m"
+                    border="neutral-strong"
+                    alt="Vadodara Location"
+                    title="Vadodara Location"
+                  />
+                  <Text
+                    onBackground="neutral-medium"
+                    variant="body-default-l"
+                    style={{ fontFamily: inter_tight.style.fontFamily }}
                   >
-                    IN
-                  </span>
-                </Text>
-              </Flex>
+                    Vadodara, India{" "}
+                    <span
+                      style={{
+                        fontFamily: "monospace",
+                        fontSize: "0.7em",
+                        fontWeight: "bold",
+                        marginLeft: "3px",
+                      }}
+                      aria-label="India Flag"
+                    >
+                      IN
+                    </span>
+                  </Text>
+                </Flex>
+              </AnimatedContent>
+
               <Flex
                 fitWidth
                 height={3.2}
                 gap="20"
                 className="nav-links-container"
               >
-                <Row
-                  fitWidth
-                  fillHeight
-                  border="neutral-medium"
-                  center
-                  vertical="center"
-                  padding="s"
-                  radius="m"
-                  style={{
-                    backgroundColor: colors.background_light,
-                  }}
-                  className="nav-links"
+                <AnimatedContent
+                  distance={250}
+                  direction="horizontal"
+                  reverse={false}
+                  duration={1.2}
+                  ease="bounce.out"
+                  initialOpacity={0}
+                  animateOpacity
+                  scale={1}
+                  threshold={0.2}
+                  delay={0.3}
                 >
-                  <Button
-                    variant="tertiary"
-                    weight="default"
-                    className="nav-links"
-                  >
-                    <Text
-                      style={{
-                        fontFamily: inter_tight.style.fontFamily,
-                        fontSize: "1.1em",
-                      }}
-                      onBackground="neutral-weak"
-                    >
-                      Resume
-                    </Text>
-                  </Button>{" "}
-                  <Button
-                    variant="tertiary"
-                    weight="default"
-                    className="nav-links"
-                    href="#projects"
-                  >
-                    <Text
-                      style={{
-                        fontFamily: inter_tight.style.fontFamily,
-                        fontSize: "1.1em",
-                      }}
-                      onBackground="neutral-weak"
-                    >
-                      Project
-                    </Text>
-                  </Button>
-                  <Button
-                    variant="tertiary"
-                    weight="default"
-                    className="nav-links"
-                    href="#about"
-                  >
-                    <Text
-                      style={{
-                        fontFamily: inter_tight.style.fontFamily,
-                        fontSize: "1.1em",
-                      }}
-                      onBackground="neutral-weak"
-                    >
-                      About
-                    </Text>
-                  </Button>
-                  <Button
-                    variant="tertiary"
-                    weight="default"
-                    className="nav-links"
-                    href="#experience"
-                  >
-                    <Text
-                      style={{
-                        fontFamily: inter_tight.style.fontFamily,
-                        fontSize: "1.1em",
-                      }}
-                      onBackground="neutral-weak"
-                    >
-                      Experience
-                    </Text>
-                  </Button>
-                </Row>
-                <Button
-                  size="l"
-                  weight="default"
-                  style={{
-                    background: "#222",
-                    color: "#fff",
-                    fontFamily: inter_tight.style.fontFamily,
-                  }}
-                  onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => {
-                    (e.currentTarget as HTMLButtonElement).style.background =
-                      "#0a0a0a";
-
-                    (e.currentTarget as HTMLButtonElement).style.transition =
-                      "background 0.18s cubic-bezier(.4,0,.2,1), color 0.18s cubic-bezier(.4,0,.2,1)";
-                  }}
-                  onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => {
-                    (e.currentTarget as HTMLButtonElement).style.background =
-                      "#222";
-                    (e.currentTarget as HTMLButtonElement).style.color = "#fff";
-                  }}
-                  href="mailto:divyanshudhruv@proton.me"
-                >
-                  <Text
+                  <Row
+                    fitWidth
+                    fillHeight
+                    border="neutral-medium"
+                    center
+                    vertical="center"
+                    padding="s"
+                    radius="m"
                     style={{
-                      fontFamily: inter_tight.style.fontFamily,
-                      color: colors.text_lightest,
-                      fontSize: "1.1em",
+                      backgroundColor: colors.background_light,
                     }}
-                    variant="body-default-l"
+                    className="nav-links"
                   >
-                    Email me
-                  </Text>
-                </Button>
+                    <Button
+                      variant="tertiary"
+                      weight="default"
+                      className="nav-links"
+                    >
+                      <Text
+                        style={{
+                          fontFamily: inter_tight.style.fontFamily,
+                          fontSize: "1.1em",
+                        }}
+                        onBackground="neutral-weak"
+                      >
+                        Resume
+                      </Text>
+                    </Button>{" "}
+                    <Button
+                      variant="tertiary"
+                      weight="default"
+                      className="nav-links"
+                      href="#projects"
+                    >
+                      <Text
+                        style={{
+                          fontFamily: inter_tight.style.fontFamily,
+                          fontSize: "1.1em",
+                        }}
+                        onBackground="neutral-weak"
+                      >
+                        Project
+                      </Text>
+                    </Button>
+                    <Button
+                      variant="tertiary"
+                      weight="default"
+                      className="nav-links"
+                      href="#about"
+                    >
+                      <Text
+                        style={{
+                          fontFamily: inter_tight.style.fontFamily,
+                          fontSize: "1.1em",
+                        }}
+                        onBackground="neutral-weak"
+                      >
+                        About
+                      </Text>
+                    </Button>
+                    <Button
+                      variant="tertiary"
+                      weight="default"
+                      className="nav-links"
+                      href="#experience"
+                    >
+                      <Text
+                        style={{
+                          fontFamily: inter_tight.style.fontFamily,
+                          fontSize: "1.1em",
+                        }}
+                        onBackground="neutral-weak"
+                      >
+                        Experience
+                      </Text>
+                    </Button>
+                  </Row>
+                </AnimatedContent>
+                <AnimatedContent
+                  distance={200}
+                  direction="horizontal"
+                  reverse={false}
+                  duration={1.2}
+                  ease="bounce.out"
+                  initialOpacity={0}
+                  animateOpacity
+                  scale={1}
+                  threshold={0.2}
+                  delay={0.5}
+                >
+                  <Button
+                    size="l"
+                    weight="default"
+                    style={{
+                      background: "#222",
+                      color: "#fff",
+                      fontFamily: inter_tight.style.fontFamily,
+                    }}
+                    onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => {
+                      (e.currentTarget as HTMLButtonElement).style.background =
+                        "#0a0a0a";
+
+                      (e.currentTarget as HTMLButtonElement).style.transition =
+                        "background 0.18s cubic-bezier(.4,0,.2,1), color 0.18s cubic-bezier(.4,0,.2,1)";
+                    }}
+                    onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => {
+                      (e.currentTarget as HTMLButtonElement).style.background =
+                        "#222";
+                      (e.currentTarget as HTMLButtonElement).style.color =
+                        "#fff";
+                    }}
+                    href="mailto:divyanshudhruv@proton.me"
+                  >
+                    <Text
+                      style={{
+                        fontFamily: inter_tight.style.fontFamily,
+                        color: colors.text_lightest,
+                        fontSize: "1.1em",
+                      }}
+                      variant="body-default-l"
+                    >
+                      Email me
+                    </Text>
+                  </Button>
+                </AnimatedContent>
               </Flex>
             </Row>
             {/* Hero */}
@@ -1251,42 +1295,67 @@ export default function Home() {
                   align="center"
                   className="hero-text"
                 >
-                  Hello, I'm Divyanshu. Delighted to have you explore my
-                  portfolio. I craft awesome applications for{" "}
-                  <span style={{ color: colors.text_gray }}>
-                    open source community
-                  </span>
-                  .
+                  <SplitText
+                    delay={100}
+                    duration={0.6}
+                    ease="power3.out"
+                    splitType="words"
+                    from={{ opacity: 0, y: 40 }}
+                    to={{ opacity: 1, y: 0 }}
+                    threshold={0.1}
+                    rootMargin="-100px"
+                    textAlign="center"
+                  >
+                    Hello, I'm Divyanshu. Delighted to have you explore my
+                    portfolio. I craft awesome applications for{" "}
+                    <span style={{ color: colors.text_gray }}>
+                      open source community
+                    </span>
+                    .
+                  </SplitText>
                 </Text>
-                <NeumorphButton
-                  loading={githubButtonClicked}
-                  intent="danger"
-                  size="large"
-                  style={{
-                    paddingInline: "24px",
-                    cursor: "pointer",
-                  }}
-                  onClick={() => {
-                    setGithubButtonClicked(true);
-                    setTimeout(() => {
-                      window.open(
-                        "https://github.com/divyanshudhruv",
-                        "_blank"
-                      );
-                      setGithubButtonClicked(false);
-                    }, 800);
-                  }}
+                <AnimatedContent
+                  distance={40}
+                  direction="vertical"
+                  reverse={false}
+                  duration={1.2}
+                  ease="bounce.out"
+                  initialOpacity={0}
+                  animateOpacity
+                  scale={1}
+                  threshold={0.2}
+                  delay={0.7}
                 >
-                  <Text
-                    variant="body-default-xl"
+                  <NeumorphButton
+                    loading={githubButtonClicked}
+                    intent="danger"
+                    size="large"
                     style={{
-                      fontFamily: inter_tight.style.fontFamily,
-                      letterSpacing: "0.6px",
+                      paddingInline: "24px",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => {
+                      setGithubButtonClicked(true);
+                      setTimeout(() => {
+                        window.open(
+                          "https://github.com/divyanshudhruv",
+                          "_blank"
+                        );
+                        setGithubButtonClicked(false);
+                      }, 800);
                     }}
                   >
-                    Visit my Github
-                  </Text>
-                </NeumorphButton>
+                    <Text
+                      variant="body-default-xl"
+                      style={{
+                        fontFamily: inter_tight.style.fontFamily,
+                        letterSpacing: "0.6px",
+                      }}
+                    >
+                      Visit my Github
+                    </Text>
+                  </NeumorphButton>
+                </AnimatedContent>
                 {/* Worked with */}
                 <Column
                   center
@@ -1373,31 +1442,43 @@ export default function Home() {
             <MinimalCardDemo />
           </div>{" "}
           <Row fillWidth center style={{ scale: 0.9 }}>
-            <NeumorphButton
-              loading={githubButtonClicked}
-              size="large"
-              style={{
-                paddingInline: "24px",
-                cursor: "pointer",
-              }}
-              onClick={() => {
-                setGithubButtonClicked(true);
-                setTimeout(() => {
-                  window.open("https://github.com/divyanshudhruv", "_blank");
-                  setGithubButtonClicked(false);
-                }, 800);
-              }}
+            <AnimatedContent
+              distance={20}
+              direction="vertical"
+              reverse={false}
+              duration={0.3}
+              ease="bounce.out"
+              initialOpacity={1}
+              animateOpacity
+              threshold={0.2}
+              delay={0.3}
             >
-              <Text
-                variant="body-default-xl"
+              <NeumorphButton
+                loading={githubButtonClicked}
+                size="large"
                 style={{
-                  fontFamily: inter_tight.style.fontFamily,
-                  letterSpacing: "0.6px",
+                  paddingInline: "24px",
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  setGithubButtonClicked(true);
+                  setTimeout(() => {
+                    window.open("https://github.com/divyanshudhruv", "_blank");
+                    setGithubButtonClicked(false);
+                  }, 800);
                 }}
               >
-                View more
-              </Text>
-            </NeumorphButton>
+                <Text
+                  variant="body-default-xl"
+                  style={{
+                    fontFamily: inter_tight.style.fontFamily,
+                    letterSpacing: "0.6px",
+                  }}
+                >
+                  View more
+                </Text>
+              </NeumorphButton>
+            </AnimatedContent>
           </Row>
           {/* Four accent squares at each corner */}
           <Column
@@ -1464,6 +1545,7 @@ export default function Home() {
                   Lifelong learner.
                 </span>
               </Text>
+
               <Text
                 style={{
                   fontFamily: inter_tight.style.fontFamily,
@@ -1997,7 +2079,7 @@ export default function Home() {
                 <br />
                 chat about how we can bring it to life!
               </h2>
-              <Row fitWidth center gap="8">
+              <Row fitWidth center gap="8" wrap>
                 {" "}
                 <Button
                   size="l"
@@ -2036,7 +2118,7 @@ export default function Home() {
                 >
                   Message me on LinkedIn
                 </Button>
-                <Button
+                {/* <Button
                   size="l"
                   weight="default"
                   style={{
@@ -2069,7 +2151,7 @@ export default function Home() {
                   }
                 >
                   Email Me
-                </Button>
+                </Button> */}
               </Row>
             </div>
             <div
