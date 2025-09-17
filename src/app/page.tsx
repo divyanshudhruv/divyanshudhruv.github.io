@@ -39,59 +39,128 @@ const pfpUrl =
 
 const projectData = [
   {
-    imageSrc:
-      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
-    title: "Taskify Pro",
+    imageSrc: "/refolio.png",
+    title: "Re-folio",
     description:
-      "A productivity app to manage daily tasks, set reminders, and track progress with a beautiful UI.",
-    techs: ["React", "TypeScript", "Next.js", "Chakra UI"],
-    liveUrl: "https://taskifypro.example.com",
-    githubUrl: "https://github.com/yourname/taskifypro",
-    tag: "Featured",
+      "A modern resufolio builder with customizable templates and easy deployment.",
+    techs: ["NextJS", "Tailwind", "OnceUI", "Supabase"],
+    liveUrl: "https://re-folio.vercel.app",
+    githubUrl: "https://github.com/divyanshudhruv/re-folio",
+    tag: "AUG 2025",
   },
   {
-    imageSrc:
-      "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80",
-    title: "CryptoDash",
+    imageSrc: "/hl1.png",
+    title: "Hellolink",
     description:
-      "A real-time cryptocurrency dashboard with price charts, news, and portfolio tracking.",
-    techs: ["Vue", "Tailwind", "D3.js", "Firebase"],
-    liveUrl: "https://cryptodash.example.com",
-    githubUrl: "https://github.com/yourname/cryptodash",
-    tag: "Web3",
+      "A simple, fast, and customizable link-in-bio tool to showcase your online presence.",
+    techs: ["Vite", "Tailwind", "Supabase", "Auth0"],
+    liveUrl: "https://hellolink.vercel.app",
+    githubUrl: "https://github.com/divyanshudhruv/hellolink",
+    tag: "MAR 2025",
   },
   {
-    imageSrc:
-      "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80",
-    title: "DevConnect",
+    imageSrc: "/image.png",
+    title: "Kanba",
     description:
-      "A social platform for developers to share projects, blogs, and collaborate on open source.",
-    techs: ["Next.js", "Prisma", "PostgreSQL", "Auth0"],
-    liveUrl: "https://devconnect.example.com",
-    githubUrl: "https://github.com/yourname/devconnect",
-    tag: "Open Source",
+      "An open-source kanban board app to organize tasks and collaborate with teams.",
+    techs: ["NextJS", "Tailwind", "Supabase", "ShadcnUI"],
+    liveUrl: "https://kanba.co",
+    githubUrl: "https://github.com/yourname/kanba",
+    tag: "JULY 2025",
   },
   {
-    imageSrc:
-      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=400&q=80",
-    title: "SnapGallery",
+    imageSrc: "/mst.png",
+    title: "Pikodo",
     description:
-      "A fast, responsive photo gallery app with cloud storage and AI-powered search.",
-    techs: ["React", "Node.js", "AWS S3", "TensorFlow.js"],
+      "A simple app to send personalized message and photos to your loved ones.",
+    techs: ["React"],
+    liveUrl: "",
+    githubUrl: "",
+    tag: "ONGOING",
+  },
+  {
+    imageSrc: "/og-theta.png",
+    title: "Theta0",
+    description:
+      "A kind of simple and playful THREADS alternative built with Next.js and Supabase.",
+    techs: ["React", "TypeScript", "NextJS", "OnceUI"],
+    liveUrl: "https://theta0.vercel.app",
+    githubUrl: "https://github.com/divyanshudhruv",
+    tag: "SEPT 2025",
+  },  {
+    imageSrc: "/nb.png",
+    title: "Nextbench",
+    description:
+      "School and University search platform with advanced filtering and bookmarking.",
+    techs: ["Pandas", "FastAPI", "React", "OnceUI"],
+    liveUrl: "https://next-bench-dev.vercel.app",
+    githubUrl: "https://github.com/sonamii/next-bench",
+    tag: "ONGOING",
+  },
+
+  // {
+  //   imageSrc: "/floid1.png",
+  //   title: "Floid",
+  //   description:
+  //     "An open-source API based tool to share and discover AI prompts.",
+  //   techs: ["NextJS", "FastAPI", "Supabase", "Pandas"],
+  //   liveUrl: "https://floid.vercel.app",
+  //   githubUrl: "https://github.com/divyanshudhruv/floid",
+  //   tag: "JULY 2025",
+  // },
+  {
+    imageSrc: "/1960.png",
+    title: "OnceUI + Starter",
+    description:
+      "A clean starter kit for React and Next.js projects, featuring OnceUI and tailwindCSS.",
+    techs: ["OnceUI", "Tailwind", "ShadcnUI", "NextJS"],
     liveUrl: "https://snapgallery.example.com",
     githubUrl: "https://github.com/yourname/snapgallery",
-    tag: "AI",
+    tag: "SEPT 2025",
   },
   {
     imageSrc:
-      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80",
-    title: "FitTrackr",
+      "https://framerusercontent.com/images/oevZjkSNUHoeeER1iv27eFxaCk.png?scale-down-to=512",
+    title: "Sourceful Space",
     description:
-      "A fitness tracking app to log workouts, monitor progress, and connect with friends.",
-    techs: ["Flutter", "Firebase", "Redux", "Chart.js"],
-    liveUrl: "https://fittrackr.example.com",
-    githubUrl: "https://github.com/yourname/fittrackr",
-    tag: "Health",
+      "A collaborative platform for developers to share and discover open-source projects.",
+    techs: ["React", "Node.js", "OnceUI", "Supabase"],
+    liveUrl: "https://sourceful-space.vercel.app",
+    githubUrl: "https://github.com/divyanshudhruv/sourceful-space",
+    tag: "MAY 2025",
+  },
+  //  ,
+  //   {
+  //     imageSrc: "/1937.png",
+  //     title: "SnapGallery",
+  //     description:
+  //       "A fast, responsive photo gallery app with cloud storage and AI-powered search.",
+  //     techs: ["React", "Node.js", "AWS S3", "TensorFlow.js"],
+  //     liveUrl: "https://snapgallery.example.com",
+  //     githubUrl: "https://github.com/yourname/snapgallery",
+  //     tag: "AI",
+  //   },
+
+
+  {
+    imageSrc: "/bc.png",
+    title: "???",
+    ignoreMaxHeight: true,
+    description:
+      "A super minimal daily planner app to organize tasks and events.",
+    techs: [
+      "Flutter",
+      "Firebase",
+      "Redux",
+      "Chart.js",
+      "Supabase",
+      "OnceUI",
+      "ShadcnUI",
+      "AsdFs",
+    ],
+    liveUrl: "https://dailytea.example.com",
+    githubUrl: "https://github.com/yourname/dailytea",
+    tag: "ONGOING",
   },
 ];
 
@@ -130,11 +199,7 @@ export default function Home() {
               A fullstack developer and open source enthusiast.
             </Text>
             <Flex height={1}></Flex>
-            <Text
-              variant="body-default-m"
-              onBackground="neutral-medium"
-              wrap="balance"
-            >
+            <Text variant="body-default-m" onBackground="neutral-medium">
               A 17-year-old full-stack developer passionate about open source,
               UI/UX, and building cool projects with React, Next.js, and
               TypeScript. I love music, gaming, and exploring new tech.
@@ -324,6 +389,7 @@ type ProjectCardProps = {
   liveUrl: string;
   githubUrl: string;
   tag: string;
+  ignoreMaxHeight?: boolean;
 };
 
 function ProjectCard({
@@ -334,9 +400,10 @@ function ProjectCard({
   liveUrl,
   githubUrl,
   tag,
+  ignoreMaxHeight = false,
 }: ProjectCardProps) {
   return (
-    <Flex>
+    <Flex flex={1}>
       <Card
         direction="column"
         padding="s"
@@ -344,7 +411,6 @@ function ProjectCard({
         borderStyle="dashed"
         radius="xl"
         minWidth={20}
-        maxWidth={29}
         fillWidth
         gap="16"
       >
@@ -353,9 +419,10 @@ function ProjectCard({
           fillHeight
           src={imageSrc}
           radius="m-4"
-          aspectRatio="16/8"
+          aspectRatio="16/10"
           border="neutral-medium"
           borderWidth={2}
+          maxHeight={ignoreMaxHeight ? undefined : 200}
         />
         <Column gap="4">
           <Text variant="heading-strong-l" onBackground="neutral-strong">
