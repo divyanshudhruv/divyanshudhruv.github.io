@@ -1,5 +1,5 @@
 // IMPORTANT: Replace with your own domain address - it's used for SEO in meta tags and schema
-const baseURL = "https://divyanshudhruv.is-a.dev";
+const baseURL = "https://demo.once-ui.com";
 
 // Import and set font for each variant
 import { Geist } from "next/font/google";
@@ -40,8 +40,8 @@ const fonts = {
 const style = {
   theme: "system", // dark | light | system
   neutral: "gray", // sand | gray | slate
-  brand: "blue", // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan
-  accent: "indigo", // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan
+  brand: "cyan", // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan
+  accent: "orange", // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan
   solid: "contrast", // color | contrast | inverse
   solidStyle: "flat", // flat | plastic
   border: "playful", // rounded | playful | conservative
@@ -109,13 +109,13 @@ const effects = {
 const meta = {
   home: {
     path: "/",
-    title:
-      "Divyanshu Dhruv ✷ Full Stack Developer | OS Contributor | Design Engineer | Student",
+    title: "Once UI + Tailwind CSS Starter Kit",
     description:
-      "Divyanshu Dhruv ✷ Full-stack developer | I build innovative projects | Skilled in React, Next.js, TypeScript | Focused on clean UI/UX | I love solving problems | Always learning new tech.",
-    image: "/og.png",
-    canonical: "https://divyanshudhruv.is-a.dev",
+      "An open-source design system and component library for Next.js that emphasizes easy styling and accessibility in UI development.",
+    image: "/images/og/home.jpg",
+    canonical: "https://once-ui.com",
     robots: "index,follow",
+    alternates: [{ href: "https://once-ui.com", hrefLang: "en" }],
   },
   // add more routes and reference them in page.tsx
 };
@@ -123,17 +123,17 @@ const meta = {
 // default schema data
 const schema = {
   logo: "",
-  type: "Website",
-  name: "Portfolio",
+  type: "Organization",
+  name: "Once UI",
   description: meta.home.description,
-  email: "divyanshudhruv@proton.me",
+  email: "lorant@once-ui.com",
 };
 
 // social links
 const social = {
-  twitter: "https://www.twitter.com/",
-  linkedin: "https://www.linkedin.com/in/divyanshudhruv/",
-  github: "https://github.com/divyanshudhruv",
+  twitter: "https://www.twitter.com/_onceui",
+  linkedin: "https://www.linkedin.com/company/once-ui/",
+  discord: "https://discord.com/invite/5EyAQ4eNdS",
 };
 
 export { baseURL, fonts, style, meta, schema, social, effects, dataStyle };

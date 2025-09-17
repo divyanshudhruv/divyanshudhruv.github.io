@@ -1,145 +1,86 @@
-# 🌃🌐 My Portfolio — Animated
+# Once UI + Tailwind CSS Starter Kit
 
-Welcome to my **`⛓️‍💥 modern`, ` 🏃‍♂️ animated` `🫠 portfolio`**! This site is a dynamic showcase of my **`✨ skills`**, **`📁 projects`**, and professional **`🏫 experience`**—all built with the latest frontend technologies and a focus on **`🍧 smooth`**, engaging user experiences.
+A design system for indie builders, startups, and freelancers. Once UI combines the simplicity of low-code with the power of code: write 70% less code compared to shadcn + Tailwind. Includes 100+ advanced components. **`(P.S. Once UI is enough, but hey, we added shadcn support for the overachievers!)`**
 
-<br>
+Check the demo [here (will improve later)](https://once-ui-tailwind-starter.vercel.app).
 
-## 📸 **Screenshot**
-<img width="1649" height="881" alt="Screenshot 2025-08-04 192053" src="https://github.com/user-attachments/assets/4908a7d4-2251-4e89-9367-b9529b057f4c" />
+![Once UI](public/images/og/home.png)
 
-<br>
-<Br>
+## Features
 
-> [!NOTE]  
-> This portfolio is a living project—expect updates and new features regularly.
+A lightweight starter template with the [Once UI Core](https://github.com/once-ui-system/core) package and our recommended setup to move fast and break limits without neglecting quality.
 
+* **Customization**: Manage design config in a single file.
+* **Components**: Access advanced components with simple APIs.
+* **Data-viz**: Add responsive charts with a few lines of code.
+* **SEO**: Use our SEO components to simplify meta and schema setup.
+* **PRO**: Launch ready-made apps with minimal coding with Once UI Pro.
+* **Tailwind CSS**: Enjoy the benefits of Tailwind CSS integration out of the box.
+* **Shadcn Support**: For those who want even more components, we've got you covered.
 
-<br>
-  
-## 🙋‍♂️ **About This Portfolio**
+[Get Once UI Pro](https://once-ui.com/pricing)
 
-The **`project`** is designed to highlight my journey as a **`developer`**. Explore interactive sections, animated transitions, and a **`kinda responsive`** layout that looks great on any device. All content is hand-crafted—no AI-generated fluff, just real **`projects`** and **`skills`**.
+## Documentation
 
-<br>
+Learn how to build with Once UI at [docs.once-ui.com](https://docs.once-ui.com/once-ui/quick-start).
 
-## ✨ **Features**
+## Quick start
 
-A next-gen, visually appealing portfolio built with [Once UI](https://once-ui.com), focused on clarity and interactivity.
+[Magic Portfolio](https://once-ui.com/products/magic-portfolio) (FREE): Portfolio starter used and loved by thousands of creatives. Simple, customizable, responsive.
 
-**`1.`** 🖼️ **`Animated Components`**: Smooth **transitions** and engaging UI elements  
-**`2.`** 🧭 **`Seamless Navigation`**: Effortless **movement** between sections  
-**`3.`** 📱 **`Responsive Design`**: Optimized for all **screens**  
-**`4.`** 🗂️ **`Modular Content`**: Easy to **update** and expand  
-**`5.`** 🎨 **`Modern UI`**: Built with **Once U**I and **Framer Motion** for a polished look
+[Magic Docs](https://once-ui.com/products/magic-docs) (FREE): Documentation generator. Just add your MDX files and let Magic Docs handle the rest.
 
-<br>
+[Magic Bio](https://once-ui.com/products/magic-bio) (FREE): Link-in-bio template that automatically fetches open-graph data. Just add your links and deploy.
 
-[**`Visit My Portfolio`**](https://divyanshudhruv.is-a.dev) and see my work in action.
+[Magic Convert](https://once-ui.com/products/magic-convert) (PRO): Conversion-optimized landing page and dashboard template.
 
-<br>
+[Magic Agent](https://once-ui.com/products/magic-agent) (PRO): Deployment-ready AI agent built with the Vercel AI SDK.
 
-## 🛠️ **Technology Stack**
+[Magic Store](https://once-ui.com/products/magic-store) (PRO): Ecommerce storefront that lets you sell digital and physical products.
 
-- ⚛️ **`React`** (Next.js)
-- 🟦 **`TypeScript`**
-- 🟨 **`JavaScript`**
-- 🎨 **`CSS Modules`**
-- 🦸 **`Framer Motion`** (Animations)
-- 🧩 **`Once UI`** (Design System)
-- ▲ **`Vercel`** (Deployment)
+[Once UI Blocks](https://once-ui.com/blocks) (PRO): Copy-paste pre-designed blocks and deploy fully-functional sites with lightning speed.
 
-<br>
+## Design
 
-## 🎥 **Demo**
+The design counterpart of the Once UI system is available [here](https://once-ui.com/figma).
 
-See the portfolio live: [**`Demo`**](https://divyanshudhruv.is-a.dev)
+## Get started
 
-<br>
-
-## 🧩 **Design & Customization**
-
-- 🎨 **Tokens:**  
-    - Design tokens (colors, spacing, typography) in `src/resources/once-ui.config.js`
-    - Custom styles in `src/resources/custom.css` and `src/app/global.css`
-
-- 🧱 **Components:**  
-    - Modular components for easy updates and scalability
-
-- 🌗 **Theming:**  
-    - Fully responsive and mobile-first
-
-<br>
-
-## 📁 Project Structure
-
-A quick look at the directory layout:
-
-```
-portfolio/
-├── src/
-│   ├── app/                # Main pages and sections
-│   ├── components/         # UI components
-│   └── lib/                # Utilities
-├── public/                 # Static assets
-├── package.json
-```
-
-<br>
-
-## 🌠 Getting Started
-
-Want to run this portfolio locally and see what's going on? Follow these steps:
-
-### ⚙️ Prerequisites
-
-**`1.`** Node.js 18+  
-**`2.`** npm or yarn
-
-### 📩 Installation
-
-1. **Clone the repository:**
-
+Clone the starter template from GitHub:
 ```bash
-git clone https://github.com/divyanshudhruv/portfolio.git
-cd portfolio
+git clone https://github.com/divyanshudhruv/once-ui-tailwind-starter
 ```
 
-2. **Install dependencies:**
+## Creators
 
-```bash
-npm install
-```
+Connect with us!
 
-3. **Run the development server:**
+**Lorant One**: [Site](https://lorant.one) / [Threads](https://www.threads.net/@lorant.one) / [LinkedIn](https://www.linkedin.com/in/lorant-one/)
 
-```bash
-npm run dev
-```
+**Zsofia Komaromi**: [Site](https://zsofia.pro) / [Threads](https://www.threads.net/@zsofia_kom) / [LinkedIn](https://www.linkedin.com/in/zsofiakomaromi/)
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+**Divyanshu Dhruv `(contributor)`**: [Site](https://divyanshudhruv.is-a.dev) / [LinkedIn](https://www.linkedin.com/in/divyanshudhruv/)
 
-<br>
+## Become a Oncer
 
-## 👨‍💻 **Author**
+![Design Engineers Club](https://docs.once-ui.com/images/docs/vibe-coding-dark.jpg)
 
-**Divyanshu Dhruv**  
-- [GitHub](https://github.com/divyanshudhruv)  
-- [Website](https://divyanshudhruv.is-a.dev)  
-- [LinkedIn](https://www.linkedin.com/in/divyanshudhruv/)
+Join the [Design Engineers Club](https://discord.com/invite/5EyAQ4eNdS) on Discord to connect with us and share your projects.
 
-<br>
+Found a bug? Report it [here](https://github.com/once-ui-system/nextjs-starter/issues/new?labels=bug&template=bug_report.md). Got a feature request? Submit it [here](https://github.com/once-ui-system/nextjs-starter/issues/new?labels=feature%20request&template=feature_request.md).
 
-## 📄 **License**
+Please use the Once UI Core [GitHub repository](https://github.com/once-ui-system/core) for design system contributions.
 
-See [`LICENSE`](LICENSE) for details.
+## Sponsors
 
-<br>
+Once UI is an indie project. [Sponsor us](https://github.com/sponsors/once-ui-system) and get featured on our site!
 
-## 🏷️ **Credits**
+## License
 
-- 🧩 Built with [**`Once UI`**](https://once-ui.com)
-- 🦸 Animated by [**`Framer Motion`**](https://www.framer.com/motion/)
+Distributed under the MIT License. See `LICENSE.txt` for more information.
 
-<br>
+## Deploy to Vercel 
 
-_☕ Crafted by me, hehehehe._
+_For OnceUI Legacy_
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fonce-ui-system%2Fnextjs-starter&project-name=nextjs-starter&repository-name=nextjs-starter&redirect-url=https%3A%2F%2Fgithub.com%2Fonce-ui-system%2Fnextjs-starter&demo-title=Next.js%20Starter&demo-description=Showcase%20your%20designers%20or%20developer%20portfolio&demo-url=https%3A%2F%2Fdemo.nextjs-starter.com&demo-image=%2F%2Fraw.githubusercontent.com%2Fonce-ui-system%2Fnextjs-starter%2Fmain%2Fpublic%2Fimages%2Fog%2Fhome.jpg)

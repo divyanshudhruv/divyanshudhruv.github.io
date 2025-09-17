@@ -1,28 +1,12 @@
-import "@once-ui-system/core/css/styles.css";
-import "@once-ui-system/core/css/tokens.css";
-import "@/resources/custom.css";
-import "./global.css";
+import '@once-ui-system/core/css/styles.css';
+import '@once-ui-system/core/css/tokens.css';
+import '@/resources/custom.css'
 
 import classNames from "classnames";
 
-import {
-  baseURL,
-  meta,
-  fonts,
-  style,
-  dataStyle,
-} from "@/resources/once-ui.config";
-import {
-  Meta,
-  Schema,
-  Column,
-  Flex,
-  LayoutProvider,
-} from "@once-ui-system/core";
-import { Providers } from "@/components/Providers";
-import LocomotiveScroll from "locomotive-scroll";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Analytics } from "@vercel/analytics/react";
+import { baseURL, meta, fonts, effects, style, dataStyle } from "@/resources/once-ui.config";
+import { Meta, Schema,  Column, Flex, opacity, SpacingToken, Background} from "@once-ui-system/core";
+import { Providers } from '@/components/Providers';
 
 export async function generateMetadata() {
   return Meta.generate({
@@ -33,6 +17,7 @@ export async function generateMetadata() {
     canonical: meta.home.canonical,
     image: meta.home.image,
     robots: meta.home.robots,
+    alternates: meta.home.alternates,
   });
 }
 
@@ -51,7 +36,7 @@ export default function RootLayout({
         fonts.heading.variable,
         fonts.body.variable,
         fonts.label.variable,
-        fonts.code.variable
+        fonts.code.variable,
       )}
     >
       <Schema
@@ -62,16 +47,6 @@ export default function RootLayout({
         path={meta.home.path}
       />
       <head>
-        <script
-          noModule
-          src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.6.0/polyfill.min.js"
-          crossOrigin="anonymous"
-        ></script>
-        <script
-          noModule
-          src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=Object.assign%2CElement.prototype.append%2CNodeList.prototype.forEach%2CCustomEvent%2Csmoothscroll"
-          crossOrigin="anonymous"
-        ></script>
         <script
           id="theme-init"
           dangerouslySetInnerHTML={{
@@ -87,12 +62,12 @@ export default function RootLayout({
                     accent: style.accent,
                     neutral: style.neutral,
                     solid: style.solid,
-                    "solid-style": style.solidStyle,
+                    'solid-style': style.solidStyle,
                     border: style.border,
                     surface: style.surface,
                     transition: style.transition,
                     scaling: style.scaling,
-                    "viz-style": dataStyle.variant,
+                    'viz-style': dataStyle.variant,
                   })};
                   
                   // Apply default values
@@ -132,13 +107,10 @@ export default function RootLayout({
         />
       </head>
       <Providers>
-        <SpeedInsights />
-        <Analytics />
-        <LayoutProvider>
-          <Column as="body" fillWidth margin="0" padding="0">
-            {children}
-          </Column>
-        </LayoutProvider>
+        <Column as="body" background="page" fillWidth margin="0" padding="0">
+         
+          {children}
+        </Column>
       </Providers>
     </Flex>
   );
