@@ -1,10 +1,10 @@
-# Once UI + Tailwind CSS Starter Kit
+# Once UI for Next.js
 
-A design system for indie builders, startups, and freelancers. Once UI combines the simplicity of low-code with the power of code: write 70% less code compared to shadcn + Tailwind. Includes 100+ advanced components. **`(P.S. Once UI is enough, but hey, we added shadcn support for the overachievers!)`**
+A design system for indie builders, startups and freelancers. Once UI combines the simplicity of low-code with the power of code: write 70% less code compared to shadcn + Tailwind. Includes 100+ advanced components.
 
-Check the demo [here (will improve later)](https://once-ui-tailwind-starter.vercel.app).
+Check the demo [here](https://demo.once-ui.com).
 
-![Once UI](public/images/og/home.png)
+![Once UI](public/images/og/home.jpg)
 
 ## Features
 
@@ -15,8 +15,6 @@ A lightweight starter template with the [Once UI Core](https://github.com/once-u
 * **Data-viz**: Add responsive charts with a few lines of code.
 * **SEO**: Use our SEO components to simplify meta and schema setup.
 * **PRO**: Launch ready-made apps with minimal coding with Once UI Pro.
-* **Tailwind CSS**: Enjoy the benefits of Tailwind CSS integration out of the box.
-* **Shadcn Support**: For those who want even more components, we've got you covered.
 
 [Get Once UI Pro](https://once-ui.com/pricing)
 
@@ -48,7 +46,7 @@ The design counterpart of the Once UI system is available [here](https://once-ui
 
 Clone the starter template from GitHub:
 ```bash
-git clone https://github.com/divyanshudhruv/once-ui-tailwind-starter
+git clone https://github.com/once-ui-system/nextjs-starter.git
 ```
 
 ## Creators
@@ -58,8 +56,6 @@ Connect with us!
 **Lorant One**: [Site](https://lorant.one) / [Threads](https://www.threads.net/@lorant.one) / [LinkedIn](https://www.linkedin.com/in/lorant-one/)
 
 **Zsofia Komaromi**: [Site](https://zsofia.pro) / [Threads](https://www.threads.net/@zsofia_kom) / [LinkedIn](https://www.linkedin.com/in/zsofiakomaromi/)
-
-**Divyanshu Dhruv `(contributor)`**: [Site](https://divyanshudhruv.is-a.dev) / [LinkedIn](https://www.linkedin.com/in/divyanshudhruv/)
 
 ## Become a Oncer
 
@@ -79,8 +75,5 @@ Once UI is an indie project. [Sponsor us](https://github.com/sponsors/once-ui-sy
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
-## Deploy to Vercel 
-
-_For OnceUI Legacy_
-
+## Deploy to Vercel
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fonce-ui-system%2Fnextjs-starter&project-name=nextjs-starter&repository-name=nextjs-starter&redirect-url=https%3A%2F%2Fgithub.com%2Fonce-ui-system%2Fnextjs-starter&demo-title=Next.js%20Starter&demo-description=Showcase%20your%20designers%20or%20developer%20portfolio&demo-url=https%3A%2F%2Fdemo.nextjs-starter.com&demo-image=%2F%2Fraw.githubusercontent.com%2Fonce-ui-system%2Fnextjs-starter%2Fmain%2Fpublic%2Fimages%2Fog%2Fhome.jpg)
