@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@once-ui-system/core": "latest",
+    "@phosphor-icons/react": "^2.1.10",
     "@tabler/icons-react": "^3.40.0",
     "@tailwindcss/postcss": "^4.2.1",
     "class-variance-authority": "^0.7.1",

@@ -6,11 +6,11 @@
   "tailwind": {
     "config": "",
     "css": "src/app/global.css",
-    "baseColor": "stone",
+    "baseColor": "neutral",
     "cssVariables": true,
     "prefix": ""
   },
-  "iconLibrary": "tabler",
+  "iconLibrary": "phosphor",
   "rtl": false,
   "aliases": {
     "components": "@/components",

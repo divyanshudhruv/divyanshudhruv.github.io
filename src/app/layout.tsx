@@ -8,7 +8,9 @@ import classNames from "classnames";
 import { baseURL, meta, fonts, style, dataStyle } from "@/resources/once-ui.config";
 import { Meta, Schema,  Column, Flex, Mask, MatrixFx} from "@once-ui-system/core";
 import { Providers } from '@/components/Providers';
-import { Geist_Mono } from "next/font/google";
+import { Geist_Mono, Inter } from "next/font/google";
+
+const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
 const geistMono = Geist_Mono({subsets:['latin'],variable:'--font-mono'});
 

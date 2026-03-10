@@ -1,16 +1,9 @@
 "use client";
 
 import {
-  Heading,
-  Text,
-  Button,
-  Column,
-  Badge,
-  Logo,
-  Line,
-  LetterFx,
-  ThemeSwitcher,
+Column
 } from "@once-ui-system/core";
+import { Button } from "../components/ui/button";
 
 export default function Home() {
   return (
@@ -18,6 +11,7 @@ export default function Home() {
      <h1 className="text-3xl font-bold underline text-red-100">
       Hello world!
     </h1>
+    <Button>Click me</Button>
     </Column>
   );
 }
