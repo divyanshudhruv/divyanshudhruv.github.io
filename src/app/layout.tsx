@@ -1,12 +1,17 @@
 import '@once-ui-system/core/css/styles.css';
 import '@once-ui-system/core/css/tokens.css';
 import '@/resources/custom.css'
+import './global.css'
 
 import classNames from "classnames";
 
 import { baseURL, meta, fonts, style, dataStyle } from "@/resources/once-ui.config";
 import { Meta, Schema,  Column, Flex, Mask, MatrixFx} from "@once-ui-system/core";
 import { Providers } from '@/components/Providers';
+import { Geist_Mono } from "next/font/google";
+
+const geistMono = Geist_Mono({subsets:['latin'],variable:'--font-mono'});
+
 
 export async function generateMetadata() {
   return Meta.generate({
