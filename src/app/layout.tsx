@@ -9,7 +9,7 @@ import { baseURL, meta, fonts, style, dataStyle } from "@/resources/once-ui.conf
 import { Meta, Schema,  Column, Flex, Mask, MatrixFx} from "@once-ui-system/core";
 import { Providers } from '@/components/Providers';
 import { Geist_Mono, Inter } from "next/font/google";
-
+import { TooltipProvider } from "@/components/ui/tooltip"
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
 const geistMono = Geist_Mono({subsets:['latin'],variable:'--font-mono'});
@@ -54,6 +54,9 @@ export default function RootLayout({
         path={meta.home.path}
       />
       <head>
+        
+            <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+          
         <script
           id="theme-init"
           dangerouslySetInnerHTML={{
@@ -115,7 +118,7 @@ export default function RootLayout({
       </head>
       <Providers>
         <Column as="body" background="page" fillWidth margin="0" padding="0">
-          <Column style={{maxHeight: "100dvh"}} fillWidth aspectRatio="1" horizontal="center" position="absolute" top="0" left="0">
+          {/* <Column style={{maxHeight: "100dvh"}} fillWidth aspectRatio="1" horizontal="center" position="absolute" top="0" left="0">
             <Mask maxWidth="m" x={50} y={0} radius={50}>
               <MatrixFx
                 size={1.5}
@@ -125,8 +128,8 @@ export default function RootLayout({
                 flicker
               />
             </Mask>
-          </Column>
-          {children}
+          </Column> */}
+       <TooltipProvider> {children}</TooltipProvider>  
         </Column>
       </Providers>
     </Flex>
