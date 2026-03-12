@@ -1,4 +1,3 @@
-"use client";
 
 import {
   ContributionGraph,
@@ -17,48 +16,44 @@ import {
 } from "@/components/ui/tooltip";
 import { unstable_cache } from "next/cache";
 
-const username = 'divyanshudhruv';
+// const username = 'divyanshudhruv';
 
-interface GitHubContribution {
-  date: string;
-  count: number;
-  level: number;
-}
+// interface GitHubContribution {
+//   date: string;
+//   count: number;
+//   level: number;
+// }
 
-interface GitHubApiResponse {
-  contributions: GitHubContribution[];
-  total: Record<string, number>;
-}
+// interface GitHubApiResponse {
+//   contributions: GitHubContribution[];
+//   total: Record<string, number>;
+// }
 
-const getCachedContributions = unstable_cache(
-  async () => {
-    const url = new URL(`/v4/${username}`, 'https://github-contributions-api.jogruber.de');
-    const response = await fetch(url);
-    const data = await response.json() as GitHubApiResponse;
-    const total = data.total?.[new Date().getFullYear()] || 0;
+// const getCachedContributions = unstable_cache(
+//   async () => {
+//     const url = new URL(`/v4/${username}`, 'https://github-contributions-api.jogruber.de');
+//     const response = await fetch(url);
+//     const data = await response.json() as GitHubApiResponse;
+//     const total = data.total?.[new Date().getFullYear()] || 0;
 
-    return { contributions: data.contributions || [], total };
-  },
-  ['github-contributions'],
-  { revalidate: 60 * 60 * 24 },
-);
+//     return { contributions: data.contributions || [], total };
+//   },
+//   ['github-contributions'],
+//   { revalidate: 60 * 60 * 24 },
+// );
 
-const maxCount = 20;
-const maxLevel = 4;
-const now = new Date();
+// const maxCount = 20;
+// const maxLevel = 4;
+// const now = new Date();
 
 const Example = async () => {
-  const { contributions } = await getCachedContributions();
-  const days = eachDayOfInterval({
-    start: startOfYear(now),
-    end: endOfYear(now),
-  });
-
-  const data = days.map((date) => {
+  const data = eachDayOfInterval({
+    start: startOfYear(new Date()),
+    end: endOfYear(new Date()),
+  }).map((date) => {
     const dateStr = formatISO(date, { representation: "date" });
-    const contribution: GitHubContribution | undefined = contributions.find((c: GitHubContribution) => c.date === dateStr);
-    const count = contribution?.count || 0;
-    const level = Math.ceil((count / maxCount) * maxLevel);
+    const count = Math.floor(Math.random() * 20);
+    const level = Math.ceil((count / 20) * 4);
 
     return {
       date: dateStr,

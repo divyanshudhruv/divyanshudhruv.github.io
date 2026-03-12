@@ -12,14 +12,18 @@ import {
   SmartLink,
   Grid,
   IconButton,
+  List,
   InlineCode,
   Fade,
   AutoScroll,
   Logo,
   Icon,
   ThemeSwitcher,
+  Accordion,
+  ListItem,
+  Tag,Button,
+  Line,
 } from "@once-ui-system/core";
-import { Button } from "../components/ui/button";
 import ContributionGraph from "../components/ContributionGraph";
 import { WorkExperienceDemo } from "../components/Experience";
 
@@ -27,7 +31,9 @@ import { DM_Mono } from "next/font/google";
 import {
   HiArrowRight,
   HiCheckBadge,
+  HiCodeBracket,
   HiMapPin,
+  HiOutlineAcademicCap,
   HiOutlineClock,
   HiOutlineCodeBracket,
   HiOutlineEnvelope,
@@ -36,9 +42,12 @@ import {
   HiOutlineMapPin,
   HiOutlinePhone,
   HiOutlineQuestionMarkCircle,
+  HiOutlineUser,
   HiTrophy,
 } from "react-icons/hi2";
 import Image from "next/image";
+import Experience from "@/components/exp";
+import { Projects } from "@/components/Projects";
 
 const suse = DM_Mono({
   subsets: ["latin"],
@@ -46,57 +55,277 @@ const suse = DM_Mono({
 });
 
 const programmingStacks = [
+   "html",
+   "css",
+   "javascript",
+   "typescript",
+   "react",
+   "nextjs",
+   "vite",
+   "vercel",
+   "tailwind",
+   "bootstrap",
+   "firebase",
+   "supabase",
+   "mysql",
+   "java",
+   "figma",
+   "vitest",
+   "vue",
+   "python",
+   "pytorch",
+   "rabbitmq",
+   "gitlab",
+   "cs",
+   "angular",
+   "arduino",
+   "bash",
+   "bun",
+   "docker",
+   "dotnet",
+   "gcp",
+   "git",
+   "gherkin",
+   "graphql",
+   "htmx",
+   "md",
+   "matlab",
+   "materialui",
+   "mongodb",
+   "netlify",
+   "nodejs",
+   "npm",
+   "pnpm",
+   "opencv",
+   "r",
+   "ubuntu",
+   "replit",
+   "solidity",
+   "tensorflow",
+   "terraform",
+   "threejs",
+   "p5js",
+   "express",
   "html",
-  "css",
-  "javascript",
-  "typescript",
-  "react",
-  "nextjs",
-  "vite",
-  "vercel",
-  "tailwind",
-  "bootstrap",
-  "firebase",
-  "supabase",
-  "mysql",
-  "java",
-  "figma",
-  "vitest",
-  "vue",
-  "python",
-  "pytorch",
-  "rabbitmq",
-  "gitlab",
-  "cs",
-  "angular",
-  "arduino",
-  "bash",
-  "bun",
-  "docker",
-  "dotnet",
-  "gcp",
-  "git",
-  "gherkin",
-  "graphql",
-  "htmx",
-  "md",
-  "matlab",
-  "materialui",
-  "mongodb",
-  "netlify",
-  "nodejs",
-  "npm",
-  "pnpm",
-  "opencv",
-  "r",
-  "ubuntu",
-  "replit",
-  "solidity",
-  "tensorflow",
-  "terraform",
-  "threejs",
-  "p5js",
-  "express",
+];
+export const PROJECTS = [
+  {
+    postingIndex: 0,
+    title: "Refolio",
+    role: "Full-stack Developer",
+    date: "Jan, 2024",
+    linkHref: "https://refolio.dev",
+    tags: ["Next.js", "TypeScript", "PostgreSQL", "Prisma"],
+    logo: "/pfp.webp",
+  },
+  {
+    postingIndex: 1,
+    title: "AlgoPlayground",
+    role: "Frontend Engineer",
+    date: "Mar, 2024",
+    linkHref: "https://algoplayground.dev",
+    tags: ["React", "Redux", "D3.js"],
+    logo: "/pfp.webp",
+  },
+  {
+    postingIndex: 2,
+    title: "TaskFlow API",
+    role: "Backend Developer",
+    date: "Jun, 2024",
+    linkHref: "https://taskflow.dev",
+    tags: ["Node.js", "Express", "MongoDB", "JWT"],
+    logo: "/pfp.webp",
+  },
+  {
+    postingIndex: 3,
+    title: "StudySprint",
+    role: "Full-stack Developer",
+    date: "Sep, 2024",
+    linkHref: "https://studysprint.dev",
+    logo: "/pfp.webp",
+    tags: ["Next.js", "Supabase", "Tailwind CSS"],
+  },
+  {
+    postingIndex: 4,
+    title: "DevNotes",
+    role: "Full-stack Developer",
+    date: "Dec, 2024",
+    linkHref: "https://devnotes.dev",
+    logo: "/pfp.webp",
+    tags: ["React", "Firebase", "Chakra UI"],
+  },
+];
+
+// Sample data for testing
+export const EDUCATION = [
+  {
+    companyLogo: "/school.webp",
+    companyText: "DPSV",
+    postings: [
+      {
+        icon: <HiOutlineAcademicCap />,
+        jobTitle: "Senior Secondary",
+        employmentType: "Student",
+        fromDate: "2024",
+        toDate: "2026",
+        responsibilities: [
+          "Currently pursuing Senior Secondary education with focus on Science and Mathematics.",
+          "Developing advanced problem-solving and analytical skills.",
+          "Preparing for competitive examinations and higher studies.",
+        ],
+        tags: [
+          "Science",
+          "Mathematics",
+          "Physics",
+          "Chemistry",
+          "Computer Science",
+        ],
+      },
+    ],
+  },
+  {
+    companyLogo: "/school.webp",
+    companyText: "SPAD",
+    postings: [
+      {
+        icon: <HiOutlineAcademicCap />,
+        jobTitle: "Primary + Higher Secondary",
+        employmentType: "Student",
+        fromDate: "2015",
+        toDate: "2024",
+        responsibilities: [
+          "Completed comprehensive education from primary through higher secondary levels.",
+          "Built strong foundation in core subjects and developed analytical thinking.",
+          "Actively participated in extracurricular activities and competitions.",
+        ],
+        tags: [
+          "Science",
+          "Mathematics",
+          "Computers",
+          "Problem Solving",
+          "General Studies",
+        ],
+      },
+    ],
+  },
+];
+
+// Sample data for testing
+export const EXPERIENCES = [
+  {
+    companyLogo: "/pfp.webp",
+    companyText: "Covane Space",
+    postings: [
+      {
+        icon: <HiCodeBracket />,
+        jobTitle: "Design Engineer",
+        employmentType: "Full time",
+        fromDate: "2026",
+        toDate: "Present",
+        responsibilities: [
+          "Worked on the registry and React component library.",
+          "Designed and build Pro application components and blocks, from Figma.",
+        ],
+        tags: [
+          "TypeScript",
+          "Supabase",
+          "SCSS",
+          "Open Source",
+          "MCP Server",
+          "AI Agents",
+        ],
+      },
+    ],
+  },
+  {
+    companyLogo: "/nextbench.webp",
+    companyText: "Next Bench",
+    postings: [
+      {
+        icon: <HiCodeBracket />,
+        jobTitle: "Lead Developer",
+        employmentType: "Full time",
+        fromDate: "2025",
+        toDate: "Present",
+        responsibilities: [
+          "Led the development of Next Bench, a platform for building and sharing educational AI agents.",
+          "Designed and built the platform's frontend and backend, using Next.js and Supabase.",
+          "Collaborated with a team of developers to deliver high-quality software.",
+        ],
+        tags: ["TypeScript", "Next.js", "Supabase", "SCSS", "EduTech"],
+      },
+    ],
+  },
+  {
+    companyLogo: "/once-ui.webp",
+    companyText: "Once UI",
+    postings: [
+      {
+        icon: <HiOutlineLightBulb />,
+        jobTitle: "External Collaborator",
+        employmentType: "Part time",
+        fromDate: "2024",
+        toDate: "Present",
+        responsibilities: [
+          "Contributed to open-source projects and provided technical guidance.",
+          "Collaborated with cross-functional teams on various initiatives.",
+          "Participated in code reviews and provided feedback.",
+        ],
+        tags: ["React", "TypeScript", "Next.js", "Jest", "Docker"],
+      },
+    ],
+  },
+  {
+    companyLogo: "/selfemp.webp",
+    companyText: "Self Employed",
+    postings: [
+      {
+        icon: <HiCodeBracket />,
+        jobTitle: "Full Stack Developer",
+        employmentType: "Full time",
+        fromDate: "2024",
+        toDate: "Present",
+        responsibilities: [
+          "Built and launched MVP from scratch using MERN stack.",
+          "Designed RESTful APIs and database schemas.",
+          "Implemented authentication and payment systems.",
+        ],
+        tags: ["Node.js", "Express", "MongoDB", "React", "Stripe"],
+      },
+      {
+        icon: <HiCodeBracket />,
+        jobTitle: "Frontend Developer",
+        employmentType: "Full time",
+        fromDate: "2020",
+        toDate: "2024",
+        responsibilities: [
+          "Developed responsive UI components using React.",
+          "Collaborated with UX team on design implementation.",
+          "Optimized application performance and loading times.",
+        ],
+        tags: ["React Native", "JavaScript", "CSS", "HTML", "Webpack"],
+      },
+    ],
+  },
+  {
+    companyLogo: "/whj.webp",
+    companyText: "WhiteHat Jr.",
+    postings: [
+      {
+        icon: <HiOutlineUser />,
+        jobTitle: "Apprentice",
+        employmentType: "Part time",
+        fromDate: "2020",
+        toDate: "2022",
+        responsibilities: [
+          "Learned programming and web development fundamentals.",
+          "Built simple web applications and games.",
+          "Participated in coding challenges, competitions and hackathons.",
+        ],
+        tags: ["Unity", "HTML", "JavaScript", "React", "Python", "SpaceTech"],
+      },
+    ],
+  },
 ];
 
 const otherTechnologies = [
@@ -166,7 +395,7 @@ export default function Home() {
           <Flex fit borderRight="neutral-alpha-weak">
             {" "}
             <Avatar
-              src="/pfp.png"
+              src="/pfp.webp"
               size="xl"
               padding={"2"}
               border="neutral-alpha-medium"
@@ -545,7 +774,7 @@ export default function Home() {
           borderBottom="neutral-alpha-weak"
           paddingTop={"8"}
         >
-          <ContributionGraph />
+          {/* <ContributionGraph /> */}
         </Flex>
         <Dashed />{" "}
         <Flex
@@ -589,10 +818,85 @@ export default function Home() {
             Experience
           </Text>
         </Flex>{" "}
-        <Flex padding={1} fillWidth fitHeight borderBottom="neutral-alpha-weak">
-          {" "}
+        <Flex fillWidth fitHeight direction="column">
+          {EXPERIENCES.map((exp, expIndex) =>
+            exp.postings.map((posting, postingIndex) => (
+              <Experience
+                key={`${expIndex}-${postingIndex}`}
+                companyLogo={exp.companyLogo}
+                companyText={exp.companyText}
+                posting={posting}
+                postingIndex={postingIndex}
+                totalPostings={exp.postings.length}
+              />
+            )),
+          )}{" "}
         </Flex>{" "}
+        <Dashed />
+        <Flex
+          fillWidth
+          fillHeight
+          paddingX={1}
+          maxHeight={2}
+          minHeight={2}
+          borderBottom="neutral-alpha-weak"
+          vertical="center"
+          horizontal="start"
+        >
+          <Text variant="code-default-xs" onBackground="neutral-weak">
+            Education
+          </Text>
+        </Flex>{" "}
+        <Flex fillWidth fitHeight direction="column">
+          {EDUCATION.map((exp, expIndex) =>
+            exp.postings.map((posting, postingIndex) => (
+              <Experience
+                key={`${expIndex}-${postingIndex}`}
+                companyLogo={exp.companyLogo}
+                companyText={exp.companyText}
+                posting={posting}
+                postingIndex={postingIndex}
+                totalPostings={exp.postings.length}
+              />
+            )),
+          )}
+          
+        </Flex>{" "}
+        <Dashed />{" "}
+        <Flex
+          fillWidth
+          fillHeight
+          paddingX={1}
+          maxHeight={2}
+          minHeight={2}
+          borderBottom="neutral-alpha-weak"
+          vertical="center"
+          horizontal="start"
+        >
+          <Text variant="code-default-xs" onBackground="neutral-weak">
+            Projects
+          </Text>
+        </Flex>{" "}
+        {PROJECTS.map((project) => (
+          <Projects
+            key={project.postingIndex}
+            postingIndex={project.postingIndex}
+            projects={{ tags: project.tags }}
+            title={project.title}
+            role={project.role}
+            date={project.date}
+            linkHref={project.linkHref}
+            logo={project.logo}
+          />
+        ))}
+        <Row center fillWidth padding={1} data-border="conservative" borderBottom="neutral-alpha-weak">
+            <Button size="s">
+              <Text variant="label-default-s">Load More</Text>{" "}
+            </Button>
+          </Row>
+      <Dashed/>
       </Column>
+      
       <Flex height={40} />
     </Column>
   );
