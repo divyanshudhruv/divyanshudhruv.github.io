@@ -21,11 +21,11 @@ import {
   ThemeSwitcher,
   Accordion,
   ListItem,
-  Tag,Button,
+  Tag,
+  Button,
   Line,
 } from "@once-ui-system/core";
 import ContributionGraph from "../components/ContributionGraph";
-import { WorkExperienceDemo } from "../components/Experience";
 
 import { DM_Mono } from "next/font/google";
 import {
@@ -55,105 +55,58 @@ const suse = DM_Mono({
 });
 
 const programmingStacks = [
-   "html",
-   "css",
-   "javascript",
-   "typescript",
-   "react",
-   "nextjs",
-   "vite",
-   "vercel",
-   "tailwind",
-   "bootstrap",
-   "firebase",
-   "supabase",
-   "mysql",
-   "java",
-   "figma",
-   "vitest",
-   "vue",
-   "python",
-   "pytorch",
-   "rabbitmq",
-   "gitlab",
-   "cs",
-   "angular",
-   "arduino",
-   "bash",
-   "bun",
-   "docker",
-   "dotnet",
-   "gcp",
-   "git",
-   "gherkin",
-   "graphql",
-   "htmx",
-   "md",
-   "matlab",
-   "materialui",
-   "mongodb",
-   "netlify",
-   "nodejs",
-   "npm",
-   "pnpm",
-   "opencv",
-   "r",
-   "ubuntu",
-   "replit",
-   "solidity",
-   "tensorflow",
-   "terraform",
-   "threejs",
-   "p5js",
-   "express",
   "html",
-];
-export const PROJECTS = [
-  {
-    postingIndex: 0,
-    title: "Refolio",
-    role: "Full-stack Developer",
-    date: "Jan, 2024",
-    linkHref: "https://refolio.dev",
-    tags: ["Next.js", "TypeScript", "PostgreSQL", "Prisma"],
-    logo: "/pfp.webp",
-  },
-  {
-    postingIndex: 1,
-    title: "AlgoPlayground",
-    role: "Frontend Engineer",
-    date: "Mar, 2024",
-    linkHref: "https://algoplayground.dev",
-    tags: ["React", "Redux", "D3.js"],
-    logo: "/pfp.webp",
-  },
-  {
-    postingIndex: 2,
-    title: "TaskFlow API",
-    role: "Backend Developer",
-    date: "Jun, 2024",
-    linkHref: "https://taskflow.dev",
-    tags: ["Node.js", "Express", "MongoDB", "JWT"],
-    logo: "/pfp.webp",
-  },
-  {
-    postingIndex: 3,
-    title: "StudySprint",
-    role: "Full-stack Developer",
-    date: "Sep, 2024",
-    linkHref: "https://studysprint.dev",
-    logo: "/pfp.webp",
-    tags: ["Next.js", "Supabase", "Tailwind CSS"],
-  },
-  {
-    postingIndex: 4,
-    title: "DevNotes",
-    role: "Full-stack Developer",
-    date: "Dec, 2024",
-    linkHref: "https://devnotes.dev",
-    logo: "/pfp.webp",
-    tags: ["React", "Firebase", "Chakra UI"],
-  },
+  "css",
+  "javascript",
+  "typescript",
+  "react",
+  "nextjs",
+  "vite",
+  "vercel",
+  "tailwind",
+  "bootstrap",
+  "firebase",
+  "supabase",
+  "mysql",
+  "java",
+  "figma",
+  "vitest",
+  "vue",
+  "python",
+  "pytorch",
+  "rabbitmq",
+  "gitlab",
+  "cs",
+  "angular",
+  "arduino",
+  "bash",
+  "bun",
+  "docker",
+  "dotnet",
+  "gcp",
+  "git",
+  "gherkin",
+  "graphql",
+  "htmx",
+  "md",
+  "matlab",
+  "materialui",
+  "mongodb",
+  "netlify",
+  "nodejs",
+  "npm",
+  "pnpm",
+  "opencv",
+  "r",
+  "ubuntu",
+  "replit",
+  "solidity",
+  "tensorflow",
+  "terraform",
+  "threejs",
+  "p5js",
+  "express",
+  "html",
 ];
 
 // Sample data for testing
@@ -161,6 +114,7 @@ export const EDUCATION = [
   {
     companyLogo: "/school.webp",
     companyText: "DPSV",
+    current: true,
     postings: [
       {
         icon: <HiOutlineAcademicCap />,
@@ -210,11 +164,86 @@ export const EDUCATION = [
   },
 ];
 
+// Projects data
+export const PROJECTS = [
+  {
+    id: "covane-2026",
+    title: "COVANE",
+    role: "Basalt3",
+    date: "2026 - Present",
+    href: "#",
+    logo: "/basalt.webp",
+    tags: [
+      "AI Agents",
+      "Identity",
+      "Discovery",
+      "Passport",
+      "Next.js",
+      "TypeScript",
+    ],
+    description:
+      "AI agent identity and passport system with discovery features.",
+  },
+  {
+    id: "percept-network",
+    title: "Percept Network",
+    role: "Basalt3",
+    date: "2026 - Present",
+    href: "#",
+    logo: "/basalt.webp",
+    tags: ["AI Agents", "Social Network", "Next.js", "TypeScript", "Supabase"],
+    description:
+      "Social platform specifically designed for AI agents to connect and share.",
+  },
+  {
+    id: "next-bench-project",
+    title: "Next Bench",
+    role: "Sonamii",
+    date: "Feb 2025 - Present",
+    href: "#",
+    logo: "/sonamii.webp",
+    tags: [
+      "Artificial Intelligence",
+      "Full-Stack Development",
+      "Project Management",
+      "Backend Development",
+      "Next.js",
+      "TypeScript",
+    ],
+    description:
+      "Next Bench is a smart and user-friendly web application that helps students discover best institutions through advanced search and detailed school comparisons. It features NextAI, an intelligent assistant to guide users in making informed decisions. 🚀",
+  },
+  {
+    id: "re-folio",
+    title: "ReFolio",
+    role: "Self Employed",
+    date: "2025",
+    href: "https://github.com",
+    logo: "/selfemp.webp",
+    tags: ["TypeScript", "React", "Next.js", "Portfolio", "Open Source"],
+    description:
+      "🌃 Transform Your Resume 📄 into a Stunning Portfolio ⚡ | Open-Source 🔓",
+  },
+  {
+    id: "hellolink",
+    title: "HelloLink",
+    role: "Self Employed",
+    date: "2025",
+    href: "https://github.com",
+    logo: "/selfemp.webp",
+    tags: ["TypeScript", "AI", "Link Management", "Open Source", "Next.js"],
+    description:
+      "Say 👋 Hello to your links, all in one place 🏠. An AI powered 🤖, open-source alternative to Linktree 🌴.",
+  },
+];
+
 // Sample data for testing
 export const EXPERIENCES = [
   {
-    companyLogo: "/pfp.webp",
-    companyText: "Covane Space",
+    companyLogo: "/basalt.webp",
+    current: true,
+    open: true,
+    companyText: "Basalt3",
     postings: [
       {
         icon: <HiCodeBracket />,
@@ -225,6 +254,7 @@ export const EXPERIENCES = [
         responsibilities: [
           "Worked on the registry and React component library.",
           "Designed and build Pro application components and blocks, from Figma.",
+          "Created various Agentic workflows + MCP servers + HTTP Endpoints",
         ],
         tags: [
           "TypeScript",
@@ -238,8 +268,10 @@ export const EXPERIENCES = [
     ],
   },
   {
-    companyLogo: "/nextbench.webp",
-    companyText: "Next Bench",
+    companyLogo: "/sonamii.webp",
+    companyText: "Sonamii",
+    current: false,
+    open: true,
     postings: [
       {
         icon: <HiCodeBracket />,
@@ -259,6 +291,8 @@ export const EXPERIENCES = [
   {
     companyLogo: "/once-ui.webp",
     companyText: "Once UI",
+    current: false,
+
     postings: [
       {
         icon: <HiOutlineLightBulb />,
@@ -278,6 +312,7 @@ export const EXPERIENCES = [
   {
     companyLogo: "/selfemp.webp",
     companyText: "Self Employed",
+    current: false,
     postings: [
       {
         icon: <HiCodeBracket />,
@@ -310,6 +345,7 @@ export const EXPERIENCES = [
   {
     companyLogo: "/whj.webp",
     companyText: "WhiteHat Jr.",
+    current: false,
     postings: [
       {
         icon: <HiOutlineUser />,
@@ -345,12 +381,12 @@ const otherTechnologies = [
 
 export default function Home() {
   return (
-    <Column
+    <Row
       fillWidth
       horizontal="center"
       vertical="start"
       style={{ minHeight: "100vh" }}
-    >
+    ><LongDashed position="left" />
       <Column maxWidth="s" borderX="neutral-alpha-weak" fillWidth fillHeight>
         <Dashed />
         <Flex
@@ -434,13 +470,13 @@ export default function Home() {
               >
                 Divyanshu Dhruv
               </Text>
-              {/* <Row center gap={0.5}>
+              <Row center gap={0.5}>
                 {" "}
                 <Text onBackground="accent-weak">
                   <HiCheckBadge size={25} />
                 </Text>{" "}
                 
-              </Row> */}
+              </Row>
             </Flex>
             <Flex
               fillWidth
@@ -474,7 +510,17 @@ export default function Home() {
             text={
               <span>
                 Full-stack Developer{" "}
-                <SmartLink href="https://nextbench.in">@Once UI</SmartLink>
+                <SmartLink href="https://sonamii.in"><u>@Once UI</u></SmartLink>
+              </span>
+            }
+            href="#"
+          />{" "}
+          <ChipSet
+            icon={<HiOutlineLightBulb />}
+            text={
+              <span>
+                Founder <SmartLink href="https://covane.in"><u>@Basalt3</u></SmartLink>
+                ,
               </span>
             }
             href="#"
@@ -484,9 +530,9 @@ export default function Home() {
             text={
               <span>
                 Co-founder{" "}
-                <SmartLink href="https://covane.in">@Covane</SmartLink>,
-                <SmartLink href="https://covane.in">@Next Bench</SmartLink>,
-                <SmartLink href="https://covane.in">@PN</SmartLink>
+                <SmartLink href="https://covane.in"><u>@Covane</u></SmartLink>,
+                <SmartLink href="https://covane.in"><u>@Next Bench</u></SmartLink>,
+                <SmartLink href="https://covane.in"><u>@PN</u></SmartLink>
               </span>
             }
             href="#"
@@ -498,8 +544,8 @@ export default function Home() {
                 text={
                   <span>
                     Vadodara, India{" "}
-                    {/* <SmartLink href="https://nextbench.in">
-                      @NextBench
+                    {/* <SmartLink href="https://sonamii.in">
+                      @sonamii
                     </SmartLink> */}
                   </span>
                 }
@@ -533,8 +579,8 @@ export default function Home() {
                 text={
                   <span>
                     haw, why? &lt;/3
-                    {/* <SmartLink href="https://nextbench.in">
-                      @NextBench
+                    {/* <SmartLink href="https://sonamii.in">
+                      @sonamii
                     </SmartLink> */}
                   </span>
                 }
@@ -545,8 +591,8 @@ export default function Home() {
               <ChipSet
                 icon={<HiOutlineEnvelope />}
                 text={
-                  <span>
-                    <SmartLink href="#">divyanshudhruv@proton.me </SmartLink>
+                  <span className="blur-sm">
+                    <SmartLink href="#"><u>divyanshudhruv@proton.me</u></SmartLink>
                   </span>
                 }
                 href="#"
@@ -560,8 +606,8 @@ export default function Home() {
                 text={
                   <span>
                     https://github.com/
-                    <SmartLink href="https://nextbench.in">
-                      divyanshudhruv
+                    <SmartLink href="https://sonamii.in">
+                     <u> divyanshudhruv</u>
                     </SmartLink>
                   </span>
                 }
@@ -774,7 +820,7 @@ export default function Home() {
           borderBottom="neutral-alpha-weak"
           paddingTop={"8"}
         >
-          {/* <ContributionGraph /> */}
+          <ContributionGraph />
         </Flex>
         <Dashed />{" "}
         <Flex
@@ -826,6 +872,8 @@ export default function Home() {
                 companyLogo={exp.companyLogo}
                 companyText={exp.companyText}
                 posting={posting}
+                current={exp.current}
+                open={exp.open}
                 postingIndex={postingIndex}
                 totalPostings={exp.postings.length}
               />
@@ -854,14 +902,47 @@ export default function Home() {
                 key={`${expIndex}-${postingIndex}`}
                 companyLogo={exp.companyLogo}
                 companyText={exp.companyText}
+                current={exp.current}
                 posting={posting}
                 postingIndex={postingIndex}
                 totalPostings={exp.postings.length}
               />
             )),
           )}
-          
         </Flex>{" "}
+        <Dashed />{" "}
+        <Flex
+          fillWidth
+          fillHeight
+          paddingX={1}
+          maxHeight={2}
+          minHeight={2}
+          borderBottom="neutral-alpha-weak"
+          vertical="center"
+          horizontal="start"
+        >
+          <Text variant="code-default-xs" onBackground="neutral-weak">
+            Some Images
+          </Text>
+        </Flex>{" "}
+        <Grid
+          fillWidth
+          fitHeight
+          columns={2}
+          border="neutral-alpha-weak"
+        >
+          <Flex flex={2} padding={1}>
+            <Flex fit radius="s" overflow="hidden">
+              <img src="/img.jpeg" />
+            </Flex>
+          </Flex>
+          <Flex flex={2} padding={1}>
+            <Flex fit radius="s" overflow="hidden">
+              <img src="/i1.png" />
+            </Flex>
+          </Flex>
+          
+        </Grid>
         <Dashed />{" "}
         <Flex
           fillWidth
@@ -877,30 +958,112 @@ export default function Home() {
             Projects
           </Text>
         </Flex>{" "}
-        {PROJECTS.map((project) => (
-          <Projects
-            key={project.postingIndex}
-            postingIndex={project.postingIndex}
-            projects={{ tags: project.tags }}
-            title={project.title}
-            role={project.role}
-            date={project.date}
-            linkHref={project.linkHref}
-            logo={project.logo}
-          />
-        ))}
-        <Row center fillWidth padding={1} data-border="conservative" borderBottom="neutral-alpha-weak">
+        <Flex fillWidth fitHeight direction="column">
+          {PROJECTS.map((project, index) => (
+            <Projects
+              key={project.id}
+              postingIndex={index}
+              projects={{ tags: project.tags }}
+              title={project.title}
+              role={project.role}
+              date={project.date}
+              linkHref={project.href}
+              logo={project.logo}
+            />
+          ))}
+          <Row
+            center
+            fillWidth
+            padding={1}
+            data-border="conservative"
+            borderBottom="neutral-alpha-weak"
+          >
             <Button size="s">
               <Text variant="label-default-s">Load More</Text>{" "}
             </Button>
           </Row>
-      <Dashed/>
-      </Column>
-      
-      <Flex height={40} />
-    </Column>
+        </Flex>
+        <Dashed />
+        <Flex
+          fillWidth
+          fillHeight
+          paddingX={1}
+          maxHeight={2}
+          minHeight={2}
+          borderBottom="neutral-alpha-weak"
+          vertical="center"
+          horizontal="start"
+        >
+          <Text variant="code-default-xs" onBackground="neutral-weak">
+            Blogs
+          </Text>
+        </Flex>{" "}
+        <Column
+          padding={1}
+          fillWidth
+          fitHeight
+          borderBottom="neutral-alpha-weak"
+          gap={1}
+        >
+          <Text
+            variant="label-default-m"
+            onBackground="neutral-medium"
+            style={{ lineHeight: "1.7em" }}
+          >
+            I don't write blogs :)
+          </Text>
+        </Column>
+        <Dashed />
+        <Row center padding={1}>
+          <Flex wrap maxWidth={40} align="center" center fillWidth>
+            {" "}
+            <Text
+              variant="code-default-s"
+              align="center"
+              onBackground="neutral-weak"
+              style={{ lineHeight: "1.7em" }}
+            >
+              Inspired by{" "}
+              <SmartLink href="https://chanhdai.com/">chanhdai.com</SmartLink> &{" "}
+              <SmartLink href="https://once-ui.com">once-ui.com</SmartLink>
+              <br></br> Built by{" "}
+              <SmartLink href="https://github.com/divyanshudhruv">
+                <u>divyanshudhruv</u>
+              </SmartLink>
+              . The source code is available on{" "}
+              <SmartLink href="https://github.com/divyanshudhruv.github.io">
+                <u>GitHub</u>
+              </SmartLink>
+              .
+            </Text>
+          </Flex>
+        </Row>
+      </Column><LongDashed position="right"/>
+    </Row>
   );
 }
+
+function LongDashed({position}: {position: "left" | "right"}) {
+  return (
+    <>
+    {/* <Row fillWidth minWidth="12"maxWidth="12" fillHeight borderLeft={position === "left" ? "neutral-alpha-weak" : undefined} borderRight={position === "right" ? "neutral-alpha-weak" : undefined}>
+      <Background
+        fill
+        fillHeight
+        lines={{
+          display: true,
+          opacity: 20,
+          size: "4",
+          thickness: 1,
+          color: "neutral-solid-medium",
+        }}
+      />
+    </Row> */}
+    
+    </>
+  );
+}
+
 
 function Stacks() {
   return (
@@ -966,6 +1129,7 @@ function Testimonial({
     </Column>
   );
 }
+
 function Dashed() {
   return (
     <Row fillWidth minHeight="32" borderBottom="neutral-alpha-weak">

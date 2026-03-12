@@ -11,6 +11,8 @@ import {
   ListItem,
   Tag,
   Line,
+  StatusIndicator,
+  Pulse,
 } from "@once-ui-system/core";
 import React from "react";
 
@@ -28,6 +30,9 @@ interface ExperienceProps {
   companyLogo: string;
   companyText: string;
   posting: Posting;
+  open?: boolean;
+  current?: boolean;
+
   postingIndex: number;
   totalPostings: number;
 }
@@ -36,6 +41,8 @@ export default function Experience({
   companyLogo,
   companyText,
   posting,
+  open,
+  current,
   postingIndex,
   totalPostings,
 }: ExperienceProps) {
@@ -52,14 +59,13 @@ export default function Experience({
           marginBottom={0.5}
         >
           <Flex data-scaling="95">
-            <Avatar
-              src={companyLogo}
-              size="m"
-              border="neutral-alpha-medium"
-            />
+            <Avatar src={companyLogo} size="m" border="neutral-alpha-medium" />
           </Flex>
-          <Text variant="code-default-m" onBackground="neutral-alpha-medium">
-            {companyText}
+          <Text variant="code-default-m" onBackground="neutral-strong">
+            <Row vertical="center" gap={1}>
+              {companyText}
+              {current ? <Pulse color="accent" size="m" /> : null}
+            </Row>
           </Text>
         </Row>
       )}
@@ -106,50 +112,38 @@ export default function Experience({
           )}
         </Column>
 
-        <Column
-          gap={0.25}
-          fillWidth
-          padding={1}
-          paddingTop={0}
-          paddingLeft={0}
-        >
+        <Column gap={0.25} fillWidth padding={1} paddingTop={0} paddingLeft={0}>
           <Flex data-border="conservative" fillWidth>
             <Accordion
+            open={open}
               padding={0}
               style={{ padding: "0.5rem !important" }}
               data-border="conservative"
               title={
                 <Column gap={0.25}>
-                  <Text
-                    variant="label-default-m"
-                    onBackground="neutral-alpha-medium"
-                  >
+                  <Text variant="label-default-m" onBackground="neutral-strong">
                     {posting.jobTitle}
                   </Text>
-                  <Text
-                    variant="code-default-xs"
-                    onBackground="neutral-weak"
-                  >
+                  <Text variant="code-default-xs" onBackground="neutral-weak">
                     {posting.employmentType} • {posting.fromDate} |{" "}
                     {posting.toDate}
                   </Text>
                 </Column>
               }
             >
-              <List
-                as="ol"
-                gap={0.25}
-                marginTop={0.5}
-                paddingRight={"xl"}
-              >
+              <List as="ol" gap={0.25} marginTop={0.5} paddingRight={"xl"} paddingBottom={0.75}>
                 <Text
-                  variant="label-default-m"
+                  variant="label-default-s"
                   onBackground="neutral-medium"
                   style={{ lineHeight: "1.7em" }}
                 >
                   {posting.responsibilities.map(
                     (responsibility: string, idx: number) => (
-                      <ListItem key={idx}>{responsibility}</ListItem>
+                      <Row>
+                        {" "}
+                        <Text onBackground="neutral-weak">•</Text>
+                        <ListItem key={idx}>{responsibility}</ListItem>
+                      </Row>
                     ),
                   )}
                 </Text>
@@ -157,7 +151,7 @@ export default function Experience({
             </Accordion>
           </Flex>
 
-          <Row gap={0.3} paddingX={0.35}>
+          <Row gap={0.3} paddingX={0.35} wrap>
             {posting.tags.map((tag: string, idx: number) => (
               <Tag key={idx} size="s">
                 <Text
