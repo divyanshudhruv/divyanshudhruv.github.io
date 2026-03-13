@@ -92,7 +92,7 @@ const programmingStacks = [
 export const PERSONA = {
   firstName: "Divyanshu",
   lastName: "Dhruv",
-  header: "17 yo",
+  header: "17, One pixel at a time.",
   name: `Divyanshu Dhruv`,
   role: "Full-stack Developer",
   avatar: IMAGE_PATHS.mypfp,
@@ -119,7 +119,7 @@ export const PROFILE = {
       },
       {
         src: IMAGE_PATHS.leetcodeLogo,
-        href: "https://leetcode.com/u/divyanshudhruv",
+        href: "https://leetcode.com",
         text: "Leetcode",
       },
     ],
@@ -188,7 +188,7 @@ export const PROFILE = {
             <SmartLink href="https://github.com/basalt3/pn">
               <u>@PN</u>
             </SmartLink>
-            ,
+            
           </span>
         ),
         href: "#",
@@ -362,7 +362,6 @@ export const BIO = {
     "threejs",
     "p5js",
     "express",
-    "html",
   ],
   github_username: "divyanshudhruv",
 };
@@ -603,37 +602,37 @@ export const TESTIMONIALS = [
   {
     src: IMAGE_PATHS.xLogo,
     href: "#",
-    name: "Divyanshu Dhruv",
-    desc: "Software Engineer",
-    body: "I love working with Divyanshu. He is a great team player.",
+    name: "m9!hj2k",
+    desc: "51j8987%",
+    body: "tk#!789!%34567gh123",
   },
   {
     src: IMAGE_PATHS.xLogo,
     href: "#",
-    name: "Divyanshu Dhruv",
-    desc: "Software Engineer",
-    body: "I love working with Divyanshu. He is a great team player.",
+    name: "!#$56756",
+    desc: "jh34567*&",
+    body: "!@#$%^&*()_+=?<>{}|",
   },
   {
     src: IMAGE_PATHS.xLogo,
     href: "#",
-    name: "Divyanshu Dhruv",
-    desc: "Software Engineer",
-    body: "I love working with Divyanshu. He is a great team player.",
+    name: "7654321",
+    desc: "&^%$#@!",
+    body: "!@#$%^&*()_+=-[]\\;'",
   },
   {
     src: IMAGE_PATHS.xLogo,
     href: "#",
-    name: "Divyanshu Dhruv",
-    desc: "Software Engineer",
-    body: "I love working with Divyanshu. He is a great team player.",
+    name: "8765432",
+    desc: "&^%$#@!",
+    body: "!@#$%^&*()_+=-[]\\;'",
   },
   {
     src: IMAGE_PATHS.xLogo,
     href: "#",
-    name: "Divyanshu Dhruv",
-    desc: "Software Engineer",
-    body: "I love working with Divyanshu. He is a great team player.",
+    name: "!#$%@^",
+    desc: "&^%$#@!",
+    body: "!@#$%^&*()_+=-[]\\;'",
   },
 ];
 

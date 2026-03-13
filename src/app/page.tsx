@@ -27,6 +27,7 @@ import {
 } from "@once-ui-system/core";
 import { useState } from "react";
 import ContributionGraph from "../components/ContributionGraph";
+import "./global.css";
 
 import AutoScrollHorizontal from "@/components/AutoScrollHorizontal";
 import { Projects } from "@/components/Projects";
@@ -50,6 +51,9 @@ import {
   TESTIMONIALS,
 } from "@/data/core-config";
 import Waves from "@/components/Waves";
+import { SUSE } from "next/font/google";
+
+const suse = SUSE({ subsets: ['latin'] });
 
 export default function Home() {
   const [visibleProjects, setVisibleProjects] = useState(10);
@@ -66,6 +70,7 @@ export default function Home() {
       horizontal="center"
       vertical="start"
       style={{ minHeight: "100vh" }}
+      paddingX={"l"}
     >
       <Column maxWidth="s" borderX="neutral-alpha-weak" fillWidth fillHeight>
         <Dashed />
@@ -95,7 +100,7 @@ export default function Home() {
             <MatrixFx
               size={1.5}
               spacing={5}
-              opacity={50}
+              opacity={70}
               fps={24}
               colors={["brand-solid-weak"]}
               flicker
@@ -108,7 +113,7 @@ export default function Home() {
           horizontal="start"
           vertical="center"
         >
-          <Flex fit borderRight="neutral-alpha-weak">
+          <Flex fit >
             {" "}
             <Avatar
               src={PERSONA.avatar}
@@ -118,7 +123,7 @@ export default function Home() {
               className="invert"
             />
           </Flex>
-          <Column fillWidth vertical="end" horizontal="center" fillHeight>
+          <Column fillWidth vertical="end" horizontal="center" fillHeight borderLeft="neutral-alpha-weak">
             <Flex
               fillWidth
               fillHeight
@@ -127,7 +132,8 @@ export default function Home() {
               minHeight={2}
               borderBottom="neutral-alpha-weak"
               vertical="center"
-              horizontal="start"
+              horizontal="start"              id="persona_main"
+
             >
               <Text variant="code-default-xs" onBackground="neutral-weak">
                 {PERSONA.header}{" "}
@@ -143,6 +149,7 @@ export default function Home() {
               vertical="center"
               horizontal="start"
               gap={1}
+              id="persona_main"
             >
               <Text
                 variant="display-default-s"
@@ -158,14 +165,15 @@ export default function Home() {
               paddingX={1}
               maxHeight={2}
               minHeight={2}
-              vertical="center"
+              vertical="center"              id="persona_main"
+
               horizontal="between"
             >
               <Text variant="code-default-xs" onBackground="neutral-weak">
                 {PERSONA.role}
               </Text>{" "}
-              <ThemeSwitcher
-                style={{ scale: "0.7", marginLeft: "32px !important" }}
+              <ThemeSwitcher id="theme_switcher"
+                style={{ scale: "0.7"}}
               />
             </Flex>
           </Column>
@@ -180,7 +188,7 @@ export default function Home() {
           gap={0.3}
         >
           {PROFILE.chips.map((chip, chipIndex) => (
-            <Row key={chipIndex + "-chip"} fillWidth>
+            <Row key={chipIndex + "-chip"} fillWidth id="profile_chips">
               {chip.map((chipData, chipDataIndex) => (
                 <Flex
                   key={chipDataIndex + "-chip-data" + "-" + chipIndex}
@@ -204,6 +212,7 @@ export default function Home() {
             gap={1}
             borderBottom="neutral-alpha-weak"
             key={i + "-link"}
+            id="profile_links"
           >
             {link.map((linkData, j) => (
               <LinkSet
@@ -252,8 +261,8 @@ export default function Home() {
           ))}
         </Column>{" "}
         {/* <Row padding={1} borderBottom="neutral-alpha-weak" overflow="hidden">
-            <AutoScrollHorizontal gap={1}>
-              {TESTIMONIALS.map((testimonial, index) => (
+            <AutoScroll gap={1}>
+              <Row gap={1}>{TESTIMONIALS.map((testimonial, index) => (
                 <Testimonial
                   key={`testimonial-${index}`}
                   src={testimonial.src}
@@ -262,15 +271,20 @@ export default function Home() {
                   desc={testimonial.desc}
                   body={testimonial.body}
                 />
-              ))}
-            </AutoScrollHorizontal>
+              ))}</Row>
+            </AutoScroll>
         </Row> */}
         <Flex
           fillWidth
           fitHeight
           center
           borderBottom="neutral-alpha-weak"
-          paddingTop={"8"}
+          paddingTop={1}
+          padding={1}
+          paddingLeft={1}
+          paddingBottom={1}
+          paddingRight={1}
+          overflow="hidden"
         >
           <ContributionGraph />
         </Flex>
@@ -286,7 +300,7 @@ export default function Home() {
           horizontal="start"
         >
           <Text variant="code-default-xs" onBackground="neutral-weak">
-            Skills & Stacks
+            Skills & Stacks <strong><sup className={suse.className } >({BIO.stacks.length})</sup></strong>
           </Text>
         </Flex>{" "}
         <Flex
@@ -298,8 +312,9 @@ export default function Home() {
           padding={1}
           gap={0.97}
           wrap
+          id="bio_stacks"
         >
-          <Stacks skills={BIO.stacks} />
+          <Stacks stacks={BIO.stacks} />
         </Flex>
         <Dashed />{" "}
         <Flex
@@ -313,7 +328,7 @@ export default function Home() {
           horizontal="start"
         >
           <Text variant="code-default-xs" onBackground="neutral-weak">
-            Experience
+            Experience <strong><sup className={suse.className}>({EXPERIENCES.length})</sup></strong>
           </Text>
         </Flex>{" "}
         <Flex fillWidth fitHeight direction="column">
@@ -344,7 +359,7 @@ export default function Home() {
           horizontal="start"
         >
           <Text variant="code-default-xs" onBackground="neutral-weak">
-            Education
+            Education <b><sup className={suse.className}>({EDUCATION.length})</sup></b>
           </Text>
         </Flex>{" "}
         <Flex fillWidth fitHeight direction="column">
@@ -376,7 +391,7 @@ export default function Home() {
           horizontal="start"
         >
           <Text variant="code-default-xs" onBackground="neutral-weak">
-            Some Images
+            Some Images  <b><sup className={suse.className}>({GALLERY.length})</sup></b>
           </Text>
         </Flex>{" "}
         <Grid
@@ -385,6 +400,7 @@ export default function Home() {
           columns={2}
           border="neutral-alpha-weak"
           paddingBottom={1}
+          id="gallery"
         >
           <ImagesForGrid images={GALLERY} />
         </Grid>
@@ -400,7 +416,7 @@ export default function Home() {
           horizontal="start"
         >
           <Text variant="code-default-xs" onBackground="neutral-weak">
-            Projects
+            Projects <b><sup className={suse.className}>({PROJECTS.length})</sup></b>
           </Text>
         </Flex>{" "}
         <Flex fillWidth fitHeight direction="column">
@@ -485,7 +501,7 @@ export default function Home() {
                   <u>divyanshudhruv</u>
                 </SmartLink>
                 . The source code is available on{" "}
-                <SmartLink href="https://github.com/divyanshudhruv.github.io">
+                <SmartLink href="https://github.com/divyanshudhruv/divyanshudhruv.github.io">
                   <u>GitHub</u>
                 </SmartLink>
                 .

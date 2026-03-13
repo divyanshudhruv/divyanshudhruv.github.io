@@ -11,6 +11,7 @@ import {
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { eachDayOfInterval, endOfYear, formatISO, startOfYear } from "date-fns";
 import { useEffect, useState } from "react";
+import "./ContributionGraph.css";
 import { BIO } from "@/data/core-config";
 
 const username = BIO.github_username;
@@ -86,9 +87,10 @@ const Example = () => {
 
   return (
     <TooltipProvider>
-      <ContributionGraph data={data} blockMargin={1.8}>
-        <ContributionGraphCalendar>
-          {({ activity, dayIndex, weekIndex }) => (
+      <div className="contribution-graph-container">
+        <ContributionGraph data={data} blockMargin={1.8}>
+          <ContributionGraphCalendar>
+            {({ activity, dayIndex, weekIndex }) => (
             <Tooltip>
               <TooltipTrigger asChild>
                 <g>
@@ -110,8 +112,9 @@ const Example = () => {
         <ContributionGraphFooter>
           <ContributionGraphTotalCount />
           <ContributionGraphLegend />
-        </ContributionGraphFooter>{" "}
+        </ContributionGraphFooter>
       </ContributionGraph>
+    </div>
     </TooltipProvider>
   );
 };

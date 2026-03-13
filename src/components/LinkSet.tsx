@@ -31,9 +31,10 @@ export default function LinkSet({ src, href, text, position }: LinkSetProps) {
       flex={1}
       padding={1}
       border="neutral-alpha-weak"
+      id="profile_links_child"
       {...getBorderStyles()}
     >
-      <Row center gap={0.5}>
+      <Row center gap={0.5} >
         <Avatar src={src} size="m" border="neutral-alpha-weak" />
         <Text variant="label-default-m" onBackground="neutral-medium">
           {text}

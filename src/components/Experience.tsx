@@ -154,7 +154,7 @@ export default function Experience({
                 gap={0.25}
                 marginTop={0.5}
                 paddingRight={"xl"}
-                paddingBottom={0.75}
+                paddingBottom={0.5}
               >
                 <Text
                   variant="label-default-s"
