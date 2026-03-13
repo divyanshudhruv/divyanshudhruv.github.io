@@ -1,18 +1,18 @@
+import TimeDisplay from "@/components/TimeDisplay";
+import { InlineCode, SmartLink, Text } from "@once-ui-system/core";
 import {
-  HiOutlineCodeBracket,
-  HiOutlineLightBulb,
-  HiOutlineMapPin,
-  HiOutlineClock,
-  HiOutlinePhone,
-  HiOutlineEnvelope,
-  HiOutlineLink,
-  HiOutlineQuestionMarkCircle,
-  HiOutlineAcademicCap,
   HiCodeBracket,
+  HiOutlineAcademicCap,
+  HiOutlineClock,
+  HiOutlineCodeBracket,
+  HiOutlineEnvelope,
+  HiOutlineLightBulb,
+  HiOutlineLink,
+  HiOutlineMapPin,
+  HiOutlinePhone,
+  HiOutlineQuestionMarkCircle,
   HiOutlineUser,
 } from "react-icons/hi2";
-import { Text, SmartLink, InlineCode } from "@once-ui-system/core";
-import TimeDisplay from "@/components/TimeDisplay";
 
 // Image paths as relative strings
 const IMAGE_PATHS = {
@@ -259,10 +259,9 @@ export const BIO = {
   description: [
     <>
       {" "}
-      👋 Hi, I'm a full-stack developer with <InlineCode>5+</InlineCode> years
-      of experience (i guess so), I give strong attention to{" "}
-      <InlineCode>small details</InlineCode> (kind of). I've been coding since I
-      was 12. Currently, I'm creating{" "}
+      👋 Hi, I'm a full-stack developer with <InlineCode>5+</InlineCode> years of experience (i
+      guess so), I give strong attention to <InlineCode>small details</InlineCode> (kind of). I've
+      been coding since I was 12. Currently, I'm creating{" "}
       <SmartLink href="https://modelcontextprotocol.io">
         <u>MCP servers</u>
       </SmartLink>{" "}
@@ -290,13 +289,13 @@ export const BIO = {
       <SmartLink href="https://www.r-project.org">
         <u>R</u>
       </SmartLink>
-      , and modern front-end technologies; building high-quality, user-centric
-      web and <InlineCode>mobile applications</InlineCode> 📱 (sometimes).
+      , and modern front-end technologies; building high-quality, user-centric web and{" "}
+      <InlineCode>mobile applications</InlineCode> 📱 (sometimes).
     </>,
     <>
       {" "}
-      Passionate about exploring new technologies and turning ideas into reality
-      through polished, thoughtfully crafted personal projects 🗃️.
+      Passionate about exploring new technologies and turning ideas into reality through polished,
+      thoughtfully crafted personal projects 🗃️.
     </>,
     <>
       {" "}
@@ -386,13 +385,7 @@ export const EDUCATION = [
           "Developing advanced problem-solving and analytical skills.",
           "Preparing for competitive examinations and higher studies.",
         ],
-        tags: [
-          "Science",
-          "Mathematics",
-          "Physics",
-          "Chemistry",
-          "Computer Science",
-        ],
+        tags: ["Science", "Mathematics", "Physics", "Chemistry", "Computer Science"],
       },
     ],
   },
@@ -411,13 +404,7 @@ export const EDUCATION = [
           "Built strong foundation in core subjects and developed analytical thinking.",
           "Actively participated in extracurricular activities and competitions.",
         ],
-        tags: [
-          "Science",
-          "Mathematics",
-          "Computers",
-          "Problem Solving",
-          "General Studies",
-        ],
+        tags: ["Science", "Mathematics", "Computers", "Problem Solving", "General Studies"],
       },
     ],
   },
@@ -433,16 +420,8 @@ export const PROJECTS = [
     date: "2026 - Present",
     href: "https://github.com/basalt3/covane",
     logo: IMAGE_PATHS.basaltLogo,
-    tags: [
-      "AI Agents",
-      "Identity",
-      "Discovery",
-      "Passport",
-      "Next.js",
-      "TypeScript",
-    ],
-    description:
-      "AI agent identity and passport system with discovery features.",
+    tags: ["AI Agents", "Identity", "Discovery", "Passport", "Next.js", "TypeScript"],
+    description: "AI agent identity and passport system with discovery features.",
   },
   {
     id: "percept-network",
@@ -454,8 +433,7 @@ export const PROJECTS = [
     href: "https://github.com/basalt3/percept-network",
     logo: IMAGE_PATHS.basaltLogo,
     tags: ["AI Agents", "Social Network", "Next.js", "TypeScript", "Supabase"],
-    description:
-      "Social platform specifically designed for AI agents to connect and share.",
+    description: "Social platform specifically designed for AI agents to connect and share.",
   },
   {
     id: "next-bench-project",
@@ -485,8 +463,7 @@ export const PROJECTS = [
     href: "https://re-folio.vercel.app",
     logo: IMAGE_PATHS.selfempLogo,
     tags: ["TypeScript", "React", "Next.js", "Portfolio", "Open Source"],
-    description:
-      "🌃 Transform Your Resume 📄 into a Stunning Portfolio ⚡ | Open-Source 🔓",
+    description: "🌃 Transform Your Resume 📄 into a Stunning Portfolio ⚡ | Open-Source 🔓",
   },
   {
     id: "hellolink",
@@ -520,14 +497,7 @@ export const EXPERIENCES = [
           "Designed and build Pro application components and blocks, from Figma.",
           "Created various Agentic workflows + MCP servers + HTTP Endpoints",
         ],
-        tags: [
-          "TypeScript",
-          "Supabase",
-          "SCSS",
-          "Open Source",
-          "MCP Server",
-          "AI Agents",
-        ],
+        tags: ["TypeScript", "Supabase", "SCSS", "Open Source", "MCP Server", "AI Agents"],
       },
     ],
   },

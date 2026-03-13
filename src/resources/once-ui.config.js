@@ -68,9 +68,9 @@ const dataStyle = {
 const meta = {
   home: {
     path: "/",
-    title: "Divyanshu Dhruv | Developer",
-    description: "My simple portfolio :)",
-    image: "/images/og/home.jpg",
+    title: "Divyanshu Dhruv | 🌌🏮",
+    description: "One pixel at a time. Simple code, complex logic.",
+    image: "/og2.png",
     canonical: "https://divyanshudhruv.is-a.dev",
     robots: "index,follow",
     alternates: [{ href: "https://divyanshudhruv.vercel.app", hrefLang: "en" }],

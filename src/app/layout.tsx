@@ -1,19 +1,18 @@
-import '@once-ui-system/core/css/styles.css';
-import '@once-ui-system/core/css/tokens.css';
-import '@/resources/custom.css'
-import './global.css'
+import "@once-ui-system/core/css/styles.css";
+import "@once-ui-system/core/css/tokens.css";
+import "@/resources/custom.css";
+import "./global.css";
 
 import classNames from "classnames";
 
-import { baseURL, meta, fonts, style, dataStyle } from "@/resources/once-ui.config";
-import { Meta, Schema,  Column, Flex, Mask, MatrixFx} from "@once-ui-system/core";
-import { Providers } from '@/components/Providers';
+import { Providers } from "@/components/Providers";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { baseURL, dataStyle, fonts, meta, style } from "@/resources/once-ui.config";
+import { Column, Flex, Mask, MatrixFx, Meta, Schema } from "@once-ui-system/core";
 import { Geist_Mono, Inter } from "next/font/google";
-import { TooltipProvider } from "@/components/ui/tooltip"
-const inter = Inter({subsets:['latin'],variable:'--font-sans'});
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
-const geistMono = Geist_Mono({subsets:['latin'],variable:'--font-mono'});
-
+const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono" });
 
 export async function generateMetadata() {
   return Meta.generate({
@@ -54,9 +53,12 @@ export default function RootLayout({
         path={meta.home.path}
       />
       <head>
-        
-            <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
-          
+        <link
+          rel="stylesheet"
+          type="text/css"
+          href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+        />
+
         <script
           id="theme-init"
           dangerouslySetInnerHTML={{
@@ -72,12 +74,12 @@ export default function RootLayout({
                     accent: style.accent,
                     neutral: style.neutral,
                     solid: style.solid,
-                    'solid-style': style.solidStyle,
+                    "solid-style": style.solidStyle,
                     border: style.border,
                     surface: style.surface,
                     transition: style.transition,
                     scaling: style.scaling,
-                    'viz-style': dataStyle.variant,
+                    "viz-style": dataStyle.variant,
                   })};
                   
                   // Apply default values
@@ -129,7 +131,7 @@ export default function RootLayout({
               />
             </Mask>
           </Column> */}
-       <TooltipProvider> {children}</TooltipProvider>  
+          <TooltipProvider> {children}</TooltipProvider>
         </Column>
       </Providers>
     </Flex>

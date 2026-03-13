@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { Text } from "@once-ui-system/core";
+import { useEffect, useState } from "react";
 
 export default function TimeDisplay() {
   const [time, setTime] = useState("");
@@ -15,7 +15,7 @@ export default function TimeDisplay() {
         minute: "2-digit",
       });
       const offset = `${Math.abs((now.getTimezoneOffset() + 5.5 * 60) / 60)} ${Math.abs((now.getTimezoneOffset() + 5.5 * 60) / 60) > 1 ? "HOURS" : "HOUR"} ${(now.getTimezoneOffset() + 5.5 * 60) % 60 > 0 ? "BEHIND" : "AHEAD"}`;
-      
+
       setTime(`${timeString}`);
     };
 
@@ -29,7 +29,7 @@ export default function TimeDisplay() {
     <span>
       {time}
       <Text onBackground="neutral-weak" marginX="8">
-        //{" "}
+        //
         {`${Math.abs((new Date().getTimezoneOffset() + 5.5 * 60) / 60)} ${Math.abs((new Date().getTimezoneOffset() + 5.5 * 60) / 60) > 1 ? "HOURS" : "HOUR"} ${(new Date().getTimezoneOffset() + 5.5 * 60) % 60 > 0 ? "BEHIND" : "AHEAD"}`}
       </Text>{" "}
     </span>

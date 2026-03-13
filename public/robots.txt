@@ -1,0 +1,60 @@
+# Portfolio robots.txt for Divyanshu Dhruv
+# One pixel at a time. Simple code, complex logic.
+
+User-agent: *
+Allow: /
+
+# Prioritize important pages
+Crawl-delay: 1
+
+# Disallow common non-content paths
+Disallow: /api/
+Disallow: /_next/
+Disallow: /_error
+Disallow: /404
+Disallow: /500
+
+# Allow specific API endpoints if needed for SEO
+Allow: /api/og
+
+# Sitemap location
+Sitemap: https://divyanshudhruv.is-a.dev/sitemap.xml
+
+# Special instructions for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+# Social media crawlers
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+# AI/ML crawlers
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: GoogleOther
+Allow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /

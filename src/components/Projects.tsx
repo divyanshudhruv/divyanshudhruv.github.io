@@ -1,14 +1,14 @@
 import {
-  Row,
+  Accordion,
+  Avatar,
   Column,
   Flex,
-  Accordion,
+  IconButton,
+  Kbd,
+  Row,
+  SmartLink,
   Tag,
   Text,
-  SmartLink,
-  Avatar,
-  Kbd,
-  IconButton,
 } from "@once-ui-system/core";
 import Image from "next/image";
 
@@ -79,20 +79,14 @@ export function Projects({
         <Row gap={0.3} paddingX={0.35} wrap>
           {ongoing ? (
             <Kbd>
-              <Text
-                variant="code-default-xs"
-                onBackground="neutral-alpha-medium"
-              >
+              <Text variant="code-default-xs" onBackground="neutral-alpha-medium">
                 ongoing
               </Text>
             </Kbd>
           ) : undefined}
           {projects.tags.map((tag, idx) => (
-            <Tag key={idx} size="s" variant="neutral">
-              <Text
-                variant="code-default-xs"
-                onBackground="neutral-alpha-medium"
-              >
+            <Tag key={idx + "-tag"} size="s" variant="neutral">
+              <Text variant="code-default-xs" onBackground="neutral-alpha-medium">
                 {tag}
               </Text>
             </Tag>

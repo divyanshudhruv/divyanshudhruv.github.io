@@ -1,53 +1,53 @@
 "use client";
 
-import { useState } from "react";
 import {
+  Accordion,
+  AutoScroll,
+  Avatar,
   Background,
+  Button,
   Column,
+  Fade,
   Flex,
+  Grid,
+  Icon,
+  IconButton,
+  InlineCode,
+  Line,
+  List,
+  ListItem,
+  Logo,
+  Mask,
   MatrixFx,
   Row,
-  Mask,
-  Avatar,
-  Text,
   SmartLink,
-  Grid,
-  IconButton,
-  List,
-  InlineCode,
-  Fade,
-  AutoScroll,
-  Logo,
-  Icon,
-  ThemeSwitcher,
-  Accordion,
-  ListItem,
   Tag,
-  Button,
-  Line,
+  Text,
+  ThemeSwitcher,
 } from "@once-ui-system/core";
+import { useState } from "react";
 import ContributionGraph from "../components/ContributionGraph";
 
-import Experience from "@/components/exp";
+import AutoScrollHorizontal from "@/components/AutoScrollHorizontal";
 import { Projects } from "@/components/Projects";
 import Stacks from "@/components/Stacks";
 import Testimonial from "@/components/Testimonial";
-import AutoScrollHorizontal from "@/components/AutoScrollHorizontal";
+import Experience from "@/components/exp";
 
-import Dashed from "@/components/Dashed";
-import LinkSet from "@/components/LinkSet";
 import ChipSet from "@/components/ChipSet";
+import Dashed from "@/components/Dashed";
 import ImagesForGrid from "@/components/ImagesForGrid";
+import LinkSet from "@/components/LinkSet";
 
 import {
-  PERSONA,
-  PROFILE,
   BIO,
   EDUCATION,
-  PROJECTS,
   EXPERIENCES,
-  TESTIMONIALS,
   GALLERY,
+  PERSONA,
+  PROFILE,
+  PROJECTS,
+  TESTIMONIALS,
 } from "@/data/core-config";
 
 export default function Home() {
@@ -60,12 +60,7 @@ export default function Home() {
   };
 
   return (
-    <Row
-      fillWidth
-      horizontal="center"
-      vertical="start"
-      style={{ minHeight: "100vh" }}
-    >
+    <Row fillWidth horizontal="center" vertical="start" style={{ minHeight: "100vh" }}>
       <Column maxWidth="s" borderX="neutral-alpha-weak" fillWidth fillHeight>
         <Dashed />
         <Flex
@@ -101,12 +96,7 @@ export default function Home() {
             />
           </Mask>
         </Flex>
-        <Row
-          fillWidth
-          borderBottom="neutral-alpha-weak"
-          horizontal="start"
-          vertical="center"
-        >
+        <Row fillWidth borderBottom="neutral-alpha-weak" horizontal="start" vertical="center">
           <Flex fit borderRight="neutral-alpha-weak">
             {" "}
             <Avatar
@@ -163,9 +153,7 @@ export default function Home() {
               <Text variant="code-default-xs" onBackground="neutral-weak">
                 {PERSONA.role}
               </Text>{" "}
-              <ThemeSwitcher
-                style={{ scale: "0.7", marginLeft: "32px !important" }}
-              />
+              <ThemeSwitcher style={{ scale: "0.7", marginLeft: "32px !important" }} />
             </Flex>
           </Column>
         </Row>
@@ -178,28 +166,15 @@ export default function Home() {
           padding={1}
           gap={0.3}
         >
-          {PROFILE.chips.map((chip, chipIndex) =>
-            Array.isArray(chip) ? (
-              <Row key={chipIndex} fillWidth>
-                {chip.map((chipData, chipDataIndex) => (
-                  <Flex key={chipDataIndex} flex={1}>
-                    <ChipSet
-                      icon={chipData.icon}
-                      text={chipData.text}
-                      href={chipData.href}
-                    />
-                  </Flex>
-                ))}
-              </Row>
-            ) : (
-              <ChipSet
-                key={chipIndex}
-                icon={chip.icon}
-                text={chip.text}
-                href={chip.href}
-              />
-            ),
-          )}
+          {PROFILE.chips.map((chip, chipIndex) => (
+            <Row key={chipIndex + "-chip"} fillWidth>
+              {chip.map((chipData, chipDataIndex) => (
+                <Flex key={chipDataIndex + "-chip-data" + "-" + chipIndex} flex={1}>
+                  <ChipSet icon={chipData.icon} text={chipData.text} href={chipData.href} />
+                </Flex>
+              ))}
+            </Row>
+          ))}
         </Column>
         {PROFILE.links.map((link, i) => (
           <Row
@@ -208,17 +183,15 @@ export default function Home() {
             minHeight={4}
             gap={1}
             borderBottom="neutral-alpha-weak"
-            key={i}
+            key={i + "-link"}
           >
             {link.map((linkData, j) => (
               <LinkSet
-                key={j}
+                key={j + "-link-data"}
                 src={linkData.src}
                 href={linkData.href}
                 text={linkData.text}
-                position={
-                  j === 0 ? "first" : j === link.length - 1 ? "last" : "middle"
-                }
+                position={j === 0 ? "first" : j === link.length - 1 ? "last" : "middle"}
               />
             ))}
           </Row>
@@ -238,13 +211,7 @@ export default function Home() {
             About Me
           </Text>
         </Flex>
-        <Column
-          padding={1}
-          fillWidth
-          fitHeight
-          borderBottom="neutral-alpha-weak"
-          gap={1}
-        >
+        <Column padding={1} fillWidth fitHeight borderBottom="neutral-alpha-weak" gap={1}>
           {BIO.description.map((desc, i) => (
             <Text
               key={i}
@@ -256,7 +223,7 @@ export default function Home() {
             </Text>
           ))}
         </Column>{" "}
-          {/* <Row padding={1} borderBottom="neutral-alpha-weak" overflow="hidden">
+        {/* <Row padding={1} borderBottom="neutral-alpha-weak" overflow="hidden">
             <AutoScrollHorizontal gap={1}>
               {TESTIMONIALS.map((testimonial, index) => (
                 <Testimonial
@@ -270,13 +237,7 @@ export default function Home() {
               ))}
             </AutoScrollHorizontal>
         </Row> */}
-        <Flex
-          fillWidth
-          fitHeight
-          center
-          borderBottom="neutral-alpha-weak"
-          paddingTop={"8"}
-        >
+        <Flex fillWidth fitHeight center borderBottom="neutral-alpha-weak" paddingTop={"8"}>
           <ContributionGraph />
         </Flex>
         <Dashed />{" "}
@@ -444,13 +405,7 @@ export default function Home() {
             Blogs
           </Text>
         </Flex>{" "}
-        <Column
-          padding={1}
-          fillWidth
-          fitHeight
-          borderBottom="neutral-alpha-weak"
-          gap={1}
-        >
+        <Column padding={1} fillWidth fitHeight borderBottom="neutral-alpha-weak" gap={1}>
           <Text
             variant="label-default-m"
             onBackground="neutral-medium"
@@ -477,7 +432,7 @@ export default function Home() {
               <SmartLink href="https://once-ui.com">
                 <u>once-ui.com</u>
               </SmartLink>
-              <br></br> Built by{" "}
+              <br /> Built by{" "}
               <SmartLink href="https://github.com/divyanshudhruv">
                 <u>divyanshudhruv</u>
               </SmartLink>

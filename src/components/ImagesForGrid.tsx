@@ -10,9 +10,9 @@ export default function ImagesForGrid({ images }: ImagesForGridProps) {
   return (
     <>
       {images.map((image, index) => (
-        <Flex key={index} flex={2} padding={1}>
+        <Flex key={index + "-image"} flex={2} padding={1}>
           <Flex fit radius="s" overflow="hidden">
-            <img src={image} alt={`Gallery image ${index + 1}`} />
+            <img src={image} alt={`Gallery ${index + 1}`} />
           </Flex>
         </Flex>
       ))}

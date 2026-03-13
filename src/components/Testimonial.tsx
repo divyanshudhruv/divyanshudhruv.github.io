@@ -1,6 +1,6 @@
 "use client";
 
-import { Column, Row, Flex, Avatar, Text } from "@once-ui-system/core";
+import { Avatar, Column, Flex, Row, Text } from "@once-ui-system/core";
 
 interface TestimonialProps {
   src: string;
@@ -36,11 +36,7 @@ export default function Testimonial({
       gap={1}
       vertical="between"
     >
-      <Text
-        variant="label-default-m"
-        wrap="wrap"
-        onBackground="neutral-alpha-medium"
-      >
+      <Text variant="label-default-m" wrap="wrap" onBackground="neutral-alpha-medium">
         {body}
       </Text>
       <Row center fitWidth gap={0.5}>

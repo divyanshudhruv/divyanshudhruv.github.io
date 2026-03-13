@@ -16,7 +16,7 @@ export default function Stacks({ skills, iconSize = 38 }: StacksProps) {
           src={`https://skillicons.dev/icons?i=${skill}`}
           height={iconSize}
           width={iconSize}
-          key={skill + index}
+          key={skill + "-" + index}
           alt={skill.charAt(0).toUpperCase() + skill.slice(1)}
           unoptimized
         />

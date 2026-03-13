@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  Flex,
-  Row,
-  Avatar,
-  Text,
-  IconButton,
-} from "@once-ui-system/core";
+import { Avatar, Flex, IconButton, Row, Text } from "@once-ui-system/core";
 import { HiArrowRight } from "react-icons/hi2";
 
 interface LinkSetProps {
@@ -16,12 +10,7 @@ interface LinkSetProps {
   position: "first" | "middle" | "last";
 }
 
-export default function LinkSet({
-  src,
-  href,
-  text,
-  position,
-}: LinkSetProps) {
+export default function LinkSet({ src, href, text, position }: LinkSetProps) {
   const getBorderStyles = () => {
     switch (position) {
       case "first":

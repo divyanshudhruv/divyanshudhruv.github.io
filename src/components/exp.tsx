@@ -1,20 +1,21 @@
 "use client";
 
 import {
-  Column,
-  Row,
-  Flex,
-  Avatar,
-  Text,
   Accordion,
-  List,
-  ListItem,Kbd,
-  Tag,
+  Avatar,
+  Column,
+  Flex,
+  Kbd,
   Line,
-  StatusIndicator,
+  List,
+  ListItem,
   Pulse,
+  Row,
+  StatusIndicator,
+  Tag,
+  Text,
 } from "@once-ui-system/core";
-import React from "react";
+import type React from "react";
 
 interface Posting {
   icon: React.ReactNode;
@@ -32,7 +33,7 @@ interface ExperienceProps {
   posting: Posting;
   open?: boolean;
   current?: boolean;
-variant?:string;
+  variant?: string;
   postingIndex: number;
   totalPostings: number;
 }
@@ -42,7 +43,7 @@ export default function Experience({
   companyText,
   posting,
   open,
-  variant="primary",
+  variant = "primary",
   current,
   postingIndex,
   totalPostings,
@@ -76,9 +77,7 @@ export default function Experience({
         fillWidth
         vertical="start"
         gap={0.25}
-        borderBottom={
-          postingIndex === totalPostings - 1 ? "neutral-alpha-weak" : undefined
-        }
+        borderBottom={postingIndex === totalPostings - 1 ? "neutral-alpha-weak" : undefined}
         paddingTop={0}
       >
         <Column fillHeight horizontal="center" paddingLeft={1}>
@@ -108,15 +107,13 @@ export default function Experience({
               </Text>
             </Flex>
           </Flex>
-          {totalPostings > 1 && postingIndex < totalPostings - 1 && (
-            <Line vert fillHeight />
-          )}
+          {totalPostings > 1 && postingIndex < totalPostings - 1 && <Line vert fillHeight />}
         </Column>
 
         <Column gap={0.25} fillWidth padding={1} paddingTop={0} paddingLeft={0}>
           <Flex data-border="conservative" fillWidth>
             <Accordion
-            open={open}
+              open={open}
               padding={0}
               style={{ padding: "0.5rem !important" }}
               data-border="conservative"
@@ -126,8 +123,7 @@ export default function Experience({
                     {posting.jobTitle}
                   </Text>
                   <Text variant="code-default-xs" onBackground="neutral-weak">
-                    {posting.employmentType} • {posting.fromDate} |{" "}
-                    {posting.toDate}
+                    {posting.employmentType} • {posting.fromDate} | {posting.toDate}
                   </Text>
                 </Column>
               }
@@ -138,15 +134,13 @@ export default function Experience({
                   onBackground="neutral-medium"
                   style={{ lineHeight: "1.7em" }}
                 >
-                  {posting.responsibilities.map(
-                    (responsibility: string, idx: number) => (
-                      <Row key={idx}>
-                        {" "}
-                        <Text onBackground="neutral-weak">•</Text>
-                        <ListItem>{responsibility}</ListItem>
-                      </Row>
-                    ),
-                  )}
+                  {posting.responsibilities.map((responsibility: string, idx: number) => (
+                    <Row key={idx + "-responsibility"}>
+                      {" "}
+                      <Text onBackground="neutral-weak">•</Text>
+                      <ListItem>{responsibility}</ListItem>
+                    </Row>
+                  ))}
                 </Text>
               </List>
             </Accordion>
@@ -155,24 +149,18 @@ export default function Experience({
           <Row gap={0.3} paddingX={0.35} wrap>
             {posting.tags.map((tag: string, idx: number) =>
               variant === "primary" ? (
-                <Tag key={idx} size="s">
-                  <Text
-                    variant="code-default-xs"
-                    onBackground="neutral-alpha-medium"
-                  >
+                <Tag key={idx + "-tag"} size="s">
+                  <Text variant="code-default-xs" onBackground="neutral-alpha-medium">
                     {tag}
                   </Text>
                 </Tag>
               ) : (
-                <Kbd key={idx} size="s">
-                  <Text
-                    variant="code-default-xs"
-                    onBackground="neutral-alpha-medium"
-                  >
+                <Kbd key={idx + "-tag"}>
+                  <Text variant="code-default-xs" onBackground="neutral-alpha-medium">
                     {tag}
                   </Text>
                 </Kbd>
-              )
+              ),
             )}
           </Row>
         </Column>

@@ -1,19 +1,11 @@
-import {
-  BriefcaseBusinessIcon,
-  ChevronsDownUpIcon,
-  ChevronsUpDownIcon,
-} from "lucide-react"
-import Image from "next/image"
-import type { ComponentProps, ComponentType } from "react"
-import ReactMarkdown from "react-markdown"
+import { BriefcaseBusinessIcon, ChevronsDownUpIcon, ChevronsUpDownIcon } from "lucide-react";
+import Image from "next/image";
+import type { ComponentProps, ComponentType } from "react";
+import ReactMarkdown from "react-markdown";
 
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible"
-import { Separator } from "@/components/ui/separator"
-import { cn } from "@/lib/utils"
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { Separator } from "@/components/ui/separator";
+import { cn } from "@/lib/utils";
 
 /**
  * Represents the valid keys of the `iconMap` object, used to specify the type of icon
@@ -21,61 +13,58 @@ import { cn } from "@/lib/utils"
  */
 export type ExperiencePositionItemType = {
   /** Unique identifier for the position */
-  id: string
+  id: string;
   /** The job title or position name */
-  title: string
+  title: string;
   /** The period during which the position was held (e.g., "Jan 2020 - Dec 2021") */
-  employmentPeriod: string
+  employmentPeriod: string;
   /** The type of employment (e.g., "Full-time", "Part-time", "Contract") */
-  employmentType?: string
+  employmentType?: string;
   /** A brief description of the position or responsibilities */
-  description?: string
+  description?: string;
   /** An icon representing the position */
-  icon?: ComponentType<ComponentProps<"svg">>
+  icon?: ComponentType<ComponentProps<"svg">>;
   /** A list of skills associated with the position */
-  skills?: string[]
+  skills?: string[];
   /** Indicates if the position details are expanded in the UI */
-  isExpanded?: boolean
-}
+  isExpanded?: boolean;
+};
 
 export type ExperienceItemType = {
   /** Unique identifier for the experience item */
-  id: string
+  id: string;
   /** Name of the company where the experience was gained */
-  companyName: string
+  companyName: string;
   /** URL or path to the company's logo image */
-  companyLogo?: string
+  companyLogo?: string;
   /**
    * List of positions held at the company
    * @fumadocsHref #experiencepositionitemtype
    * */
-  positions: ExperiencePositionItemType[]
+  positions: ExperiencePositionItemType[];
   /** Indicates if this is the user's current employer */
-  isCurrentEmployer?: boolean
-}
+  isCurrentEmployer?: boolean;
+};
 
 export type WorkExperienceProps = {
-  className?: string
+  className?: string;
   /** @fumadocsHref #experienceitemtype */
-  experiences: ExperienceItemType[]
-}
+  experiences: ExperienceItemType[];
+};
 
-export function WorkExperience({
-  className,
-  experiences,
-}: WorkExperienceProps) {
+export function WorkExperience({ className, experiences }: WorkExperienceProps) {
   return (
     <div className={cn("bg-background px-4", className)}>
       {experiences.map((experience) => (
         <ExperienceItem key={experience.id} experience={experience} />
       ))}
     </div>
-  )
+  );
 }
 
 export type ExperienceItemProps = {
-  experience: ExperienceItemType
-}
+  experience: ExperienceItemType;
+};
 
 export function ExperienceItem({ experience }: ExperienceItemProps) {
   return (
@@ -117,30 +106,24 @@ export function ExperienceItem({ experience }: ExperienceItemProps) {
         ))}
       </div>
     </div>
-  )
+  );
 }
 
 export type ExperiencePositionItemProps = {
-  position: ExperiencePositionItemType
-}
+  position: ExperiencePositionItemType;
+};
 
-export function ExperiencePositionItem({
-  position,
-}: ExperiencePositionItemProps) {
-  const ExperienceIcon = position.icon ?? BriefcaseBusinessIcon // iconMap[position.icon || "business"]
+export function ExperiencePositionItem({ position }: ExperiencePositionItemProps) {
+  const ExperienceIcon = position.icon ?? BriefcaseBusinessIcon; // iconMap[position.icon || "business"]
 
   return (
-    <Collapsible
-      defaultOpen={position.isExpanded}
-      disabled={!position.description}
-      asChild
-    >
+    <Collapsible defaultOpen={position.isExpanded} disabled={!position.description} asChild>
       <div className="relative last:before:absolute last:before:h-full last:before:w-4 last:before:bg-background">
         <CollapsibleTrigger
           className={cn(
             "group not-prose block w-full text-left select-none",
             "relative before:absolute before:-top-1 before:-right-1 before:-bottom-1.5 before:left-7 before:rounded-lg hover:before:bg-muted/30",
-            "data-disabled:before:content-none"
+            "data-disabled:before:content-none",
           )}
         >
           <div className="relative z-1 mb-1 flex items-center gap-3">
@@ -148,7 +131,7 @@ export function ExperiencePositionItem({
               className={cn(
                 "flex size-6 shrink-0 items-center justify-center rounded-lg",
                 "bg-muted text-muted-foreground",
-                "border border-muted-foreground/15 ring-1 ring-edge ring-offset-1 ring-offset-background"
+                "border border-muted-foreground/15 ring-1 ring-edge ring-offset-1 ring-offset-background",
               )}
             >
               <ExperienceIcon className="size-4" />
@@ -205,7 +188,7 @@ export function ExperiencePositionItem({
         )}
       </div>
     </Collapsible>
-  )
+  );
 }
 
 function Prose({ className, ...props }: ComponentProps<"div">) {
@@ -213,11 +196,11 @@ function Prose({ className, ...props }: ComponentProps<"div">) {
     <div
       className={cn(
         "prose prose-sm max-w-none prose-ncdai font-mono text-foreground prose-zinc dark:prose-invert",
-        className
+        className,
       )}
       {...props}
     />
-  )
+  );
 }
 
 function Skill({ className, ...props }: ComponentProps<"span">) {
@@ -225,9 +208,9 @@ function Skill({ className, ...props }: ComponentProps<"span">) {
     <span
       className={cn(
         "inline-flex items-center rounded-lg border bg-muted/50 px-1.5 py-0.5 font-mono text-xs text-muted-foreground",
-        className
+        className,
       )}
       {...props}
     />
-  )
+  );
 }

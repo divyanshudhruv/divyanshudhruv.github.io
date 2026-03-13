@@ -1,7 +1,7 @@
 /* :root {
   /*
   /* Override default variables here */
-  /*
+/*
   --font-size-display-multiplier:   1;
   --font-size-heading-multiplier:   1;
   --font-size-body-multiplier:      1;
@@ -16,8 +16,8 @@
 
   /*
   /* Example setup for custom colors */
-  /* Generate at: https://once-ui.com/customize */
-  /*
+/* Generate at: https://once-ui.com/customize */
+/*
   --scheme-brand-100: #08002f;
   --scheme-brand-200:  #04025c;
   --scheme-brand-300:  #1f398e;
@@ -70,8 +70,8 @@
 
 /* Reckless Standard S Font */
 @font-face {
-  font-family: 'Reckless Standard S';
-  src: url('../resources/fonts/RecklessStandardS-TRIAL-Regular.ttf') format('truetype');
+  font-family: "Reckless Standard S";
+  src: url("../resources/fonts/RecklessStandardS-TRIAL-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -79,26 +79,25 @@
 
 /* Font utility classes */
 .font-reckless {
-  font-family: 'Reckless Standard S', sans-serif;
+  font-family: "Reckless Standard S", sans-serif;
 }
 
 .font-reckless-regular {
-  font-family: 'Reckless Standard S', sans-serif;
+  font-family: "Reckless Standard S", sans-serif;
   font-weight: 400;
 }
 
 .font-reckless-light {
-  font-family: 'Reckless Standard S', sans-serif;
+  font-family: "Reckless Standard S", sans-serif;
   font-weight: 300;
 }
 
 .font-reckless-medium {
-  font-family: 'Reckless Standard S', sans-serif;
+  font-family: "Reckless Standard S", sans-serif;
   font-weight: 500;
 }
 
 .font-reckless-bold {
-  font-family: 'Reckless Standard S', sans-serif;
+  font-family: "Reckless Standard S", sans-serif;
   font-weight: 700;
 }
-

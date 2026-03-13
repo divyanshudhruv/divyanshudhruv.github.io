@@ -1,7 +1,5 @@
-
 "use client";
 
-import { useEffect, useState } from "react";
 import {
   ContributionGraph,
   ContributionGraphBlock,
@@ -10,13 +8,9 @@ import {
   ContributionGraphLegend,
   ContributionGraphTotalCount,
 } from "@/components/kibo-ui/contribution-graph";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { eachDayOfInterval, endOfYear, formatISO, startOfYear } from "date-fns";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { useEffect, useState } from "react";
 
 // Simple seeded random number generator
 function seededRandom(seed: number) {
@@ -25,7 +19,7 @@ function seededRandom(seed: number) {
 }
 
 const Example = () => {
-  const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState<Array<{ date: string; count: number; level: number }>>([]);
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -73,14 +67,14 @@ const Example = () => {
                 <p>{activity.count} contributions</p>
               </TooltipContent>
             </Tooltip>
-        )}
-      </ContributionGraphCalendar>
-      <ContributionGraphFooter>
-        <ContributionGraphTotalCount />
-        <ContributionGraphLegend />
-      </ContributionGraphFooter>{" "}
-    </ContributionGraph>
-  </TooltipProvider>
+          )}
+        </ContributionGraphCalendar>
+        <ContributionGraphFooter>
+          <ContributionGraphTotalCount />
+          <ContributionGraphLegend />
+        </ContributionGraphFooter>{" "}
+      </ContributionGraph>
+    </TooltipProvider>
   );
 };
 

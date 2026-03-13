@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  Row,
-  Flex,
-  Text,
-} from "@once-ui-system/core";
+import { Flex, Row, Text } from "@once-ui-system/core";
 
 interface ChipSetProps {
   icon: React.ReactNode;
@@ -14,23 +10,10 @@ interface ChipSetProps {
   gap?: number;
 }
 
-export default function ChipSet({
-  icon,
-  text,
-  href,
-  maxHeight = 2,
-  gap = 1,
-}: ChipSetProps) {
+export default function ChipSet({ icon, text, href, maxHeight = 2, gap = 1 }: ChipSetProps) {
   return (
     <Row fillWidth maxHeight={maxHeight} vertical="center" horizontal="start" gap={gap}>
-      <Flex
-        radius="m"
-        borderStyle="solid"
-        width={2}
-        height={2}
-        border="neutral-weak"
-        center
-      >
+      <Flex radius="m" borderStyle="solid" width={2} height={2} border="neutral-weak" center>
         <Flex
           radius="s"
           center
