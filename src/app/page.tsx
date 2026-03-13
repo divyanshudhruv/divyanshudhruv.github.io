@@ -91,19 +91,16 @@ export default function Home() {
           borderBottom="neutral-alpha-weak"
           center
         >
-          <Waves
-            lineColor="#ddd"
-            backgroundColor="transparent"
-            waveSpeedX={0.05}
-            waveSpeedY={0.021}
-            waveAmpX={40}
-            waveAmpY={20}
-            friction={0.9}
-            tension={0.01}
-            maxCursorMove={120}
-            xGap={12}
-            yGap={36}
-          />
+          <Mask maxWidth="m" x={50} y={50} radius={50}>
+            <MatrixFx
+              size={1.5}
+              spacing={5}
+              opacity={50}
+              fps={24}
+              colors={["brand-solid-weak"]}
+              flicker
+            />
+          </Mask>
         </Flex>
         <Row
           fillWidth
