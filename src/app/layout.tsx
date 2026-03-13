@@ -1,12 +1,18 @@
-import '@once-ui-system/core/css/styles.css';
-import '@once-ui-system/core/css/tokens.css';
-import '@/resources/custom.css'
+import "@once-ui-system/core/css/styles.css";
+import "@once-ui-system/core/css/tokens.css";
+import "@/resources/custom.css";
+import "./global.css";
 
 import classNames from "classnames";
 
-import { baseURL, meta, fonts, effects, style, dataStyle } from "@/resources/once-ui.config";
-import { Meta, Schema,  Column, Flex, opacity, SpacingToken, Background} from "@once-ui-system/core";
-import { Providers } from '@/components/Providers';
+import { Providers } from "@/components/Providers";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { baseURL, dataStyle, fonts, meta, style } from "@/resources/once-ui.config";
+import { Column, Flex, Mask, MatrixFx, Meta, Schema } from "@once-ui-system/core";
+import { Geist_Mono, Inter } from "next/font/google";
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+
+const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono" });
 
 export async function generateMetadata() {
   return Meta.generate({
@@ -47,6 +53,12 @@ export default function RootLayout({
         path={meta.home.path}
       />
       <head>
+        <link
+          rel="stylesheet"
+          type="text/css"
+          href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+        />
+
         <script
           id="theme-init"
           dangerouslySetInnerHTML={{
@@ -62,12 +74,12 @@ export default function RootLayout({
                     accent: style.accent,
                     neutral: style.neutral,
                     solid: style.solid,
-                    'solid-style': style.solidStyle,
+                    "solid-style": style.solidStyle,
                     border: style.border,
                     surface: style.surface,
                     transition: style.transition,
                     scaling: style.scaling,
-                    'viz-style': dataStyle.variant,
+                    "viz-style": dataStyle.variant,
                   })};
                   
                   // Apply default values
@@ -108,48 +120,18 @@ export default function RootLayout({
       </head>
       <Providers>
         <Column as="body" background="page" fillWidth margin="0" padding="0">
-          <Background
-            position="absolute"
-            mask={{
-              x: effects.mask.x,
-              y: effects.mask.y,
-              radius: effects.mask.radius,
-              cursor: effects.mask.cursor,
-            }}
-            gradient={{
-              display: effects.gradient.display,
-              opacity: effects.gradient.opacity as opacity,
-              x: effects.gradient.x,
-              y: effects.gradient.y,
-              width: effects.gradient.width,
-              height: effects.gradient.height,
-              tilt: effects.gradient.tilt,
-              colorStart: effects.gradient.colorStart,
-              colorEnd: effects.gradient.colorEnd,
-            }}
-            dots={{
-              display: effects.dots.display,
-              opacity: effects.dots.opacity as opacity,
-              size: effects.dots.size as SpacingToken,
-              color: effects.dots.color,
-            }}
-            grid={{
-              display: effects.grid.display,
-              opacity: effects.grid.opacity as opacity,
-              color: effects.grid.color,
-              width: effects.grid.width,
-              height: effects.grid.height,
-            }}
-            lines={{
-              display: effects.lines.display,
-              opacity: effects.lines.opacity as opacity,
-              size: effects.lines.size as SpacingToken,
-              thickness: effects.lines.thickness,
-              angle: effects.lines.angle,
-              color: effects.lines.color,
-            }}
-          />
-          {children}
+          {/* <Column style={{maxHeight: "100dvh"}} fillWidth aspectRatio="1" horizontal="center" position="absolute" top="0" left="0">
+            <Mask maxWidth="m" x={50} y={0} radius={50}>
+              <MatrixFx
+                size={1.5}
+                spacing={5}
+                fps={24}
+                colors={["brand-solid-strong"]}
+                flicker
+              />
+            </Mask>
+          </Column> */}
+          <TooltipProvider> {children}</TooltipProvider>
         </Column>
       </Providers>
     </Flex>

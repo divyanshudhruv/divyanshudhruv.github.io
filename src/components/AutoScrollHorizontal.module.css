@@ -1,0 +1,23 @@
+.autoScrollHorizontal {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.autoScrollHorizontal > div {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: scroll 30s linear infinite;
+}
+
+.autoScrollHorizontal:hover > div {
+  animation-play-state: paused;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

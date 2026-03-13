@@ -1,0 +1,40 @@
+# LLMs.txt for Divyanshu Dhruv Portfolio
+# One pixel at a time. Simple code, complex logic.
+
+# Site Information
+url: https://divyanshudhruv.is-a.dev
+name: Divyanshu Dhruv | 🌌🏮
+description: One pixel at a time. Simple code, complex logic.
+author: Divyanshu Dhruv
+
+# Content Summary
+This is the personal portfolio website of Divyanshu Dhruv, a full-stack developer 
+specializing in Next.js, React, TypeScript, and modern web technologies. The site 
+showcases projects, experience, skills, and professional background.
+
+# Key Sections
+- About Me: Personal introduction and background
+- Experience: Professional work history and education
+- Projects: Featured portfolio projects with live demos
+- Skills: Technical stack and competencies
+- Contact: Professional links and social profiles
+
+# Technologies Used
+- Frontend: Next.js 16, React 19, TypeScript
+- Styling: Tailwind CSS, Once UI System
+- Deployment: Vercel, GitHub Pages
+- Icons: React Icons, Lucide Icons
+
+# Content Guidelines for LLMs
+- This is a professional portfolio, not a blog
+- Focus on technical skills and project experience
+- Respect the professional context when referencing
+- Contact information is for professional inquiries only
+- All code examples are for demonstration purposes
+
+# License
+Content on this site is for informational purposes. 
+Projects may have individual licenses as specified.
+
+# Last Updated
+2026-03-13

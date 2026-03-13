@@ -1,5 +1,5 @@
 // IMPORTANT: Replace with your own domain address - it's used for SEO in meta tags and schema
-const baseURL = "https://demo.once-ui.com";
+const baseURL = "https://divyanshudhruv.is-a.dev";
 
 // Import and set font for each variant
 import { Geist } from "next/font/google";
@@ -39,12 +39,12 @@ const fonts = {
 // default customization applied to the HTML in the main layout.tsx
 const style = {
   theme: "system", // dark | light | system
-  neutral: "gray", // sand | gray | slate
-  brand: "orange", // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan
+  neutral: "gray", // sand | gray | slate | mint | rose | dusk | custom
+  brand: "yellow", // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan
   accent: "indigo", // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan
   solid: "contrast", // color | contrast | inverse
   solidStyle: "flat", // flat | plastic
-  border: "playful", // rounded | playful | conservative
+  border: "playful", // rounded | playful | conservative | sharp
   surface: "filled", // filled | translucent
   transition: "all", // all | micro | macro
   scaling: "100", // 90 | 95 | 100 | 105 | 110
@@ -60,48 +60,7 @@ const dataStyle = {
   tick: {
     fill: "var(--neutral-on-background-weak)",
     fontSize: 11,
-    line: false
-  },
-};
-
-const effects = {
-  mask: {
-    cursor: false,
-    x: 50,
-    y: 0,
-    radius: 100,
-  },
-  gradient: {
-    display: false,
-    x: 50,
-    y: 0,
-    width: 100,
-    height: 100,
-    tilt: 0,
-    colorStart: "brand-background-strong",
-    colorEnd: "static-transparent",
-    opacity: 50,
-  },
-  dots: {
-    display: true,
-    size: "2",
-    color: "brand-on-background-weak",
-    opacity: 40,
-  },
-  lines: {
-    display: false,
-    color: "neutral-alpha-weak",
-    opacity: 100,
-    thickness: 1,
-    angle: 45,
-    size: "8",
-  },
-  grid: {
-    display: false,
-    color: "neutral-alpha-weak",
-    opacity: 100,
-    width: "2",
-    height: "2",
+    line: false,
   },
 };
 
@@ -109,13 +68,12 @@ const effects = {
 const meta = {
   home: {
     path: "/",
-    title: "Divyanshu Dhruv | 🌆😴",
-    description:
-      "Portfolio of Divyanshu Dhruv - Fullstack Engineer, Tech Enthusiast, and Lifelong Learner. Explore my projects, skills, and experiences in the world of technology.",
-    image: "/images/og/home.jpg",
-    canonical: "https://once-ui.com",
+    title: "Divyanshu Dhruv | 🌌🏮",
+    description: "One pixel at a time. Simple code, complex logic.",
+    image: "/og2.png",
+    canonical: "https://divyanshudhruv.is-a.dev",
     robots: "index,follow",
-    alternates: [{ href: "https://once-ui.com", hrefLang: "en" }],
+    alternates: [{ href: "https://divyanshudhruv.vercel.app", hrefLang: "en" }],
   },
   // add more routes and reference them in page.tsx
 };
@@ -123,17 +81,16 @@ const meta = {
 // default schema data
 const schema = {
   logo: "",
-  type: "Organization",
-  name: "Once UI",
+  type: "Website",
+  name: "Portfolio of Divyanshu Dhruv",
   description: meta.home.description,
-  email: "lorant@once-ui.com",
+  email: "divyanshudhruv@proton.me",
 };
 
 // social links
 const social = {
-  twitter: "https://www.twitter.com/_onceui",
-  linkedin: "https://www.linkedin.com/company/once-ui/",
-  discord: "https://discord.com/invite/5EyAQ4eNdS",
+  twitter: "https://www.twitter.com/divyanshudhruv",
+  linkedin: "https://www.linkedin.com/in/divyanshudhruv",
 };
 
-export { baseURL, fonts, style, meta, schema, social, effects, dataStyle };
+export { baseURL, fonts, style, meta, schema, social, dataStyle };
