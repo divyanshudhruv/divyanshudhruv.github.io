@@ -11,7 +11,6 @@ import { baseURL, dataStyle, fonts, meta, style } from "@/resources/once-ui.conf
 import { Column, Flex, Mask, MatrixFx, Meta, Schema } from "@once-ui-system/core";
 import { Geist_Mono, Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-import { Analytics } from '@vercel/analytics/next';
 
 const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono" });
 
@@ -132,7 +131,7 @@ export default function RootLayout({
               />
             </Mask>
           </Column> */}
-          <TooltipProvider>         <Analytics />
+          <TooltipProvider>         
 {children}</TooltipProvider>
         </Column>
       </Providers>

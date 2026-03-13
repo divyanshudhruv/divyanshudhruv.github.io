@@ -417,7 +417,7 @@ export default function Home() {
           horizontal="start"
         >
           <Text variant="code-default-xs" onBackground="neutral-weak">
-            Projects <b><sup className={suse.className}>({PROJECTS.length})</sup></b>
+            Projects <b><sup className={suse.className}>({PROJECTS.length}) + github</sup></b>
           </Text>
         </Flex>{" "}
         <Flex fillWidth fitHeight direction="column">
