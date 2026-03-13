@@ -1,7 +1,7 @@
 "use client";
 
 import { Flex, Row, Text } from "@once-ui-system/core";
-
+import "./../app/global.css"
 interface ChipSetProps {
   icon: React.ReactNode;
   text: React.ReactNode;
@@ -28,7 +28,7 @@ export default function ChipSet({ icon, text, href, maxHeight = 2, gap = 1 }: Ch
           </Text>
         </Flex>
       </Flex>
-      <Text variant="code-default-xs" onBackground="neutral-medium">
+      <Text variant="code-default-s" onBackground="neutral-medium" >
         {text}
       </Text>
     </Row>

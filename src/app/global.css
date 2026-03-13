@@ -167,6 +167,7 @@
   #persona_main{
     min-height: fit-content !important;
     padding: 8px;
+    gap:8px;
   }
   #theme_switcher{
     margin-left:-20px !important;
@@ -174,6 +175,10 @@
 }
   #theme_switcher{
     margin-left:32px !important;
+  }
+
+  #font_to_be_big{
+    font-size: 32px;
   }
 @media (max-width: 400px) {
 
@@ -183,6 +188,7 @@
     align-items: start !important;
   } 
   #theme_switcher{
-    margin-left:-16px !important;
+    margin-left:-8px !important;
+    scale:0.9 !important;
   }
 }
