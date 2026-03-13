@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  Column,
-  Row,
-  Flex,
-  Avatar,
-  Text,
-} from "@once-ui-system/core";
+import { Column, Row, Flex, Avatar, Text } from "@once-ui-system/core";
 
 interface TestimonialProps {
   src: string;
@@ -26,7 +20,7 @@ export default function Testimonial({
   name,
   desc,
   maxWidth = 20,
-  minWidth = 12,
+  minWidth = 20,
   minHeight = 7,
 }: TestimonialProps) {
   return (

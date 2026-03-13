@@ -32,6 +32,8 @@ import Experience from "@/components/exp";
 import { Projects } from "@/components/Projects";
 import Stacks from "@/components/Stacks";
 import Testimonial from "@/components/Testimonial";
+import AutoScrollHorizontal from "@/components/AutoScrollHorizontal";
+
 import Dashed from "@/components/Dashed";
 import LinkSet from "@/components/LinkSet";
 import ChipSet from "@/components/ChipSet";
@@ -49,7 +51,7 @@ import {
 } from "@/data/core-config";
 
 export default function Home() {
-  const [visibleProjects, setVisibleProjects] = useState(4);
+  const [visibleProjects, setVisibleProjects] = useState(10);
   const projectsToShow = PROJECTS.slice(0, visibleProjects);
   const hasMoreProjects = PROJECTS.length > visibleProjects;
 
@@ -64,7 +66,6 @@ export default function Home() {
       vertical="start"
       style={{ minHeight: "100vh" }}
     >
-      <LongDashed position="left" />
       <Column maxWidth="s" borderX="neutral-alpha-weak" fillWidth fillHeight>
         <Dashed />
         <Flex
@@ -255,20 +256,20 @@ export default function Home() {
             </Text>
           ))}
         </Column>{" "}
-        <Row fillWidth fitHeight padding={1} borderBottom="neutral-alpha-weak">
-          <AutoScroll gap={1} scrollGap={1}>
-            {TESTIMONIALS.map((testimonial, index) => (
-              <Testimonial
-                key={`testimonial-${index}`}
-                src={testimonial.src}
-                href={testimonial.href}
-                name={testimonial.name}
-                desc={testimonial.desc}
-                body={testimonial.body}
-              />
-            ))}
-          </AutoScroll>
-        </Row>
+          {/* <Row padding={1} borderBottom="neutral-alpha-weak" overflow="hidden">
+            <AutoScrollHorizontal gap={1}>
+              {TESTIMONIALS.map((testimonial, index) => (
+                <Testimonial
+                  key={`testimonial-${index}`}
+                  src={testimonial.src}
+                  href={testimonial.href}
+                  name={testimonial.name}
+                  desc={testimonial.desc}
+                  body={testimonial.body}
+                />
+              ))}
+            </AutoScrollHorizontal>
+        </Row> */}
         <Flex
           fillWidth
           fitHeight
@@ -324,7 +325,7 @@ export default function Home() {
           {EXPERIENCES.map((exp, expIndex) =>
             exp.postings.map((posting, postingIndex) => (
               <Experience
-                key={`${expIndex}-${postingIndex}`}
+                key={`${expIndex}-${postingIndex}-${Math.random().toString().slice(2, 7)}`}
                 companyLogo={exp.companyLogo}
                 companyText={exp.companyText}
                 posting={posting}
@@ -355,9 +356,10 @@ export default function Home() {
           {EDUCATION.map((exp, expIndex) =>
             exp.postings.map((posting, postingIndex) => (
               <Experience
-                key={`${expIndex}-${postingIndex}`}
+                key={`${expIndex}-${postingIndex}-${Math.random().toString().slice(2, 7)}`}
                 companyLogo={exp.companyLogo}
                 companyText={exp.companyText}
+                variant="secondary"
                 current={exp.current}
                 posting={posting}
                 postingIndex={postingIndex}
@@ -488,27 +490,6 @@ export default function Home() {
           </Flex>
         </Row>
       </Column>
-      <LongDashed position="right" />
     </Row>
-  );
-}
-
-function LongDashed({ position }: { position: "left" | "right" }) {
-  return (
-    <>
-      {/* <Row fillWidth minWidth="12"maxWidth="12" fillHeight borderLeft={position === "left" ? "neutral-alpha-weak" : undefined} borderRight={position === "right" ? "neutral-alpha-weak" : undefined}>
-      <Background
-        fill
-        fillHeight
-        lines={{
-          display: true,
-          opacity: 20,
-          size: "4",
-          thickness: 1,
-          color: "neutral-solid-medium",
-        }}
-      />
-    </Row> */}
-    </>
   );
 }

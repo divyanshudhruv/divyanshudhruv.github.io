@@ -1,4 +1,3 @@
-
 import {
   HiOutlineCodeBracket,
   HiOutlineLightBulb,
@@ -13,6 +12,27 @@ import {
   HiOutlineUser,
 } from "react-icons/hi2";
 import { Text, SmartLink, InlineCode } from "@once-ui-system/core";
+import TimeDisplay from "@/components/TimeDisplay";
+
+// Image paths as relative strings
+const IMAGE_PATHS = {
+  mypfp: "/mypfpagain.webp",
+  githubLogo: "/trademarks/github.webp",
+  linkedinLogo: "/trademarks/linkedin2.webp",
+  leetcodeLogo: "/trademarks/leetcode.webp",
+  bandlabLogo: "/trademarks/bandlab.webp",
+  peerlistLogo: "/trademarks/peerlist.webp",
+  perceptLogo: "/trademarks/percept.webp",
+  schoolLogo: "/school.webp",
+  basaltLogo: "/trademarks/basalt.webp",
+  sonamiiLogo: "/trademarks/sonamii.webp",
+  selfempLogo: "/selfe.png",
+  onceuiLogo: "/trademarks/once-ui.webp",
+  whjLogo: "/trademarks/whj.webp",
+  xLogo: "/trademarks/x.webp",
+  img1: "/img.jpeg",
+  img2: "/i1.png",
+} as const;
 
 const programmingStacks = [
   "html",
@@ -75,7 +95,7 @@ export const PERSONA = {
   header: "17 yo",
   name: `Divyanshu Dhruv`,
   role: "Full-stack Developer",
-  avatar: "/mypfpagain.webp",
+  avatar: IMAGE_PATHS.mypfp,
   email: "divyanshudhruv@proton.me",
   location: "Vadodara, India",
   languages: ["English", "Hindi", "French", "Spanish"],
@@ -88,34 +108,34 @@ export const PROFILE = {
   links: [
     [
       {
-        src: "/trademarks/github.webp",
+        src: IMAGE_PATHS.githubLogo,
         href: "https://github.com/divyanshudhruv",
         text: "GitHub",
       },
       {
-        src: "/trademarks/linkedin2.webp",
+        src: IMAGE_PATHS.linkedinLogo,
         href: "https://linkedin.com/in/divyanshudhruv",
         text: "Linkedin",
       },
       {
-        src: "/trademarks/leetcode.webp",
+        src: IMAGE_PATHS.leetcodeLogo,
         href: "https://leetcode.com/u/divyanshudhruv",
         text: "Leetcode",
       },
     ],
     [
       {
-        src: "/trademarks/bandlab.webp",
+        src: IMAGE_PATHS.bandlabLogo,
         href: "https://bandlab.com/divyanshudhruv",
         text: "Bandlab",
       },
       {
-        src: "/trademarks/peerlist.webp",
+        src: IMAGE_PATHS.peerlistLogo,
         href: "https://peerlist.io/divyanshudhruv",
         text: "Peerlist",
       },
       {
-        src: "/trademarks/percept.webp",
+        src: IMAGE_PATHS.perceptLogo,
         href: "https://percept-network.vercel.app",
         text: "Percept Network",
       },
@@ -128,7 +148,7 @@ export const PROFILE = {
         text: (
           <span>
             Full-stack Developer{" "}
-            <SmartLink href="https://sonamii.in">
+            <SmartLink href="https://dopler.app">
               <u>@Once UI</u>
             </SmartLink>
           </span>
@@ -142,7 +162,7 @@ export const PROFILE = {
         text: (
           <span>
             Founder{" "}
-            <SmartLink href="https://covane.in">
+            <SmartLink href="https://github.com/basalt3">
               <u>@Basalt3</u>
             </SmartLink>
             ,
@@ -157,15 +177,15 @@ export const PROFILE = {
         text: (
           <span>
             Co-founder{" "}
-            <SmartLink href="https://covane.in">
+            <SmartLink href="https://github.com/basalt3/covane">
               <u>@Covane</u>
             </SmartLink>
             ,{" "}
-            <SmartLink href="https://covane.in">
+            <SmartLink href="https://next-bench-dev.vercel.app">
               <u>@Next Bench</u>
             </SmartLink>
             ,{" "}
-            <SmartLink href="https://covane.in">
+            <SmartLink href="https://github.com/basalt3/pn">
               <u>@PN</u>
             </SmartLink>
             ,
@@ -178,45 +198,19 @@ export const PROFILE = {
     [
       {
         icon: <HiOutlineMapPin />,
-        text: (
-          <span>
-            Vadodara, India{" "}
-            {/* <SmartLink href="https://sonamii.in">
-                      @sonamii
-                    </SmartLink> */}
-          </span>
-        ),
+        text: <span>Vadodara, India </span>,
         href: "",
       },
       {
         icon: <HiOutlineClock />,
-        text: (
-          <span>
-            {new Date().toLocaleTimeString("en-US", {
-              timeZone: "Asia/Kolkata",
-              hour: "numeric",
-              minute: "2-digit",
-            })}
-            <Text onBackground="neutral-weak" marginX="8">
-              //{" "}
-              {`${Math.abs((new Date().getTimezoneOffset() + 5.5 * 60) / 60)} ${Math.abs((new Date().getTimezoneOffset() + 5.5 * 60) / 60) > 1 ? "HOURS" : "HOUR"} ${(new Date().getTimezoneOffset() + 5.5 * 60) % 60 > 0 ? "BEHIND" : "AHEAD"}`}
-            </Text>{" "}
-          </span>
-        ),
+        text: <TimeDisplay />,
         href: "",
       },
     ],
     [
       {
         icon: <HiOutlinePhone />,
-        text: (
-          <span>
-            haw, why? &lt;/3
-            {/* <SmartLink href="https://sonamii.in">
-                      @sonamii
-                    </SmartLink> */}
-          </span>
-        ),
+        text: <span>haw, why? &lt;/3</span>,
         href: "#",
       },
       {
@@ -232,7 +226,7 @@ export const PROFILE = {
             unselectable="on"
           >
             <SmartLink href="#">
-              <u>divyanshudhruv@proton.me</u>
+              <u>iwillnotgivemyemail@no.no</u>
             </SmartLink>
           </span>
         ),
@@ -245,7 +239,7 @@ export const PROFILE = {
         text: (
           <span>
             https://github.com/
-            <SmartLink href="https://sonamii.in">
+            <SmartLink href="https://github.com/divyanshudhruv">
               <u> divyanshudhruv</u>
             </SmartLink>
           </span>
@@ -262,108 +256,122 @@ export const PROFILE = {
 };
 
 export const BIO = {
-  description: [<>   👋 Hi, I'm a full-stack developer with <InlineCode>5+</InlineCode>{" "}
-            years of experience (i guess so), I give strong attention to{" "}
-            <InlineCode>small details</InlineCode> (kind of). I've been coding
-            since I was 12. Currently, I'm creating{" "}
-            <SmartLink href="https://modelcontextprotocol.io">
-              <u>MCP servers</u>
-            </SmartLink>{" "}
-            and environments for <InlineCode>AI agents</InlineCode>. Skilled in
-            <SmartLink href="https://nextjs.org">
-              <u>Next.js</u>
-            </SmartLink>
-            ,{" "}
-            <SmartLink href="https://react.dev">
-              <u>React</u>
-            </SmartLink>
-            ,{" "}
-            <SmartLink href="https://typescriptlang.org">
-              <u>TypeScript</u>
-            </SmartLink>
-            ,{" "}
-            <SmartLink href="https://java.com">
-              <u>Java</u>
-            </SmartLink>
-            ,{" "}
-            <SmartLink href="https://python.org">
-              <u>Python</u>
-            </SmartLink>
-            , and{" "}
-            <SmartLink href="https://www.r-project.org">
-              <u>R</u>
-            </SmartLink>
-            , and modern front-end technologies; building high-quality,
-            user-centric web and <InlineCode>mobile applications</InlineCode> 📱
-            (sometimes).</>, <>    Passionate about exploring new technologies and turning ideas into
-            reality through polished, thoughtfully crafted personal projects 🗃️.</>,<> Creator of{" "}
-            <SmartLink href="https://covane.in">
-              <InlineCode>Covane Space 🌌</InlineCode>
-            </SmartLink>{" "}
-            and{" "}
-            <SmartLink href="https://percept-network.vercel.app">
-              <InlineCode>Percept Network 🏮</InlineCode>
-            </SmartLink>
-            .</>],
-  stacks: [  "html",
-  "css",
-  "javascript",
-  "typescript",
-  "react",
-  "nextjs",
-  "vite",
-  "vercel",
-  "tailwind",
-  "bootstrap",
-  "firebase",
-  "supabase",
-  "mysql",
-  "java",
-  "figma",
-  "vitest",
-  "vue",
-  "python",
-  "pytorch",
-  "rabbitmq",
-  "gitlab",
-  "cs",
-  "angular",
-  "arduino",
-  "bash",
-  "bun",
-  "docker",
-  "dotnet",
-  "gcp",
-  "git",
-  "gherkin",
-  "graphql",
-  "htmx",
-  "md",
-  "matlab",
-  "materialui",
-  "mongodb",
-  "netlify",
-  "nodejs",
-  "npm",
-  "pnpm",
-  "opencv",
-  "r",
-  "ubuntu",
-  "replit",
-  "solidity",
-  "tensorflow",
-  "terraform",
-  "threejs",
-  "p5js",
-  "express",
-  "html",],
+  description: [
+    <>
+      {" "}
+      👋 Hi, I'm a full-stack developer with <InlineCode>5+</InlineCode> years
+      of experience (i guess so), I give strong attention to{" "}
+      <InlineCode>small details</InlineCode> (kind of). I've been coding since I
+      was 12. Currently, I'm creating{" "}
+      <SmartLink href="https://modelcontextprotocol.io">
+        <u>MCP servers</u>
+      </SmartLink>{" "}
+      and environments for <InlineCode>AI agents</InlineCode>. Skilled in
+      <SmartLink href="https://nextjs.org">
+        <u>Next.js</u>
+      </SmartLink>
+      ,{" "}
+      <SmartLink href="https://react.dev">
+        <u>React</u>
+      </SmartLink>
+      ,{" "}
+      <SmartLink href="https://typescriptlang.org">
+        <u>TypeScript</u>
+      </SmartLink>
+      ,{" "}
+      <SmartLink href="https://java.com">
+        <u>Java</u>
+      </SmartLink>
+      ,{" "}
+      <SmartLink href="https://python.org">
+        <u>Python</u>
+      </SmartLink>
+      , and{" "}
+      <SmartLink href="https://www.r-project.org">
+        <u>R</u>
+      </SmartLink>
+      , and modern front-end technologies; building high-quality, user-centric
+      web and <InlineCode>mobile applications</InlineCode> 📱 (sometimes).
+    </>,
+    <>
+      {" "}
+      Passionate about exploring new technologies and turning ideas into reality
+      through polished, thoughtfully crafted personal projects 🗃️.
+    </>,
+    <>
+      {" "}
+      Creator of{" "}
+      <SmartLink href="https://covane.in">
+        <InlineCode>Covane Space 🌌</InlineCode>
+      </SmartLink>{" "}
+      and{" "}
+      <SmartLink href="https://percept-network.vercel.app">
+        <InlineCode>Percept Network 🏮</InlineCode>
+      </SmartLink>
+      .
+    </>,
+  ],
+  stacks: [
+    "html",
+    "css",
+    "javascript",
+    "typescript",
+    "react",
+    "nextjs",
+    "vite",
+    "vercel",
+    "tailwind",
+    "bootstrap",
+    "firebase",
+    "supabase",
+    "mysql",
+    "java",
+    "figma",
+    "vitest",
+    "vue",
+    "python",
+    "pytorch",
+    "rabbitmq",
+    "gitlab",
+    "cs",
+    "angular",
+    "arduino",
+    "bash",
+    "bun",
+    "docker",
+    "dotnet",
+    "gcp",
+    "git",
+    "gherkin",
+    "graphql",
+    "htmx",
+    "md",
+    "matlab",
+    "materialui",
+    "mongodb",
+    "netlify",
+    "nodejs",
+    "npm",
+    "pnpm",
+    "opencv",
+    "r",
+    "ubuntu",
+    "replit",
+    "solidity",
+    "tensorflow",
+    "terraform",
+    "threejs",
+    "p5js",
+    "express",
+    "html",
+  ],
   github_username: "divyanshudhruv",
 };
 
 // Sample data for testing
 export const EDUCATION = [
   {
-    companyLogo: "/school.webp",
+    companyLogo: IMAGE_PATHS.schoolLogo,
     companyText: "DPSV",
     current: true,
     postings: [
@@ -389,7 +397,7 @@ export const EDUCATION = [
     ],
   },
   {
-    companyLogo: "/school.webp",
+    companyLogo: IMAGE_PATHS.schoolLogo,
     companyText: "SPAD",
     postings: [
       {
@@ -423,8 +431,8 @@ export const PROJECTS = [
     role: "Basalt3",
     ongoing: true,
     date: "2026 - Present",
-    href: "#",
-    logo: "/trademarks/basalt.webp",
+    href: "https://github.com/basalt3/covane",
+    logo: IMAGE_PATHS.basaltLogo,
     tags: [
       "AI Agents",
       "Identity",
@@ -443,8 +451,8 @@ export const PROJECTS = [
 
     role: "Basalt3",
     date: "2026 - Present",
-    href: "#",
-    logo: "/trademarks/basalt.webp",
+    href: "https://github.com/basalt3/percept-network",
+    logo: IMAGE_PATHS.basaltLogo,
     tags: ["AI Agents", "Social Network", "Next.js", "TypeScript", "Supabase"],
     description:
       "Social platform specifically designed for AI agents to connect and share.",
@@ -456,8 +464,8 @@ export const PROJECTS = [
 
     role: "Sonamii",
     date: "Feb 2025 - Present",
-    href: "#",
-    logo: "/trademarks/sonamii.webp",
+    href: "https://next-bench-dev.vercel.app",
+    logo: IMAGE_PATHS.sonamiiLogo,
     tags: [
       "Artificial Intelligence",
       "Full-Stack Development",
@@ -474,8 +482,8 @@ export const PROJECTS = [
     title: "ReFolio",
     role: "Self Employed",
     date: "2025",
-    href: "https://github.com",
-    logo: "/selfemp.webp",
+    href: "https://re-folio.vercel.app",
+    logo: IMAGE_PATHS.selfempLogo,
     tags: ["TypeScript", "React", "Next.js", "Portfolio", "Open Source"],
     description:
       "🌃 Transform Your Resume 📄 into a Stunning Portfolio ⚡ | Open-Source 🔓",
@@ -485,8 +493,8 @@ export const PROJECTS = [
     title: "HelloLink",
     role: "Self Employed",
     date: "2025",
-    href: "https://github.com",
-    logo: "/selfemp.webp",
+    href: "https://hellolink.vercel.app",
+    logo: IMAGE_PATHS.selfempLogo,
     tags: ["TypeScript", "AI", "Link Management", "Open Source", "Next.js"],
     description:
       "Say 👋 Hello to your links, all in one place 🏠. An AI powered 🤖, open-source alternative to Linktree 🌴.",
@@ -496,7 +504,7 @@ export const PROJECTS = [
 // Sample data for testing
 export const EXPERIENCES = [
   {
-    companyLogo: "/trademarks/basalt.webp",
+    companyLogo: IMAGE_PATHS.basaltLogo,
     current: true,
     open: true,
     companyText: "Basalt3",
@@ -524,7 +532,7 @@ export const EXPERIENCES = [
     ],
   },
   {
-    companyLogo: "/trademarks/sonamii.webp",
+    companyLogo: IMAGE_PATHS.sonamiiLogo,
     companyText: "Sonamii",
     current: false,
     open: true,
@@ -545,7 +553,7 @@ export const EXPERIENCES = [
     ],
   },
   {
-    companyLogo: "/trademarks/once-ui.webp",
+    companyLogo: IMAGE_PATHS.onceuiLogo,
     companyText: "Once UI",
     current: false,
 
@@ -566,7 +574,7 @@ export const EXPERIENCES = [
     ],
   },
   {
-    companyLogo: "/selfemp.webp",
+    companyLogo: IMAGE_PATHS.selfempLogo,
     companyText: "Self Employed",
     current: false,
     postings: [
@@ -599,7 +607,7 @@ export const EXPERIENCES = [
     ],
   },
   {
-    companyLogo: "/trademarks/whj.webp",
+    companyLogo: IMAGE_PATHS.whjLogo,
     companyText: "WhiteHat Jr.",
     current: false,
     postings: [
@@ -622,36 +630,36 @@ export const EXPERIENCES = [
 
 export const TESTIMONIALS = [
   {
-    src: "/trademarks/x.webp",
-    href: "https://via.placeholder.com/150",
+    src: IMAGE_PATHS.xLogo,
+    href: "#",
     name: "Divyanshu Dhruv",
     desc: "Software Engineer",
     body: "I love working with Divyanshu. He is a great team player.",
   },
   {
-    src: "/trademarks/x.webp",
-    href: "https://via.placeholder.com/150",
+    src: IMAGE_PATHS.xLogo,
+    href: "#",
     name: "Divyanshu Dhruv",
     desc: "Software Engineer",
     body: "I love working with Divyanshu. He is a great team player.",
   },
   {
-    src: "/trademarks/x.webp",
-    href: "https://via.placeholder.com/150",
+    src: IMAGE_PATHS.xLogo,
+    href: "#",
     name: "Divyanshu Dhruv",
     desc: "Software Engineer",
     body: "I love working with Divyanshu. He is a great team player.",
   },
   {
-    src: "/trademarks/x.webp",
-    href: "https://via.placeholder.com/150",
+    src: IMAGE_PATHS.xLogo,
+    href: "#",
     name: "Divyanshu Dhruv",
     desc: "Software Engineer",
     body: "I love working with Divyanshu. He is a great team player.",
   },
   {
-    src: "/trademarks/x.webp",
-    href: "https://via.placeholder.com/150",
+    src: IMAGE_PATHS.xLogo,
+    href: "#",
     name: "Divyanshu Dhruv",
     desc: "Software Engineer",
     body: "I love working with Divyanshu. He is a great team player.",
@@ -673,4 +681,4 @@ const otherTechnologies = [
   "terraform",
 ];
 
-export const GALLERY = ["/img.jpeg", "/i1.png"];
+export const GALLERY = [IMAGE_PATHS.img1, IMAGE_PATHS.img2];

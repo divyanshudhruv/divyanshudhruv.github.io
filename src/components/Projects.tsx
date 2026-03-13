@@ -8,8 +8,11 @@ import {
   SmartLink,
   Avatar,
   Kbd,
+  IconButton,
 } from "@once-ui-system/core";
 import Image from "next/image";
+
+import { HiOutlineLink } from "react-icons/hi2";
 
 type ProjectsProps = {
   postingIndex: number;
@@ -52,14 +55,21 @@ export function Projects({
             style={{ padding: "0.5rem !important" }}
             data-border="conservative"
             title={
-              <Column gap={0.25}>
-                <Text variant="label-default-m" onBackground="neutral-strong">
-                  {title}
-                </Text>
-                <Text variant="code-default-xs" onBackground="neutral-weak">
-                  <SmartLink href={linkHref}>{role}</SmartLink> • {date}
-                </Text>
-              </Column>
+              <Row fillWidth vertical="center" horizontal="between" paddingRight={0.25}>
+                <Column gap={0.25}>
+                  <Text variant="label-default-m" onBackground="neutral-strong">
+                    {title}
+                  </Text>
+                  <Text variant="code-default-xs" onBackground="neutral-weak">
+                    <SmartLink href="#">{role}</SmartLink> • {date}
+                  </Text>
+                </Column>
+                <IconButton variant="tertiary" href={linkHref}>
+                  <Text onBackground="neutral-medium" variant="label-default-m">
+                    <HiOutlineLink />
+                  </Text>
+                </IconButton>
+              </Row>
             }
           >
             <></>
@@ -67,14 +77,16 @@ export function Projects({
         </Flex>
 
         <Row gap={0.3} paddingX={0.35} wrap>
-       {ongoing?    <Kbd >
+          {ongoing ? (
+            <Kbd>
               <Text
                 variant="code-default-xs"
                 onBackground="neutral-alpha-medium"
               >
                 ongoing
               </Text>
-            </Kbd>:undefined}
+            </Kbd>
+          ) : undefined}
           {projects.tags.map((tag, idx) => (
             <Tag key={idx} size="s" variant="neutral">
               <Text

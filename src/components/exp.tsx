@@ -8,7 +8,7 @@ import {
   Text,
   Accordion,
   List,
-  ListItem,
+  ListItem,Kbd,
   Tag,
   Line,
   StatusIndicator,
@@ -32,7 +32,7 @@ interface ExperienceProps {
   posting: Posting;
   open?: boolean;
   current?: boolean;
-
+variant?:string;
   postingIndex: number;
   totalPostings: number;
 }
@@ -42,6 +42,7 @@ export default function Experience({
   companyText,
   posting,
   open,
+  variant="primary",
   current,
   postingIndex,
   totalPostings,
@@ -139,10 +140,10 @@ export default function Experience({
                 >
                   {posting.responsibilities.map(
                     (responsibility: string, idx: number) => (
-                      <Row>
+                      <Row key={idx}>
                         {" "}
                         <Text onBackground="neutral-weak">•</Text>
-                        <ListItem key={idx}>{responsibility}</ListItem>
+                        <ListItem>{responsibility}</ListItem>
                       </Row>
                     ),
                   )}
@@ -152,16 +153,27 @@ export default function Experience({
           </Flex>
 
           <Row gap={0.3} paddingX={0.35} wrap>
-            {posting.tags.map((tag: string, idx: number) => (
-              <Tag key={idx} size="s">
-                <Text
-                  variant="code-default-xs"
-                  onBackground="neutral-alpha-medium"
-                >
-                  {tag}
-                </Text>
-              </Tag>
-            ))}
+            {posting.tags.map((tag: string, idx: number) =>
+              variant === "primary" ? (
+                <Tag key={idx} size="s">
+                  <Text
+                    variant="code-default-xs"
+                    onBackground="neutral-alpha-medium"
+                  >
+                    {tag}
+                  </Text>
+                </Tag>
+              ) : (
+                <Kbd key={idx} size="s">
+                  <Text
+                    variant="code-default-xs"
+                    onBackground="neutral-alpha-medium"
+                  >
+                    {tag}
+                  </Text>
+                </Kbd>
+              )
+            )}
           </Row>
         </Column>
       </Row>

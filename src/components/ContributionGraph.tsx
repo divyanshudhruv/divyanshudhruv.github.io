@@ -1,4 +1,7 @@
 
+"use client";
+
+import { useEffect, useState } from "react";
 import {
   ContributionGraph,
   ContributionGraphBlock,
@@ -14,53 +17,40 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { unstable_cache } from "next/cache";
 
-// const username = 'divyanshudhruv';
+// Simple seeded random number generator
+function seededRandom(seed: number) {
+  const x = Math.sin(seed) * 10000;
+  return x - Math.floor(x);
+}
 
-// interface GitHubContribution {
-//   date: string;
-//   count: number;
-//   level: number;
-// }
+const Example = () => {
+  const [data, setData] = useState<any[]>([]);
+  const [isClient, setIsClient] = useState(false);
 
-// interface GitHubApiResponse {
-//   contributions: GitHubContribution[];
-//   total: Record<string, number>;
-// }
+  useEffect(() => {
+    setIsClient(true);
+    const seed = 2026; // Fixed seed for consistent results
+    const generatedData = eachDayOfInterval({
+      start: startOfYear(new Date()),
+      end: endOfYear(new Date()),
+    }).map((date, index) => {
+      const dateStr = formatISO(date, { representation: "date" });
+      const count = Math.floor(seededRandom(seed + index) * 20);
+      const level = Math.ceil((count / 20) * 4);
 
-// const getCachedContributions = unstable_cache(
-//   async () => {
-//     const url = new URL(`/v4/${username}`, 'https://github-contributions-api.jogruber.de');
-//     const response = await fetch(url);
-//     const data = await response.json() as GitHubApiResponse;
-//     const total = data.total?.[new Date().getFullYear()] || 0;
+      return {
+        date: dateStr,
+        count,
+        level,
+      };
+    });
+    setData(generatedData);
+  }, []);
 
-//     return { contributions: data.contributions || [], total };
-//   },
-//   ['github-contributions'],
-//   { revalidate: 60 * 60 * 24 },
-// );
-
-// const maxCount = 20;
-// const maxLevel = 4;
-// const now = new Date();
-
-const Example = async () => {
-  const data = eachDayOfInterval({
-    start: startOfYear(new Date()),
-    end: endOfYear(new Date()),
-  }).map((date) => {
-    const dateStr = formatISO(date, { representation: "date" });
-    const count = Math.floor(Math.random() * 20);
-    const level = Math.ceil((count / 20) * 4);
-
-    return {
-      date: dateStr,
-      count,
-      level,
-    };
-  });
+  if (!isClient || data.length === 0) {
+    return null; // Don't render on server or before data is ready
+  }
 
   return (
     <TooltipProvider>
