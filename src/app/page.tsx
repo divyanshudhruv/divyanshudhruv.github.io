@@ -284,6 +284,8 @@ export default function Home() {
           paddingLeft={1}
           paddingBottom={1}
           paddingRight={1}
+          overflowX="scroll"
+          
         >
           <ContributionGraph />
         </Flex>
