@@ -9,24 +9,28 @@ const heading = Geist({
   variable: "--font-heading",
   subsets: ["latin"],
   display: "swap",
+  weight: "400", // Normal weight
 });
 
 const body = Geist({
   variable: "--font-body",
   subsets: ["latin"],
   display: "swap",
+  weight: "400", // Normal weight
 });
 
 const label = Geist({
   variable: "--font-label",
   subsets: ["latin"],
   display: "swap",
+  weight: "400", // Normal weight
 });
 
 const code = Geist_Mono({
   variable: "--font-code",
   subsets: ["latin"],
   display: "swap",
+  weight: "400", // Normal weight
 });
 
 const fonts = {

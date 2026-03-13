@@ -16,6 +16,7 @@
     "@phosphor-icons/react": "^2.1.10",
     "@tabler/icons-react": "^3.40.0",
     "@tailwindcss/postcss": "^4.2.1",
+    "@vercel/analytics": "^2.0.1",
     "class-variance-authority": "^0.7.1",
     "classnames": "^2.5.1",
     "clsx": "^2.1.1",

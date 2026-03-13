@@ -147,8 +147,8 @@ export const PROFILE = {
         icon: <HiOutlineCodeBracket />,
         text: (
           <span>
-            Full-stack Developer{" "}
-            <SmartLink href="https://dopler.app">
+            Contributing heavily to{" "}
+            <SmartLink href="https://github.com/once-ui-system">
               <u>@Once UI</u>
             </SmartLink>
           </span>
@@ -161,7 +161,7 @@ export const PROFILE = {
         icon: <HiOutlineLightBulb />,
         text: (
           <span>
-            Founder{" "}
+            Brewing up{" "}
             <SmartLink href="https://github.com/basalt3">
               <u>@Basalt3</u>
             </SmartLink>

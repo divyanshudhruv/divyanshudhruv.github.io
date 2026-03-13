@@ -11,6 +11,7 @@ import { baseURL, dataStyle, fonts, meta, style } from "@/resources/once-ui.conf
 import { Column, Flex, Mask, MatrixFx, Meta, Schema } from "@once-ui-system/core";
 import { Geist_Mono, Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+import { Analytics } from '@vercel/analytics/next';
 
 const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono" });
 
@@ -119,7 +120,7 @@ export default function RootLayout({
         />
       </head>
       <Providers>
-        <Column as="body" background="page" fillWidth margin="0" padding="0">
+        <Column as="body" background="page" fillWidth margin="0" padding="0"><Analytics/>
           {/* <Column style={{maxHeight: "100dvh"}} fillWidth aspectRatio="1" horizontal="center" position="absolute" top="0" left="0">
             <Mask maxWidth="m" x={50} y={0} radius={50}>
               <MatrixFx
