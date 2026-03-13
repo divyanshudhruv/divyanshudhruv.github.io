@@ -1,5 +1,5 @@
 // IMPORTANT: Replace with your own domain address - it's used for SEO in meta tags and schema
-const baseURL = "https://demo.once-ui.com";
+const baseURL = "https://divyanshudhruv.is-a.dev";
 
 // Import and set font for each variant
 import { Geist } from "next/font/google";
@@ -60,7 +60,7 @@ const dataStyle = {
   tick: {
     fill: "var(--neutral-on-background-weak)",
     fontSize: 11,
-    line: false
+    line: false,
   },
 };
 
@@ -68,13 +68,12 @@ const dataStyle = {
 const meta = {
   home: {
     path: "/",
-    title: "Once UI for Next.js",
-    description:
-      "An open-source design system and component library for Next.js that emphasizes easy styling and accessibility in UI development.",
+    title: "Divyanshu Dhruv | Developer",
+    description: "My simple portfolio :)",
     image: "/images/og/home.jpg",
-    canonical: "https://once-ui.com",
+    canonical: "https://divyanshudhruv.is-a.dev",
     robots: "index,follow",
-    alternates: [{ href: "https://once-ui.com", hrefLang: "en" }],
+    alternates: [{ href: "https://divyanshudhruv.vercel.app", hrefLang: "en" }],
   },
   // add more routes and reference them in page.tsx
 };
@@ -82,17 +81,16 @@ const meta = {
 // default schema data
 const schema = {
   logo: "",
-  type: "Organization",
-  name: "Once UI",
+  type: "Website",
+  name: "Portfolio of Divyanshu Dhruv",
   description: meta.home.description,
-  email: "lorant@once-ui.com",
+  email: "divyanshudhruv@proton.me",
 };
 
 // social links
 const social = {
-  twitter: "https://www.twitter.com/_onceui",
-  linkedin: "https://www.linkedin.com/company/once-ui/",
-  discord: "https://discord.com/invite/5EyAQ4eNdS",
+  twitter: "https://www.twitter.com/divyanshudhruv",
+  linkedin: "https://www.linkedin.com/in/divyanshudhruv",
 };
 
 export { baseURL, fonts, style, meta, schema, social, dataStyle };

@@ -7,6 +7,7 @@ import {
   Text,
   SmartLink,
   Avatar,
+  Kbd,
 } from "@once-ui-system/core";
 import Image from "next/image";
 
@@ -18,6 +19,7 @@ type ProjectsProps = {
   date: string; // e.g. "Jan, 2024"
   linkHref?: string; // e.g. "https://refolio.dev"
   logo: string;
+  ongoing?: boolean;
 };
 
 export function Projects({
@@ -25,6 +27,7 @@ export function Projects({
   projects,
   title,
   role,
+  ongoing,
   date,
   logo,
   linkHref = "#",
@@ -64,8 +67,16 @@ export function Projects({
         </Flex>
 
         <Row gap={0.3} paddingX={0.35} wrap>
+       {ongoing?    <Kbd >
+              <Text
+                variant="code-default-xs"
+                onBackground="neutral-alpha-medium"
+              >
+                ongoing
+              </Text>
+            </Kbd>:undefined}
           {projects.tags.map((tag, idx) => (
-            <Tag key={idx} size="s">
+            <Tag key={idx} size="s" variant="neutral">
               <Text
                 variant="code-default-xs"
                 onBackground="neutral-alpha-medium"
