@@ -4,7 +4,7 @@ import "@/resources/custom.css";
 import "./global.css";
 
 import classNames from "classnames";
-
+import { Analytics } from '@vercel/analytics/next';
 import { Providers } from "@/components/Providers";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { baseURL, dataStyle, fonts, meta, style } from "@/resources/once-ui.config";
@@ -132,7 +132,8 @@ export default function RootLayout({
               />
             </Mask>
           </Column> */}
-          <TooltipProvider> {children}</TooltipProvider>
+          <TooltipProvider>         <Analytics />
+{children}</TooltipProvider>
         </Column>
       </Providers>
     </Flex>
