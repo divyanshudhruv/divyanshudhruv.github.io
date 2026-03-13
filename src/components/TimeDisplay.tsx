@@ -5,8 +5,10 @@ import { useEffect, useState } from "react";
 
 export default function TimeDisplay() {
   const [time, setTime] = useState("");
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const updateTime = () => {
       const now = new Date();
       const timeString = now.toLocaleTimeString("en-US", {
@@ -14,9 +16,7 @@ export default function TimeDisplay() {
         hour: "numeric",
         minute: "2-digit",
       });
-      const offset = `${Math.abs((now.getTimezoneOffset() + 5.5 * 60) / 60)} ${Math.abs((now.getTimezoneOffset() + 5.5 * 60) / 60) > 1 ? "HOURS" : "HOUR"} ${(now.getTimezoneOffset() + 5.5 * 60) % 60 > 0 ? "BEHIND" : "AHEAD"}`;
-
-      setTime(`${timeString}`);
+      setTime(timeString);
     };
 
     updateTime();
@@ -25,13 +25,13 @@ export default function TimeDisplay() {
     return () => clearInterval(interval);
   }, []);
 
+  if (!mounted) {
+    return <span>Loading...</span>;
+  }
+
   return (
-    <span>
+    <Text onBackground="neutral-weak" variant="code-default-s">
       {time}
-      <Text onBackground="neutral-weak" marginX="8">
-        //
-        {`${Math.abs((new Date().getTimezoneOffset() + 5.5 * 60) / 60)} ${Math.abs((new Date().getTimezoneOffset() + 5.5 * 60) / 60) > 1 ? "HOURS" : "HOUR"} ${(new Date().getTimezoneOffset() + 5.5 * 60) % 60 > 0 ? "BEHIND" : "AHEAD"}`}
-      </Text>{" "}
-    </span>
+    </Text>
   );
 }

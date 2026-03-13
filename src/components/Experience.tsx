@@ -61,7 +61,7 @@ export default function Experience({
           paddingBottom={0}
           marginBottom={0.5}
         >
-          <Flex data-scaling="95" radius="full" fit border="neutral-medium" marginLeft={1}>
+          <Flex data-scaling="95" radius="full" fit border="neutral-medium">
             {/* <Avatar src={companyLogo} size="m" border="neutral-alpha-medium" /> */}
             <Media
               src={companyLogo}
