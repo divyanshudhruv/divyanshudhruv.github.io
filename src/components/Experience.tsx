@@ -9,6 +9,7 @@ import {
   Line,
   List,
   ListItem,
+  Media,
   Pulse,
   Row,
   StatusIndicator,
@@ -60,8 +61,23 @@ export default function Experience({
           paddingBottom={0}
           marginBottom={0.5}
         >
-          <Flex data-scaling="95">
-            <Avatar src={companyLogo} size="m" border="neutral-alpha-medium" />
+          <Flex data-scaling="95" radius="full" fit border="neutral-medium">
+            {/* <Avatar src={companyLogo} size="m" border="neutral-alpha-medium" /> */}
+            <Media
+              src={companyLogo}
+              alt={companyText}
+              width={1.8}
+              height={1.8}
+              overflow="hidden"
+              unoptimized
+              radius="full"
+              maxWidth={1.8}
+              maxHeight={1.8}
+              minHeight={1.8}
+              minWidth={1.8}
+              center
+              content="cover"
+            />
           </Flex>
           <Text variant="code-default-m" onBackground="neutral-strong">
             <Row vertical="center" gap={1}>
@@ -77,7 +93,9 @@ export default function Experience({
         fillWidth
         vertical="start"
         gap={0.25}
-        borderBottom={postingIndex === totalPostings - 1 ? "neutral-alpha-weak" : undefined}
+        borderBottom={
+          postingIndex === totalPostings - 1 ? "neutral-alpha-weak" : undefined
+        }
         paddingTop={0}
       >
         <Column fillHeight horizontal="center" paddingLeft={1}>
@@ -107,7 +125,9 @@ export default function Experience({
               </Text>
             </Flex>
           </Flex>
-          {totalPostings > 1 && postingIndex < totalPostings - 1 && <Line vert fillHeight />}
+          {totalPostings > 1 && postingIndex < totalPostings - 1 && (
+            <Line vert fillHeight />
+          )}
         </Column>
 
         <Column gap={0.25} fillWidth padding={1} paddingTop={0} paddingLeft={0}>
@@ -123,24 +143,33 @@ export default function Experience({
                     {posting.jobTitle}
                   </Text>
                   <Text variant="code-default-xs" onBackground="neutral-weak">
-                    {posting.employmentType} • {posting.fromDate} | {posting.toDate}
+                    {posting.employmentType} • {posting.fromDate} |{" "}
+                    {posting.toDate}
                   </Text>
                 </Column>
               }
             >
-              <List as="ol" gap={0.25} marginTop={0.5} paddingRight={"xl"} paddingBottom={0.75}>
+              <List
+                as="ol"
+                gap={0.25}
+                marginTop={0.5}
+                paddingRight={"xl"}
+                paddingBottom={0.75}
+              >
                 <Text
                   variant="label-default-s"
                   onBackground="neutral-medium"
                   style={{ lineHeight: "1.7em" }}
                 >
-                  {posting.responsibilities.map((responsibility: string, idx: number) => (
-                    <Row key={idx + "-responsibility"}>
-                      {" "}
-                      <Text onBackground="neutral-weak">•</Text>
-                      <ListItem>{responsibility}</ListItem>
-                    </Row>
-                  ))}
+                  {posting.responsibilities.map(
+                    (responsibility: string, idx: number) => (
+                      <Row key={idx + "-responsibility"}>
+                        {" "}
+                        <Text onBackground="neutral-weak">•</Text>
+                        <ListItem>{responsibility}</ListItem>
+                      </Row>
+                    ),
+                  )}
                 </Text>
               </List>
             </Accordion>
@@ -150,13 +179,19 @@ export default function Experience({
             {posting.tags.map((tag: string, idx: number) =>
               variant === "primary" ? (
                 <Tag key={idx + "-tag"} size="s">
-                  <Text variant="code-default-xs" onBackground="neutral-alpha-medium">
+                  <Text
+                    variant="code-default-xs"
+                    onBackground="neutral-alpha-medium"
+                  >
                     {tag}
                   </Text>
                 </Tag>
               ) : (
                 <Kbd key={idx + "-tag"}>
-                  <Text variant="code-default-xs" onBackground="neutral-alpha-medium">
+                  <Text
+                    variant="code-default-xs"
+                    onBackground="neutral-alpha-medium"
+                  >
                     {tag}
                   </Text>
                 </Kbd>

@@ -373,6 +373,7 @@ export const EDUCATION = [
     companyLogo: IMAGE_PATHS.schoolLogo,
     companyText: "DPSV",
     current: true,
+    open:true,
     postings: [
       {
         icon: <HiOutlineAcademicCap />,
@@ -530,9 +531,9 @@ export const EXPERIENCES = [
     postings: [
       {
         icon: <HiOutlineLightBulb />,
-        jobTitle: "External Collaborator",
+        jobTitle: "Open Source Contributor",
         employmentType: "Part time",
-        fromDate: "2024",
+        fromDate: "2025",
         toDate: "Present",
         responsibilities: [
           "Contributed to open-source projects and provided technical guidance.",

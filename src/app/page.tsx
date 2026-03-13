@@ -32,7 +32,7 @@ import AutoScrollHorizontal from "@/components/AutoScrollHorizontal";
 import { Projects } from "@/components/Projects";
 import Stacks from "@/components/Stacks";
 import Testimonial from "@/components/Testimonial";
-import Experience from "@/components/exp";
+import Experience from "@/components/Experience";
 
 import ChipSet from "@/components/ChipSet";
 import Dashed from "@/components/Dashed";
@@ -49,6 +49,7 @@ import {
   PROJECTS,
   TESTIMONIALS,
 } from "@/data/core-config";
+import Waves from "@/components/Waves";
 
 export default function Home() {
   const [visibleProjects, setVisibleProjects] = useState(10);
@@ -60,7 +61,12 @@ export default function Home() {
   };
 
   return (
-    <Row fillWidth horizontal="center" vertical="start" style={{ minHeight: "100vh" }}>
+    <Row
+      fillWidth
+      horizontal="center"
+      vertical="start"
+      style={{ minHeight: "100vh" }}
+    >
       <Column maxWidth="s" borderX="neutral-alpha-weak" fillWidth fillHeight>
         <Dashed />
         <Flex
@@ -74,7 +80,7 @@ export default function Home() {
           horizontal="start"
         >
           <Text variant="code-default-xs" onBackground="neutral-weak">
-            Some Marketing
+            Random Stuffs
           </Text>
         </Flex>
         <Flex
@@ -85,24 +91,32 @@ export default function Home() {
           borderBottom="neutral-alpha-weak"
           center
         >
-          <Mask maxWidth="m" x={50} y={50} radius={50}>
-            <MatrixFx
-              size={1.5}
-              spacing={5}
-              opacity={50}
-              fps={24}
-              colors={["brand-solid-weak"]}
-              flicker
-            />
-          </Mask>
+          <Waves
+            lineColor="#ddd"
+            backgroundColor="transparent"
+            waveSpeedX={0.05}
+            waveSpeedY={0.021}
+            waveAmpX={40}
+            waveAmpY={20}
+            friction={0.9}
+            tension={0.01}
+            maxCursorMove={120}
+            xGap={12}
+            yGap={36}
+          />
         </Flex>
-        <Row fillWidth borderBottom="neutral-alpha-weak" horizontal="start" vertical="center">
+        <Row
+          fillWidth
+          borderBottom="neutral-alpha-weak"
+          horizontal="start"
+          vertical="center"
+        >
           <Flex fit borderRight="neutral-alpha-weak">
             {" "}
             <Avatar
               src={PERSONA.avatar}
               size="xl"
-              padding={"4"}
+              padding={"2"}
               border="neutral-alpha-medium"
               className="invert"
             />
@@ -153,7 +167,9 @@ export default function Home() {
               <Text variant="code-default-xs" onBackground="neutral-weak">
                 {PERSONA.role}
               </Text>{" "}
-              <ThemeSwitcher style={{ scale: "0.7", marginLeft: "32px !important" }} />
+              <ThemeSwitcher
+                style={{ scale: "0.7", marginLeft: "32px !important" }}
+              />
             </Flex>
           </Column>
         </Row>
@@ -169,8 +185,15 @@ export default function Home() {
           {PROFILE.chips.map((chip, chipIndex) => (
             <Row key={chipIndex + "-chip"} fillWidth>
               {chip.map((chipData, chipDataIndex) => (
-                <Flex key={chipDataIndex + "-chip-data" + "-" + chipIndex} flex={1}>
-                  <ChipSet icon={chipData.icon} text={chipData.text} href={chipData.href} />
+                <Flex
+                  key={chipDataIndex + "-chip-data" + "-" + chipIndex}
+                  flex={1}
+                >
+                  <ChipSet
+                    icon={chipData.icon}
+                    text={chipData.text}
+                    href={chipData.href}
+                  />
                 </Flex>
               ))}
             </Row>
@@ -191,7 +214,9 @@ export default function Home() {
                 src={linkData.src}
                 href={linkData.href}
                 text={linkData.text}
-                position={j === 0 ? "first" : j === link.length - 1 ? "last" : "middle"}
+                position={
+                  j === 0 ? "first" : j === link.length - 1 ? "last" : "middle"
+                }
               />
             ))}
           </Row>
@@ -211,7 +236,13 @@ export default function Home() {
             About Me
           </Text>
         </Flex>
-        <Column padding={1} fillWidth fitHeight borderBottom="neutral-alpha-weak" gap={1}>
+        <Column
+          padding={1}
+          fillWidth
+          fitHeight
+          borderBottom="neutral-alpha-weak"
+          gap={1}
+        >
           {BIO.description.map((desc, i) => (
             <Text
               key={i}
@@ -237,7 +268,13 @@ export default function Home() {
               ))}
             </AutoScrollHorizontal>
         </Row> */}
-        <Flex fillWidth fitHeight center borderBottom="neutral-alpha-weak" paddingTop={"8"}>
+        <Flex
+          fillWidth
+          fitHeight
+          center
+          borderBottom="neutral-alpha-weak"
+          paddingTop={"8"}
+        >
           <ContributionGraph />
         </Flex>
         <Dashed />{" "}
@@ -322,6 +359,7 @@ export default function Home() {
                 companyText={exp.companyText}
                 variant="secondary"
                 current={exp.current}
+                open={exp.open}
                 posting={posting}
                 postingIndex={postingIndex}
                 totalPostings={exp.postings.length}
@@ -344,7 +382,13 @@ export default function Home() {
             Some Images
           </Text>
         </Flex>{" "}
-        <Grid fillWidth fitHeight columns={2} border="neutral-alpha-weak">
+        <Grid
+          fillWidth
+          fitHeight
+          columns={2}
+          border="neutral-alpha-weak"
+          paddingBottom={1}
+        >
           <ImagesForGrid images={GALLERY} />
         </Grid>
         <Dashed />{" "}
@@ -405,7 +449,13 @@ export default function Home() {
             Blogs
           </Text>
         </Flex>{" "}
-        <Column padding={1} fillWidth fitHeight borderBottom="neutral-alpha-weak" gap={1}>
+        <Column
+          padding={1}
+          fillWidth
+          fitHeight
+          borderBottom="neutral-alpha-weak"
+          gap={1}
+        >
           <Text
             variant="label-default-m"
             onBackground="neutral-medium"
@@ -415,35 +465,83 @@ export default function Home() {
           </Text>
         </Column>
         <Dashed />
-        <Row center padding={1}>
-          <Flex wrap maxWidth={40} align="center" center fillWidth>
-            {" "}
-            <Text
-              variant="code-default-s"
-              align="center"
-              onBackground="neutral-weak"
-              style={{ lineHeight: "1.7em" }}
-            >
-              Inspired by{" "}
-              <SmartLink href="https://chanhdai.com">
-                <u>chanhdai</u>
-              </SmartLink>{" "}
-              &{" "}
-              <SmartLink href="https://once-ui.com">
-                <u>once-ui.com</u>
-              </SmartLink>
-              <br /> Built by{" "}
-              <SmartLink href="https://github.com/divyanshudhruv">
-                <u>divyanshudhruv</u>
-              </SmartLink>
-              . The source code is available on{" "}
-              <SmartLink href="https://github.com/divyanshudhruv.github.io">
-                <u>GitHub</u>
-              </SmartLink>
-              .
+        <Column fillWidth center gap={1}>
+          <Row center borderBottom="neutral-alpha-weak" padding={1} fillWidth>
+            <Flex wrap maxWidth={40} align="center" center fillWidth>
+              {" "}
+              <Text
+                variant="code-default-s"
+                align="center"
+                onBackground="neutral-weak"
+                style={{ lineHeight: "1.7em" }}
+              >
+                Inspired by{" "}
+                <SmartLink href="https://github.com/ncdai">
+                  <u>chanhdai</u>
+                </SmartLink>{" "}
+                &{" "}
+                <SmartLink href="https://once-ui.com">
+                  <u>once-ui.com</u>
+                </SmartLink>
+                <br /> Built by{" "}
+                <SmartLink href="https://github.com/divyanshudhruv">
+                  <u>divyanshudhruv</u>
+                </SmartLink>
+                . The source code is available on{" "}
+                <SmartLink href="https://github.com/divyanshudhruv.github.io">
+                  <u>GitHub</u>
+                </SmartLink>
+                .
+              </Text>
+            </Flex>
+          </Row>
+          <Row center gap={0.5} padding={1} paddingTop={0}>
+            <a href="/llms.txt" style={{ textDecoration: "underline" }}>
+              {" "}
+              <Text variant="label-default-s" onBackground="neutral-weak">
+                llms.txt
+              </Text>
+            </a>
+            <Text variant="label-default-s" onBackground="neutral-weak">
+              •
             </Text>
-          </Flex>
-        </Row>
+            <a href="/robots.txt" style={{ textDecoration: "underline" }}>
+              <Text variant="label-default-s" onBackground="neutral-weak">
+                robots.txt
+              </Text>
+            </a>
+            <Text variant="label-default-s" onBackground="neutral-weak">
+              •
+            </Text>
+            <a href="/rss.xml" style={{ textDecoration: "underline" }}>
+              <Text variant="label-default-s" onBackground="neutral-weak">
+                rss.xml
+              </Text>
+            </a>
+            <Text variant="label-default-s" onBackground="neutral-weak">
+              •
+            </Text>
+            <a
+              href="https://github.com/divyanshudhruv"
+              style={{ textDecoration: "underline" }}
+            >
+              <Text variant="label-default-s" onBackground="neutral-weak">
+                github
+              </Text>
+            </a>
+            <Text variant="label-default-s" onBackground="neutral-weak">
+              •
+            </Text>
+            <a
+              href="https://www.linkedin.com/in/divyanshudhruv"
+              style={{ textDecoration: "underline" }}
+            >
+              <Text variant="label-default-s" onBackground="neutral-weak">
+                linkedin
+              </Text>
+            </a>
+          </Row>
+        </Column>
       </Column>
     </Row>
   );

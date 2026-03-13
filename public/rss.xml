@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Divyanshu Dhruv | 🌌🏮</title>
+    <description>One pixel at a time. Simple code, complex logic.</description>
+    <link>https://divyanshudhruv.is-a.dev</link>
+    <atom:link href="https://divyanshudhruv.is-a.dev/rss.xml" rel="self" type="application/rss+xml"/>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 13 Mar 2026 17:30:00 +0530</lastBuildDate>
+    <managingEditor>divyanshudhruv@proton.me (Divyanshu Dhruv)</managingEditor>
+    <webMaster>divyanshudhruv@proton.me (Divyanshu Dhruv)</webMaster>
+    <generator>Portfolio RSS Feed</generator>
+    <docs>https://www.rssboard.org/rss-specification</docs>
+    
+    <!-- Portfolio Update -->
+    <item>
+      <title>Portfolio Launch - Divyanshu Dhruv</title>
+      <description>Personal portfolio website showcasing full-stack development projects, experience, and technical skills. Built with Next.js, React, and TypeScript.</description>
+      <link>https://divyanshudhruv.is-a.dev</link>
+      <guid isPermaLink="true">https://divyanshudhruv.is-a.dev</guid>
+      <pubDate>Thu, 13 Mar 2026 17:30:00 +0530</pubDate>
+      <category>Portfolio</category>
+      <category>Web Development</category>
+      <category>Next.js</category>
+    </item>
+    
+    <!-- Featured Projects -->
+    <item>
+      <title>Covane Space 🌌 - Personal Project</title>
+      <description>A modern space-themed web application showcasing advanced React patterns and creative UI design. Features interactive components and responsive design.</description>
+      <link>https://covane.in</link>
+      <guid isPermaLink="true">https://covane.in</guid>
+      <pubDate>Thu, 13 Mar 2026 17:00:00 +0530</pubDate>
+      <category>Project</category>
+      <category>React</category>
+      <category>Web App</category>
+    </item>
+    
+    <item>
+      <title>Percept Network 🏮 - Network Project</title>
+      <description>Network visualization and management platform built with modern web technologies. Features real-time data processing and intuitive user interface.</description>
+      <link>https://percept-network.vercel.app</link>
+      <guid isPermaLink="true">https://percept-network.vercel.app</guid>
+      <pubDate>Thu, 13 Mar 2026 16:30:00 +0530</pubDate>
+      <category>Project</category>
+      <category>Network</category>
+      <category>TypeScript</category>
+    </item>
+    
+    <!-- Professional Updates -->
+    <item>
+      <title>Full-Stack Developer - 5+ Years Experience (coding since 2020)</title>
+      <description>Experienced full-stack developer specializing in Next.js, React, and TypeScript. Passionate about creating polished, user-centric web applications.</description>
+      <link>https://divyanshudhruv.is-a.dev#experience</link>
+      <guid isPermaLink="false">experience-2026</guid>
+      <pubDate>Thu, 13 Mar 2026 16:00:00 +0530</pubDate>
+      <category>Professional</category>
+      <category>Experience</category>
+      <category>Skills</category>
+    </item>
+    
+    <!-- Technical Skills -->
+    <item>
+      <title>Technical Stack Update - Modern Web Technologies</title>
+      <description>Current tech stack includes Next.js 16, React 19, TypeScript, Tailwind CSS, and modern development tools. Focused on performance and user experience.</description>
+      <link>https://divyanshudhruv.is-a.dev#skills</link>
+      <guid isPermaLink="false">skills-2026</guid>
+      <pubDate>Thu, 13 Mar 2026 15:30:00 +0530</pubDate>
+      <category>Technical</category>
+      <category>Skills</category>
+      <category>Technologies</category>
+    </item>
+    
+    <!-- Social & Community -->
+    <item>
+      <title>GitHub Activity - Open Source Contributions</title>
+      <description>Active GitHub user contributing to open source projects and maintaining personal repositories. Focus on web development tools and educational content.</description>
+      <link>https://github.com/divyanshudhruv</link>
+      <guid isPermaLink="true">https://github.com/divyanshudhruv</guid>
+      <pubDate>Thu, 13 Mar 2026 15:00:00 +0530</pubDate>
+      <category>Open Source</category>
+      <category>GitHub</category>
+      <category>Community</category>
+    </item>
+    
+  </channel>
+</rss>

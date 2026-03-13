@@ -5,6 +5,7 @@ import {
   Flex,
   IconButton,
   Kbd,
+  Media,
   Row,
   SmartLink,
   Tag,
@@ -44,9 +45,24 @@ export function Projects({
       borderBottom="neutral-alpha-weak"
       paddingTop={1}
     >
-      <Column fillHeight horizontal="center" paddingLeft={1}>
-        <Avatar src={logo} padding={0.05} border="neutral-alpha-weak" />
-      </Column>
+       <Flex data-scaling="95" radius="full" fit border="neutral-medium"marginLeft={1}>
+                  {/* <Avatar src={companyLogo} size="m" border="neutral-alpha-medium" /> */}
+                  <Media
+                    src={logo}
+                    alt={title}
+                    width={1.8}
+                    height={1.8}
+                    overflow="hidden"
+                    unoptimized
+                    radius="full"
+                    maxWidth={1.8}
+                    maxHeight={1.8}
+                    minHeight={1.8}
+                    minWidth={1.8}
+                    center
+                    content="cover"
+                  />
+                </Flex>
 
       <Column gap={0.25} fillWidth padding={1} paddingTop={0} paddingLeft={0}>
         <Flex data-border="conservative" fillWidth>

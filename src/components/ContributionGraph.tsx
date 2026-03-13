@@ -11,12 +11,54 @@ import {
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { eachDayOfInterval, endOfYear, formatISO, startOfYear } from "date-fns";
 import { useEffect, useState } from "react";
+import { BIO } from "@/data/core-config";
 
-// Simple seeded random number generator
-function seededRandom(seed: number) {
-  const x = Math.sin(seed) * 10000;
-  return x - Math.floor(x);
+const username = BIO.github_username;
+
+interface Contribution {
+  date: string;
+  count: number;
+  level: number;
 }
+
+interface Response {
+  contributions: Contribution[];
+  total: Record<number, number>;
+}
+
+// Simple in-memory cache with 24-hour expiration
+const cache = new Map<string, { data: any; timestamp: number }>();
+
+const getCachedContributions = async () => {
+  const cacheKey = 'github-contributions';
+  const now = Date.now();
+  const cacheDuration = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+
+  // Check if we have cached data that's still valid
+  const cached = cache.get(cacheKey);
+  if (cached && (now - cached.timestamp) < cacheDuration) {
+    return cached.data;
+  }
+
+  // Fetch fresh data
+  const url = new URL(`/v4/${username}`, 'https://github-contributions-api.jogruber.de');
+  const response = await fetch(url);
+  const data = (await response.json()) as Response;
+  const total = data.total[new Date().getFullYear()];
+
+  // Filter to only show 2026 from January 1st to end of year
+  const filteredContributions = data.contributions.filter(contribution => {
+    const contributionDate = new Date(contribution.date);
+    return contributionDate.getFullYear() === 2026;
+  });
+
+  const result = { contributions: filteredContributions, total };
+  
+  // Cache the result
+  cache.set(cacheKey, { data: result, timestamp: now });
+  
+  return result;
+};
 
 const Example = () => {
   const [data, setData] = useState<Array<{ date: string; count: number; level: number }>>([]);
@@ -24,22 +66,18 @@ const Example = () => {
 
   useEffect(() => {
     setIsClient(true);
-    const seed = 2026; // Fixed seed for consistent results
-    const generatedData = eachDayOfInterval({
-      start: startOfYear(new Date()),
-      end: endOfYear(new Date()),
-    }).map((date, index) => {
-      const dateStr = formatISO(date, { representation: "date" });
-      const count = Math.floor(seededRandom(seed + index) * 20);
-      const level = Math.ceil((count / 20) * 4);
+    const fetchContributions = async () => {
+      try {
+        const { contributions } = await getCachedContributions();
+        setData(contributions);
+      } catch (error) {
+        console.error('Failed to fetch GitHub contributions:', error);
+        // Fallback to empty data if API fails
+        setData([]);
+      }
+    };
 
-      return {
-        date: dateStr,
-        count,
-        level,
-      };
-    });
-    setData(generatedData);
+    fetchContributions();
   }, []);
 
   if (!isClient || data.length === 0) {
