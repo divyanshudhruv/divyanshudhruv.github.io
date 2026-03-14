@@ -16,7 +16,7 @@ import { BIO } from "@/data/core-config";
 
 const username = BIO.github_username;
 
-interface Contribution {
+interface Contribution { 
   date: string;
   count: number;
   level: number;
