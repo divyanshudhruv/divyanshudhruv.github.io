@@ -52,8 +52,9 @@ import {
 } from "@/data/core-config";
 import Waves from "@/components/Waves";
 import { SUSE } from "next/font/google";
+import { HiArrowRight } from "react-icons/hi2";
 
-const suse = SUSE({ subsets: ['latin'] });
+const suse = SUSE({ subsets: ["latin"] });
 
 export default function Home() {
   const [visibleProjects, setVisibleProjects] = useState(10);
@@ -113,17 +114,22 @@ export default function Home() {
           horizontal="start"
           vertical="center"
         >
-          <Flex fit >
+          <Flex fit>
             {" "}
             <Avatar
               src={PERSONA.avatar}
               size="xl"
-              padding={"2"}
-              border="neutral-alpha-medium"
+              border="neutral-alpha-strong"
               className="invert"
             />
           </Flex>
-          <Column fillWidth vertical="end" horizontal="center" fillHeight borderLeft="neutral-alpha-weak">
+          <Column
+            fillWidth
+            vertical="end"
+            horizontal="center"
+            fillHeight
+            borderLeft="neutral-alpha-weak"
+          >
             <Flex
               fillWidth
               fillHeight
@@ -132,8 +138,8 @@ export default function Home() {
               minHeight={2}
               borderBottom="neutral-alpha-weak"
               vertical="center"
-              horizontal="start"              id="persona_main"
-
+              horizontal="start"
+              id="persona_main"
             >
               <Text variant="code-default-xs" onBackground="neutral-weak">
                 {PERSONA.header}{" "}
@@ -165,16 +171,14 @@ export default function Home() {
               paddingX={1}
               maxHeight={2}
               minHeight={2}
-              vertical="center"              id="persona_main"
-
+              vertical="center"
+              id="persona_main"
               horizontal="between"
             >
               <Text variant="code-default-xs" onBackground="neutral-weak">
                 {PERSONA.role}
               </Text>{" "}
-              <ThemeSwitcher id="theme_switcher"
-                style={{ scale: "0.7"}}
-              />
+              <ThemeSwitcher id="theme_switcher" style={{ scale: "0.7" }} />
             </Flex>
           </Column>
         </Row>
@@ -285,7 +289,6 @@ export default function Home() {
           paddingBottom={1}
           paddingRight={1}
           overflowX="scroll"
-          
         >
           <ContributionGraph />
         </Flex>
@@ -301,7 +304,10 @@ export default function Home() {
           horizontal="start"
         >
           <Text variant="code-default-xs" onBackground="neutral-weak">
-            Skills & Stacks <strong><sup className={suse.className } >({BIO.stacks.length})</sup></strong>
+            Skills & Stacks{" "}
+            <strong>
+              <sup className={suse.className}>({BIO.stacks.length})</sup>
+            </strong>
           </Text>
         </Flex>{" "}
         <Flex
@@ -329,7 +335,10 @@ export default function Home() {
           horizontal="start"
         >
           <Text variant="code-default-xs" onBackground="neutral-weak">
-            Experience <strong><sup className={suse.className}>({EXPERIENCES.length})</sup></strong>
+            Experience{" "}
+            <strong>
+              <sup className={suse.className}>({EXPERIENCES.length})</sup>
+            </strong>
           </Text>
         </Flex>{" "}
         <Flex fillWidth fitHeight direction="column">
@@ -360,7 +369,10 @@ export default function Home() {
           horizontal="start"
         >
           <Text variant="code-default-xs" onBackground="neutral-weak">
-            Education <b><sup className={suse.className}>({EDUCATION.length})</sup></b>
+            Education{" "}
+            <b>
+              <sup className={suse.className}>({EDUCATION.length})</sup>
+            </b>
           </Text>
         </Flex>{" "}
         <Flex fillWidth fitHeight direction="column">
@@ -392,7 +404,10 @@ export default function Home() {
           horizontal="start"
         >
           <Text variant="code-default-xs" onBackground="neutral-weak">
-            Some Images  <b><sup className={suse.className}>({GALLERY.length})</sup></b>
+            Some Images{" "}
+            <b>
+              <sup className={suse.className}>({GALLERY.length})</sup>
+            </b>
           </Text>
         </Flex>{" "}
         <Grid
@@ -417,7 +432,10 @@ export default function Home() {
           horizontal="start"
         >
           <Text variant="code-default-xs" onBackground="neutral-weak">
-            Projects <b><sup className={suse.className}>({PROJECTS.length}) + github</sup></b>
+            Projects{" "}
+            <b>
+              <sup className={suse.className}>({PROJECTS.length}) + github</sup>
+            </b>
           </Text>
         </Flex>{" "}
         <Flex fillWidth fitHeight direction="column">
@@ -434,19 +452,24 @@ export default function Home() {
               logo={project.logo}
             />
           ))}
-          {hasMoreProjects && (
-            <Row
-              center
-              fillWidth
-              padding={1}
-              data-border="conservative"
-              borderBottom="neutral-alpha-weak"
-            >
-              <Button size="s" onClick={loadMoreProjects}>
-                <Text variant="label-default-s">Load More</Text>{" "}
-              </Button>
-            </Row>
-          )}
+          <Row
+            center
+            fillWidth
+            padding={1}
+            data-border="conservative"
+            borderBottom="neutral-alpha-weak"
+          >
+            <Button size="s" href="https://github.com/divyanshudhruv" arrowIcon>
+              <Text variant="label-default-s">
+                <Row center gap={0.5}>
+                  View more
+                  {/* <Text onBackground="neutral-weak" className="rotate-315">
+                    <HiArrowRight />
+                  </Text> */}
+                </Row>
+              </Text>{" "}
+            </Button>
+          </Row>
         </Flex>
         <Dashed />
         <Flex
@@ -475,7 +498,7 @@ export default function Home() {
             onBackground="neutral-medium"
             style={{ lineHeight: "1.7em" }}
           >
-            I don't write blogs :)
+            I don't write blogs ;)
           </Text>
         </Column>
         <Dashed />
@@ -497,6 +520,7 @@ export default function Home() {
                 <SmartLink href="https://once-ui.com">
                   <u>once-ui.com</u>
                 </SmartLink>
+                .
                 <br /> Built by{" "}
                 <SmartLink href="https://github.com/divyanshudhruv">
                   <u>divyanshudhruv</u>

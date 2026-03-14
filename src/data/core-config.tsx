@@ -32,6 +32,7 @@ const IMAGE_PATHS = {
   xLogo: "/trademarks/x.webp",
   img1: "/img.jpeg",
   img2: "/i1.png",
+  codeforces:"/trademarks/cf.webp"
 } as const;
 
 const programmingStacks = [
@@ -99,9 +100,7 @@ export const PERSONA = {
   email: "divyanshudhruv@proton.me",
   location: "Vadodara, India",
   languages: ["English", "Hindi", "French", "Spanish"],
-  phone: "haw, why? </3",
   mailLink: "https://github.com/divyanshudhruv",
-  extras: "something, idk?",
 };
 
 export const PROFILE = {
@@ -126,7 +125,7 @@ export const PROFILE = {
     [
       {
         src: IMAGE_PATHS.bandlabLogo,
-        href: "https://bandlab.com/divyanshudhruv",
+        href: "https://bandlab.com",
         text: "Bandlab",
       },
       {
@@ -135,9 +134,9 @@ export const PROFILE = {
         text: "Peerlist",
       },
       {
-        src: IMAGE_PATHS.perceptLogo,
-        href: "https://percept-network.vercel.app",
-        text: "Percept Network",
+        src: IMAGE_PATHS.xLogo,
+        href: "https://x.com",
+        text: "X",
       },
     ],
   ],
@@ -165,14 +164,11 @@ export const PROFILE = {
             <SmartLink href="https://github.com/basalt3">
               <u>@Basalt3</u>
             </SmartLink>
-            , 
+           {" "}and{" "}
             <SmartLink href="https://github.com/basalt3/covane">
               <u>@Covane </u>
             </SmartLink>
-          {" "}  and{" "}
-            <SmartLink href="https://github.com/basalt3/percept-network">
-              <u>@PN</u>
-            </SmartLink>
+         .
           </span>
         ),
         href: "#",
@@ -184,10 +180,9 @@ export const PROFILE = {
         text: (
           <span>
             Co-founder{" "}
-            <SmartLink href="https://next-bench-dev.vercel.app">
+            <SmartLink href="https://linkedin.com/company/nextbench">
               <u>@Next Bench</u>
             </SmartLink>
-            
           </span>
         ),
         href: "#",
@@ -247,7 +242,7 @@ export const PROFILE = {
       },
       {
         icon: <HiOutlineQuestionMarkCircle />,
-        text: <span>something, idk?</span>,
+        text: <span>Codeforces: <SmartLink href="#">⁓800</SmartLink></span>,
         href: "#",
       },
     ],
@@ -259,13 +254,15 @@ export const BIO = {
     <>
       {" "}
       👋 Hi, I'm a full-stack developer with <InlineCode>5+</InlineCode> years
-      of experience (i guess so), I give strong attention to{" "}
+      of experience (<InlineCode>i guess so...</InlineCode>), I give strong attention to{" "}
       <InlineCode>small details</InlineCode> (kind of). I've been coding since I
       was 12. Currently, I'm creating{" "}
       <SmartLink href="https://modelcontextprotocol.io">
         <u>MCP servers</u>
       </SmartLink>{" "}
-      and environments for <InlineCode>AI agents</InlineCode>. Skilled in
+      and environments for <InlineCode>AI agents</InlineCode>. 
+    </>,
+    <>Skilled in
       <SmartLink href="https://nextjs.org">
         <u>Next.js</u>
       </SmartLink>
@@ -290,24 +287,21 @@ export const BIO = {
         <u>R</u>
       </SmartLink>
       , and modern front-end technologies; building high-quality, user-centric
-      web and <InlineCode>mobile applications</InlineCode> 📱 (sometimes).
-    </>,
-    <>
-      {" "}
-      Passionate about exploring new technologies and turning ideas into reality
+      web and <InlineCode>mobile applications</InlineCode> 📱 (sometimes). Passionate about exploring new technologies and turning ideas into reality
       through polished, thoughtfully crafted personal projects 🗃️.
-    </>,
+   </>,
+  
+     
     <>
       {" "}
       Creator of{" "}
-      <SmartLink href="https://covane.in">
+      <SmartLink href="https://github.com/basalt3/covane">
         <InlineCode>Covane Space 🌌</InlineCode>
       </SmartLink>{" "}
       and{" "}
-      <SmartLink href="https://percept-network.vercel.app">
+      <SmartLink href="https://github.com/basalt3/percept-network">
         <InlineCode>Percept Network 🏮</InlineCode>
       </SmartLink>
-      .
     </>,
   ],
   stacks: [
