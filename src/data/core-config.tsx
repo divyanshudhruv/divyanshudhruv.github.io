@@ -180,7 +180,7 @@ export const PROFILE = {
         text: (
           <span>
             Co-founder{" "}
-            <SmartLink href="https://linkedin.com/company/nextbench">
+            <SmartLink href="https://linkedin.com/company/next-bench">
               <u>@Next Bench</u>
             </SmartLink>
           </span>
