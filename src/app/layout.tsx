@@ -19,6 +19,7 @@ import {
   Kbd,
   Media,
   Arrow,
+  ThemeSwitcher,
 } from "@once-ui-system/core";
 
 import {
@@ -108,7 +109,7 @@ export default function RootLayout({
                 vertical="center"
                 horizontal="between"
               >
-                <Row fitWidth gap="8">
+                <Row fitWidth gap="8" vertical="center">
                   <IconButton variant="ghost" size="s">
                     <BrowsersIcon size={22} weight="light" />
                   </IconButton>
@@ -125,6 +126,7 @@ export default function RootLayout({
                   <IconButton variant="ghost" size="s">
                     <LinktreeLogoIcon size={22} weight="light" />
                   </IconButton>
+                  <ThemeSwitcher data-scaling="90" style={{scale:"0.9"}} onBackground="neutral-weak"/>
                 </Row>
 
                 <Row gap="l" center>

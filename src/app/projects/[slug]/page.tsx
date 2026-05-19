@@ -18,8 +18,8 @@ import {
 } from "@once-ui-system/core";
 import { ArrowLeftIcon } from "@phosphor-icons/react";
 import { useParams, useRouter } from "next/navigation";
-import { navigationItemJSON, otherNavigationItemJSON } from "@/data/data";
-import { NavigationItem } from "@/components/NavigationItem";
+import { navigationItemJSON } from "@/data/data";
+import { ProjectItem } from "@/components/ProjectItem";
 
 export default function Project() {
   const router = useRouter();
@@ -99,8 +99,8 @@ export default function Project() {
             <Text variant="body-default-l" onBackground="neutral-weak" className="lh">
               <b>{project.description}</b>
             </Text>
-            {project.content.map((block) => (
-              <BlockRenderer block={block} key={block.id} />
+            {project.content.map((block, idx) => (
+              <BlockRenderer block={block} key={idx} />
             ))}
           </Flex>
         </Column>
@@ -119,7 +119,7 @@ export default function Project() {
 
             <Column fill gap="s" data-scaling="110">
               {navigationItemJSON.slice(0, 4).map((item, index) => (
-                <NavigationItem
+                <ProjectItem
                   key={index}
                   id={item.id}
                   lastUpdated={item.lastUpdated}
@@ -127,7 +127,6 @@ export default function Project() {
                   isPrivate={item.isPrivate}
                   imageSrc={item.imageSrc}
                   title={item.title}
-                  type="projects"
                 />
               ))}
               <Button
@@ -157,49 +156,46 @@ export default function Project() {
 
 const BlockRenderer = ({ block }: { block: any }) => {
   switch (block.type) {
-    case "section":
+    case "list":
       return (
         <Flex direction="column" gap="s">
           <Text variant="heading-default-xl" onBackground="neutral-strong">
             <b>{block.heading}</b>
           </Text>
-          {block.layout === "list" ? (
-            <List as="ul" textVariant="body-default-m" gap="4">
-              {block.items.map((item: any, index: number) => (
-                <ListItem key={index}>
-                  <Text variant="body-default-m" onBackground="neutral-weak" className="lh">
-                    {item.type === "text" ? <b>{item.value}</b> : item.value}{" "}
-                  </Text>
-                </ListItem>
-              ))}
-            </List>
-          ) : (
-            block.layout === "prose" &&
-            block.items.map((item: any, index: number) => (
-              <Text key={index} variant="body-default-m" onBackground="neutral-weak" className="lh">
-                {item.type === "text" ? <b>{item.value}</b> : item.value}
-              </Text>
-            ))
-          )}
+          <List as="ul" textVariant="body-default-m" gap="4">
+            {block.items.map((item: string, index: number) => (
+              <ListItem key={index}>
+                <Text variant="body-default-m" onBackground="neutral-weak" className="lh">
+                  <b>{item}</b>
+                </Text>
+              </ListItem>
+            ))}
+          </List>
+        </Flex>
+      );
+    case "prose":
+      return (
+        <Flex direction="column" gap="s">
+          <Text variant="heading-default-xl" onBackground="neutral-strong">
+            <b>{block.heading}</b>
+          </Text>
+          {block.items.map((item: string, index: number) => (
+            <Text key={index} variant="body-default-m" onBackground="neutral-weak" className="lh">
+              <b>{item}</b>
+            </Text>
+          ))}
         </Flex>
       );
     case "media":
+      const validItems = block.items.filter((item: any) => item.src);
       return (
         <Flex direction="column" gap="s">
           <Text variant="heading-default-xl" onBackground="neutral-strong">
             <b>{block.heading}</b>
           </Text>
-          {block.layout === "grid" ? (
-            <Flex direction="column" gap="m" fillWidth>
-              {block.items
-                .filter((item: any) => item.src)
-                .map((item: any, idx: number) => (
-                  <Media key={idx} src={item.src} alt={item.alt} radius="m" fillWidth />
-                ))}
-            </Flex>
-          ) : block.items.length === 1 ? (
-            <Media src={block.items[0].src} alt={block.items[0].alt} radius="m" fillWidth />
-          ) : (
+          {validItems.length === 1 ? (
+            <Media src={validItems[0].src} alt={validItems[0].alt} radius="m" fillWidth />
+          ) : validItems.length > 1 ? (
             <Carousel
               controls={false}
               aspectRatio="16/9"
@@ -210,14 +206,12 @@ const BlockRenderer = ({ block }: { block: any }) => {
                 controls: true,
                 progress: true,
               }}
-              items={block.items
-                .filter((item: any) => item.src)
-                .map((item: any) => ({
-                  slide: item.src,
-                  alt: item.alt,
-                }))}
+              items={validItems.map((item: any) => ({
+                slide: item.src,
+                alt: item.alt,
+              }))}
             />
-          )}
+          ) : null}
         </Flex>
       );
     default:

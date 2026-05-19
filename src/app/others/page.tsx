@@ -7,7 +7,7 @@ import { ArrowLeftIcon } from "@phosphor-icons/react";
 import { useState } from "react";
 import { otherNavigationItemJSON } from "@/data/data";
 import { useRouter } from "next/navigation";
-import { NavigationItem } from "@/components/NavigationItem";
+import { OtherItem } from "@/components/OtherItem";
 
 export default function Others() {
   const router = useRouter();
@@ -42,7 +42,7 @@ export default function Others() {
             Others
           </Text>
           {visibleItems.map((item, index) => (
-            <NavigationItem
+            <OtherItem
               key={index}
               id={item.id}
               lastUpdated={item.lastUpdated}
@@ -50,7 +50,6 @@ export default function Others() {
               abbreviation={item.abbreviation}
               imageSrc={item.imageSrc}
               title={item.title}
-              type="others"
             />
           ))}
           {hasMore && (

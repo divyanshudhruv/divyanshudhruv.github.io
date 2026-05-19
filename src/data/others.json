@@ -9,58 +9,44 @@
     "description": "A comprehensive overview of my technical stack, programming languages, libraries, and tools I use to architect next-generation software and AI systems.",
     "content": [
       {
-        "id": "languages",
-        "type": "section",
         "heading": "Programming Languages",
-        "layout": "list",
+        "type": "list",
         "items": [
-          { "type": "text", "value": "JavaScript / TypeScript (ES6+, Node.js, Bun)" },
-          { "type": "text", "value": "Python (FastAPI, Flask, Data Science, AI Scripting)" },
-          { "type": "text", "value": "HTML5 & CSS3 (Modern Responsive Layouts, Flexbox, Grid)" },
-          { "type": "text", "value": "React Native (Mobile Development)" },
-          { "type": "text", "value": "C++ & Java (Algorithms & OOP Fundamentals)" }
+          "JavaScript / TypeScript (ES6+, Node.js, Bun)",
+          "Python (FastAPI, Flask, Data Science, AI Scripting)",
+          "HTML5 & CSS3 (Modern Responsive Layouts, Flexbox, Grid)",
+          "React Native (Mobile Development)",
+          "C++ & Java (Algorithms & OOP Fundamentals)"
         ]
       },
       {
-        "id": "frameworks",
-        "type": "section",
         "heading": "Frameworks & UI Libraries",
-        "layout": "list",
+        "type": "list",
         "items": [
-          { "type": "text", "value": "Next.js & React.js (SSR, Dynamic Routing, Server Components)" },
-          { "type": "text", "value": "Once UI (Design Systems & Components Collaboration)" },
-          { "type": "text", "value": "TailwindCSS & Vanilla CSS (Advanced Responsive Styling)" },
-          { "type": "text", "value": "Shadcn UI & Radix Primitives" }
+          "Next.js & React.js (SSR, Dynamic Routing, Server Components)",
+          "Once UI (Design Systems & Components Collaboration)",
+          "TailwindCSS & Vanilla CSS (Advanced Responsive Styling)",
+          "Shadcn UI & Radix Primitives"
         ]
       },
       {
-        "id": "ai-agentic",
-        "type": "section",
         "heading": "Agentic & AI Infrastructure",
-        "layout": "list",
+        "type": "list",
         "items": [
-          { "type": "text", "value": "Model Context Protocol (MCP) servers & clients integration" },
-          { "type": "text", "value": "AI Agentic workflow automation & environment orchestration" },
-          { "type": "text", "value": "OpenClaw framework contributions" },
-          {
-            "type": "text",
-            "value": "LLM Prompt Engineering, fine-tuning scripts, and API integration"
-          }
+          "Model Context Protocol (MCP) servers & clients integration",
+          "AI Agentic workflow automation & environment orchestration",
+          "OpenClaw framework contributions",
+          "LLM Prompt Engineering, fine-tuning scripts, and API integration"
         ]
       },
       {
-        "id": "dev-tools",
-        "type": "section",
         "heading": "Developer Productivity & Workflow Tools",
-        "layout": "list",
+        "type": "list",
         "items": [
-          { "type": "text", "value": "Obsidian (Zettelkasten structured note-taking & second brain)" },
-          { "type": "text", "value": "Figma (Interactive Prototyping & UI/UX Design)" },
-          {
-            "type": "text",
-            "value": "Git, GitHub, & GitButler (Advanced branch management & VCS workflows)"
-          },
-          { "type": "text", "value": "Windsurf, VS Code, Notion, WisprFlow" }
+          "Obsidian (Zettelkasten structured note-taking & second brain)",
+          "Figma (Interactive Prototyping & UI/UX Design)",
+          "Git, GitHub, & GitButler (Advanced branch management & VCS workflows)",
+          "Windsurf, VS Code, Notion, WisprFlow"
         ]
       }
     ]
@@ -75,36 +61,20 @@
     "description": "Details of my academic background and milestones, where I balanced school curriculum with deep-dives into computer science and technical innovations.",
     "content": [
       {
-        "id": "dps-vadodara",
-        "type": "section",
-        "heading": "Delhi Public School, Vadodara",
-        "layout": "prose",
+        "heading": "DPSV",
+        "type": "list",
         "items": [
-          {
-            "type": "text",
-            "value": "Completed Grade XII (CBSE). Focused on Physics, Chemistry, Mathematics, and Computer Science."
-          },
-          {
-            "type": "text",
-            "value": "Actively built side projects and automated classroom schedules, bridging the gap between theory and practical software engineering."
-          }
+          "Completed Grade XII (CBSE). Focused on Physics, Chemistry, Mathematics, and Computer Science.",
+          "Actively built side projects and automated classroom schedules, bridging the gap between theory and practical software engineering."
         ]
       },
       {
-        "id": "st-patricks",
-        "type": "section",
-        "heading": "St. Patrick's Academy, Dehradun",
-        "layout": "list",
+        "heading": "SPAD",
+        "type": "list",
         "items": [
-          { "type": "text", "value": "Completed Grade X (ICSE) with exceptional performance." },
-          {
-            "type": "text",
-            "value": "Represented the school at multiple regional science fairs, tech symposiums, and debates."
-          },
-          {
-            "type": "text",
-            "value": "Led computer application workshops for junior students, teaching them frontend fundamentals."
-          }
+          "Completed Grade X (ICSE) with exceptional performance.",
+          "Represented the school at multiple regional science fairs, tech symposiums, and exuberances.",
+          "Led computer application workshops for junior students, teaching them frontend fundamentals."
         ]
       }
     ]
@@ -119,39 +89,20 @@
     "description": "Recognitions, contest wins, and major milestones achieved throughout my engineering and academic path.",
     "content": [
       {
-        "id": "global-hackathon",
-        "type": "section",
         "heading": "Global Hackathon Winner - WhiteHat Jr (Age 12)",
-        "layout": "prose",
+        "type": "prose",
         "items": [
-          {
-            "type": "text",
-            "value": "Competed against thousands of participants worldwide to secure a top position by designing and presenting an innovative educational app."
-          },
-          {
-            "type": "text",
-            "value": "This early milestone solidified my passion for coding, launching a journey into full-stack development and game engineering."
-          }
+          "Competed against thousands of participants worldwide to secure a top position by designing and presenting an innovative educational app.",
+          "This early milestone solidified my passion for coding, launching a journey into full-stack development and game engineering."
         ]
       },
       {
-        "id": "science-tech-awards",
-        "type": "section",
         "heading": "Academic & Science Event Awards",
-        "layout": "list",
+        "type": "list",
         "items": [
-          {
-            "type": "text",
-            "value": "First Place in Regional STEM Exhibition for an automated weather station prototype."
-          },
-          {
-            "type": "text",
-            "value": "Outstanding Contribution Award at St. Patrick's Academy for technical coordination of school festivals."
-          },
-          {
-            "type": "text",
-            "value": "Top performer in national cyber olympiads throughout middle and high school."
-          }
+          "First Place in Regional STEM Exhibition for an automated weather station prototype.",
+          "Outstanding Contribution Award at St. Patrick's Academy for technical coordination of school festivals.",
+          "Top performer in national cyber olympiads throughout middle and high school."
         ]
       }
     ]
@@ -160,68 +111,42 @@
     "id": "experiences",
     "title": "Work Experiences",
     "abbreviation": "EXP",
-    "lastUpdated": "5/19/26",
+    "lastUpdated": "5/20/26",
     "isPrivate": false,
     "imageSrc": "https://framerusercontent.com/images/ImnpnLyok3HTJBEGnJyzqODd8J4.svg?width=21&height=21",
     "description": "My professional experience spans leading open-source project architectures, working on premium design systems, and building AI-enabled software products.",
     "content": [
       {
-        "id": "basalt3",
-        "type": "section",
-        "heading": "Basalt3 - Lead Architect",
-        "layout": "prose",
+        "type": "timeline",
+        "heading": "Experiences",
         "items": [
           {
-            "type": "text",
-            "value": "Leading the architectural design of open-source tools tailored for agentic infrastructure."
+            "label": "Basalt3 — Lead Architect",
+            "description": "Leading the architectural design of open-source tools tailored for agentic infrastructure, designing minimal developer workflows and integrations to enable flawless automation in development environments.",
+            "state": "active",
+            "date": "2024 — Present",
+            "employment": "Full-time"
           },
           {
-            "type": "text",
-            "value": "Designing minimal developer workflows and integrations to enable flawless automation in development environments."
-          }
-        ]
-      },
-      {
-        "id": "once-ui",
-        "type": "section",
-        "heading": "Once UI - Design System Collaborator",
-        "layout": "list",
-        "items": [
-          {
-            "type": "text",
-            "value": "Collaborating on the design system structure and building high-performance UI libraries."
+            "label": "Once UI — Design System Collaborator",
+            "description": "Collaborating on the design system structure and building high-performance UI libraries, integrating user feedback loop to refine UI primitives and layout structures.",
+            "state": "active",
+            "date": "2024 — Present",
+            "employment": "Part-time"
           },
           {
-            "type": "text",
-            "value": "Integrating user feedback loop to refine UI primitives and layout structures."
-          }
-        ]
-      },
-      {
-        "id": "next-bench",
-        "type": "section",
-        "heading": "Next Bench - AI Solution Developer",
-        "layout": "prose",
-        "items": [
-          {
-            "type": "text",
-            "value": "Building state-of-the-art AI-enabled solutions designed to enhance learning experiences and workloads for students."
-          }
-        ]
-      },
-      {
-        "id": "whitehat-jr",
-        "type": "section",
-        "heading": "WhiteHat Jr - Early Training & App Development",
-        "layout": "list",
-        "items": [
-          {
-            "type": "text",
-            "value": "Trained intensely in mobile application frameworks (React Native) and game engine basics."
+            "label": "Next Bench — AI Solution Developer",
+            "description": "Building state-of-the-art AI-enabled solutions designed to enhance learning experiences and workloads for students.",
+            "state": "active",
+            "date": "2023 — 2024",
+            "employment": "CTO"
           },
           {
-            "type": "text",
-            "value": "Constructed 20+ mini-games and applications, laying down strong programming foundations."
+            "label": "WhiteHat Jr — Early Training & App Development",
+            "description": "Trained intensely in mobile application frameworks (React Native) and game engine basics, constructing 20+ mini-games and applications.",
+            "state": "completed",
+            "date": "2020 — 2022",
+            "employment": "Trainee"
           }
         ]
       }

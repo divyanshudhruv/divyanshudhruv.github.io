@@ -1,0 +1,94 @@
+{
+  "name": "Divyanshu Dhruv",
+  "role": "DS ENGINEER",
+  "pfp": "/pfp.png",
+  "email": "divyanshudhruv@proton.me",
+  "about": [
+    "Hi, I'm Divyanshu — an 18-year-old full-stack developer and student who's been coding since 12, now architecting",
+    { "type": "favicon", "website": "Basalt3", "url": "https://linkedin.com" },
+    "and exploring MCP servers and environments for AI agents",
+    { "type": "faviconSolo", "url": "https://openclaw.ai" },
+    ". Beyond code, I'm a musician and producer, a multi-sport athlete, and a collector of 150+",
+    { "type": "tag", "variant": "success", "text": "Hot Wheels" },
+    ", including some rare pieces. I live in",
+    { "type": "flag", "country": "India", "code": "IN" },
+    ", but I have a lot of friends and connections in other countries, lol."
+  ],
+  "study": [
+    "I completed my primary and secondary education at St. Patrick's Academy, Dehradun",
+    {
+      "type": "img",
+      "href": "https://stpatricksdehradun.in",
+      "src": "https://framerusercontent.com/images/WJ5i1R1nlykh9L4pTXBmKkrPs.svg?width=21&height=21"
+    },
+    ", finishing",
+    { "type": "tag", "variant": "warning", "text": "Grade X ICSE" },
+    "while actively contributing to science events and school activities, and then completed my",
+    { "type": "tag", "variant": "accent", "text": "Grade XII CBSE" },
+    "at Delhi Public School",
+    {
+      "type": "img",
+      "href": "https://dpsvadodara.com",
+      "src": "https://framerusercontent.com/images/HGGKn65vMQyHgONQ37tdvdYgMU.svg?width=21&height=21"
+    },
+    ", Vadodara."
+  ],
+  "experience": [
+    "At Basalt3",
+    {
+      "type": "img",
+      "href": "https://basalt3.space",
+      "src": "https://avatars.githubusercontent.com/u/267773509?s=200&v=4"
+    },
+    ", I lead the architecture of open-source tools for agentic infrastructure and minimal developer workflows. At",
+    { "type": "favicon", "website": "Once UI", "url": "https://once-ui.com" },
+    ", I collaborate on the design system, UI libraries",
+    { "type": "faviconSolo", "url": "https://ui.shadcn.com" },
+    ", and continuous product feedback. At Next Bench",
+    {
+      "type": "img",
+      "href": "https://next-bench.space",
+      "src": "https://framerusercontent.com/images/UxF97MgFC7p8KelqtPYjNbWqzXg.svg?width=21&height=21"
+    },
+    "I create AI-enabled solution for",
+    { "type": "tag", "variant": "danger", "text": "students" },
+    ", while my",
+    { "type": "tag", "variant": "success", "text": "Self-employed" },
+    "work spans full-stack apps, dev tooling, and early projects in web, games, and mobile.\n\nAt WhiteHat Jr",
+    {
+      "type": "img",
+      "href": "https://next-bench.space",
+      "src": "https://framerusercontent.com/images/WJ5i1R1nlykh9L4pTXBmKkrPs.svg?width=21&height=21"
+    },
+    ", I trained as an app and game developer, learning React Native",
+    { "type": "faviconSolo", "url": "https://reactnative.dev" },
+    "and frontend fundamentals, and even winning a",
+    { "type": "tag", "variant": "warning", "text": "global hackathon" },
+    "at 12."
+  ],
+  "info": [
+    "I use tools like Obsidian",
+    { "type": "faviconSolo", "url": "https://obsidian.md/" },
+    ", Notion",
+    { "type": "faviconSolo", "url": "https://notion.so/" },
+    ", Framer",
+    { "type": "faviconSolo", "url": "https://www.framer.com/" },
+    ", Paper",
+    { "type": "faviconSolo", "url": "https://paper.design" },
+    ", Windsurf",
+    { "type": "faviconSolo", "url": "https://windsurf.com/" },
+    ", Antigravity",
+    { "type": "faviconSolo", "url": "https://antigravity.google/" },
+    ", Figma",
+    { "type": "faviconSolo", "url": "https://figma.com/" },
+    ", Gitbutler",
+    { "type": "faviconSolo", "url": "https://gitbutler.com/" },
+    ", WisprFlow",
+    { "type": "faviconSolo", "url": "https://wisprflow.com/" },
+    ", Perplexity",
+    { "type": "faviconSolo", "url": "https://perplexity.ai/" },
+    ", and ChatGPT",
+    { "type": "faviconSolo", "url": "https://openai.com/products/chatgpt/" },
+    "to build structured and clean designed and softwares."
+  ]
+}

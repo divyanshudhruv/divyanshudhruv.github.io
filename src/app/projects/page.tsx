@@ -9,7 +9,7 @@ import { ArrowLeftIcon } from "@phosphor-icons/react";
 import { useState } from "react";
 import { navigationItemJSON } from "@/data/data";
 import { useRouter } from "next/navigation";
-import { NavigationItem } from "@/components/NavigationItem";
+import { ProjectItem } from "@/components/ProjectItem";
 
 export default function Projects() {
   const router = useRouter();
@@ -44,7 +44,7 @@ export default function Projects() {
             Projects
           </Text>
           {visibleItems.map((item, index) => (
-            <NavigationItem
+            <ProjectItem
               key={index}
               id={item.id}
               lastUpdated={item.lastUpdated}
@@ -52,7 +52,6 @@ export default function Projects() {
               abbreviation={item.abbreviation}
               imageSrc={item.imageSrc}
               title={item.title}
-              type="projects"
             />
           ))}
           {hasMore && (
