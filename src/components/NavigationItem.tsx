@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Column, Flex, Media, Row, Text } from "@once-ui-system/core";
 import { useRouter } from "next/navigation";
 
@@ -9,6 +9,7 @@ export const NavigationItem = ({
   imageSrc,
   title,
   id,
+  type = "projects",
 }: {
   lastUpdated: string;
   abbreviation: string;
@@ -16,6 +17,7 @@ export const NavigationItem = ({
   imageSrc: string;
   title: string;
   id: string;
+  type?: "projects" | "others";
 }) => {
   const router = useRouter();
   return (
@@ -29,7 +31,7 @@ export const NavigationItem = ({
       padding="0"
       border="transparent"
       className="nav-item-container"
-      onClick={() => router.push(`/navigation/${id}`)}
+      onClick={() => router.push(`/${type}/${id}`)}
     >
       <Media
         src={imageSrc}
@@ -57,8 +59,19 @@ export const NavigationItem = ({
           <Text onBackground="neutral-weak" variant="code-default-s">
             <b>{abbreviation}</b>
           </Text>
+          {isPrivate && (
+            <>
+              <Text onBackground="neutral-weak" variant="code-default-m">
+                <b>•</b>
+              </Text>
+              <Text onBackground="neutral-weak" variant="code-default-s">
+                <b>🔒 PRIVATE</b>
+              </Text>
+            </>
+          )}
         </Row>
       </Column>
     </Flex>
   );
 };
+

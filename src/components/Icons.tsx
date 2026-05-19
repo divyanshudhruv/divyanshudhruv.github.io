@@ -59,7 +59,7 @@ export function FaviconIconSolo({ websiteUrl }: { websiteUrl: string }) {
   );
 }
 
-export function FunIcon({
+export function ImgIcon({
   imageSrc,
   href,
 }: {
