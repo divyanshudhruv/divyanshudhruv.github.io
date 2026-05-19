@@ -1,4 +1,4 @@
-import type { IconType } from "react-icons";
+import { IconType } from "react-icons";
 
 import { HiOutlineRocketLaunch } from "react-icons/hi2";
 

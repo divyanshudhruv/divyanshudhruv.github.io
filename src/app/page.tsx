@@ -1,586 +1,206 @@
 "use client";
 
-import {
-  Accordion,
-  AutoScroll,
-  Avatar,
-  Background,
-  Button,
-  Column,
-  Fade,
-  Flex,
-  Grid,
-  Icon,
-  IconButton,
-  InlineCode,
-  Line,
-  List,
-  ListItem,
-  Logo,
-  Mask,
-  MatrixFx,
-  Row,
-  SmartLink,
-  Tag,
-  Text,
-  ThemeSwitcher,
-} from "@once-ui-system/core";
-import { useState } from "react";
-import ContributionGraph from "../components/ContributionGraph";
 import "./global.css";
 
-import AutoScrollHorizontal from "@/components/AutoScrollHorizontal";
-import { Projects } from "@/components/Projects";
-import Stacks from "@/components/Stacks";
-import Testimonial from "@/components/Testimonial";
-import Experience from "@/components/Experience";
-
-import ChipSet from "@/components/ChipSet";
-import Dashed from "@/components/Dashed";
-import ImagesForGrid from "@/components/ImagesForGrid";
-import LinkSet from "@/components/LinkSet";
-
 import {
-  BIO,
-  EDUCATION,
-  EXPERIENCES,
-  GALLERY,
-  PERSONA,
-  PROFILE,
-  PROJECTS,
-  TESTIMONIALS,
-} from "@/data/core-config";
-import Waves from "@/components/Waves";
-import { SUSE } from "next/font/google";
-import { HiArrowRight } from "react-icons/hi2";
+  Heading,
+  Text,
+  Button,
+  Column,
+  Badge,
+  Logo,
+  Line,
+  LetterFx,
+  Flex,
+  Row,
+  IconButton,
+  Kbd,
+  Media,
+  Arrow,
+  Tag,
+  ColorScheme,
+  Card,
+} from "@once-ui-system/core";
+import { Schema } from "@once-ui-system/core";
+import { baseURL, meta } from "@/resources/seo";
+import { useRouter } from "next/navigation";
 
-const suse = SUSE({ subsets: ["latin"] });
+import { navigationItemJSON } from "@/data/data";
+import {NavigationItem} from "@/components/NavigationItem";
+import { FaviconIcon, FaviconIconSolo, FunIcon, FlagIcon, TagIcon } from "@/components/Icons";
 
 export default function Home() {
-  const [visibleProjects, setVisibleProjects] = useState(10);
-  const projectsToShow = PROJECTS.slice(0, visibleProjects);
-  const hasMoreProjects = PROJECTS.length > visibleProjects;
-
-  const loadMoreProjects = () => {
-    setVisibleProjects((prev) => Math.min(prev + 4, PROJECTS.length));
-  };
+  const router = useRouter();
 
   return (
-    <Row
-      fillWidth
-      horizontal="center"
-      vertical="start"
-      style={{ minHeight: "100vh" }}
-      paddingX={"l"}
-    >
-      <Column maxWidth="s" borderX="neutral-alpha-weak" fillWidth fillHeight>
-        <Dashed />
-        <Flex
-          fillWidth
-          fillHeight
-          paddingX={1}
-          maxHeight={2}
-          minHeight={2}
-          borderBottom="neutral-alpha-weak"
-          vertical="center"
-          horizontal="start"
-        >
-          <Text variant="code-default-xs" onBackground="neutral-weak">
-            Random Stuffs
-          </Text>
-        </Flex>
-        <Flex
-          fillWidth
-          fillHeight
-          maxHeight={12}
-          minHeight={12}
-          borderBottom="neutral-alpha-weak"
-          center
-        >
-          <Mask maxWidth="m" x={50} y={50} radius={50}>
-            <MatrixFx
-              size={1.5}
-              spacing={5}
-              opacity={70}
-              fps={24}
-              colors={["brand-solid-weak"]}
-              flicker
-            />
-          </Mask>
-        </Flex>
-        <Row
-          fillWidth
-          borderBottom="neutral-alpha-weak"
-          horizontal="start"
-          vertical="center"
-        >
-          <Flex fit>
-            {" "}
-            <Avatar
-              src={PERSONA.avatar}
-              size="xl"
-              border="neutral-alpha-strong"
-              className="invert"
-            />
-          </Flex>
-          <Column
-            fillWidth
-            vertical="end"
-            horizontal="center"
-            fillHeight
-            borderLeft="neutral-alpha-weak"
+    <Flex fill>
+      <Row fillWidth fitHeight>
+        <Column fillWidth fitHeight paddingY={"l"} horizontal="start" vertical="start">
+          <Flex
+            maxWidth={"xs"}
+            paddingRight={"l"}
+            horizontal="start"
+            vertical="start"
+            direction="column"
+            gap={"l"}
           >
-            <Flex
-              fillWidth
-              fillHeight
-              paddingX={1}
-              maxHeight={2}
-              minHeight={2}
-              borderBottom="neutral-alpha-weak"
-              vertical="center"
-              horizontal="start"
-              id="persona_main"
-            >
-              <Text variant="code-default-xs" onBackground="neutral-weak">
-                {PERSONA.header}{" "}
-              </Text>
-            </Flex>
-            <Flex
-              fillWidth
-              fillHeight
-              paddingX={1}
-              maxHeight={3}
-              minHeight={3}
-              borderBottom="neutral-alpha-weak"
-              vertical="center"
-              horizontal="start"
-              gap={1}
-              id="persona_main"
-            >
-              <Text
-                variant="display-default-s"
-                onBackground="neutral-strong"
-                className="font-reckless-light"
-              >
-                {PERSONA.name}
-              </Text>
-            </Flex>
-            <Flex
-              fillWidth
-              fillHeight
-              paddingX={1}
-              maxHeight={2}
-              minHeight={2}
-              vertical="center"
-              id="persona_main"
-              horizontal="between"
-            >
-              <Text variant="code-default-xs" onBackground="neutral-weak">
-                {PERSONA.role}
-              </Text>{" "}
-              <ThemeSwitcher id="theme_switcher" style={{ scale: "0.7" }} />
-            </Flex>
-          </Column>
-        </Row>
-        <Dashed />
-        <Column
-          fillWidth
-          borderBottom="neutral-alpha-weak"
-          horizontal="start"
-          vertical="center"
-          padding={1}
-          gap={0.3}
-        >
-          {PROFILE.chips.map((chip, chipIndex) => (
-            <Row key={chipIndex + "-chip"} fillWidth id="profile_chips">
-              {chip.map((chipData, chipDataIndex) => (
-                <Flex
-                  key={chipDataIndex + "-chip-data" + "-" + chipIndex}
-                  flex={1}
-                >
-                  <ChipSet
-                    icon={chipData.icon}
-                    text={chipData.text}
-                    href={chipData.href}
-                  />
-                </Flex>
-              ))}
+            <Row center gap="12">
+              <Media src="/pfp.png" alt="Profile" width={3} height={3} radius="s" />
+              <Column>
+                <Text variant="body-default-m">
+                  <b>Divyanshu Dhruv</b>
+                </Text>
+                <Text onBackground="neutral-weak" variant="code-default-m">
+                  DS ENGINEER
+                </Text>
+              </Column>
             </Row>
-          ))}
-        </Column>
-        {PROFILE.links.map((link, i) => (
-          <Row
-            wrap
-            fillWidth
-            minHeight={4}
-            gap={1}
-            borderBottom="neutral-alpha-weak"
-            key={i + "-link"}
-            id="profile_links"
-          >
-            {link.map((linkData, j) => (
-              <LinkSet
-                key={j + "-link-data"}
-                src={linkData.src}
-                href={linkData.href}
-                text={linkData.text}
-                position={
-                  j === 0 ? "first" : j === link.length - 1 ? "last" : "middle"
-                }
-              />
-            ))}
-          </Row>
-        ))}
-        <Dashed />
-        <Flex
-          fillWidth
-          fillHeight
-          paddingX={1}
-          maxHeight={2}
-          minHeight={2}
-          borderBottom="neutral-alpha-weak"
-          vertical="center"
-          horizontal="start"
-        >
-          <Text variant="code-default-xs" onBackground="neutral-weak">
-            About Me
-          </Text>
-        </Flex>
-        <Column
-          padding={1}
-          fillWidth
-          fitHeight
-          borderBottom="neutral-alpha-weak"
-          gap={1}
-        >
-          {BIO.description.map((desc, i) => (
-            <Text
-              key={i}
-              variant="label-default-m"
-              onBackground="neutral-medium"
-              style={{ lineHeight: "1.7em" }}
-            >
-              {desc}
-            </Text>
-          ))}
-        </Column>{" "}
-        {/* <Row padding={1} borderBottom="neutral-alpha-weak" overflow="hidden">
-            <AutoScroll gap={1}>
-              <Row gap={1}>{TESTIMONIALS.map((testimonial, index) => (
-                <Testimonial
-                  key={`testimonial-${index}`}
-                  src={testimonial.src}
-                  href={testimonial.href}
-                  name={testimonial.name}
-                  desc={testimonial.desc}
-                  body={testimonial.body}
-                />
-              ))}</Row>
-            </AutoScroll>
-        </Row> */}
-        <Flex
-          fillWidth
-          fitHeight
-          center
-          borderBottom="neutral-alpha-weak"
-          paddingTop={1}
-          padding={1}
-          paddingLeft={1}
-          paddingBottom={1}
-          paddingRight={1}
-          overflowX="scroll"
-        >
-          <ContributionGraph />
-        </Flex>
-        <Dashed />{" "}
-        <Flex
-          fillWidth
-          fillHeight
-          paddingX={1}
-          maxHeight={2}
-          minHeight={2}
-          borderBottom="neutral-alpha-weak"
-          vertical="center"
-          horizontal="start"
-        >
-          <Text variant="code-default-xs" onBackground="neutral-weak">
-            Skills & Stacks{" "}
-            <strong>
-              <sup className={suse.className}>({BIO.stacks.length})</sup>
-            </strong>
-          </Text>
-        </Flex>{" "}
-        <Flex
-          fillWidth
-          fitHeight
-          vertical="center"
-          horizontal="start"
-          borderBottom="neutral-alpha-weak"
-          padding={1}
-          gap={0.97}
-          wrap
-          id="bio_stacks"
-        >
-          <Stacks stacks={BIO.stacks} />
-        </Flex>
-        <Dashed />{" "}
-        <Flex
-          fillWidth
-          fillHeight
-          paddingX={1}
-          maxHeight={2}
-          minHeight={2}
-          borderBottom="neutral-alpha-weak"
-          vertical="center"
-          horizontal="start"
-        >
-          <Text variant="code-default-xs" onBackground="neutral-weak">
-            Experience{" "}
-            <strong>
-              <sup className={suse.className}>({EXPERIENCES.length})</sup>
-            </strong>
-          </Text>
-        </Flex>{" "}
-        <Flex fillWidth fitHeight direction="column">
-          {EXPERIENCES.map((exp, expIndex) =>
-            exp.postings.map((posting, postingIndex) => (
-              <Experience
-                key={`${expIndex}-${postingIndex}-${Math.random().toString().slice(2, 7)}`}
-                companyLogo={exp.companyLogo}
-                companyText={exp.companyText}
-                posting={posting}
-                current={exp.current}
-                open={exp.open}
-                postingIndex={postingIndex}
-                totalPostings={exp.postings.length}
-              />
-            )),
-          )}{" "}
-        </Flex>{" "}
-        <Dashed />
-        <Flex
-          fillWidth
-          fillHeight
-          paddingX={1}
-          maxHeight={2}
-          minHeight={2}
-          borderBottom="neutral-alpha-weak"
-          vertical="center"
-          horizontal="start"
-        >
-          <Text variant="code-default-xs" onBackground="neutral-weak">
-            Education{" "}
-            <b>
-              <sup className={suse.className}>({EDUCATION.length})</sup>
-            </b>
-          </Text>
-        </Flex>{" "}
-        <Flex fillWidth fitHeight direction="column">
-          {EDUCATION.map((exp, expIndex) =>
-            exp.postings.map((posting, postingIndex) => (
-              <Experience
-                key={`${expIndex}-${postingIndex}-${Math.random().toString().slice(2, 7)}`}
-                companyLogo={exp.companyLogo}
-                companyText={exp.companyText}
-                variant="secondary"
-                current={exp.current}
-                open={exp.open}
-                posting={posting}
-                postingIndex={postingIndex}
-                totalPostings={exp.postings.length}
-              />
-            )),
-          )}
-        </Flex>{" "}
-        <Dashed />{" "}
-        <Flex
-          fillWidth
-          fillHeight
-          paddingX={1}
-          maxHeight={2}
-          minHeight={2}
-          borderBottom="neutral-alpha-weak"
-          vertical="center"
-          horizontal="start"
-        >
-          <Text variant="code-default-xs" onBackground="neutral-weak">
-            Some Images{" "}
-            <b>
-              <sup className={suse.className}>({GALLERY.length})</sup>
-            </b>
-          </Text>
-        </Flex>{" "}
-        <Grid
-          fillWidth
-          fitHeight
-          columns={2}
-          border="neutral-alpha-weak"
-          paddingBottom={1}
-          id="gallery"
-        >
-          <ImagesForGrid images={GALLERY} />
-        </Grid>
-        <Dashed />{" "}
-        <Flex
-          fillWidth
-          fillHeight
-          paddingX={1}
-          maxHeight={2}
-          minHeight={2}
-          borderBottom="neutral-alpha-weak"
-          vertical="center"
-          horizontal="start"
-        >
-          <Text variant="code-default-xs" onBackground="neutral-weak">
-            Projects{" "}
-            <b>
-              <sup className={suse.className}>({PROJECTS.length}) + github</sup>
-            </b>
-          </Text>
-        </Flex>{" "}
-        <Flex fillWidth fitHeight direction="column">
-          {projectsToShow.map((project, index) => (
-            <Projects
-              key={project.id}
-              postingIndex={index}
-              projects={{ tags: project.tags }}
-              title={project.title}
-              role={project.role}
-              date={project.date}
-              linkHref={project.href}
-              ongoing={project.ongoing}
-              logo={project.logo}
-            />
-          ))}
-          <Row
-            center
-            fillWidth
-            padding={1}
-            data-border="conservative"
-            borderBottom="neutral-alpha-weak"
-          >
-            <Button size="s" href="https://github.com/divyanshudhruv" arrowIcon>
-              <Text variant="label-default-s">
-                <Row center gap={0.5}>
-                  View more
-                  {/* <Text onBackground="neutral-weak" className="rotate-315">
-                    <HiArrowRight />
-                  </Text> */}
-                </Row>
-              </Text>{" "}
-            </Button>
-          </Row>
-        </Flex>
-        <Dashed />
-        <Flex
-          fillWidth
-          fillHeight
-          paddingX={1}
-          maxHeight={2}
-          minHeight={2}
-          borderBottom="neutral-alpha-weak"
-          vertical="center"
-          horizontal="start"
-        >
-          <Text variant="code-default-xs" onBackground="neutral-weak">
-            Blogs
-          </Text>
-        </Flex>{" "}
-        <Column
-          padding={1}
-          fillWidth
-          fitHeight
-          borderBottom="neutral-alpha-weak"
-          gap={1}
-        >
-          <Text
-            variant="label-default-m"
-            onBackground="neutral-medium"
-            style={{ lineHeight: "1.7em" }}
-          >
-            I don't write blogs ;)
-          </Text>
-        </Column>
-        <Dashed />
-        <Column fillWidth center gap={1}>
-          <Row center borderBottom="neutral-alpha-weak" padding={1} fillWidth>
-            <Flex wrap maxWidth={40} align="center" center fillWidth>
-              {" "}
-              <Text
-                variant="code-default-s"
-                align="center"
-                onBackground="neutral-weak"
-                style={{ lineHeight: "1.7em" }}
-              >
-                Inspired by{" "}
-                <SmartLink href="https://github.com/ncdai">
-                  <u>chanhdai</u>
-                </SmartLink>{" "}
-                &{" "}
-                <SmartLink href="https://once-ui.com">
-                  <u>once-ui.com</u>
-                </SmartLink>
-                .
-                <br /> Built by{" "}
-                <SmartLink href="https://github.com/divyanshudhruv">
-                  <u>divyanshudhruv</u>
-                </SmartLink>
-                . The source code is available on{" "}
-                <SmartLink href="https://github.com/divyanshudhruv/divyanshudhruv.github.io">
-                  <u>GitHub</u>
-                </SmartLink>
-                .
+
+            <Flex direction="column" fill gap={"8"}>
+              <Text variant="code-default-l" onBackground="neutral-weak"></Text>
+              <Text variant="body-default-m" onBackground="neutral-medium" className="lh">
+                <b>
+                  {" "}
+                  Hi, I'm Divyanshu — an 18-year-old full-stack developer and student who's been
+                  coding since 12, now architecting
+                  <FaviconIcon website="Basalt3" websiteUrl="https://linkedin.com" />
+                  and exploring MCP servers and environments for AI agents{" "}
+                  <FaviconIconSolo websiteUrl="https://openclaw.ai" />. Beyond code, I'm a musician
+                  and producer, a multi-sport athlete, and a collector of 150+
+                  <TagIcon variant="success" text="Hot Wheels" />, including some rare pieces. I
+                  live in
+                  <FlagIcon country="India" countryCode="IN" />, but I have a lot of friends and
+                  connections in other countries, lol.
+                </b>
               </Text>
             </Flex>
-          </Row>
-          <Row center gap={0.5} padding={1} paddingTop={0}>
-            <a href="/llms.txt" style={{ textDecoration: "underline" }}>
-              {" "}
-              <Text variant="label-default-s" onBackground="neutral-weak">
-                llms.txt
+
+            <Flex direction="column" fill gap={"8"}>
+              <Text variant="code-default-l" onBackground="neutral-weak">
+                STUDY
               </Text>
-            </a>
-            <Text variant="label-default-s" onBackground="neutral-weak">
-              •
-            </Text>
-            <a href="/robots.txt" style={{ textDecoration: "underline" }}>
-              <Text variant="label-default-s" onBackground="neutral-weak">
-                robots.txt
+              <Text variant="body-default-m" onBackground="neutral-medium" className="lh">
+                <b>
+                  I completed my primary and secondary education at St. Patrick's Academy, Dehradun
+                  <FunIcon
+                    imageSrc="https://framerusercontent.com/images/WJ5i1R1nlykh9L4pTXBmKkrPs.svg?width=21&height=21"
+                    href="https://stpatricksdehradun.in"
+                  />
+                  , finishing <TagIcon variant="warning" text="Grade X ICSE" /> while actively
+                  contributing to science events and school activities, and then completed my
+                  <TagIcon variant="accent" text="Grade XII CBSE" /> at Delhi Public School{" "}
+                  <FunIcon
+                    href="https://dpsvadodara.com"
+                    imageSrc="https://framerusercontent.com/images/HGGKn65vMQyHgONQ37tdvdYgMU.svg?width=21&height=21"
+                  />
+                  , Vadodara.
+                </b>
               </Text>
-            </a>
-            <Text variant="label-default-s" onBackground="neutral-weak">
-              •
-            </Text>
-            <a href="/rss.xml" style={{ textDecoration: "underline" }}>
-              <Text variant="label-default-s" onBackground="neutral-weak">
-                rss.xml
+            </Flex>
+
+            <Flex direction="column" fill gap={"8"}>
+              <Text variant="code-default-l" onBackground="neutral-weak">
+                EXPERIENCE
               </Text>
-            </a>
-            <Text variant="label-default-s" onBackground="neutral-weak">
-              •
-            </Text>
-            <a
-              href="https://github.com/divyanshudhruv"
-              style={{ textDecoration: "underline" }}
-            >
-              <Text variant="label-default-s" onBackground="neutral-weak">
-                github
+              <Text variant="body-default-m" onBackground="neutral-medium" className="lh">
+                <b>
+                  {" "}
+                  At Basalt3
+                  <FunIcon
+                    href="https://basalt3.space"
+                    imageSrc="https://framerusercontent.com/images/cJWPpwrpaL1ehaoj5Sx3R1TPc.svg?width=21&height=21"
+                  />
+                  , I lead the architecture of open-source tools for agentic infrastructure and
+                  minimal developer workflows. At
+                  <FaviconIcon website="Once UI" websiteUrl="https://once-ui.com" />, I collaborate
+                  on the design system, UI libraries{" "}
+                  <FaviconIconSolo websiteUrl="https://ui.shadcn.com" />, and continuous product
+                  feedback. At Next Bench{" "}
+                  <FunIcon
+                    href="https://next-bench.space"
+                    imageSrc="https://framerusercontent.com/images/UxF97MgFC7p8KelqtPYjNbWqzXg.svg?width=21&height=21"
+                  />{" "}
+                  I create AI-enabled solution for <TagIcon variant="danger" text="students" />,
+                  while my
+                  <TagIcon variant="success" text="Self-employed" /> work spans full-stack apps, dev
+                  tooling, and early projects in web, games, and mobile.
+                  <br />
+                  <br />
+                  At WhiteHat Jr{" "}
+                  <FunIcon
+                    href="https://next-bench.space"
+                    imageSrc="https://framerusercontent.com/images/WJ5i1R1nlykh9L4pTXBmKkrPs.svg?width=21&height=21"
+                  />
+                  , I trained as an app and game developer, learning React Native
+                  <FaviconIconSolo websiteUrl="https://reactnative.dev" />
+                  and frontend fundamentals, and even winning a{" "}
+                  <TagIcon variant="warning" text="global hackathon" /> at 12.
+                </b>
               </Text>
-            </a>
-            <Text variant="label-default-s" onBackground="neutral-weak">
-              •
-            </Text>
-            <a
-              href="https://www.linkedin.com/in/divyanshudhruv"
-              style={{ textDecoration: "underline" }}
-            >
-              <Text variant="label-default-s" onBackground="neutral-weak">
-                linkedin
+            </Flex>
+
+            <Flex direction="column" fill gap={"8"}>
+              <Text variant="code-default-l" onBackground="neutral-weak">
+                INFO
               </Text>
-            </a>
-          </Row>
+              <Text variant="body-default-m" onBackground="neutral-medium" className="lh">
+                <b>
+                  I use tools like Obsidian
+                  <FaviconIconSolo websiteUrl="https://obsidian.md/" />, Notion{" "}
+                  <FaviconIconSolo websiteUrl="https://notion.so/" />, Framer{" "}
+                  <FaviconIconSolo websiteUrl="https://www.framer.com/" />, Paper
+                  <FaviconIconSolo websiteUrl="https://paper.design" />, Windsurf{" "}
+                  <FaviconIconSolo websiteUrl="https://windsurf.com/" />, Figma{" "}
+                  <FaviconIconSolo websiteUrl="https://figma.com/" />, Gitbutler{" "}
+                  <FaviconIconSolo websiteUrl="https://gitbutler.com/" />, WisprFlow{" "}
+                  <FaviconIconSolo websiteUrl="https://wisprflow.com/" />, Perplexity{" "}
+                  <FaviconIconSolo websiteUrl="https://perplexity.ai/" />, and ChatGPT{" "}
+                  <FaviconIconSolo websiteUrl="https://openai.com/products/chatgpt/" />
+                  to build structured and clean designed and softwares.
+                </b>
+              </Text>
+            </Flex>
+          </Flex>
         </Column>
-      </Column>
-    </Row>
+
+        <Column fitWidth paddingY={"l"} fitHeight horizontal="start" vertical="start">
+          <Flex fill>
+            {" "}
+            <Flex direction="column" fill gap={"s"}>
+              <Text variant="code-default-s" onBackground="neutral-weak">
+                <b>PROJECTS</b>
+              </Text>
+
+              <Column fill gap="s" data-scaling="110">
+                {navigationItemJSON.slice(0, 4).map((item, index) => (
+                  <NavigationItem
+                    key={index}
+                    id={item.id}
+                    lastUpdated={item.lastUpdated}
+                    abbreviation={item.abbreviation}
+                    isPrivate={item.isPrivate}
+                    imageSrc={item.imageSrc}
+                    title={item.title}
+                  />
+                ))}
+                <Button
+                  variant="secondary"
+                  size="s"
+                  id="arrow-trigger-1"
+                  onClick={() => router.push("/navigation")}
+                >
+                  <Row>
+                    <Text variant="code-default-s" onBackground="neutral-weak">
+                      ALL
+                    </Text>
+                    <Arrow trigger="#arrow-trigger-1" scale={0.7} onBackground="neutral-weak" />
+                  </Row>
+                </Button>
+              </Column>
+            </Flex>
+          </Flex>
+        </Column>
+      </Row>
+    </Flex>
   );
 }
