@@ -9,9 +9,47 @@
   text-underline-offset: 3px;
 }
 
-.wavy-underline{
-    text-decoration: underline;
+.wavy-underline {
+  text-decoration: underline;
   text-decoration-style: wavy;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
+}
+
+.navbar {
+  min-height: 100px;
+}
+
+.footer {
+  min-height: 100px;
+}
+
+@media (max-width: 768px) {
+  .main-hero-content-text-gap {
+    gap: 2em;
+  }
+
+  .navbar-left {
+    justify-content: space-between;
+    width: 100%;
+  }
+  .navbar-right {
+    display: none;
+  }
+
+  .main-hero {
+    padding-block: 1.5em;
+  }
+  .navigation-main-hero {
+    padding-block: 2em;
+  }
+  .navigation-main-hero-content-item-gap {
+    gap: 1em;
+  }
+  .navigation-other-hero {
+    padding-block: 2em;
+  }
+  .navigation-other-hero-content-item-gap {
+    gap: 1.75em;
+  }
 }

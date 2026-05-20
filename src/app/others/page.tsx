@@ -7,13 +7,16 @@ import { ArrowLeftIcon } from "@phosphor-icons/react";
 import { useState } from "react";
 import { otherNavigationItemJSON } from "@/data/data";
 import { useRouter } from "next/navigation";
+import { useWebHaptics } from "web-haptics/react";
 import { OtherItem } from "@/components/OtherItem";
 
 export default function Others() {
   const router = useRouter();
+  const haptic = useWebHaptics();
   const [visibleCount, setVisibleCount] = useState(4);
 
   const handleLoadMore = () => {
+    haptic.trigger("medium");
     setVisibleCount((prevCount) => prevCount + 5);
   };
 
@@ -21,13 +24,22 @@ export default function Others() {
   const hasMore = visibleCount < otherNavigationItemJSON.length;
 
   return (
-    <Flex fill direction="column" paddingY={"l"} gap="m">
+    <Flex
+      fill
+      direction="column"
+      paddingY={"l"}
+      gap="m"
+      className="navigation-main-hero"
+    >
       <Row fillWidth horizontal="start" vertical="center" fitHeight>
         <Button variant="tertiary" size="s">
           <Text
             variant="code-default-s"
             onBackground="neutral-weak"
-            onClick={() => router.push("/")}
+            onClick={() => {
+              haptic.trigger("light");
+              router.push("/");
+            }}
           >
             <Row vertical="center" gap="4" cursor="pointer">
               <ArrowLeftIcon size={22} weight="light" /> HOME
@@ -37,9 +49,13 @@ export default function Others() {
       </Row>
 
       <Flex direction="column" fill gap={"l"}>
-        <Column fill gap="m" fillWidth>
-          <Text variant="display-default-xs" onBackground="neutral-alpha-strong">
-            Others
+        <Column fill gap="m" fillWidth className="navigation-main-hero-content-item-gap">
+          <Text
+            variant="display-default-xs"
+            onBackground="neutral-alpha-strong"
+          >
+            
+            <b>Others</b>
           </Text>
           {visibleItems.map((item, index) => (
             <OtherItem
@@ -53,12 +69,21 @@ export default function Others() {
             />
           ))}
           {hasMore && (
-            <Button variant="secondary" size="s" id="arrow-trigger-1" onClick={handleLoadMore}>
+            <Button
+              variant="secondary"
+              size="s"
+              id="arrow-trigger-1"
+              onClick={handleLoadMore}
+            >
               <Row>
                 <Text variant="code-default-s" onBackground="neutral-weak">
                   LOAD MORE
                 </Text>
-                <Arrow trigger="#arrow-trigger-1" scale={0.7} onBackground="neutral-weak" />
+                <Arrow
+                  trigger="#arrow-trigger-1"
+                  scale={0.7}
+                  onBackground="neutral-weak"
+                />
               </Row>
             </Button>
           )}

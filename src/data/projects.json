@@ -8,7 +8,10 @@
     "imageSrc": "https://framerusercontent.com/images/WJ5i1R1nlykh9L4pTXBmKkrPs.svg?width=21&height=21",
     "description": "A simple yet efficient injector for SECRETS. Write Once Use Anywhere.",
     "data": {
-      "sections": {}
+      "sections": {
+        "Overview": "Keyshard is a simple yet efficient injector for secrets, enabling write-once use anywhere.",
+        "Usage": "Integrate into your deployment pipeline to manage secret injection safely."
+      }
     }
   },
   {
@@ -20,7 +23,10 @@
     "imageSrc": "https://framerusercontent.com/images/HGGKn65vMQyHgONQ37tdvdYgMU.svg?width=21&height=21",
     "description": "A standalone SPEECH-TO-TEXT application",
     "data": {
-      "sections": {}
+      "sections": {
+        "Overview": "Speech-to-Text application converting audio streams into transcribed text in real time.",
+        "Features": "Supports multiple languages, offline processing, and customizable vocabularies."
+      }
     }
   },
   {
@@ -32,7 +38,10 @@
     "imageSrc": "https://framerusercontent.com/images/Lg25Geh6Lzk0gC4WtUWhk5LTdA.svg?width=21&height=21",
     "description": "A P2P terminal based (TUI) file sharing CLI",
     "data": {
-      "sections": {}
+      "sections": {
+        "Overview": "Peerpipe is a peer-to-peer file sharing CLI with a TUI for easy file transfer.",
+        "Capabilities": "Handles large files, resumable transfers, and end-to-end encryption."
+      }
     }
   },
   {
@@ -44,7 +53,24 @@
     "imageSrc": "https://framerusercontent.com/images/ImnpnLyok3HTJBEGnJyzqODd8J4.svg?width=21&height=21",
     "description": "The Atomic UI Registry for NextJS. 🪼",
     "data": {
-      "sections": {}
+      "sections": {
+        "Overview": "Atomic UI Registry provides a centralized repository for reusable UI components in Next.js.",
+        "Benefits": "Promotes consistency, reduces duplication, and simplifies component discovery."
+      },
+      "media": [
+        {
+          "src": "https://github.com/user-attachments/assets/2fbc6226-abb1-42b7-bf82-bd0868e39581",
+          "alt": "spojt header"
+        },
+        {
+          "src": "https://github.com/user-attachments/assets/ea2f2228-4589-433a-8447-e8da0f26c81a",
+          "alt": "spojt - light theme"
+        },
+        {
+          "src": "https://github.com/user-attachments/assets/b3e9136c-2a49-45a8-bea7-4d00aa02e6ea",
+          "alt": "spojt - dark theme"
+        }
+      ]
     }
   },
   {
@@ -56,7 +82,10 @@
     "imageSrc": "https://framerusercontent.com/images/WJ5i1R1nlykh9L4pTXBmKkrPs.svg?width=21&height=21",
     "description": "A simple package to add minimal review button to your website.",
     "data": {
-      "sections": {}
+      "sections": {
+        "Overview": "Reviewslop adds a minimal review button to capture feedback on any website.",
+        "Integration": "Simple script injection with customizable styling and callbacks."
+      }
     }
   }
 ]

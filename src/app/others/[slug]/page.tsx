@@ -11,6 +11,7 @@ import { StacksSkillsContent } from "@/components/others/StacksSkillsContent";
 import { EducationContent } from "@/components/others/EducationContent";
 import { AwardsContent } from "@/components/others/AwardsContent";
 import { ExperiencesContent } from "@/components/others/ExperiencesContent";
+import { useWebHaptics } from "web-haptics/react";
 
 const contentMap: Record<string, React.FC<any>> = {
   "stacks-skills": StacksSkillsContent,
@@ -21,6 +22,7 @@ const contentMap: Record<string, React.FC<any>> = {
 
 export default function OtherDetail() {
   const router = useRouter();
+  const haptic = useWebHaptics();
   const params = useParams();
   const slug = params?.slug as string;
 
@@ -33,7 +35,13 @@ export default function OtherDetail() {
           Page not found.
           {slug}
         </Text>
-        <Button variant="secondary" onClick={() => router.push("/others")}>
+        <Button
+          variant="secondary"
+          onClick={() => {
+            haptic.trigger("light");
+            router.push("/others");
+          }}
+        >
           <Row vertical="center" gap="4">
             <ArrowLeftIcon size={18} weight="light" /> Back to Others
           </Row>
@@ -45,13 +53,22 @@ export default function OtherDetail() {
   const ContentComponent = contentMap[slug];
 
   return (
-    <Flex fill direction="column" paddingY="l" gap="l">
+    <Flex
+      fill
+      direction="column"
+      paddingY="l"
+      gap="l"
+      className="navigation-other-hero"
+    >
       {/* Navigation Header */}
       <Row fillWidth horizontal="start" vertical="center" fitHeight>
         <Button
           variant="tertiary"
           size="s"
-          onClick={() => router.push("/others")}
+          onClick={() => {
+            haptic.trigger("light");
+            router.push("/others");
+          }}
         >
           {" "}
           <Text variant="code-default-s" onBackground="neutral-weak">
@@ -72,7 +89,12 @@ export default function OtherDetail() {
       >
         {/* Main Content Container */}
         <Column fillWidth horizontal="start" vertical="start">
-          <Flex maxWidth="xs" direction="column" gap="l">
+          <Flex
+            maxWidth="xs"
+            direction="column"
+            gap="m"
+            className="navigation-other-hero-content-item-gap"
+          >
             {" "}
             <Column gap="xs">
               {" "}
@@ -124,11 +146,11 @@ export default function OtherDetail() {
         </Column>
 
         <Column
-          fitWidth
+          fillWidth
           fillHeight
           horizontal="end"
           vertical="start"
-          minWidth={28}
+          m={{ horizontal: "start" }}
         >
           <Column fit gap="l">
             <Flex direction="column" fill gap={"s"}>
@@ -152,7 +174,10 @@ export default function OtherDetail() {
                   variant="secondary"
                   size="s"
                   id="arrow-trigger-2"
-                  onClick={() => router.push("/others")}
+                  onClick={() => {
+                    haptic.trigger("light");
+                    router.push("/others");
+                  }}
                 >
                   <Row>
                     <Text variant="code-default-s" onBackground="neutral-weak">

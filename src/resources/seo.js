@@ -14,6 +14,24 @@ const meta = {
     alternates: [{ href: "https://once-ui.com", hrefLang: "en" }],
   },
   // add more routes and reference them in page.tsx
+  projects: {
+    path: "/projects",
+    title: "Projects",
+    description: "Explore my past projects and works.",
+    image: "/images/og/home.jpg",
+    canonical: "https://once-ui.com/projects",
+    robots: "index,follow",
+    alternates: [{ href: "https://once-ui.com/projects", hrefLang: "en" }],
+  },
+  others: {
+    path: "/others",
+    title: "Others",
+    description: "Awards, experiences, and other endeavors.",
+    image: "/images/og/home.jpg",
+    canonical: "https://once-ui.com/others",
+    robots: "index,follow",
+    alternates: [{ href: "https://once-ui.com/others", hrefLang: "en" }],
+  },
 };
 
 // default schema data

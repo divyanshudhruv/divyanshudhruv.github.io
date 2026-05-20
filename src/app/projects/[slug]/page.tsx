@@ -1,22 +1,17 @@
 "use client";
 
 import "./../../global.css";
-import {
-  Text,
-  Button,
-  Column,
-  Arrow,
-  Flex,
-  Row,
-} from "@once-ui-system/core";
+import { Text, Button, Column, Arrow, Flex, Row } from "@once-ui-system/core";
 import { ArrowLeftIcon } from "@phosphor-icons/react";
 import { useParams, useRouter } from "next/navigation";
 import { navigationItemJSON } from "@/data/data";
 import { ProjectItem } from "@/components/ProjectItem";
 import { ProjectContent } from "@/components/projects/ProjectContent";
+import { useWebHaptics } from "web-haptics/react";
 
 export default function Project() {
   const router = useRouter();
+  const haptic = useWebHaptics();
   const params = useParams();
   const slug = params?.slug as string;
 
@@ -39,13 +34,22 @@ export default function Project() {
   }
 
   return (
-    <Flex fill direction="column" paddingY="l" gap="l">
+    <Flex
+      fill
+      direction="column"
+      paddingY="l"
+      gap="l"
+      className="navigation-other-hero"
+    >
       {/* Navigation Header */}
       <Row fillWidth horizontal="start" vertical="center" fitHeight>
         <Button
           variant="tertiary"
           size="s"
-          onClick={() => router.push("/projects")}
+          onClick={() => {
+            haptic.trigger("light");
+            router.push("/projects");
+          }}
         >
           {" "}
           <Text variant="code-default-s" onBackground="neutral-weak">
@@ -65,7 +69,12 @@ export default function Project() {
       >
         {/* Main Project Container */}
         <Column fillWidth horizontal="start" vertical="start">
-          <Flex maxWidth="xs" direction="column" gap="l">
+          <Flex
+            maxWidth="xs"
+            direction="column"
+            gap="m"
+            className="navigation-other-hero-content-item-gap"
+          >
             {" "}
             <Column gap="xs">
               {" "}
@@ -116,11 +125,11 @@ export default function Project() {
         </Column>
 
         <Column
-          fitWidth
+          fillWidth
           fillHeight
           horizontal="end"
           vertical="start"
-          minWidth={28}
+          m={{ horizontal: "start" }}
         >
           <Column fit gap="l">
             <Flex direction="column" fit gap={"s"}>
@@ -144,7 +153,10 @@ export default function Project() {
                   variant="secondary"
                   size="s"
                   id="arrow-trigger-1"
-                  onClick={() => router.push("/projects")}
+                  onClick={() => {
+                    haptic.trigger("light");
+                    router.push("/projects");
+                  }}
                 >
                   <Row>
                     <Text variant="code-default-s" onBackground="neutral-weak">
@@ -159,8 +171,6 @@ export default function Project() {
                 </Button>
               </Column>
             </Flex>
-
-            
           </Column>
         </Column>
       </Flex>

@@ -7,6 +7,7 @@ const nextConfig = {
     compiler: "modern",
     silenceDeprecations: ["legacy-js-api"],
   },
+  allowedDevOrigins: ['10.141.113.207'],
 };
 
 export default nextConfig;

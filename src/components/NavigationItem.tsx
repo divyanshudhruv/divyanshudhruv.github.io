@@ -1,7 +1,7 @@
 "use client";
 import { Column, Flex, Media, Row, Text } from "@once-ui-system/core";
 import { useRouter } from "next/navigation";
-
+import { useWebHaptics } from "web-haptics/react";
 export const NavigationItem = ({
   lastUpdated,
   abbreviation,
@@ -20,6 +20,7 @@ export const NavigationItem = ({
   routePrefix: "projects" | "others";
 }) => {
   const router = useRouter();
+  const haptic = useWebHaptics();
   return (
     <Flex
       direction="row"
@@ -31,7 +32,10 @@ export const NavigationItem = ({
       padding="0"
       border="transparent"
       className="nav-item-container"
-      onClick={() => router.push(`/${routePrefix}/${id}`)}
+      onClick={() => {
+        haptic.trigger("light");
+        router.push(`/${routePrefix}/${id}`);
+      }}
     >
       <Media
         src={imageSrc}

@@ -1,5 +1,7 @@
+"use client";
 import { useFaviconUrl } from "@/hooks/useFaviconUrl";
 import InlineElement from "./InlineElement";
+import { useWebHaptics } from "web-haptics/react";
 import { ColorScheme, Flex, Media, Row, Tag, Text } from "@once-ui-system/core";
 import { CountryCode } from "@rdnr/react-country-flags";
 import Flag from "@rdnr/react-country-flags/Flag";
@@ -14,6 +16,7 @@ export function FaviconIcon({
   hardcodeUrl?: string;
 }) {
   const faviconUrl = useFaviconUrl(websiteUrl);
+  const haptic = useWebHaptics();
 
   return (
     <InlineElement>
@@ -28,7 +31,10 @@ export function FaviconIcon({
             height={1.2}
             radius="xs-4"
             unoptimized
-            onClick={() => window.open(websiteUrl, "_blank")}
+            onClick={() => {
+              haptic.trigger("light");
+              window.open(websiteUrl, "_blank");
+            }}
           />
         </Flex>
       </Row>
@@ -38,6 +44,7 @@ export function FaviconIcon({
 
 export function FaviconIconSolo({ websiteUrl }: { websiteUrl: string }) {
   const faviconUrl = useFaviconUrl(websiteUrl);
+  const haptic = useWebHaptics();
 
   return (
     <InlineElement>
@@ -51,7 +58,10 @@ export function FaviconIconSolo({ websiteUrl }: { websiteUrl: string }) {
             height={1.2}
             radius="xs-4"
             unoptimized
-            onClick={() => window.open(websiteUrl, "_blank")}
+            onClick={() => {
+              haptic.trigger("light");
+              window.open(websiteUrl, "_blank");
+            }}
           />
         </Flex>
       </Row>
@@ -66,6 +76,7 @@ export function ImgIcon({
   imageSrc: string;
   href: string;
 }) {
+  const haptic = useWebHaptics();
   return (
     <InlineElement>
       <Row center gap="4">
@@ -77,7 +88,10 @@ export function ImgIcon({
             height={1.2}
             radius="xs-4"
             unoptimized
-            onClick={() => window.open(href, "_blank")}
+            onClick={() => {
+              haptic.trigger("light");
+              window.open(href, "_blank");
+            }}
           />
         </Flex>
       </Row>

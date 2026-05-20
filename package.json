@@ -14,6 +14,7 @@
     "@once-ui-system/core": "^1.6.4",
     "@phosphor-icons/react": "^2.1.10",
     "@rdnr/react-country-flags": "^0.2.0",
+    "@vercel/analytics": "^2.0.1",
     "classnames": "^2.5.1",
     "compressorjs": "^1.3.0",
     "favicon-fetch": "^1.0.0",
@@ -24,7 +25,8 @@
     "react-icons": "^5.2.1",
     "recharts": "^3.8.1",
     "sass": "^1.77.6",
-    "sharp": "^0.34.5"
+    "sharp": "^0.34.5",
+    "web-haptics": "^0.0.6"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",

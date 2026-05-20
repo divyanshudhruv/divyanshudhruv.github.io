@@ -17,17 +17,14 @@ import {
   Row,
   IconButton,
   Kbd,
-  Media,
-  Arrow,
+
   ThemeSwitcher,
   SmartLink,
 } from "@once-ui-system/core";
 
 import {
-  BrowserIcon,
   LinkedinLogoIcon,
-  XLogoIcon,
-  ReadCvLogoIcon,
+
   InstagramLogoIcon,
   GithubLogoIcon,
   LinktreeLogoIcon,
@@ -50,6 +47,7 @@ import {
   ThemeInit,
 } from "@once-ui-system/core";
 import { Providers } from "@/components/Providers";
+import { Analytics } from "@vercel/analytics/next";
 
 export async function generateMetadata() {
   return Meta.generate({
@@ -110,7 +108,7 @@ export default function RootLayout({
         <Column as="body" background="page" fillWidth margin="0" padding="0">
           <Column
             fillWidth
-            minHeight="100vh"
+            style={{ minHeight: "100svh" }}
             center
             paddingX="xl"
             background="neutral-medium"
@@ -123,52 +121,62 @@ export default function RootLayout({
                 paddingY={"l"}
                 vertical="center"
                 horizontal="between"
+                className="navbar"
               >
-                <Row fitWidth gap="8" vertical="center">
-                  <IconButton variant="ghost" size="s" href="#" target="_blank">
-                    <BrowsersIcon size={22} weight="light" />
-                  </IconButton>
-                  <IconButton
-                    variant="ghost"
-                    size="s"
-                    href="https://linkedin.com/in/divyanshudhruv"
-                    target="_blank"
-                  >
-                    <LinkedinLogoIcon size={22} weight="light" />
-                  </IconButton>
-                  <IconButton
-                    variant="ghost"
-                    size="s"
-                    href="https://instagram.com"
-                    target="_blank"
-                  >
-                    <InstagramLogoIcon size={22} weight="light" />
-                  </IconButton>
-                  <IconButton
-                    variant="ghost"
-                    size="s"
-                    href="https://github.com/divyanshudhruv"
-                    target="_blank"
-                  >
-                    <GithubLogoIcon size={22} weight="light" />
-                  </IconButton>
-                  <IconButton
-                    variant="ghost"
-                    size="s"
-                    href="https://linktr.ee/divyanshudhruv"
-                    target="_blank"
-                  >
-                    <LinktreeLogoIcon size={22} weight="light" />
-                  </IconButton>
+                <Row fitWidth vertical="center" className="navbar-left" gap="8">
+                  <Flex center gap="8" fit>
+                    <IconButton
+                      variant="ghost"
+                      size="s"
+                      href="#"
+                      target="_blank"
+                    >
+                      <BrowsersIcon size={22} weight="light" />
+                    </IconButton>
+                    <IconButton
+                      variant="ghost"
+                      size="s"
+                      href="https://linkedin.com/in/divyanshudhruv"
+                      target="_blank"
+                    >
+                      <LinkedinLogoIcon size={22} weight="light" />
+                    </IconButton>
+                    <IconButton
+                      variant="ghost"
+                      size="s"
+                      href="https://instagram.com"
+                      target="_blank"
+                    >
+                      <InstagramLogoIcon size={22} weight="light" />
+                    </IconButton>
+                    <IconButton
+                      variant="ghost"
+                      size="s"
+                      href="https://github.com/divyanshudhruv"
+                      target="_blank"
+                    >
+                      <GithubLogoIcon size={22} weight="light" />
+                    </IconButton>
+                    <IconButton
+                      variant="ghost"
+                      size="s"
+                      href="https://linktr.ee/divyanshudhruv"
+                      target="_blank"
+                    >
+                      <LinktreeLogoIcon size={22} weight="light" />
+                    </IconButton>
+                  </Flex>{" "}
                   <Line direction="column" width="0" height="0" />
-                  <ThemeSwitcher
-                    data-scaling="90"
-                    style={{ scale: "0.9" }}
-                    onBackground="neutral-weak"
-                  />
+                  <Flex center>
+                    <ThemeSwitcher
+                      data-scaling="90"
+                      style={{ scale: "0.9" }}
+                      onBackground="neutral-weak"
+                    />
+                  </Flex>
                 </Row>
 
-                <Row gap="m" center>
+                <Row gap="m" center className="navbar-right">
                   <Kbd padding={"4"} cursor="pointer">
                     <Row center gap="4">
                       <DownloadSimpleIcon size={18} weight="light" />
@@ -188,6 +196,7 @@ export default function RootLayout({
                   </Flex>
                 </Row>
               </Row>
+              <Analytics/>
               {children}
               <Row
                 fillWidth
@@ -196,6 +205,7 @@ export default function RootLayout({
                 paddingY={"l"}
                 vertical="center"
                 horizontal="between"
+                className="footer"
               >
                 <Text
                   onBackground="neutral-weak"

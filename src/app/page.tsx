@@ -24,7 +24,7 @@ import {
 import { Schema } from "@once-ui-system/core";
 import { baseURL, meta } from "@/resources/seo";
 import { useRouter } from "next/navigation";
-
+import { useWebHaptics } from "web-haptics/react";
 import {
   navigationItemJSON,
   otherNavigationItemJSON,
@@ -121,9 +121,10 @@ const ParagraphRenderer = ({ content }: { content: string }) => {
 
 export default function Home() {
   const router = useRouter();
+  const haptic = useWebHaptics();
 
   return (
-    <Flex fill>
+    <Flex fill className="main-hero">
       <Flex
         fillWidth
         fitHeight
@@ -145,6 +146,7 @@ export default function Home() {
             vertical="start"
             direction="column"
             gap={"l"}
+            className="main-hero-content-text-gap"
           >
             <Row center gap="12">
               <Media
@@ -226,12 +228,12 @@ export default function Home() {
         </Column>
 
         <Column
-          fitWidth
+          fillWidth
           paddingY={"l"}
           fillHeight
           horizontal="end"
           vertical="start"
-          minWidth={28}
+          m={{ horizontal: "start" }}
         >
           <Column fit gap="l">
             <Flex direction="column" fit gap={"s"}>
@@ -255,7 +257,10 @@ export default function Home() {
                   variant="secondary"
                   size="s"
                   id="arrow-trigger-1"
-                  onClick={() => router.push("/projects")}
+                  onClick={() => {
+                    haptic.trigger("light");
+                    router.push("/projects");
+                  }}
                 >
                   <Row>
                     <Text variant="code-default-s" onBackground="neutral-weak">
@@ -292,7 +297,10 @@ export default function Home() {
                   variant="secondary"
                   size="s"
                   id="arrow-trigger-2"
-                  onClick={() => router.push("/others")}
+                  onClick={() => {
+                    haptic.trigger("light");
+                    router.push("/others");
+                  }}
                 >
                   <Row>
                     <Text variant="code-default-s" onBackground="neutral-weak">
