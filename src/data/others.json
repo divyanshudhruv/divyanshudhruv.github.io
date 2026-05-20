@@ -80,7 +80,7 @@
     "title": "Work Experiences",
     "abbreviation": "EXP",
     "lastUpdated": "5/20/26",
-    "isPrivate": false,
+    "isPrivate": true,
     "imageSrc": "https://framerusercontent.com/images/ImnpnLyok3HTJBEGnJyzqODd8J4.svg?width=21&height=21",
     "description": "My professional experience spans leading open-source project architectures, working on premium design systems, and building AI-enabled software products.",
     "data": [
