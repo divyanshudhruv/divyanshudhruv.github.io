@@ -225,10 +225,10 @@ export default function RootLayout({
                   </Row>
                 </Text>
 
-                <SmartLink href="#">
+                <SmartLink href="https://github.com/divyanshudhruv">
                   <Text variant="code-default-m">
                     <Row center gap="4" cursor="pointer">
-                      SOURCE CODE
+                      GITHUB
                     </Row>
                   </Text>
                 </SmartLink>

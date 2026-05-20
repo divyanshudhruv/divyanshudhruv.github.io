@@ -5,7 +5,23 @@ import {
   ListItem,
   Media,
   Carousel,
+  SmartLink,
 } from "@once-ui-system/core";
+
+const renderWithLinks = (text: string) => {
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  const parts = text.split(urlRegex);
+  return parts.map((part, i) => {
+    if (part.match(urlRegex)) {
+      return (
+        <SmartLink key={i} href={part}>
+          {part}
+        </SmartLink>
+      );
+    }
+    return <span key={i}>{part}</span>;
+  });
+};
 
 export interface ProjectData {
   sections?: Record<string, string[]>;
@@ -26,33 +42,29 @@ export function ProjectContent({ data }: { data: ProjectData }) {
             <Text variant="heading-default-xl" onBackground="neutral-strong">
               <b>{heading}</b>
             </Text>
-            {/* If the heading is "What I did", we might want a list, otherwise prose */}
-            {heading.toLowerCase().includes("did") ? (
+            {Array.isArray(items) ? (
               <List as="ul" textVariant="body-default-m" gap="4">
-                {(Array.isArray(items) ? items : [items]).map((item, index) => (
+                {items.map((item, index) => (
                   <ListItem key={index}>
                     <Text
                       variant="body-default-m"
                       onBackground="neutral-weak"
                       className="lh"
                     >
-                      <b>{item}</b>
+                      <b>{renderWithLinks(item)}</b>
                     </Text>
                   </ListItem>
                 ))}
               </List>
             ) : (
               <Flex direction="column" gap="s">
-                {(Array.isArray(items) ? items : [items]).map((item, index) => (
-                  <Text
-                    key={index}
-                    variant="body-default-m"
-                    onBackground="neutral-weak"
-                    className="lh"
-                  >
-                    <b>{item}</b>
-                  </Text>
-                ))}
+                <Text
+                  variant="body-default-m"
+                  onBackground="neutral-weak"
+                  className="lh"
+                >
+                  <b>{renderWithLinks(items)}</b>
+                </Text>
               </Flex>
             )}
           </Flex>

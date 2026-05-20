@@ -18,7 +18,7 @@
     "id": "echoflow",
     "title": "Speech-to-Text Application",
     "abbreviation": "ECH",
-    "lastUpdated": "3/16/26",
+    "lastUpdated": "2/2/26",
     "isPrivate": true,
     "imageSrc": "https://framerusercontent.com/images/HGGKn65vMQyHgONQ37tdvdYgMU.svg?width=21&height=21",
     "description": "A standalone SPEECH-TO-TEXT application",
@@ -33,7 +33,7 @@
     "id": "peerpipe",
     "title": "P2P File Sharing CLI",
     "abbreviation": "P2P",
-    "lastUpdated": "3/21/26",
+    "lastUpdated": "21/1/26",
     "isPrivate": true,
     "imageSrc": "https://framerusercontent.com/images/Lg25Geh6Lzk0gC4WtUWhk5LTdA.svg?width=21&height=21",
     "description": "A P2P terminal based (TUI) file sharing CLI",
@@ -48,14 +48,25 @@
     "id": "spojt",
     "title": "Atomic UI Registry",
     "abbreviation": "SPO",
-    "lastUpdated": "4/1/26",
+    "lastUpdated": "29/3/26",
     "isPrivate": false,
     "imageSrc": "https://framerusercontent.com/images/ImnpnLyok3HTJBEGnJyzqODd8J4.svg?width=21&height=21",
     "description": "The Atomic UI Registry for NextJS. 🪼",
     "data": {
       "sections": {
-        "Overview": "Atomic UI Registry provides a centralized repository for reusable UI components in Next.js.",
-        "Benefits": "Promotes consistency, reduces duplication, and simplifies component discovery."
+        "Overview": [
+          "Atomic UI Registry provides a centralized repository for starter page in Next.js.",
+          "It helps developers build modern web applications faster by offering highly customizable, accessible, and ready-to-use components from https://once-ui.com ."
+        ],
+        "Benefits": [
+          "Promotes consistency across different parts of the application.",
+          "Reduces duplication of effort by providing a single source of truth.",
+          "Simplifies component discovery for both developers and designers."
+        ],
+        "Links": [
+          "GitHub: https://github.com/divyanshudhruv/spojt",
+          "Live Demo: https://spojt.vercel.app"
+        ]
       },
       "media": [
         {
@@ -77,7 +88,7 @@
     "id": "reviewslop",
     "title": "Reviewslop",
     "abbreviation": "RVS",
-    "lastUpdated": "3/29/26",
+    "lastUpdated": "20/5/26",
     "isPrivate": true,
     "imageSrc": "https://framerusercontent.com/images/WJ5i1R1nlykh9L4pTXBmKkrPs.svg?width=21&height=21",
     "description": "A simple package to add minimal review button to your website.",
