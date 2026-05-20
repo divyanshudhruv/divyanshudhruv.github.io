@@ -3,23 +3,13 @@
 import "./global.css";
 
 import {
-  Heading,
   Text,
   Button,
   Column,
-  Badge,
-  Logo,
-  Line,
-  LetterFx,
   Flex,
   Row,
-  IconButton,
-  Kbd,
   Media,
   Arrow,
-  Tag,
-  ColorScheme,
-  Card,
 } from "@once-ui-system/core";
 import { Schema } from "@once-ui-system/core";
 import { baseURL, meta } from "@/resources/seo";

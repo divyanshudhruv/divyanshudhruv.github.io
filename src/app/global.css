@@ -22,6 +22,7 @@
 
 .footer {
   min-height: 100px;
+  gap: 5px;
 }
 
 @media (max-width: 768px) {

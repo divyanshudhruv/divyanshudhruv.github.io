@@ -3,8 +3,7 @@
 import "./../global.css";
 
 import { Text, Button, Column, Flex, Row, Arrow } from "@once-ui-system/core";
-import { Schema } from "@once-ui-system/core";
-import { baseURL, meta } from "@/resources/seo";
+
 import { ArrowLeftIcon } from "@phosphor-icons/react";
 import { useState } from "react";
 import { navigationItemJSON } from "@/data/data";

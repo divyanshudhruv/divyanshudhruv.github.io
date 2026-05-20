@@ -7,25 +7,18 @@ import classNames from "classnames";
 import "./global.css";
 
 import {
-  Heading,
   Text,
-  Button,
-  Badge,
-  Logo,
   Line,
-  LetterFx,
   Row,
   IconButton,
   Kbd,
-
   ThemeSwitcher,
   SmartLink,
 } from "@once-ui-system/core";
 
 import {
   LinkedinLogoIcon,
-
-  InstagramLogoIcon,
+  MetaLogoIcon,
   GithubLogoIcon,
   LinktreeLogoIcon,
   BrowsersIcon,
@@ -37,17 +30,10 @@ import {
 
 import { baseURL, meta } from "@/resources/seo";
 import { fonts, style, dataStyle } from "@/resources/once-ui.config";
-import {
-  Meta,
-  Schema,
-  Column,
-  Flex,
-  Mask,
-  MatrixFx,
-  ThemeInit,
-} from "@once-ui-system/core";
+import { Meta, Schema, Column, Flex, ThemeInit } from "@once-ui-system/core";
 import { Providers } from "@/components/Providers";
 import { Analytics } from "@vercel/analytics/next";
+import ViewTracker from "@/components/ViewTracker";
 
 export async function generateMetadata() {
   return Meta.generate({
@@ -88,6 +74,13 @@ export default function RootLayout({
         path={meta.home.path}
       />
       <head>
+        <script
+          src="https://page-views-api.ratneshc.com/script"
+          data-site={baseURL}
+          data-path={meta.home.path}
+          defer
+        ></script>
+
         <ThemeInit
           config={{
             theme: style.theme,
@@ -128,7 +121,7 @@ export default function RootLayout({
                     <IconButton
                       variant="ghost"
                       size="s"
-                      href="#"
+                      href="https://codeforces.com"
                       target="_blank"
                     >
                       <BrowsersIcon size={22} weight="light" />
@@ -147,7 +140,7 @@ export default function RootLayout({
                       href="https://instagram.com"
                       target="_blank"
                     >
-                      <InstagramLogoIcon size={22} weight="light" />
+                      <MetaLogoIcon size={22} weight="light" />
                     </IconButton>
                     <IconButton
                       variant="ghost"
@@ -160,13 +153,13 @@ export default function RootLayout({
                     <IconButton
                       variant="ghost"
                       size="s"
-                      href="https://linktr.ee/divyanshudhruv"
+                      href="https://linktr.ee"
                       target="_blank"
                     >
                       <LinktreeLogoIcon size={22} weight="light" />
                     </IconButton>
                   </Flex>{" "}
-                  <Line direction="column" width="0" height="0" />
+                  <Line vert height="16" width={0.1} onSolid="neutral-strong" />
                   <Flex center>
                     <ThemeSwitcher
                       data-scaling="90"
@@ -187,7 +180,7 @@ export default function RootLayout({
                     <Text onBackground="neutral-weak" variant="code-default-m">
                       <Row center gap="4">
                         <EnvelopeIcon size={22} weight="light" />{" "}
-                        <Flex m={{ hide: true }}>
+                        <Flex s={{ hide: true }}>
                           {" "}
                           divyanshudhruv@proton.me
                         </Flex>
@@ -196,7 +189,7 @@ export default function RootLayout({
                   </Flex>
                 </Row>
               </Row>
-              <Analytics/>
+              <Analytics />
               {children}
               <Row
                 fillWidth
@@ -206,6 +199,7 @@ export default function RootLayout({
                 vertical="center"
                 horizontal="between"
                 className="footer"
+                s={{ direction: "column", horizontal: "start" }}
               >
                 <Text
                   onBackground="neutral-weak"
@@ -222,6 +216,12 @@ export default function RootLayout({
                   <Row center gap="4" cursor="pointer" m={{ hide: true }}>
                     <ArrowCircleRightIcon size={22} weight="light" /> ALL
                     NAVIGATIONS
+                  </Row>
+                </Text>
+
+                <Text onBackground="neutral-weak" variant="code-default-m">
+                  <Row center gap="4" cursor="pointer">
+                    <ViewTracker />
                   </Row>
                 </Text>
 
