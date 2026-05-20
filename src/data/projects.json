@@ -5,7 +5,7 @@
     "abbreviation": "KSH",
     "lastUpdated": "14/03/26",
     "isPrivate": true,
-    "imageSrc": "https://framerusercontent.com/images/WJ5i1R1nlykh9L4pTXBmKkrPs.svg?width=21&height=21",
+    "imageSrc": "https://framerusercontent.com/images/Lg25Geh6Lzk0gC4WtUWhk5LTdA.svg?width=21&height=21",
     "description": "A simple yet efficient injector for SECRETS. Write Once Use Anywhere.",
     "data": {
       "sections": {
@@ -35,7 +35,7 @@
     "abbreviation": "P2P",
     "lastUpdated": "21/1/26",
     "isPrivate": true,
-    "imageSrc": "https://framerusercontent.com/images/Lg25Geh6Lzk0gC4WtUWhk5LTdA.svg?width=21&height=21",
+    "imageSrc": "https://framerusercontent.com/images/WJ5i1R1nlykh9L4pTXBmKkrPs.svg?width=21&height=21",
     "description": "A P2P terminal based (TUI) file sharing CLI",
     "data": {
       "sections": {

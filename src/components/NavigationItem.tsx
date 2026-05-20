@@ -2,6 +2,8 @@
 import { Column, Flex, Media, Row, Text } from "@once-ui-system/core";
 import { useRouter } from "next/navigation";
 import { useWebHaptics } from "web-haptics/react";
+import { NavigationItemType } from "@/data/data";
+
 export const NavigationItem = ({
   lastUpdated,
   abbreviation,
@@ -10,15 +12,7 @@ export const NavigationItem = ({
   title,
   id,
   routePrefix,
-}: {
-  lastUpdated: string;
-  abbreviation: string;
-  isPrivate: boolean;
-  imageSrc: string;
-  title: string;
-  id: string;
-  routePrefix: "projects" | "others";
-}) => {
+}: NavigationItemType & { routePrefix: "projects" | "others" }) => {
   const router = useRouter();
   const haptic = useWebHaptics();
   return (

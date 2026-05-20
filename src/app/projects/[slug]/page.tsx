@@ -21,7 +21,7 @@ import {
 } from "@phosphor-icons/react";
 import { useParams, useRouter } from "next/navigation";
 import { navigationItemJSON } from "@/data/data";
-import { ProjectItem } from "@/components/ProjectItem";
+import { NavigationItem } from "@/components/NavigationItem";
 import { ProjectContent } from "@/components/projects/ProjectContent";
 import { useWebHaptics } from "web-haptics/react";
 import { useSortedItems } from "@/hooks/useSortedItems";
@@ -306,14 +306,10 @@ export default function Project() {
 
               <Column fill gap="s" data-scaling="110">
                 {sortedProjects.slice(0, 4).map((item, index) => (
-                  <ProjectItem
+                  <NavigationItem
                     key={index}
-                    id={item.id}
-                    lastUpdated={item.lastUpdated}
-                    abbreviation={item.abbreviation}
-                    isPrivate={item.isPrivate}
-                    imageSrc={item.imageSrc}
-                    title={item.title}
+                    {...item}
+                    routePrefix="projects"
                   />
                 ))}
                 <Button

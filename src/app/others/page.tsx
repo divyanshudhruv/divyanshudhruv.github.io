@@ -8,7 +8,7 @@ import { useState } from "react";
 import { otherNavigationItemJSON } from "@/data/data";
 import { useRouter } from "next/navigation";
 import { useWebHaptics } from "web-haptics/react";
-import { OtherItem } from "@/components/OtherItem";
+import { NavigationItem } from "@/components/NavigationItem";
 import { useSortedItems } from "@/hooks/useSortedItems";
 
 export default function Others() {
@@ -30,7 +30,7 @@ export default function Others() {
       fill
       direction="column"
       paddingY={"l"}
-      gap="m"
+      gap="l"
       className="navigation-main-hero"
     >
       <Row fillWidth horizontal="start" vertical="center" fitHeight>
@@ -60,14 +60,10 @@ export default function Others() {
             <b>Others</b>
           </Text>
           {visibleItems.map((item, index) => (
-            <OtherItem
+            <NavigationItem
               key={index}
-              id={item.id}
-              lastUpdated={item.lastUpdated}
-              isPrivate={item.isPrivate}
-              abbreviation={item.abbreviation}
-              imageSrc={item.imageSrc}
-              title={item.title}
+              {...item}
+              routePrefix="others"
             />
           ))}
           {hasMore && (

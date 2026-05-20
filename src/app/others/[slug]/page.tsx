@@ -5,19 +5,16 @@ import { Text, Button, Column, Arrow, Flex, Row } from "@once-ui-system/core";
 import { ArrowLeftIcon } from "@phosphor-icons/react";
 import { useParams, useRouter } from "next/navigation";
 import { otherNavigationItemJSON } from "@/data/data";
-import { OtherItem } from "@/components/OtherItem";
-
-import { StacksSkillsContent } from "@/components/others/StacksSkillsContent";
-import { EducationContent } from "@/components/others/EducationContent";
-import { AwardsContent } from "@/components/others/AwardsContent";
+import { NavigationItem } from "@/components/NavigationItem";
+import { SectionContent } from "@/components/SectionContent";
 import { ExperiencesContent } from "@/components/others/ExperiencesContent";
 import { useWebHaptics } from "web-haptics/react";
 import { useSortedItems } from "@/hooks/useSortedItems";
 
 const contentMap: Record<string, React.FC<any>> = {
-  "stacks-skills": StacksSkillsContent,
-  education: EducationContent,
-  awards: AwardsContent,
+  "stacks-skills": SectionContent,
+  education: SectionContent,
+  awards: SectionContent,
   experiences: ExperiencesContent,
 };
 
@@ -162,14 +159,10 @@ export default function OtherDetail() {
 
               <Column fill gap="s" data-scaling="110">
                 {sortedOthers.slice(0, 5).map((item, index) => (
-                  <OtherItem
+                  <NavigationItem
                     key={index}
-                    id={item.id}
-                    lastUpdated={item.lastUpdated}
-                    abbreviation={item.abbreviation}
-                    isPrivate={item.isPrivate}
-                    imageSrc={item.imageSrc}
-                    title={item.title}
+                    {...item}
+                    routePrefix="others"
                   />
                 ))}
                 <Button

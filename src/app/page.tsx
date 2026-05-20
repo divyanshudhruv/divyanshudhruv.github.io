@@ -20,8 +20,7 @@ import {
   otherNavigationItemJSON,
   personalItemJSON,
 } from "@/data/data";
-import { ProjectItem } from "@/components/ProjectItem";
-import { OtherItem } from "@/components/OtherItem";
+import { NavigationItem } from "@/components/NavigationItem";
 import {
   FaviconIcon,
   FaviconIconSolo,
@@ -236,14 +235,10 @@ export default function Home() {
 
               <Column fill gap="s" data-scaling="110">
                 {sortedProjects.slice(0, 4).map((item, index) => (
-                  <ProjectItem
+                  <NavigationItem
                     key={index}
-                    id={item.id}
-                    lastUpdated={item.lastUpdated}
-                    abbreviation={item.abbreviation}
-                    isPrivate={item.isPrivate}
-                    imageSrc={item.imageSrc}
-                    title={item.title}
+                    {...item}
+                    routePrefix="projects"
                   />
                 ))}
                 <Button
@@ -276,14 +271,10 @@ export default function Home() {
 
               <Column fill gap="s" data-scaling="110">
                 {sortedOthers.slice(0, 5).map((item, index) => (
-                  <OtherItem
+                  <NavigationItem
                     key={index}
-                    id={item.id}
-                    lastUpdated={item.lastUpdated}
-                    abbreviation={item.abbreviation}
-                    isPrivate={item.isPrivate}
-                    imageSrc={item.imageSrc}
-                    title={item.title}
+                    {...item}
+                    routePrefix="others"
                   />
                 ))}
                 <Button

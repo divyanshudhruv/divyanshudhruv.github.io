@@ -9,7 +9,7 @@ import { useState } from "react";
 import { navigationItemJSON } from "@/data/data";
 import { useRouter } from "next/navigation";
 import { useWebHaptics } from "web-haptics/react";
-import { ProjectItem } from "@/components/ProjectItem";
+import { NavigationItem } from "@/components/NavigationItem";
 import { useSortedItems } from "@/hooks/useSortedItems";
 
 export default function Projects() {
@@ -31,7 +31,7 @@ export default function Projects() {
       fill
       direction="column"
       paddingY={"l"}
-      gap="m"
+      gap="l"
       className="navigation-main-hero "
     >
       <Row fillWidth horizontal="start" vertical="center" fitHeight>
@@ -52,7 +52,12 @@ export default function Projects() {
       </Row>
 
       <Flex direction="column" fill gap={"l"}>
-        <Column fill gap="m" fillWidth className="navigation-main-hero-content-item-gap">
+        <Column
+          fill
+          gap="m"
+          fillWidth
+          className="navigation-main-hero-content-item-gap"
+        >
           <Text
             variant="display-default-xs"
             onBackground="neutral-alpha-strong"
@@ -60,15 +65,7 @@ export default function Projects() {
             <b>Projects</b>
           </Text>
           {visibleItems.map((item, index) => (
-            <ProjectItem
-              key={index}
-              id={item.id}
-              lastUpdated={item.lastUpdated}
-              isPrivate={item.isPrivate}
-              abbreviation={item.abbreviation}
-              imageSrc={item.imageSrc}
-              title={item.title}
-            />
+            <NavigationItem key={index} {...item} routePrefix="projects" />
           ))}
           {hasMore && (
             <Button
