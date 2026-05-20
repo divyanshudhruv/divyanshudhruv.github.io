@@ -20,6 +20,7 @@ import {
   Media,
   Arrow,
   ThemeSwitcher,
+  SmartLink,
 } from "@once-ui-system/core";
 
 import {
@@ -39,7 +40,15 @@ import {
 
 import { baseURL, meta } from "@/resources/seo";
 import { fonts, style, dataStyle } from "@/resources/once-ui.config";
-import { Meta, Schema, Column, Flex, Mask, MatrixFx, ThemeInit } from "@once-ui-system/core";
+import {
+  Meta,
+  Schema,
+  Column,
+  Flex,
+  Mask,
+  MatrixFx,
+  ThemeInit,
+} from "@once-ui-system/core";
 import { Providers } from "@/components/Providers";
 
 export async function generateMetadata() {
@@ -99,7 +108,13 @@ export default function RootLayout({
       </head>
       <Providers>
         <Column as="body" background="page" fillWidth margin="0" padding="0">
-          <Column fillWidth minHeight="100vh" center paddingX="xl" background="neutral-medium">
+          <Column
+            fillWidth
+            minHeight="100vh"
+            center
+            paddingX="xl"
+            background="neutral-medium"
+          >
             <Column fill background="transparent">
               <Row
                 fillWidth
@@ -110,27 +125,51 @@ export default function RootLayout({
                 horizontal="between"
               >
                 <Row fitWidth gap="8" vertical="center">
-                  <IconButton variant="ghost" size="s">
+                  <IconButton variant="ghost" size="s" href="#" target="_blank">
                     <BrowsersIcon size={22} weight="light" />
                   </IconButton>
-                  <IconButton variant="ghost" size="s">
+                  <IconButton
+                    variant="ghost"
+                    size="s"
+                    href="https://linkedin.com/in/divyanshudhruv"
+                    target="_blank"
+                  >
                     <LinkedinLogoIcon size={22} weight="light" />
                   </IconButton>
-
-                  <IconButton variant="ghost" size="s">
+                  <IconButton
+                    variant="ghost"
+                    size="s"
+                    href="https://instagram.com"
+                    target="_blank"
+                  >
                     <InstagramLogoIcon size={22} weight="light" />
                   </IconButton>
-                  <IconButton variant="ghost" size="s">
+                  <IconButton
+                    variant="ghost"
+                    size="s"
+                    href="https://github.com/divyanshudhruv"
+                    target="_blank"
+                  >
                     <GithubLogoIcon size={22} weight="light" />
                   </IconButton>
-                  <IconButton variant="ghost" size="s">
+                  <IconButton
+                    variant="ghost"
+                    size="s"
+                    href="https://linktr.ee/divyanshudhruv"
+                    target="_blank"
+                  >
                     <LinktreeLogoIcon size={22} weight="light" />
                   </IconButton>
-                  <ThemeSwitcher data-scaling="90" style={{scale:"0.9"}} onBackground="neutral-weak"/>
+                  <Line direction="column" width="0" height="0" />
+                  <ThemeSwitcher
+                    data-scaling="90"
+                    style={{ scale: "0.9" }}
+                    onBackground="neutral-weak"
+                  />
                 </Row>
 
-                <Row gap="l" center>
-                  <Kbd padding={"4"}>
+                <Row gap="m" center>
+                  <Kbd padding={"4"} cursor="pointer">
                     <Row center gap="4">
                       <DownloadSimpleIcon size={18} weight="light" />
                       CV
@@ -139,7 +178,11 @@ export default function RootLayout({
                   <Flex center>
                     <Text onBackground="neutral-weak" variant="code-default-m">
                       <Row center gap="4">
-                        <EnvelopeIcon size={22} weight="light" /> divyanshudhruv@proton.me
+                        <EnvelopeIcon size={22} weight="light" />{" "}
+                        <Flex m={{ hide: true }}>
+                          {" "}
+                          divyanshudhruv@proton.me
+                        </Flex>
                       </Row>
                     </Text>
                   </Flex>
@@ -154,23 +197,31 @@ export default function RootLayout({
                 vertical="center"
                 horizontal="between"
               >
-                <Text onBackground="neutral-weak" variant="code-default-m">
+                <Text
+                  onBackground="neutral-weak"
+                  variant="code-default-m"
+                  className="wavy-underline"
+                >
                   <Row center gap="4">
-                    <CopyrightIcon size={22} weight="light" /> DIVYANSHU DHRUV XXXX
+                    <CopyrightIcon size={22} weight="light" /> DIVYANSHU DHRUV{" "}
+                    {new Date().getFullYear()}
                   </Row>
                 </Text>
 
                 <Text onBackground="neutral-weak" variant="code-default-m">
-                  <Row center gap="4">
-                    <ArrowCircleRightIcon size={22} weight="light" /> ALL NAVIGATIONS
+                  <Row center gap="4" cursor="pointer" m={{ hide: true }}>
+                    <ArrowCircleRightIcon size={22} weight="light" /> ALL
+                    NAVIGATIONS
                   </Row>
                 </Text>
 
-                <Text onBackground="neutral-weak" variant="code-default-m">
-                  <Row center gap="4">
-                    SOURCE CODE
-                  </Row>
-                </Text>
+                <SmartLink href="#">
+                  <Text variant="code-default-m">
+                    <Row center gap="4" cursor="pointer">
+                      SOURCE CODE
+                    </Row>
+                  </Text>
+                </SmartLink>
               </Row>
             </Column>
           </Column>

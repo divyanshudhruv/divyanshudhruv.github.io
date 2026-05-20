@@ -7,49 +7,33 @@
     "isPrivate": false,
     "imageSrc": "https://framerusercontent.com/images/Lg25Geh6Lzk0gC4WtUWhk5LTdA.svg?width=21&height=21",
     "description": "A comprehensive overview of my technical stack, programming languages, libraries, and tools I use to architect next-generation software and AI systems.",
-    "content": [
-      {
-        "heading": "Programming Languages",
-        "type": "list",
-        "items": [
-          "JavaScript / TypeScript (ES6+, Node.js, Bun)",
-          "Python (FastAPI, Flask, Data Science, AI Scripting)",
-          "HTML5 & CSS3 (Modern Responsive Layouts, Flexbox, Grid)",
-          "React Native (Mobile Development)",
-          "C++ & Java (Algorithms & OOP Fundamentals)"
-        ]
-      },
-      {
-        "heading": "Frameworks & UI Libraries",
-        "type": "list",
-        "items": [
-          "Next.js & React.js (SSR, Dynamic Routing, Server Components)",
-          "Once UI (Design Systems & Components Collaboration)",
-          "TailwindCSS & Vanilla CSS (Advanced Responsive Styling)",
-          "Shadcn UI & Radix Primitives"
-        ]
-      },
-      {
-        "heading": "Agentic & AI Infrastructure",
-        "type": "list",
-        "items": [
-          "Model Context Protocol (MCP) servers & clients integration",
-          "AI Agentic workflow automation & environment orchestration",
-          "OpenClaw framework contributions",
-          "LLM Prompt Engineering, fine-tuning scripts, and API integration"
-        ]
-      },
-      {
-        "heading": "Developer Productivity & Workflow Tools",
-        "type": "list",
-        "items": [
-          "Obsidian (Zettelkasten structured note-taking & second brain)",
-          "Figma (Interactive Prototyping & UI/UX Design)",
-          "Git, GitHub, & GitButler (Advanced branch management & VCS workflows)",
-          "Windsurf, VS Code, Notion, WisprFlow"
-        ]
-      }
-    ]
+    "data": {
+      "Programming Languages": [
+        "JavaScript / TypeScript (ES6+, Node.js, Bun)",
+        "Python (FastAPI, Flask, Data Science, AI Scripting)",
+        "HTML5 & CSS3 (Modern Responsive Layouts, Flexbox, Grid)",
+        "React Native (Mobile Development)",
+        "C++ & Java (Algorithms & OOP Fundamentals)"
+      ],
+      "Frameworks & UI Libraries": [
+        "Next.js & React.js (SSR, Dynamic Routing, Server Components)",
+        "Once UI (Design Systems & Components Collaboration)",
+        "TailwindCSS & Vanilla CSS (Advanced Responsive Styling)",
+        "Shadcn UI & Radix Primitives"
+      ],
+      "Agentic & AI Infrastructure": [
+        "Model Context Protocol (MCP) servers & clients integration",
+        "AI Agentic workflow automation & environment orchestration",
+        "OpenClaw framework contributions",
+        "LLM Prompt Engineering, fine-tuning scripts, and API integration"
+      ],
+      "Developer Productivity & Workflow Tools": [
+        "Obsidian (Zettelkasten structured note-taking & second brain)",
+        "Figma (Interactive Prototyping & UI/UX Design)",
+        "Git, GitHub, & GitButler (Advanced branch management & VCS workflows)",
+        "Windsurf, VS Code, Notion, WisprFlow"
+      ]
+    }
   },
   {
     "id": "education",
@@ -59,25 +43,17 @@
     "isPrivate": false,
     "imageSrc": "https://framerusercontent.com/images/cJWPpwrpaL1ehaoj5Sx3R1TPc.svg?width=21&height=21",
     "description": "Details of my academic background and milestones, where I balanced school curriculum with deep-dives into computer science and technical innovations.",
-    "content": [
-      {
-        "heading": "DPSV",
-        "type": "list",
-        "items": [
-          "Completed Grade XII (CBSE). Focused on Physics, Chemistry, Mathematics, and Computer Science.",
-          "Actively built side projects and automated classroom schedules, bridging the gap between theory and practical software engineering."
-        ]
-      },
-      {
-        "heading": "SPAD",
-        "type": "list",
-        "items": [
-          "Completed Grade X (ICSE) with exceptional performance.",
-          "Represented the school at multiple regional science fairs, tech symposiums, and exuberances.",
-          "Led computer application workshops for junior students, teaching them frontend fundamentals."
-        ]
-      }
-    ]
+    "data": {
+      "DPSV": [
+        "Completed Grade XII (CBSE). Focused on Physics, Chemistry, Mathematics, and Computer Science.",
+        "Actively built side projects and automated classroom schedules, bridging the gap between theory and practical software engineering."
+      ],
+      "SPAD": [
+        "Completed Grade X (ICSE) with exceptional performance.",
+        "Represented the school at multiple regional science fairs, tech symposiums, and exuberances.",
+        "Led computer application workshops for junior students, teaching them frontend fundamentals."
+      ]
+    }
   },
   {
     "id": "awards",
@@ -87,25 +63,17 @@
     "isPrivate": false,
     "imageSrc": "https://framerusercontent.com/images/HGGKn65vMQyHgONQ37tdvdYgMU.svg?width=21&height=21",
     "description": "Recognitions, contest wins, and major milestones achieved throughout my engineering and academic path.",
-    "content": [
-      {
-        "heading": "Global Hackathon Winner - WhiteHat Jr (Age 12)",
-        "type": "prose",
-        "items": [
-          "Competed against thousands of participants worldwide to secure a top position by designing and presenting an innovative educational app.",
-          "This early milestone solidified my passion for coding, launching a journey into full-stack development and game engineering."
-        ]
-      },
-      {
-        "heading": "Academic & Science Event Awards",
-        "type": "list",
-        "items": [
-          "First Place in Regional STEM Exhibition for an automated weather station prototype.",
-          "Outstanding Contribution Award at St. Patrick's Academy for technical coordination of school festivals.",
-          "Top performer in national cyber olympiads throughout middle and high school."
-        ]
-      }
-    ]
+    "data": {
+      "Global Hackathon Winner - WhiteHat Jr (Age 12)": [
+        "Competed against thousands of participants worldwide to secure a top position by designing and presenting an innovative educational app.",
+        "This early milestone solidified my passion for coding, launching a journey into full-stack development and game engineering."
+      ],
+      "Academic & Science Event Awards": [
+        "First Place in Regional STEM Exhibition for an automated weather station prototype.",
+        "Outstanding Contribution Award at St. Patrick's Academy for technical coordination of school festivals.",
+        "Top performer in national cyber olympiads throughout middle and high school."
+      ]
+    }
   },
   {
     "id": "experiences",
@@ -115,40 +83,34 @@
     "isPrivate": false,
     "imageSrc": "https://framerusercontent.com/images/ImnpnLyok3HTJBEGnJyzqODd8J4.svg?width=21&height=21",
     "description": "My professional experience spans leading open-source project architectures, working on premium design systems, and building AI-enabled software products.",
-    "content": [
+    "data": [
       {
-        "type": "timeline",
-        "heading": "Experiences",
-        "items": [
-          {
-            "label": "Basalt3 — Lead Architect",
-            "description": "Leading the architectural design of open-source tools tailored for agentic infrastructure, designing minimal developer workflows and integrations to enable flawless automation in development environments.",
-            "state": "active",
-            "date": "2024 — Present",
-            "employment": "Full-time"
-          },
-          {
-            "label": "Once UI — Design System Collaborator",
-            "description": "Collaborating on the design system structure and building high-performance UI libraries, integrating user feedback loop to refine UI primitives and layout structures.",
-            "state": "active",
-            "date": "2024 — Present",
-            "employment": "Part-time"
-          },
-          {
-            "label": "Next Bench — AI Solution Developer",
-            "description": "Building state-of-the-art AI-enabled solutions designed to enhance learning experiences and workloads for students.",
-            "state": "active",
-            "date": "2023 — 2024",
-            "employment": "CTO"
-          },
-          {
-            "label": "WhiteHat Jr — Early Training & App Development",
-            "description": "Trained intensely in mobile application frameworks (React Native) and game engine basics, constructing 20+ mini-games and applications.",
-            "state": "completed",
-            "date": "2020 — 2022",
-            "employment": "Trainee"
-          }
-        ]
+        "label": "Basalt3 — Lead Architect",
+        "description": "Leading the architectural design of open-source tools tailored for agentic infrastructure, designing minimal developer workflows and integrations to enable flawless automation in development environments.",
+        "state": "active",
+        "date": "2024 — Present",
+        "employment": "Full-time"
+      },
+      {
+        "label": "Once UI — Design System Collaborator",
+        "description": "Collaborating on the design system structure and building high-performance UI libraries, integrating user feedback loop to refine UI primitives and layout structures.",
+        "state": "active",
+        "date": "2024 — Present",
+        "employment": "Part-time"
+      },
+      {
+        "label": "Next Bench — AI Solution Developer",
+        "description": "Building state-of-the-art AI-enabled solutions designed to enhance learning experiences and workloads for students.",
+        "state": "active",
+        "date": "2023 — 2024",
+        "employment": "CTO"
+      },
+      {
+        "label": "WhiteHat Jr — Early Training & App Development",
+        "description": "Trained intensely in mobile application frameworks (React Native) and game engine basics, constructing 20+ mini-games and applications.",
+        "state": "completed",
+        "date": "2020 — 2022",
+        "employment": "Trainee"
       }
     ]
   }

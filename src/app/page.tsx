@@ -25,7 +25,11 @@ import { Schema } from "@once-ui-system/core";
 import { baseURL, meta } from "@/resources/seo";
 import { useRouter } from "next/navigation";
 
-import { navigationItemJSON, otherNavigationItemJSON, personalItemJSON } from "@/data/data";
+import {
+  navigationItemJSON,
+  otherNavigationItemJSON,
+  personalItemJSON,
+} from "@/data/data";
 import { ProjectItem } from "@/components/ProjectItem";
 import { OtherItem } from "@/components/OtherItem";
 import {
@@ -35,35 +39,82 @@ import {
   FlagIcon,
   TagIcon,
 } from "@/components/Icons";
+import { CountryCode } from "@rdnr/react-country-flags";
 
-const ParagraphRenderer = ({ content }: { content: any[] }) => {
+const ParagraphRenderer = ({ content }: { content: string }) => {
+  if (typeof content !== "string") return null;
+
+  const regex = /\[([^\]]+)\]\{([a-zA-Z]+)\}/g;
+  const parts = [];
+  let lastIndex = 0;
+  let match;
+
+  while ((match = regex.exec(content)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push(content.substring(lastIndex, match.index));
+    }
+
+    const innerContent = match[1];
+    const type = match[2];
+    const splitArgs = innerContent.split("|");
+
+    switch (type) {
+      case "favicon":
+        parts.push(
+          <FaviconIcon
+            key={match.index}
+            website={splitArgs[0]}
+            websiteUrl={splitArgs[1]}
+          />,
+        );
+        break;
+      case "faviconSolo":
+        parts.push(
+          <FaviconIconSolo key={match.index} websiteUrl={splitArgs[0]} />,
+        );
+        break;
+      case "tag":
+        parts.push(
+          <TagIcon
+            key={match.index}
+            text={splitArgs[0]}
+            variant={splitArgs[1] as any}
+          />,
+        );
+        break;
+      case "flag":
+        parts.push(
+          <FlagIcon
+            key={match.index}
+            country={splitArgs[0]}
+            countryCode={splitArgs[1] as CountryCode}
+          />,
+        );
+        break;
+      case "img":
+        parts.push(
+          <ImgIcon
+            key={match.index}
+            href={splitArgs[0]}
+            imageSrc={splitArgs[1]}
+          />,
+        );
+        break;
+      default:
+        parts.push(match[0]);
+    }
+    lastIndex = regex.lastIndex;
+  }
+
+  if (lastIndex < content.length) {
+    parts.push(content.substring(lastIndex));
+  }
+
   return (
     <>
-      {content.map((part, index) => {
-        if (typeof part === "string") {
-          return <span key={index}>{part}</span>;
-        }
-        switch (part.type) {
-          case "favicon":
-            return (
-              <FaviconIcon
-                key={index}
-                website={part.website}
-                websiteUrl={part.url}
-              />
-            );
-          case "faviconSolo":
-            return <FaviconIconSolo key={index} websiteUrl={part.url} />;
-          case "tag":
-            return <TagIcon key={index} variant={part.variant} text={part.text} />;
-          case "flag":
-            return <FlagIcon key={index} country={part.country} countryCode={part.code} />;
-          case "img":
-            return <ImgIcon key={index} href={part.href} imageSrc={part.src} />;
-          default:
-            return null;
-        }
-      })}
+      {parts.map((part, i) => (
+        <span key={i}>{part}</span>
+      ))}
     </>
   );
 };
@@ -73,7 +124,13 @@ export default function Home() {
 
   return (
     <Flex fill>
-      <Row fillWidth fillHeight>
+      <Flex
+        fillWidth
+        fitHeight
+        gap="xl"
+        horizontal="between"
+        m={{ direction: "column" }}
+      >
         <Column
           fillWidth
           fitHeight
@@ -172,85 +229,87 @@ export default function Home() {
           fitWidth
           paddingY={"l"}
           fillHeight
-          horizontal="center"
+          horizontal="end"
           vertical="start"
-          gap="l"
+          minWidth={28}
         >
-          <Flex direction="column" fit gap={"s"}>
-            <Text variant="code-default-s" onBackground="neutral-weak">
-              <b>PROJECTS</b>
-            </Text>
+          <Column fit gap="l">
+            <Flex direction="column" fit gap={"s"}>
+              <Text variant="code-default-s" onBackground="neutral-weak">
+                <b>PROJECTS</b>
+              </Text>
 
-            <Column fill gap="s" data-scaling="110">
-              {navigationItemJSON.slice(0, 4).map((item, index) => (
-                <ProjectItem
-                  key={index}
-                  id={item.id}
-                  lastUpdated={item.lastUpdated}
-                  abbreviation={item.abbreviation}
-                  isPrivate={item.isPrivate}
-                  imageSrc={item.imageSrc}
-                  title={item.title}
-                />
-              ))}
-              <Button
-                variant="secondary"
-                size="s"
-                id="arrow-trigger-1"
-                onClick={() => router.push("/projects")}
-              >
-                <Row>
-                  <Text variant="code-default-s" onBackground="neutral-weak">
-                    ALL
-                  </Text>
-                  <Arrow
-                    trigger="#arrow-trigger-1"
-                    scale={0.7}
-                    onBackground="neutral-weak"
+              <Column fill gap="s" data-scaling="110">
+                {navigationItemJSON.slice(0, 4).map((item, index) => (
+                  <ProjectItem
+                    key={index}
+                    id={item.id}
+                    lastUpdated={item.lastUpdated}
+                    abbreviation={item.abbreviation}
+                    isPrivate={item.isPrivate}
+                    imageSrc={item.imageSrc}
+                    title={item.title}
                   />
-                </Row>
-              </Button>
-            </Column>
-          </Flex>
+                ))}
+                <Button
+                  variant="secondary"
+                  size="s"
+                  id="arrow-trigger-1"
+                  onClick={() => router.push("/projects")}
+                >
+                  <Row>
+                    <Text variant="code-default-s" onBackground="neutral-weak">
+                      ALL
+                    </Text>
+                    <Arrow
+                      trigger="#arrow-trigger-1"
+                      scale={0.7}
+                      onBackground="neutral-weak"
+                    />
+                  </Row>
+                </Button>
+              </Column>
+            </Flex>
 
-          <Flex direction="column" fill gap={"s"}>
-            <Text variant="code-default-s" onBackground="neutral-weak">
-              <b>OTHERS</b>
-            </Text>
+            <Flex direction="column" fill gap={"s"}>
+              <Text variant="code-default-s" onBackground="neutral-weak">
+                <b>OTHERS</b>
+              </Text>
 
-            <Column fill gap="s" data-scaling="110">
-              {otherNavigationItemJSON.slice(0, 5).map((item, index) => (
-                <OtherItem
-                  key={index}
-                  id={item.id}
-                  lastUpdated={item.lastUpdated}
-                  abbreviation={item.abbreviation}
-                  isPrivate={item.isPrivate}
-                  imageSrc={item.imageSrc}
-                  title={item.title}
-                />
-              ))}
-              <Button
-                variant="secondary"
-                size="s"
-                id="arrow-trigger-2"
-                onClick={() => router.push("/others")}
-              >
-                <Row>
-                  <Text variant="code-default-s" onBackground="neutral-weak">
-                    ALL
-                  </Text>
-                  <Arrow
-                    trigger="#arrow-trigger-2"
-                    scale={0.7}
-                    onBackground="neutral-weak"
+              <Column fill gap="s" data-scaling="110">
+                {otherNavigationItemJSON.slice(0, 5).map((item, index) => (
+                  <OtherItem
+                    key={index}
+                    id={item.id}
+                    lastUpdated={item.lastUpdated}
+                    abbreviation={item.abbreviation}
+                    isPrivate={item.isPrivate}
+                    imageSrc={item.imageSrc}
+                    title={item.title}
                   />
-                </Row>
-              </Button>
-            </Column>
-          </Flex>
+                ))}
+                <Button
+                  variant="secondary"
+                  size="s"
+                  id="arrow-trigger-2"
+                  onClick={() => router.push("/others")}
+                >
+                  <Row>
+                    <Text variant="code-default-s" onBackground="neutral-weak">
+                      ALL
+                    </Text>
+                    <Arrow
+                      trigger="#arrow-trigger-2"
+                      scale={0.7}
+                      onBackground="neutral-weak"
+                    />
+                  </Row>
+                </Button>
+              </Column>
+            </Flex>
+          </Column>
         </Column>
-      </Row>
+      </Flex>
     </Flex>
   );
 }

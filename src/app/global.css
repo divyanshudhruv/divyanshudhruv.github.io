@@ -8,3 +8,10 @@
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
 }
+
+.wavy-underline{
+    text-decoration: underline;
+  text-decoration-style: wavy;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
