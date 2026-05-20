@@ -24,6 +24,7 @@ import { navigationItemJSON } from "@/data/data";
 import { ProjectItem } from "@/components/ProjectItem";
 import { ProjectContent } from "@/components/projects/ProjectContent";
 import { useWebHaptics } from "web-haptics/react";
+import { useSortedItems } from "@/hooks/useSortedItems";
 
 export default function Project() {
   const router = useRouter();
@@ -35,6 +36,7 @@ export default function Project() {
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [error, setError] = useState(false);
   const { views } = usePageViews("divyanshudhruv.is-a.dev", "/");
+  const sortedProjects = useSortedItems(navigationItemJSON);
 
   const project = navigationItemJSON.find((item) => item.id === slug);
 
@@ -303,7 +305,7 @@ export default function Project() {
               </Text>
 
               <Column fill gap="s" data-scaling="110">
-                {navigationItemJSON.slice(0, 4).map((item, index) => (
+                {sortedProjects.slice(0, 4).map((item, index) => (
                   <ProjectItem
                     key={index}
                     id={item.id}

@@ -30,6 +30,7 @@ import {
   TagIcon,
 } from "@/components/Icons";
 import { CountryCode } from "@rdnr/react-country-flags";
+import { useSortedItems } from "@/hooks/useSortedItems";
 
 const ParagraphRenderer = ({ content }: { content: string }) => {
   if (typeof content !== "string") return null;
@@ -112,6 +113,8 @@ const ParagraphRenderer = ({ content }: { content: string }) => {
 export default function Home() {
   const router = useRouter();
   const haptic = useWebHaptics();
+  const sortedProjects = useSortedItems(navigationItemJSON);
+  const sortedOthers = useSortedItems(otherNavigationItemJSON);
 
   return (
     <Flex fill className="main-hero">
@@ -232,7 +235,7 @@ export default function Home() {
               </Text>
 
               <Column fill gap="s" data-scaling="110">
-                {navigationItemJSON.slice(0, 4).map((item, index) => (
+                {sortedProjects.slice(0, 4).map((item, index) => (
                   <ProjectItem
                     key={index}
                     id={item.id}
@@ -272,7 +275,7 @@ export default function Home() {
               </Text>
 
               <Column fill gap="s" data-scaling="110">
-                {otherNavigationItemJSON.slice(0, 5).map((item, index) => (
+                {sortedOthers.slice(0, 5).map((item, index) => (
                   <OtherItem
                     key={index}
                     id={item.id}

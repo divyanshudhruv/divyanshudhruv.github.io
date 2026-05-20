@@ -10,6 +10,7 @@ import { navigationItemJSON } from "@/data/data";
 import { useRouter } from "next/navigation";
 import { useWebHaptics } from "web-haptics/react";
 import { ProjectItem } from "@/components/ProjectItem";
+import { useSortedItems } from "@/hooks/useSortedItems";
 
 export default function Projects() {
   const router = useRouter();
@@ -21,8 +22,9 @@ export default function Projects() {
     setVisibleCount((prevCount) => prevCount + 5);
   };
 
-  const visibleItems = navigationItemJSON.slice(0, visibleCount);
-  const hasMore = visibleCount < navigationItemJSON.length;
+  const sortedProjects = useSortedItems(navigationItemJSON);
+  const visibleItems = sortedProjects.slice(0, visibleCount);
+  const hasMore = visibleCount < sortedProjects.length;
 
   return (
     <Flex

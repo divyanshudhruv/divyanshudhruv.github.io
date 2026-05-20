@@ -12,6 +12,7 @@ import { EducationContent } from "@/components/others/EducationContent";
 import { AwardsContent } from "@/components/others/AwardsContent";
 import { ExperiencesContent } from "@/components/others/ExperiencesContent";
 import { useWebHaptics } from "web-haptics/react";
+import { useSortedItems } from "@/hooks/useSortedItems";
 
 const contentMap: Record<string, React.FC<any>> = {
   "stacks-skills": StacksSkillsContent,
@@ -25,6 +26,7 @@ export default function OtherDetail() {
   const haptic = useWebHaptics();
   const params = useParams();
   const slug = params?.slug as string;
+  const sortedOthers = useSortedItems(otherNavigationItemJSON);
 
   const item = otherNavigationItemJSON.find((item) => item.id === slug);
 
@@ -159,7 +161,7 @@ export default function OtherDetail() {
               </Text>
 
               <Column fill gap="s" data-scaling="110">
-                {otherNavigationItemJSON.slice(0, 5).map((item, index) => (
+                {sortedOthers.slice(0, 5).map((item, index) => (
                   <OtherItem
                     key={index}
                     id={item.id}
