@@ -1,9 +1,5 @@
 import "@once-ui-system/core/css/styles.css";
 import "@once-ui-system/core/css/tokens.css";
-import "@/resources/custom.css";
-import "./global.css";
-
-import classNames from "classnames";
 import "./global.css";
 
 import {
@@ -59,12 +55,7 @@ export default function RootLayout({
       as="html"
       lang="en"
       fillWidth
-      className={classNames(
-        fonts.heading.variable,
-        fonts.body.variable,
-        fonts.label.variable,
-        fonts.code.variable,
-      )}
+      className={`${fonts.heading.variable} ${fonts.body.variable} ${fonts.label.variable} ${fonts.code.variable}`}
     >
       <Schema
         as="webPage"

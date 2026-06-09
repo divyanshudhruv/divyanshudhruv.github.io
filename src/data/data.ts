@@ -1,23 +1,8 @@
-import projectsData from "./projects.json";
-import othersData from "./others.json";
-import personalData from "./personal.json";
+import projects from "./projects.json";
+import others from "./others.json";
+import personal from "./personal.json";
 
-export interface ProjectDataContent {
-  sections?: Record<string, string | string[]>;
-  media?: { src: string; alt?: string; caption?: string }[];
-}
-
-export interface ExperienceItem {
-  label: string;
-  description: string;
-  state?: string;
-  date?: string;
-  employment?: string;
-}
-
-export type OtherDataContent = Record<string, string[]> | ExperienceItem[];
-
-export interface NavigationItemType {
+export interface NavItem {
   id: string;
   title: string;
   abbreviation: string;
@@ -25,10 +10,10 @@ export interface NavigationItemType {
   isPrivate: boolean;
   imageSrc: string;
   description: string;
-  data: any; // We will narrow this down where used
+  data: any;
 }
 
-export interface PersonalDataType {
+export interface PersonalData {
   name: string;
   role: string;
   pfp: string;
@@ -39,6 +24,4 @@ export interface PersonalDataType {
   info: string;
 }
 
-export const navigationItemJSON: NavigationItemType[] = projectsData;
-export const otherNavigationItemJSON: NavigationItemType[] = othersData;
-export const personalItemJSON: PersonalDataType = personalData;
+export { projects, others, personal };

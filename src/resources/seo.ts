@@ -1,8 +1,16 @@
-// IMPORTANT: Replace with your own domain address - it's used for SEO in meta tags and schema
-const baseURL = "https://divyanshudhruv.is-a.dev"; 
+const baseURL = "https://divyanshudhruv.is-a.dev";
 
-// metadata for pages
-const meta = {
+interface MetaPage {
+  path: string;
+  title: string;
+  description: string;
+  image: string;
+  canonical: string;
+  robots: string;
+  alternates: { href: string; hrefLang: string }[];
+}
+
+const meta: Record<string, MetaPage> = {
   home: {
     path: "/",
     title: "Divyanshu Dhruv — Portfolio",
@@ -13,10 +21,9 @@ const meta = {
     robots: "index,follow",
     alternates: [{ href: "https://divyanshudhruv.is-a.dev", hrefLang: "en" }],
   },
-  // add more routes and reference them in page.tsx
   projects: {
     path: "/projects",
-    title: "Projects | Divyanshu Dhruv", 
+    title: "Projects | Divyanshu Dhruv",
     description: "Explore my past projects, case studies, and open-source contributions.",
     image: "/images/og/home.jpg",
     canonical: "https://divyanshudhruv.is-a.dev/projects",
@@ -25,7 +32,7 @@ const meta = {
   },
   others: {
     path: "/others",
-    title: "Others | Divyanshu Dhruv", 
+    title: "Others | Divyanshu Dhruv",
     description: "A timeline of my professional experience, awards, education, and other endeavors.",
     image: "/images/og/home.jpg",
     canonical: "https://divyanshudhruv.is-a.dev/others",
@@ -34,11 +41,10 @@ const meta = {
   },
 };
 
-// default schema data
 const schema = {
-  logo: "https://divyanshudhruv.is-a.dev/images/logo.png", 
-  type: "Personal", 
-  name: "Divyanshu Dhruv", 
+  logo: "https://divyanshudhruv.is-a.dev/images/logo.png",
+  type: "Personal",
+  name: "Divyanshu Dhruv",
   description: meta.home.description,
 };
 

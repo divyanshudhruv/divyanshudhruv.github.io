@@ -1,29 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import usePageViews from "@/hooks/usePageViews";
-
 import "./../../global.css";
-import {
-  Text,
-  Button,
-  Column,
-  Arrow,
-  Flex,
-  Row,
-  Input,
-} from "@once-ui-system/core";
-import {
-  ArrowLeftIcon,
-  ArrowRightIcon,
-  KeyIcon,
-} from "@phosphor-icons/react";
-import { useParams, useRouter } from "next/navigation";
-import { otherNavigationItemJSON } from "@/data/data";
-import { NavigationItem } from "@/components/NavigationItem";
+import { Text } from "@once-ui-system/core";
+import { useParams } from "next/navigation";
+import { others } from "@/data/data";
+import PasswordGate from "@/components/PasswordGate";
+import DetailLayout from "@/components/DetailLayout";
 import { SectionContent } from "@/components/SectionContent";
 import { ExperiencesContent } from "@/components/others/ExperiencesContent";
-import { useWebHaptics } from "web-haptics/react";
 import { useSortedItems } from "@/hooks/useSortedItems";
 
 const contentMap: Record<string, React.FC<any>> = {
@@ -34,321 +19,32 @@ const contentMap: Record<string, React.FC<any>> = {
 };
 
 export default function OtherDetail() {
-  const router = useRouter();
-  const haptic = useWebHaptics();
   const params = useParams();
   const slug = params?.slug as string;
-  const sortedOthers = useSortedItems(otherNavigationItemJSON);
-
-  const [passwordInput, setPasswordInput] = useState("");
-  const [isUnlocked, setIsUnlocked] = useState(false);
-  const [error, setError] = useState(false);
-  const { views } = usePageViews("divyanshudhruv.is-a.dev", "/");
-
-  const item = otherNavigationItemJSON.find((item) => item.id === slug);
-
-  const handleCheck = () => {
-    haptic.trigger("light");
-    if (passwordInput === `${item?.id}-${views}`) {
-      setIsUnlocked(true);
-      setError(false);
-    } else {
-      setError(true);
-    }
-  };
-
-  if (!item) {
-    return (
-      <Flex
-        fill
-        direction="column"
-        paddingY="l"
-        gap="l"
-        className="navigation-other-hero"
-      >
-        {/* Navigation Header */}
-        <Row fillWidth horizontal="start" vertical="center" fitHeight>
-          <Button
-            variant="tertiary"
-            size="s"
-            onClick={() => {
-              haptic.trigger("light");
-              router.push("/others");
-            }}
-          >
-            {" "}
-            <Text variant="code-default-s" onBackground="neutral-weak">
-              <Row vertical="center" gap="4">
-                <ArrowLeftIcon size={18} weight="light" /> OTHERS
-              </Row>
-            </Text>
-          </Button>
-        </Row>
-
-        <Flex
-          fillWidth
-          fillHeight
-          gap="xl"
-          m={{ direction: "column" }}
-          horizontal="between"
-        >
-          <Column fillWidth horizontal="start" vertical="start">
-            <Flex
-              maxWidth="xs"
-              direction="column"
-              gap="m"
-              className="navigation-other-hero-content-item-gap"
-            >
-              {" "}
-              <Column gap="xs">
-                {" "}
-                <Text
-                  variant="display-default-xs"
-                  onBackground="neutral-strong"
-                >
-                  <b>Page not found</b>
-                </Text>
-                <Text>
-                  {" "}
-                  <Row fill gap={"4"} vertical="center">
-                    <Text onBackground="neutral-weak" variant="code-default-s">
-                      <b>{new Date().toDateString()}</b>
-                    </Text>
-                    <Text onBackground="neutral-weak" variant="code-default-m">
-                      <b>•</b>
-                    </Text>
-                    <Text onBackground="neutral-weak" variant="code-default-s">
-                      <b>404</b>
-                    </Text>
-                    <>
-                      <Text
-                        onBackground="neutral-weak"
-                        variant="code-default-m"
-                      >
-                        <b>•</b>
-                      </Text>
-                      <Text
-                        onBackground="neutral-weak"
-                        variant="code-default-s"
-                      >
-                        <b>🥀 NOTFOUND</b>
-                      </Text>
-                    </>
-                  </Row>
-                </Text>
-              </Column>
-              <Text
-                variant="body-default-l"
-                onBackground="neutral-weak"
-                className="lh"
-              >
-                <b>The requested resource could not be located. </b>
-              </Text>
-              <Button
-                variant="primary"
-                size="s"
-                onClick={() => {
-                  haptic.trigger("light");
-                  router.push("/");
-                }}
-              >
-                <Text variant="code-default-s">
-                  <Row vertical="center" gap="4">
-                    <ArrowLeftIcon size={18} weight="light" /> GO BACK HOME
-                  </Row>
-                </Text>
-              </Button>
-            </Flex>
-          </Column>
-        </Flex>
-      </Flex>
-    );
-  }
-
-  const ContentComponent = contentMap[slug];
+  const [unlocked, setUnlocked] = useState(false);
+  const sortedOthers = useSortedItems(others);
+  const item = others.find((item) => item.id === slug);
+  const ContentComponent = item ? contentMap[slug] : null;
 
   return (
-    <Flex
-      fill
-      direction="column"
-      paddingY="l"
-      gap="l"
-      className="navigation-other-hero"
+    <DetailLayout
+      item={item}
+      backHref="/others"
+      backLabel="OTHERS"
+      sidebarTitle="OTHERS"
+      sidebarItems={sortedOthers}
+      sidebarAllHref="/others"
     >
-      {/* Navigation Header */}
-      <Row fillWidth horizontal="start" vertical="center" fitHeight>
-        <Button
-          variant="tertiary"
-          size="s"
-          onClick={() => {
-            haptic.trigger("light");
-            router.push("/others");
-          }}
-        >
-          {" "}
-          <Text variant="code-default-s" onBackground="neutral-weak">
-            <Row vertical="center" gap="4">
-              <ArrowLeftIcon size={18} weight="light" /> OTHERS
-            </Row>
+      {item?.isPrivate && !unlocked ? (
+        <PasswordGate itemId={item.id} onUnlock={() => setUnlocked(true)} />
+      ) : (
+        <>
+          <Text variant="body-default-l" onBackground="neutral-weak" className="lh">
+            <b>{item?.description}</b>
           </Text>
-        </Button>
-      </Row>
-
-      <Flex
-        direction="row"
-        fillWidth
-        fillHeight
-        horizontal="between"
-        m={{ direction: "column" }}
-        gap="xl"
-      >
-        {/* Main Content Container */}
-        <Column fillWidth horizontal="start" vertical="start">
-          <Flex
-            maxWidth="xs"
-            direction="column"
-            gap="m"
-            className="navigation-other-hero-content-item-gap"
-          >
-            {" "}
-            <Column gap="xs">
-              {" "}
-              <Text variant="display-default-xs" onBackground="neutral-strong">
-                <b>{item.title}</b>
-              </Text>
-              <Text>
-                {" "}
-                <Row fill gap={"4"} vertical="center">
-                  <Text onBackground="neutral-weak" variant="code-default-s">
-                    <b>{item.lastUpdated}</b>
-                  </Text>
-                  <Text onBackground="neutral-weak" variant="code-default-m">
-                    <b>•</b>
-                  </Text>
-                  <Text onBackground="neutral-weak" variant="code-default-s">
-                    <b>{item.abbreviation}</b>
-                  </Text>
-
-                  {item.isPrivate && (
-                    <>
-                      <Text
-                        onBackground="neutral-weak"
-                        variant="code-default-m"
-                      >
-                        <b>•</b>
-                      </Text>
-                      <Text
-                        onBackground="neutral-weak"
-                        variant="code-default-s"
-                      >
-                        <b>🔒 PRIVATE</b>
-                      </Text>
-                    </>
-                  )}
-                </Row>
-              </Text>
-            </Column>
-
-            {item.isPrivate && !isUnlocked ? (
-              <Flex direction="column" gap="m">
-                <Text
-                  variant="body-default-l"
-                  onBackground="neutral-weak"
-                  className="lh"
-                >
-                  <b>This section is password protected.</b>
-                </Text>
-                <Input
-                  id="password"
-                  value={passwordInput}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                    setPasswordInput(e.target.value);
-                    setError(false);
-                  }}
-                  placeholder="Enter password (PF-xxxx-xxxx)"
-                  height="s"
-                  error={error}
-                  errorMessage={error ? "Incorrect password" : ""}
-                  hasPrefix={
-                    <Flex center fill>
-                      <Text onBackground="neutral-medium">
-                        <KeyIcon size={18} weight="light" />
-                      </Text>
-                    </Flex>
-                  }
-                />
-                <Button variant="primary" size="m" onClick={handleCheck}>
-                  <Text variant="code-default-s">
-                    <Row vertical="center" gap="4">
-                      <ArrowRightIcon size={18} weight="light" /> CHECK
-                    </Row>
-                  </Text>
-                </Button>
-              </Flex>
-            ) : (
-              <>
-                <Text
-                  variant="body-default-l"
-                  onBackground="neutral-weak"
-                  className="lh"
-                >
-                  <b>{item.description}</b>
-                </Text>
-                {/* Dynamically render the clean React component for this slug */}
-                {ContentComponent ? (
-                  <ContentComponent data={item.data} />
-                ) : null}
-              </>
-            )}
-          </Flex>
-        </Column>
-
-        <Column
-          fillWidth
-          fillHeight
-          horizontal="end"
-          vertical="start"
-          m={{ horizontal: "start" }}
-        >
-          <Column fit gap="l">
-            <Flex direction="column" fill gap={"s"}>
-              <Text variant="code-default-s" onBackground="neutral-weak">
-                <b>OTHERS</b>
-              </Text>
-
-              <Column fill gap="s" data-scaling="110">
-                {sortedOthers.slice(0, 5).map((item, index) => (
-                  <NavigationItem
-                    key={index}
-                    {...item}
-                    routePrefix="others"
-                  />
-                ))}
-                <Button
-                  variant="secondary"
-                  size="s"
-                  id="arrow-trigger-2"
-                  onClick={() => {
-                    haptic.trigger("light");
-                    router.push("/others");
-                  }}
-                >
-                  <Row>
-                    <Text variant="code-default-s" onBackground="neutral-weak">
-                      ALL
-                    </Text>
-                    <Arrow
-                      trigger="#arrow-trigger-2"
-                      scale={0.7}
-                      onBackground="neutral-weak"
-                    />
-                  </Row>
-                </Button>
-              </Column>
-            </Flex>
-          </Column>
-        </Column>
-      </Flex>
-    </Flex>
+          {ContentComponent && <ContentComponent data={item?.data} />}
+        </>
+      )}
+    </DetailLayout>
   );
 }

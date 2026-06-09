@@ -11,15 +11,9 @@ import {
   Media,
   Arrow,
 } from "@once-ui-system/core";
-import { Schema } from "@once-ui-system/core";
-import { baseURL, meta } from "@/resources/seo";
 import { useRouter } from "next/navigation";
 import { useWebHaptics } from "web-haptics/react";
-import {
-  navigationItemJSON,
-  otherNavigationItemJSON,
-  personalItemJSON,
-} from "@/data/data";
+import { projects, others, personal } from "@/data/data";
 import { NavigationItem } from "@/components/NavigationItem";
 import {
   FaviconIcon,
@@ -112,8 +106,8 @@ const ParagraphRenderer = ({ content }: { content: string }) => {
 export default function Home() {
   const router = useRouter();
   const haptic = useWebHaptics();
-  const sortedProjects = useSortedItems(navigationItemJSON);
-  const sortedOthers = useSortedItems(otherNavigationItemJSON);
+  const sortedProjects = useSortedItems(projects);
+  const sortedOthers = useSortedItems(others);
 
   return (
     <Flex fill className="main-hero">
@@ -142,7 +136,7 @@ export default function Home() {
           >
             <Row center gap="12">
               <Media
-                src={personalItemJSON.pfp}
+                src={personal.pfp}
                 alt="Profile"
                 width={3}
                 height={3}
@@ -150,10 +144,10 @@ export default function Home() {
               />
               <Column>
                 <Text variant="body-default-m">
-                  <b>{personalItemJSON.name}</b>
+                  <b>{personal.name}</b>
                 </Text>
                 <Text onBackground="neutral-weak" variant="code-default-m">
-                  {personalItemJSON.role}
+                  {personal.role}
                 </Text>
               </Column>
             </Row>
@@ -166,7 +160,7 @@ export default function Home() {
                 className="lh"
               >
                 <b>
-                  <ParagraphRenderer content={personalItemJSON.about} />
+                  <ParagraphRenderer content={personal.about} />
                 </b>
               </Text>
             </Flex>
@@ -181,7 +175,7 @@ export default function Home() {
                 className="lh"
               >
                 <b>
-                  <ParagraphRenderer content={personalItemJSON.study} />
+                  <ParagraphRenderer content={personal.study} />
                 </b>
               </Text>
             </Flex>
@@ -197,7 +191,7 @@ export default function Home() {
                 style={{ whiteSpace: "pre-wrap" }}
               >
                 <b>
-                  <ParagraphRenderer content={personalItemJSON.experience} />
+                  <ParagraphRenderer content={personal.experience} />
                 </b>
               </Text>
             </Flex>
@@ -212,7 +206,7 @@ export default function Home() {
                 className="lh"
               >
                 <b>
-                  <ParagraphRenderer content={personalItemJSON.info} />
+                  <ParagraphRenderer content={personal.info} />
                 </b>
               </Text>
             </Flex>
