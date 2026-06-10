@@ -1,5 +1,7 @@
 "use client";
 
+import { Flex } from "@once-ui-system/core";
+
 const TITLE_TEXT = `
  ██████╗ ███████╗████████╗████████╗███████╗██████╗
  ██╔══██╗██╔════╝╚══██╔══╝╚══██╔══╝██╔════╝██╔══██╗
@@ -23,6 +25,7 @@ export default function Home() {
 			<div className="grid gap-6">
 				<section className="rounded-lg border p-4">
 					<h2 className="mb-2 font-medium">API Status</h2>
+					<Flex></Flex>
 				</section>
 			</div>
 		</div>
