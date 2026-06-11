@@ -1,33 +1,369 @@
 "use client";
 
-import { Flex } from "@once-ui-system/core";
+import {
+  AutoScroll,
+  Column,
+  Fade,
+  Flex,
+  IconButton,
+  Logo,
+  MasonryGrid,
+  Media,
+  NavIcon,
+  Row,
+  StatusIndicator,
+  Text,
+} from "@once-ui-system/core";
+import { useState, useEffect } from "react";
 
-const TITLE_TEXT = `
- ██████╗ ███████╗████████╗████████╗███████╗██████╗
- ██╔══██╗██╔════╝╚══██╔══╝╚══██╔══╝██╔════╝██╔══██╗
- ██████╔╝█████╗     ██║      ██║   █████╗  ██████╔╝
- ██╔══██╗██╔══╝     ██║      ██║   ██╔══╝  ██╔══██╗
- ██████╔╝███████╗   ██║      ██║   ███████╗██║  ██║
- ╚═════╝ ╚══════╝   ╚═╝      ╚═╝   ╚══════╝╚═╝  ╚═╝
+import { DotGothic16 } from "next/font/google";
+import { Inline } from "@/components/inline";
+import { getDate } from "@/lib/get-date";
+import { getWeather, type WeatherData } from "@/lib/get-weather";
 
- ████████╗    ███████╗████████╗ █████╗  ██████╗██╗  ██╗
- ╚══██╔══╝    ██╔════╝╚══██╔══╝██╔══██╗██╔════╝██║ ██╔╝
-    ██║       ███████╗   ██║   ███████║██║     █████╔╝
-    ██║       ╚════██║   ██║   ██╔══██║██║     ██╔═██╗
-    ██║       ███████║   ██║   ██║  ██║╚██████╗██║  ██╗
-    ╚═╝       ╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
- `;
+import { WavePlayer } from "@/components/waves-cn/wave-player";
+import PremiumButton from "@/components/premium-button";
+import { Button } from "@homepage/ui/components/button";
+import { Badge } from "@homepage/ui/components/badge";
+import { stacksData } from "@/resources/stacks";
+import {
+  ContributionLegend,
+  GitHubCalendar,
+} from "@/components/github-calendar";
+import { StackButton } from "@/components/stack-button";
+import WeatherCard from "@/components/weather-card";
+import ProjectEvents from "@/components/project-events";
+import MusicWidget from "@/components/spotify";
 
+const bitcount_single = DotGothic16({
+  subsets: ["latin"],
+  weight: "400",
+});
 export default function Home() {
-	return (
-		<div className="container mx-auto max-w-3xl px-4 py-2">
-			<pre className="overflow-x-auto font-mono text-sm">{TITLE_TEXT}</pre>
-			<div className="grid gap-6">
-				<section className="rounded-lg border p-4">
-					<h2 className="mb-2 font-medium">API Status</h2>
-					<Flex></Flex>
-				</section>
-			</div>
-		</div>
-	);
+  const [isActive, setIsActive] = useState(false);
+  const [weather, setWeather] = useState<WeatherData | null>(null);
+  const [weatherLoading, setWeatherLoading] = useState(true);
+
+  useEffect(() => {
+    getWeather("Vadodara").then((data) => {
+      console.log("weather data:", data);
+      setWeather(data);
+      setWeatherLoading(false);
+    });
+  }, []);
+
+  const handleClick = () => {
+    setIsActive(!isActive);
+  };
+  return (
+    <Flex
+      fillWidth
+      fitHeight
+      minWidth={"100vw"}
+      padding={1}
+      horizontal="center"
+      direction="column"
+      gap={1}
+      vertical="start"
+      className="h-[vh]"
+    >
+      <Flex
+        className=""
+        vertical="center"
+        horizontal="between"
+        fillWidth
+        direction="row"
+        fitHeight
+      >
+        <Column vertical="center" horizontal="start">
+          <Flex
+            className={bitcount_single.className}
+            direction="row"
+            gap={1}
+            vertical="center"
+            horizontal="center"
+          >
+            {" "}
+            <Text variant="label-default-l" className="text-muted-foreground">
+              {getDate()}
+            </Text>
+            <Flex fit overflow="hidden" className="roudned-full">
+              <StatusIndicator
+                color="orange"
+                className="rounded-full"
+                size="m"
+              />
+            </Flex>
+          </Flex>
+          <Flex className={bitcount_single.className}>
+            <Text variant="display-default-s" className="text-foreground">
+              Today
+            </Text>
+          </Flex>
+        </Column>
+        <Flex data-theme="light"></Flex>
+      </Flex>
+
+      <Flex
+        className=" bg-accent rounded-3xl "
+        fillHeight
+        fillWidth
+        padding={3}
+        horizontal="center"
+        vertical="start"
+      >
+        <Column
+          fillWidth
+          fillHeight
+          horizontal="start"
+          vertical="start"
+          maxWidth={"s"}
+          gap={4}
+        >
+          <Flex direction="column" horizontal="start" vertical="start" gap={1}>
+            <Media
+              src="https://i.pinimg.com/736x/bf/d9/8c/bfd98c0376634716e58cabeea9fbcd5d.jpg"
+              //i.pinimg.com/736x/5d/7d/5c/5d7d5c5c58d23014d812132e1608b9fe.jpg
+              width={8}
+              unoptimized
+              height={8}
+              minHeight={8}
+              minWidth={8}
+              maxHeight={8}
+              maxWidth={8}
+              className="rounded-2xl"
+            ></Media>
+            <Inline className="font-display font-default font-s text-foreground">
+              <b>
+                Hi I'm Divyanshu Dhruv — intern at{" "}
+                <span className="text-muted-foreground">
+                  Once UI. Previously at Next Bench
+                </span>
+              </b>
+            </Inline>
+            <Text className="font-body font-normal text-muted-foreground text-md">
+              I am a developer who is passionate about building products that
+              solve real-world problems. I enjoy working on end-to-end projects,
+              but I thrive when I can get my hands dirty with both code and
+              pixels. I make music too, checkout my latest track below.
+            </Text>
+            <Flex
+              fillWidth
+              fitHeight
+              direction="row"
+              gap={1}
+              m={{ direction: "column-reverse" }}
+              paddingRight={8}
+            >
+              <PremiumButton
+                text="Github"
+                className="w-fit"
+                boxColor="bg-orange-500"
+              />
+
+              <WavePlayer
+                src="/isee.mp3"
+                waveHeight={28}
+                // className="h-[44px] bg-white shadow-[0_4px_4px_-1px_rgba(0,0,0,0.1)] "
+                className="h-[44px] bg-accent shadow-[0_2px_2px_-1px_rgba(0,0,0,0.1)] rounded-full border border-border bg-linear-to-br from-white/80 to-muted"
+              />
+            </Flex>
+          </Flex>
+          <Flex
+            fillWidth
+            fillHeight
+            direction="column"
+            overflow="hidden"
+            gap={0.5}
+          >
+            {" "}
+            <GitHubCalendar
+              username="divyanshudhruv"
+              colorScheme="orange"
+              cellSize={16}
+              cellShape="rounded"
+              timeRange="1-year"
+              showDayLabels={true}
+            />{" "}
+            <Flex fillWidth horizontal="end">
+              {" "}
+              <ContributionLegend
+                colorScheme="orange"
+                cellSize={16}
+                cellShape="rounded"
+              />
+            </Flex>
+          </Flex>
+
+          <MasonryGrid
+            columns={3}
+            m={{ columns: 2 }}
+            s={{ columns: 1 }}
+            xs={{ columns: 1 }}
+            gap={"12"}
+          >
+            <Media
+              src="https://mritcuhqiyieibsbspwt.supabase.co/storage/v1/object/public/assets/site-media/6de62dbd-d8d4-43b9-915c-f7ea250938d5/1781017684713-fxr10o.jpg"
+              enlarge
+              alt=""
+              className="rounded-2xl"
+              unoptimized
+              aspectRatio="3 / 4"
+            />{" "}
+            <Media
+              src="https://mritcuhqiyieibsbspwt.supabase.co/storage/v1/object/public/assets/site-media/6de62dbd-d8d4-43b9-915c-f7ea250938d5/1781021304729-jzuf4f.png"
+              enlarge
+              alt=""
+              unoptimized
+              className="rounded-2xl"
+              aspectRatio="4 / 3"
+            />{" "}
+            <Media
+              src="https://mritcuhqiyieibsbspwt.supabase.co/storage/v1/object/public/assets/site-media/6de62dbd-d8d4-43b9-915c-f7ea250938d5/1781015525373-1yythf.jpg"
+              enlarge
+              alt=""
+              className="rounded-2xl"
+              aspectRatio="3 / 4"
+              unoptimized
+            />{" "}
+            <Media
+              src="https://mritcuhqiyieibsbspwt.supabase.co/storage/v1/object/public/assets/site-media/6de62dbd-d8d4-43b9-915c-f7ea250938d5/1781015567660-0m349m.jpg"
+              enlarge
+              alt=""
+              className="rounded-2xl"
+              aspectRatio="4 / 5"
+              unoptimized
+            />
+            <Media
+              src="https://mritcuhqiyieibsbspwt.supabase.co/storage/v1/object/public/assets/site-media/6de62dbd-d8d4-43b9-915c-f7ea250938d5/1781017857397-neo5cq.png"
+              enlarge
+              alt=""
+              className="rounded-2xl"
+              aspectRatio="1 / 1"
+              unoptimized
+            />
+            <Media
+              src="https://mritcuhqiyieibsbspwt.supabase.co/storage/v1/object/public/assets/site-media/6de62dbd-d8d4-43b9-915c-f7ea250938d5/1781015545636-vzy0p5.jpg"
+              enlarge
+              alt=""
+              unoptimized
+              className="rounded-2xl"
+              aspectRatio="4 / 3"
+            />
+          </MasonryGrid>
+
+          <Flex direction="column" horizontal="start" vertical="start" gap={1}>
+            <Inline className="font-display font-default font-s text-foreground">
+              <b>
+                A little about{" "}
+                <span className="text-muted-foreground">me.</span>
+              </b>
+            </Inline>
+            <Text className="font-body font-normal text-muted-foreground text-lg">
+              I'm full-stack developer and Y Combinator Startup School India
+              fellow. I specialize in building fast, responsive interfaces and
+              architecting local-first AI infrastructure under my organization,
+              Basalt3. Currently, I lead Next Bench, where I'm focused on
+              building TNPS and AIAS applications to revolutionize student
+              discovery, continuing a journey that began with a global hackathon
+              win at age 13. <br />
+              <br />
+              Beyond code, I'm a Sho-Dan in Karate, a multi-instrumentalist
+              music producer, and a competitive athlete with over 55 academic
+              medals. Whether I'm designing minimalist digital experiences or
+              curating my collection of 150+ rare Hot Wheels, I thrive at the
+              intersection of rigorous technical engineering and creative
+              discipline.
+            </Text>
+            <Flex direction="row" horizontal="start" vertical="center" gap={1}>
+              {" "}
+              <PremiumButton
+                text="Email me"
+                className="w-fit"
+                boxColor="bg-orange-500"
+                pattern="mail"
+              />
+              <Text className="font-body font-normal text-muted-foreground text-lg">
+                or
+              </Text>
+              <PremiumButton
+                text="DM me on X"
+                className="w-fit"
+                boxColor="bg-teal-500"
+                pattern="x"
+              />
+              <Text className="font-body font-normal text-muted-foreground text-lg">
+                or
+              </Text>
+              <PremiumButton
+                text="Connect on LinkedIn"
+                className="w-fit"
+                boxColor="bg-sky-500"
+                pattern="linkedin"
+              />
+            </Flex>
+          </Flex>
+
+          <Flex
+            direction="column"
+            horizontal="start"
+            vertical="start"
+            gap={1}
+            fillWidth
+            fitHeight
+          >
+            <Inline className="font-display font-default font-s text-foreground">
+              <b>
+                Skills & <span className="text-muted-foreground">stacks.</span>
+              </b>
+            </Inline>
+            <Text className="font-body font-normal text-muted-foreground text-lg">
+              Here's a snapshot of the technologies I work with regularly:
+            </Text>
+
+            <Column
+              fillWidth
+              fillHeight
+              horizontal="center"
+              vertical="start"
+              gap={2}
+            >
+              {stacksData.map((cat) => (
+                <Column
+                  key={cat.category}
+                  fillWidth
+                  horizontal="start"
+                  vertical="start"
+                  gap={1}
+                >
+                  {/* <Text variant="label-default-s" className="text-muted-foreground font-medium">
+                    {cat.category}
+                  </Text> */}
+                  <Flex
+                    fillWidth
+                    horizontal="start"
+                    vertical="center"
+                    wrap
+                    gap={0.8}
+                  >
+                    {cat.items.map((item) => (
+                      <StackButton
+                        key={item.label}
+                        url={item.url}
+                        label={item.label}
+                        color={item.color ?? cat.parentColor}
+                        overrideMediaUrl={item.overrideMediaUrl}
+                      />
+                    ))}
+                  </Flex>
+                </Column>
+              ))}
+            </Column>
+          </Flex>
+
+         
+        </Column>
+      </Flex>
+    </Flex>
+  );
 }

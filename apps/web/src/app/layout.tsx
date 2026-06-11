@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-
+import { DM_Sans, Geist, Geist_Mono } from "next/font/google";
+// import "@once-ui-system/core/css/styles.css";
+// import "@once-ui-system/core/css/tokens.css";
 import "../index.css";
-import Header from "@/components/header";
+import { cn } from "@homepage/ui/lib/utils";
+import { Flex } from "@once-ui-system/core";
 import Providers from "@/components/providers";
+
+const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-sans" });
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -26,15 +30,24 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en" suppressHydrationWarning>
+		<html
+			lang="en"
+			suppressHydrationWarning
+			className={cn("font-sans", dmSans.variable)}
+		>
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
 				<Providers>
-					<div className="grid h-svh grid-rows-[auto_1fr]">
-						<Header />
+					<Flex
+						fillWidth
+						fillHeight
+						className="bg-border dark:bg-accent-foreground"
+						horizontal="center"
+						vertical="start"
+					>
 						{children}
-					</div>
+					</Flex>
 				</Providers>
 			</body>
 		</html>
