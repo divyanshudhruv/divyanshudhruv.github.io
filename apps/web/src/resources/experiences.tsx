@@ -8,7 +8,7 @@ export const experiences: Experience[] = [
     url: "https://basalt3.home",
     startDate: "Mar 2026",
     endDate: "Now",
-    invert:true
+    invert: true,
   },
   {
     company: "Once UI",
@@ -33,5 +33,32 @@ export const experiences: Experience[] = [
     url: "#",
     startDate: "May 2020",
     endDate: "Dec 2022",
+  },
+];
+
+export const education: Experience[] = [
+  {
+    company: "Y Combinator",
+    role: "Startup School 2k26",
+    logo: "https://cdn.freelogovectors.net/wp-content/uploads/2021/02/y-combinator-logo-freelogovectors.net_.png",
+    url: "#",
+    startDate: "Apr 2026",
+    endDate: "Apr 2026",
+  },
+  {
+    company: "DPSV",
+    role: "Senior Secondary School",
+    logo: "https://i.pinimg.com/736x/da/e6/73/dae6730c800aab925785acfbd4f2ce5a.jpg",
+    url: "#",
+    startDate: "Jun 2024",
+    endDate: "Feb 2026",
+  },
+  {
+    company: "SPAD",
+    role: "Primary & Junior School",
+    logo: "https://i.pinimg.com/736x/79/1e/e1/791ee1429e8899bc9a5ffa0583dfc8f8.jpg",
+    url: "#",
+    startDate: "June 2015",
+    endDate: "May 2024",
   },
 ];

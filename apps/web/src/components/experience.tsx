@@ -40,7 +40,7 @@ export function ExperienceBlock({ experiences }: ExperienceBlockProps) {
               maxWidth={3}
               maxHeight={3}
               unoptimized
-              className={`overflow-hidden rounded-2xl ${exp.invert ? "invert-100" : ""}`}
+              className={`overflow-hidden rounded-xl ${exp.invert ? "invert-100" : ""}`}
             />
             <Column vertical="center" horizontal="start">
               <Row gap={0.5} center>

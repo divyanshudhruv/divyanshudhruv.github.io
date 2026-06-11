@@ -7,6 +7,7 @@ import {
   Fade,
   Flex,
   IconButton,
+  Line,
   Logo,
   MasonryGrid,
   Media,
@@ -39,6 +40,8 @@ import { BubblesIcon, Lightbulb } from "lucide-react";
 import { HiArrowTopRightOnSquare } from "react-icons/hi2";
 import { ExperienceBlock } from "@/components/experience";
 import { experiences } from "@/resources/experiences";
+import { education } from "@/resources/experiences";
+import SVGMarqueeImg from "@/components/svg-marquee/svg-marquee-img";
 
 const bitcount_single = DotGothic16({
   subsets: ["latin"],
@@ -147,10 +150,10 @@ export default function Home() {
               </b>
             </Inline>
             <Text className="font-body font-normal text-muted-foreground text-md">
-              I am a developer who is passionate about building products that
-              solve real-world problems. I enjoy working on end-to-end projects,
-              but I thrive when I can get my hands dirty with both code and
-              pixels. I make music too, checkout my latest track below.
+              Hi lol, I am a developer who is passionate about building products
+              that solve real-world problems. I enjoy working on end-to-end
+              projects, but I thrive when I can get my hands dirty with both
+              code and pixels. I make music too, checkout my latest track below.
             </Text>
             <Flex
               fillWidth
@@ -375,15 +378,38 @@ export default function Home() {
           >
             <Inline className="font-display font-default font-s text-foreground">
               <b>
-                Work <span className="text-muted-foreground">experiences.</span>
+                Work and{" "}
+                <span className="text-muted-foreground">Education.</span>
               </b>
             </Inline>
             <Text className="font-body font-normal text-muted-foreground text-lg">
               I've been fortunate to work with some incredible organizations and
-              contribute to building some cool stuff. Here are my experiences:
-            </Text>
-            <ExperienceBlock experiences={experiences}/>
+              contribute to building some cool stuff. Here are my work and
+              education:
+            </Text>{" "}
+            <Column fillWidth gap={1}>
+              <ExperienceBlock experiences={experiences} />
+              <ExperienceBlock experiences={education} />
+            </Column>
+            <Column marginTop={1} fillWidth gap={1}>
+              <Text className="font-body font-normal text-muted-foreground text-lg">
+                Also I was given an opportunity to be the organizer of the
+                tech-fest hackathon held at DPSV. Earlier in 2024 I had
+                participated in a similar hackathon held at SPAD (district
+                level), and our team won the first prize. lol.
+              </Text>{" "}
+              <Flex direction="row" horizontal="start" vertical="center" gap={1}>
+                {" "}
+                  <PremiumButton text="Get my Resume" boxColor="bg-teal-500" />
+ <Text className="font-body font-normal text-muted-foreground text-lg">
+                or
+              </Text>              
+                  <PremiumButton text="Do nothing" boxColor="bg-yellow-500" pattern="x" />
+                
+              </Flex>
+            </Column>{" "}
           </Flex>
+          <SVGMarqueeImg />
           <Flex
             direction="column"
             horizontal="start"
