@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  Accordion,
   AutoScroll,
   Column,
   Fade,
@@ -34,6 +35,10 @@ import { StackButton } from "@/components/stack-button";
 import WeatherCard from "@/components/weather-card";
 import ProjectEvents from "@/components/project-events";
 import MusicWidget from "@/components/spotify";
+import { BubblesIcon, Lightbulb } from "lucide-react";
+import { HiArrowTopRightOnSquare } from "react-icons/hi2";
+import { ExperienceBlock } from "@/components/experience";
+import { experiences } from "@/resources/experiences";
 
 const bitcount_single = DotGothic16({
   subsets: ["latin"],
@@ -360,8 +365,60 @@ export default function Home() {
               ))}
             </Column>
           </Flex>
-
-         
+          <Flex
+            direction="column"
+            horizontal="start"
+            vertical="start"
+            gap={1}
+            fillWidth
+            fitHeight
+          >
+            <Inline className="font-display font-default font-s text-foreground">
+              <b>
+                Work <span className="text-muted-foreground">experiences.</span>
+              </b>
+            </Inline>
+            <Text className="font-body font-normal text-muted-foreground text-lg">
+              I've been fortunate to work with some incredible organizations and
+              contribute to building some cool stuff. Here are my experiences:
+            </Text>
+            <ExperienceBlock experiences={experiences}/>
+          </Flex>
+          <Flex
+            direction="column"
+            horizontal="start"
+            vertical="start"
+            gap={1}
+            fillWidth
+            fitHeight
+          >
+            <Inline className="font-display font-default font-s text-foreground">
+              <b>
+                Some <span className="text-muted-foreground">widgets.</span>
+              </b>
+            </Inline>
+            <Text className="font-body font-normal text-muted-foreground text-lg">
+              Some of my favourite widgets that I use on my dashboard:
+            </Text>
+            <Row
+              horizontal="start"
+              vertical="center"
+              fitHeight
+              fillWidth
+              gap={1}
+            >
+              {" "}
+              <WeatherCard
+                city={weather?.city ?? "Vadodara"}
+                temperature={weather?.temperature ?? 328}
+                feelsLike={weather?.feelsLike ?? 42}
+                high={weather?.high ?? 39}
+                low={weather?.low ?? 29}
+              />
+              <ProjectEvents />
+              <MusicWidget />
+            </Row>
+          </Flex>
         </Column>
       </Flex>
     </Flex>
