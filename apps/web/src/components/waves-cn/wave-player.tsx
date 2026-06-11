@@ -197,7 +197,7 @@ export function WavePlayer({
             {formatTime(currentTime)}
           </span>
           • */}
-					<span className="w-fit shrink-0 text-right text-[13px] text-muted-foreground tabular-nums">
+					<span className="w-fit shrink-0 text-right text-[13px] text-foreground tabular-nums">
 						{formatTime(duration - currentTime)}
 					</span>
 				</div>
@@ -234,7 +234,7 @@ export function WavePlayer({
 					<Button
 						size="icon"
 						variant="link"
-						className="roudned-full h-fit w-fit cursor-pointer p-1 text-muted-foreground"
+						className="roudned-full h-fit w-fit cursor-pointer p-1 text-foreground"
 						disabled={!isReady}
 						onClick={togglePlay}
 						aria-label={isPlaying ? "Pause" : "Play"}

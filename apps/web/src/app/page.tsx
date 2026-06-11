@@ -6,6 +6,7 @@ import {
   Column,
   Fade,
   Flex,
+  Grid,
   IconButton,
   Line,
   Logo,
@@ -17,6 +18,7 @@ import {
   Text,
 } from "@once-ui-system/core";
 import { useState, useEffect } from "react";
+import { FaGithub } from "react-icons/fa";
 
 import { DotGothic16 } from "next/font/google";
 import { Inline } from "@/components/inline";
@@ -36,12 +38,19 @@ import { StackButton } from "@/components/stack-button";
 import WeatherCard from "@/components/weather-card";
 import ProjectEvents from "@/components/project-events";
 import MusicWidget from "@/components/spotify";
-import { BubblesIcon, Lightbulb } from "lucide-react";
+import {
+  ArrowRightSquare,
+  ArrowUpRightFromSquare,
+  BubblesIcon,
+  Lightbulb,
+} from "lucide-react";
 import { HiArrowTopRightOnSquare } from "react-icons/hi2";
 import { ExperienceBlock } from "@/components/experience";
 import { experiences } from "@/resources/experiences";
 import { education } from "@/resources/experiences";
 import SVGMarqueeImg from "@/components/svg-marquee/svg-marquee-img";
+import ProjectCard from "@/components/projects";
+import { projectsData } from "@/resources/projects";
 
 const bitcount_single = DotGothic16({
   subsets: ["latin"],
@@ -111,6 +120,7 @@ export default function Home() {
         </Column>
         <Flex data-theme="light"></Flex>
       </Flex>
+      {/* ================================================================ */}
 
       <Flex
         className=" bg-accent rounded-3xl "
@@ -202,6 +212,7 @@ export default function Home() {
               />
             </Flex>
           </Flex>
+          {/* ================================================================ */}
 
           <MasonryGrid
             columns={3}
@@ -259,6 +270,7 @@ export default function Home() {
               aspectRatio="4 / 3"
             />
           </MasonryGrid>
+          {/* ================================================================ */}
 
           <Flex direction="column" horizontal="start" vertical="start" gap={1}>
             <Inline className="font-display font-default font-s text-foreground">
@@ -311,6 +323,7 @@ export default function Home() {
               />
             </Flex>
           </Flex>
+          {/* ================================================================ */}
 
           <Flex
             direction="column"
@@ -368,6 +381,8 @@ export default function Home() {
               ))}
             </Column>
           </Flex>
+          {/* ================================================================ */}
+
           <Flex
             direction="column"
             horizontal="start"
@@ -389,27 +404,63 @@ export default function Home() {
             </Text>{" "}
             <Column fillWidth gap={1}>
               <ExperienceBlock experiences={experiences} />
+              <hr />
               <ExperienceBlock experiences={education} />
             </Column>
-            <Column marginTop={1} fillWidth gap={1}>
+            <Flex fillWidth height={1} />
+            <Column fillWidth gap={1}>
               <Text className="font-body font-normal text-muted-foreground text-lg">
                 Also I was given an opportunity to be the organizer of the
                 tech-fest hackathon held at DPSV. Earlier in 2024 I had
                 participated in a similar hackathon held at SPAD (district
-                level), and our team won the first prize. lol.
+                level), and I won the first prize. lol.
               </Text>{" "}
-              <Flex direction="row" horizontal="start" vertical="center" gap={1}>
+              <Flex
+                direction="row"
+                horizontal="start"
+                vertical="center"
+                gap={1}
+              >
                 {" "}
-                  <PremiumButton text="Get my Resume" boxColor="bg-teal-500" />
- <Text className="font-body font-normal text-muted-foreground text-lg">
-                or
-              </Text>              
-                  <PremiumButton text="Do nothing" boxColor="bg-yellow-500" pattern="x" />
-                
+                <PremiumButton text="Get my Resume" boxColor="bg-teal-500" />
+                <Text className="font-body font-normal text-muted-foreground text-lg">
+                  or
+                </Text>
+                <PremiumButton
+                  text="Do nothing"
+                  boxColor="bg-yellow-500"
+                  pattern="x"
+                />
               </Flex>
             </Column>{" "}
+            <SVGMarqueeImg />
           </Flex>
-          <SVGMarqueeImg />
+          {/* ================================================================ */}
+          <Flex
+            direction="column"
+            horizontal="start"
+            vertical="start"
+            gap={1}
+            fillWidth
+            fitHeight
+          >
+            <Inline className="font-display font-default font-s text-foreground">
+              <b>
+                Featured{" "}
+                <span className="text-muted-foreground">projects.</span>
+              </b>
+            </Inline>
+            <Text className="font-body font-normal text-muted-foreground text-lg">
+              Some of my favourite projects that I've worked on:
+            </Text>
+            <Grid fillWidth fitHeight columns={2} gap={2}>
+              {projectsData.map((project) => (
+                <ProjectCard key={project.title} {...project} />
+              ))}
+            </Grid>
+          </Flex>
+          {/* ================================================================ */}
+
           <Flex
             direction="column"
             horizontal="start"

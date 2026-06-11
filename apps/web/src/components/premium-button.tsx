@@ -7,7 +7,7 @@ interface PremiumButtonProps {
   text?: string;
   className?: string;
   boxColor?: string;
-  pattern?: "arrow" | "x" | "mail" | "linkedin";
+  pattern?: "arrow" | "x" | "mail" | "linkedin" | "repository" | "globe";
   onClick?: () => void;
 }
 
@@ -37,7 +37,7 @@ const Box = ({
   pattern,
 }: {
   boxColor?: string;
-  pattern: "arrow" | "x" | "mail" | "linkedin";
+  pattern: "arrow" | "x" | "mail" | "linkedin" | "repository" | "globe";
 }) => {
   const [step, setStep] = useState(0);
 
@@ -78,12 +78,29 @@ const Box = ({
     return false;
   };
 
+  const isRepository = (row: number, col: number, offset: number) => {
+    const c = col - offset;
+    if (row === 0 || row === 2 || row === 4) return c >= 0 && c <= 4;
+    if (row === 1 || row === 3) return c === 0 || c === 4;
+    return false;
+  };
+
+  const isGlobe = (row: number, col: number, offset: number) => {
+    const c = col - offset;
+    if (row === 0 || row === 4) return c >= 1 && c <= 3;
+    if (row === 1 || row === 3) return c >= 0 && c <= 4 && c !== 2;
+    if (row === 2) return c === 0 || c === 4;
+    return false;
+  };
+
   const isHighlighted = (row: number, col: number) => {
     const offset = step - 4;
     if (pattern === "arrow") return isArrow(row, col);
     if (pattern === "x") return isX(row, col, offset);
     if (pattern === "mail") return isMail(row, col, offset);
     if (pattern === "linkedin") return isLinkedInSquare(row, col, offset);
+    if (pattern === "repository") return isRepository(row, col, offset);
+    if (pattern === "globe") return isGlobe(row, col, offset);
     return false;
   };
 

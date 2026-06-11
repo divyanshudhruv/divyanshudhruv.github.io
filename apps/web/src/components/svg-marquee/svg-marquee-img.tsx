@@ -258,7 +258,7 @@ const MarqueeAlongPath = ({
         const marqueeContainer = marqueeContainerRef.current;
         if (!wrapper || !marqueeContainer) return;
 
-        const scale = wrapper.clientWidth / 588 *1.4;
+        const scale = (wrapper.clientWidth / 588) * 1.9;
         marqueeContainer.style.transform = `scale(${scale})`;
         marqueeContainer.style.transformOrigin = "top left";
       };
@@ -336,10 +336,9 @@ const MarqueeAlongPath = ({
   );
 };
 
-const path =
-  "M 0 186.219 C 138.5 186.219 305.5 194.719 305.5 49.7188 C 305.5 -113.652 -75 186.219 426 186 H 426";
+const path = "M 3 187 C 112 187 226 184 247 71 C 242 -70 -76 187 285 190 H 295";
 
-    // "M0 0.781 C138.5 0.781 305.5 -7.719 305.5 137.281 C305.5 300.652 -75 0.781 484.5 0.781 H587.5";
+// "M0 0.781 C138.5 0.781 305.5 -7.719 305.5 137.281 C305.5 300.652 -75 0.781 484.5 0.781 H587.5";
 
 const SVGMarqueeImg = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -347,11 +346,10 @@ const SVGMarqueeImg = () => {
   return (
     <Flex
       fillWidth
-      style={{ aspectRatio: `${588 / 285}` }}
-      paddingTop={0.4}
+      style={{ aspectRatio: `${588 / 400}` }}
       center
       fillHeight
-      overflow="visible"
+      overflow="hidden"
     >
       <MarqueeAlongPath
         path={path}
