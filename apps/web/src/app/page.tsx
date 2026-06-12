@@ -21,6 +21,7 @@ import {
 import { useState, useEffect } from "react";
 import { FaGithub } from "react-icons/fa";
 import { projectsData } from "@/resources/projects";
+import { pfpOverlays } from "@/resources/pfp-overlays";
 
 import { DotGothic16 } from "next/font/google";
 import { Inline } from "@/components/inline";
@@ -61,6 +62,9 @@ import { DottedMap, type Marker } from "@/components/dotted-map";
 import type { TCountryCode } from "countries-list";
 import React from "react";
 import { AwardsBlock } from "@/components/awards";
+import { TimerDisplay, TimerIcon, TimerRoot } from "@/components/timer";
+import ImageTrail, { ImageTrailItem } from "@/components/image-trail";
+import { images } from "@/resources/image-trail";
 
 type MyMarker = Marker & {
   overlay: {
@@ -98,6 +102,28 @@ export default function Home() {
     setIsActive(!isActive);
   };
   const id = React.useId();
+
+  const [pfpIndex, setPfpIndex] = useState(0);
+  const [pfp, setPfp] = useState(pfpOverlays[0]);
+  const [pfpFade, setPfpFade] = useState(true);
+
+  const pfpDurations: number[] = pfpOverlays.map(() => 3000);
+
+  useEffect(() => {
+    const duration = pfpDurations[pfpIndex] ?? 3000;
+    const totalTime = duration * 2;
+
+    const timeout = setTimeout(() => {
+      setPfpFade(false);
+      setTimeout(() => {
+        setPfpIndex((prev) => (prev + 1) % pfpOverlays.length);
+        setPfp(pfpOverlays[(pfpIndex + 1) % pfpOverlays.length]);
+        setPfpFade(true);
+      }, 500);
+    }, totalTime);
+
+    return () => clearTimeout(timeout);
+  }, [pfpIndex]);
 
   return (
     <Flex
@@ -159,6 +185,20 @@ export default function Home() {
           gap={4}
         >
           <Flex direction="column" horizontal="start" vertical="start" gap={1}>
+            <Media
+              src={pfp}
+              width={8}
+              unoptimized
+              top={0}
+              left={0}
+              height={8}
+              position="absolute"
+              minHeight={8}
+              minWidth={8}
+              maxHeight={8}
+              maxWidth={8}
+              className={`z-[9999] scale-[1.25] transition-opacity duration-500 ${pfpFade ? "opacity-100" : "opacity-0"}`}
+            ></Media>
             <Media
               src="https://i.pinimg.com/736x/bf/d9/8c/bfd98c0376634716e58cabeea9fbcd5d.jpg"
               //i.pinimg.com/736x/5d/7d/5c/5d7d5c5c58d23014d812132e1608b9fe.jpg
@@ -686,6 +726,218 @@ export default function Home() {
 
             <ViewChart />
           </Flex>
+          {/* ================================================================ */}
+          <Flex
+            direction="column"
+            fillWidth
+            horizontal="center"
+            vertical="start"
+            gap={0.5}
+          >
+            {" "}
+            <Text
+              className="font-body font-normal text-foreground/80 text-lg"
+              align="right"
+            >
+              You've been browsing this website for
+            </Text>{" "}
+            <TimerRoot variant="outline" size="lg">
+              <TimerIcon loading={true} />
+              <TimerDisplay time="01:23" />
+            </TimerRoot>
+          </Flex>
+          <hr className=" w-full text-taupe-900"></hr>
+          {/* ================================================================ */}
+          <Flex
+            direction="column"
+            fillWidth
+            fitHeight
+            horizontal="center"
+            vertical="center"
+            gap={1}
+          >
+            <ImageTrail
+              threshold={60}
+              keyframes={{ opacity: [0, 1, 1, 0], scale: [1, 1, 0] }}
+              keyframesOptions={{
+                opacity: { duration: 1, times: [0, 0.001, 0.9, 1] },
+                scale: { duration: 1, times: [0, 0.8, 1] },
+              }}
+              style={{
+                position: "absolute",
+                inset: 0,
+                zIndex: 9,
+                backgroundColor: "transparent",
+              }}
+            >
+              {images.map((url, index) => (
+                <ImageTrailItem key={index + url}>
+                  <div className="w-30 sm:w-38 h-full relative ">
+                    <img src={url} alt="image" className="object-cover" />
+                  </div>
+                </ImageTrailItem>
+              ))}
+            </ImageTrail>
+            <Grid fillWidth columns={2} gap={0.5}>
+              {" "}
+              {/* =================== */}
+              <Text
+                className="font-body font-normal text-muted-foreground/80 text-lg"
+                align="right"
+              >
+                Crafted by{" "}
+              </Text>
+              <Text
+                className="font-body font-normal text-muted-foreground/80 text-lg"
+                align="left"
+              >
+                <span className="text-orange-500/80">Divyanshu Dhruv</span>
+              </Text>{" "}
+              {/* =================== */}
+              <Text
+                className="font-body font-normal text-muted-foreground/80 text-lg"
+                align="right"
+              >
+                Source code
+              </Text>{" "}
+              <Text
+                className="font-body font-normal text-muted-foreground/80 text-lg"
+                align="left"
+              >
+                <span className="text-foreground/80">Github</span>
+              </Text>{" "}
+              {/* ================== */}
+              <Text
+                className="font-body font-normal text-muted-foreground/80 text-lg"
+                align="right"
+              >
+                Inspired by
+              </Text>{" "}
+              <Text
+                className="font-body font-normal text-muted-foreground/80 text-lg"
+                align="left"
+              >
+                <span className="text-foreground/80">once-ui.com</span>
+              </Text>{" "}
+              <Text
+                className="font-body font-normal text-muted-foreground/80 text-lg"
+                align="right"
+              ></Text>{" "}
+              <Text
+                className="font-body font-normal text-muted-foreground/80 text-lg"
+                align="left"
+              >
+                <span className="text-foreground/80">ui.shadcn.com</span>
+              </Text>{" "}
+              <Text
+                className="font-body font-normal text-muted-foreground/80 text-lg"
+                align="right"
+              ></Text>{" "}
+              <Text
+                className="font-body font-normal text-muted-foreground/80 text-lg"
+                align="left"
+              >
+                <span className="text-foreground/80">tailwindcss.com</span>
+              </Text>{" "}
+              <Text
+                className="font-body font-normal text-muted-foreground/80 text-lg"
+                align="right"
+              ></Text>{" "}
+              <Text
+                className="font-body font-normal text-muted-foreground/80 text-lg"
+                align="left"
+              >
+                <span className="text-foreground/80">bklit.ui</span>
+              </Text>{" "}
+              <Text
+                className="font-body font-normal text-muted-foreground/80 text-lg"
+                align="right"
+              ></Text>{" "}
+              <Text
+                className="font-body font-normal text-muted-foreground/80 text-lg"
+                align="left"
+              >
+                <span className="text-foreground/80">evilcharts.com</span>
+              </Text>{" "}
+              <Text
+                className="font-body font-normal text-muted-foreground/80 text-lg"
+                align="right"
+              ></Text>{" "}
+              <Text
+                className="font-body font-normal text-muted-foreground/80 text-lg"
+                align="left"
+              >
+                <span className="text-foreground/80">cult-ui.com</span>
+              </Text>{" "}
+              <Text
+                className="font-body font-normal text-muted-foreground/80 text-lg"
+                align="right"
+              ></Text>{" "}
+              <Text
+                className="font-body font-normal text-muted-foreground/80 text-lg"
+                align="left"
+              >
+                <span className="text-foreground/80">skiper-ui.com</span>
+              </Text>{" "}
+              {/* =================== */}
+              <Text
+                className="font-body font-normal text-muted-foreground/80 text-lg"
+                align="right"
+              >
+                Deployed on
+              </Text>{" "}
+              <Text
+                className="font-body font-normal text-muted-foreground/80 text-lg"
+                align="left"
+              >
+                <span className="text-foreground/80">Vercel</span>
+              </Text>
+              <Text
+                className="font-body font-normal text-muted-foreground/80 text-lg"
+                align="right"
+              ></Text>{" "}
+              <Text
+                className="font-body font-normal text-muted-foreground/80 text-lg"
+                align="left"
+              >
+                <span className="text-foreground/80">Cummand</span>
+              </Text>
+              <Text
+                className="font-body font-normal text-muted-foreground/80 text-lg"
+                align="right"
+              ></Text>{" "}
+              <Text
+                className="font-body font-normal text-muted-foreground/80 text-lg"
+                align="left"
+              >
+                <span className="text-foreground/80">Github</span>
+              </Text>
+              <Text
+                className="font-body font-normal text-muted-foreground/80 text-lg"
+                align="right"
+              ></Text>{" "}
+              <Text
+                className="font-body font-normal text-muted-foreground/80 text-lg"
+                align="left"
+              >
+                <span className="text-foreground/80">Supabase Cron</span>
+              </Text>
+              {/* =================== */}
+              <Text
+                className="font-body font-normal text-muted-foreground/80 text-lg"
+                align="right"
+              >
+                Analytics
+              </Text>{" "}
+              <Text
+                className="font-body font-normal text-muted-foreground/80 text-lg"
+                align="left"
+              >
+                <span className="text-foreground/80">Umami</span>
+              </Text>
+            </Grid>
+          </Flex>
+          {/* ================================================================ */}
         </Column>{" "}
       </Flex>{" "}
       <Flex fillWidth>
