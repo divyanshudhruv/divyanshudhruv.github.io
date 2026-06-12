@@ -18,7 +18,7 @@ import {
   Table,
   Text,
 } from "@once-ui-system/core";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FaGithub } from "react-icons/fa";
 import { projectsData } from "@/resources/projects";
 import { pfpOverlays } from "@/resources/pfp-overlays";
@@ -62,7 +62,7 @@ import { DottedMap, type Marker } from "@/components/dotted-map";
 import type { TCountryCode } from "countries-list";
 import React from "react";
 import { AwardsBlock } from "@/components/awards";
-import { TimerDisplay, TimerIcon, TimerRoot } from "@/components/timer";
+import { useTimer, TimerDisplay, TimerIcon, TimerRoot } from "@/components/timer";
 import ImageTrail, { ImageTrailItem } from "@/components/image-trail";
 import { images } from "@/resources/image-trail";
 
@@ -106,6 +106,46 @@ export default function Home() {
   const [pfpIndex, setPfpIndex] = useState(0);
   const [pfp, setPfp] = useState(pfpOverlays[0]);
   const [pfpFade, setPfpFade] = useState(true);
+
+  const session = useTimer({ loading: true, format: "HH:MM:SS" });
+
+  const TOTAL_KEY = "website-total-time";
+  const [totalTime, setTotalTime] = useState(0);
+  const totalStoredRef = useRef(0);
+  const sessionRef = useRef(0);
+
+  useEffect(() => {
+    sessionRef.current = session.elapsedTime;
+  });
+
+  useEffect(() => {
+    const saved = localStorage.getItem(TOTAL_KEY);
+    const initial = saved ? parseInt(saved, 10) : 0;
+    totalStoredRef.current = initial;
+    setTotalTime(initial);
+
+    const save = () => {
+      localStorage.setItem(TOTAL_KEY, String(totalStoredRef.current + sessionRef.current));
+    };
+
+    const interval = setInterval(save, 10_000);
+    window.addEventListener("beforeunload", save);
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener("beforeunload", save);
+    };
+  }, []);
+
+  useEffect(() => {
+    setTotalTime(totalStoredRef.current + session.elapsedTime);
+  }, [session.elapsedTime]);
+
+  const formatTotal = (s: number) => {
+    const h = Math.floor(s / 3600);
+    const m = Math.floor((s % 3600) / 60);
+    const sec = s % 60;
+    return `${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}:${sec.toString().padStart(2, "0")}`;
+  };
 
   const pfpDurations: number[] = pfpOverlays.map(() => 3000);
 
@@ -752,7 +792,7 @@ export default function Home() {
             </Text>{" "}
             <TimerRoot variant="outline" size="lg">
               <TimerIcon loading={true} />
-              <TimerDisplay time="01:23" />
+              <TimerDisplay time={session.formattedTime.display} />
             </TimerRoot>
             <hr></hr>
             <hr></hr>
@@ -764,7 +804,7 @@ export default function Home() {
             </Text>{" "}
             <TimerRoot variant="outline" size="lg">
               <TimerIcon loading={true} />
-              <TimerDisplay time="01:23" />
+              <TimerDisplay time={formatTotal(totalTime)} />
             </TimerRoot>
             <Flex fillWidth paddingTop={2}>
               <hr className=" w-full text-taupe-900"></hr>
