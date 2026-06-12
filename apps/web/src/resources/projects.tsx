@@ -16,8 +16,9 @@ export const projectsData: Projects[] = [
     description:
       "A command-line interface tool that securely tunnels your local development server to the public internet using custom, memorable aliases for seamless collaboration and testing.",
     imageUrl:
-      "https://i.pinimg.com/originals/6e/a0/5b/6ea05b608d3c7d08befdbd1b572c8200.gif",
+      "https://i.pinimg.com/originals/f7/1a/c4/f71ac494e234d8e3d5f590408097ef42.gif",
     repoUrl: "https://github.com/divyanshudhruv/cummand",
+    invert:true,
     date: new Date("2026-03-15"),
 
     liveUrl: "#",

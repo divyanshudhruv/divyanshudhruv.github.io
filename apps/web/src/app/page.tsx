@@ -15,6 +15,7 @@ import {
   NavIcon,
   Row,
   StatusIndicator,
+  Table,
   Text,
 } from "@once-ui-system/core";
 import { useState, useEffect } from "react";
@@ -59,6 +60,7 @@ import { DottedMap, type Marker } from "@/components/dotted-map";
 
 import type { TCountryCode } from "countries-list";
 import React from "react";
+import { AwardsBlock } from "@/components/awards";
 
 type MyMarker = Marker & {
   overlay: {
@@ -177,7 +179,7 @@ export default function Home() {
                 </span>
               </b>
             </Inline>
-            <Text className="font-body font-normal text-muted-foreground text-md">
+            <Text className="font-body font-normal  text-muted-foreground text-md">
               Hi lol, I am a developer who is passionate about building products
               that solve real-world problems. I enjoy working on end-to-end
               projects, but I thrive when I can get my hands dirty with both
@@ -512,6 +514,28 @@ export default function Home() {
               {" "}
               <ProjectsBlock projects={projectsData} />
             </Column>
+            <Flex
+              fitWidth
+              marginTop={1}
+              direction="row"
+              vertical="center"
+              gap={1}
+            >
+              <PremiumButton
+                text="View more"
+                boxColor="bg-rose-500"
+                pattern="linkedin"
+              />
+              <Text className="font-body font-normal text-muted-foreground text-lg">
+                or
+              </Text>
+
+              <PremiumButton
+                text="View on Github"
+                boxColor="bg-indigo-500"
+                pattern="arrow"
+              />
+            </Flex>
           </Flex>
           {/* ================================================================ */}
           <Flex
@@ -545,7 +569,6 @@ export default function Home() {
                 high={weather?.high ?? 39}
                 low={weather?.low ?? 29}
               />
-              <ProjectEvents />
               <MusicWidget />
             </Row>
           </Flex>
@@ -565,26 +588,81 @@ export default function Home() {
               </b>
             </Inline>
             <Text className="font-body font-normal text-muted-foreground text-lg">
-              Some of my favourite widgets that I use on my dashboard:
-            </Text>
-            <Row
-              horizontal="start"
+              I've had the privilege of receiving recognition for my work and
+              have successfully completed various certifications.
+            </Text>{" "}
+            <Column fillWidth>
+              {" "}
+              <AwardsBlock awards={[]} />
+            </Column>
+            <Flex
+              fitWidth
+              marginTop={1}
+              direction="row"
               vertical="center"
-              fitHeight
-              fillWidth
               gap={1}
             >
               {" "}
-              <WeatherCard
-                city={weather?.city ?? "Vadodara"}
-                temperature={weather?.temperature ?? 328}
-                feelsLike={weather?.feelsLike ?? 42}
-                high={weather?.high ?? 39}
-                low={weather?.low ?? 29}
+              <PremiumButton
+                text="View more"
+                boxColor="bg-taupe-500"
+                pattern="linkedin"
               />
-              <ProjectEvents />
-              <MusicWidget />
-            </Row>
+              <Text className="font-body font-normal text-muted-foreground text-lg">
+                or
+              </Text>
+              <PremiumButton
+                text="Do nothing"
+                boxColor="bg-yellow-500"
+                pattern="arrow"
+              />
+            </Flex>
+          </Flex>
+          {/* ================================================================ */}
+          <Flex
+            direction="column"
+            horizontal="start"
+            vertical="start"
+            gap={1}
+            fillWidth
+            fitHeight
+          >
+            <Inline className="font-display font-default font-s text-foreground">
+              <b>
+                Blogs and{" "}
+                <span className="text-muted-foreground">writings.</span>
+              </b>
+            </Inline>
+            <Text className="font-body font-normal text-muted-foreground text-lg">
+              The below are some of my blogs and writings that i have published
+              on various platforms (not really).
+            </Text>{" "}
+            <Column fillWidth>
+              {" "}
+              <AwardsBlock awards={[]} />
+            </Column>
+            <Flex
+              fitWidth
+              marginTop={1}
+              direction="row"
+              vertical="center"
+              gap={1}
+            >
+              {" "}
+              <PremiumButton
+                text="View more"
+                boxColor="bg-purple-500"
+                pattern="linkedin"
+              />
+              <Text className="font-body font-normal text-muted-foreground text-lg">
+                or
+              </Text>
+              <PremiumButton
+                text="Do nothing"
+                boxColor="bg-yellow-500"
+                pattern="arrow"
+              />
+            </Flex>
           </Flex>
           {/* ================================================================ */}
           <Flex
@@ -601,8 +679,11 @@ export default function Home() {
               </b>
             </Inline>
             <Text className="font-body font-normal text-muted-foreground text-lg">
-              Live insights of the visitors of this website.
+              The graph below shows the live insights of the visitors of this
+              website. Hover over the bars to see the exact values. It's pretty
+              cool right??
             </Text>
+
             <ViewChart />
           </Flex>
         </Column>{" "}

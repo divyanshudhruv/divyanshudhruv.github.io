@@ -7,6 +7,10 @@ import { curveNatural } from "@visx/curve";
 import { ChartTooltip } from "./charts/tooltip";
 import XAxis from "./charts/x-axis";
 import { Flex } from "@once-ui-system/core";
+import BarChart from "./charts/bar-chart";
+import Bar from "./charts/bar";
+import BarXAxis from "./charts/bar-x-axis";
+import { FunnelChart } from "./charts/funnel-chart";
 
 const chartData = Array.from({ length: 12 }, (_, i) => ({
   date: new Date(2024, 0, i + 1),
@@ -31,9 +35,19 @@ const chartData = Array.from({ length: 12 }, (_, i) => ({
     ),
   ),
 }));
+
+
+const data = [
+  { label: "Visitors", value: 12400, displayValue: "12.4k" },
+  { label: "Leads", value: 6800, displayValue: "6.8k" },
+  { label: "Qualified", value: 3200, displayValue: "3.2k" },
+  { label: "Proposals", value: 1500, displayValue: "1.5k" },
+  { label: "Closed", value: 620, displayValue: "620" },
+];
+
 export function ViewChart() {
   return (
-    <Flex fillWidth fitHeight>
+    <Flex fillWidth fitHeight direction="column" gap={1}>
       <AreaChart
         data={chartData}
         animationDuration={1100}
@@ -64,6 +78,7 @@ export function ViewChart() {
         <XAxis />
         <ChartTooltip />
       </AreaChart>
+      {/* <FunnelChart data={data} color="var(--chart-1)" layers={3} /> */}
     </Flex>
   );
 }

@@ -1,22 +1,21 @@
 import { Column, Media, Row, Text } from "@once-ui-system/core";
 import { HiArrowTopRightOnSquare } from "react-icons/hi2";
 
-export interface Projects {
+export interface Awards {
   title: string;
   description: string;
   imageUrl?: string;
-  repoUrl?: string;
-  liveUrl?: string;
+  certificateUrl?: string;
   date: Date;
   invert?: boolean;
 }
 
-export interface ProjectsBlockProps {
-  projects?: Projects[];
+export interface AwardsBlockProps {
+  awards?: Awards[];
 }
 
-export function ProjectsBlock({ projects = [] }: ProjectsBlockProps) {
-  if (projects.length === 0) {
+export function AwardsBlock({ awards = [] }: AwardsBlockProps) {
+  if (awards.length === 0) {
     return (
       <Row
         key={"#"}
@@ -89,9 +88,9 @@ export function ProjectsBlock({ projects = [] }: ProjectsBlockProps) {
 
   return (
     <Column fillWidth fitHeight gap={1}>
-      {projects.map((exp) => (
+      {awards.map((award) => (
         <Row
-          key={exp.title}
+          key={award.title}
           fillWidth
           fitHeight
           horizontal="between"
@@ -100,7 +99,10 @@ export function ProjectsBlock({ projects = [] }: ProjectsBlockProps) {
         >
           <Row fillWidth center gap={0.65} className="overflow-hidden">
             <Media
-              src={exp.imageUrl as string}
+              src={
+                (award.imageUrl as string) ||
+                "https://i.pinimg.com/736x/8d/4c/c2/8d4cc2a6a6efd4ae598887fe1d068f45.jpg"
+              }
               width={3}
               height={3}
               minWidth={3}
@@ -108,7 +110,7 @@ export function ProjectsBlock({ projects = [] }: ProjectsBlockProps) {
               maxWidth={3}
               maxHeight={3}
               unoptimized
-              className={`overflow-hidden rounded-xl ${exp.invert ? "invert-100" : ""}`}
+              className={`overflow-hidden rounded-xl ${award.invert ? "invert-100" : ""}`}
             />
             <Column
               fillWidth
@@ -118,11 +120,11 @@ export function ProjectsBlock({ projects = [] }: ProjectsBlockProps) {
             >
               <Row gap={0.5} center>
                 <Text className="font-body font-medium text-foreground/80 text-lg">
-                  {exp.title}
+                  {award.title || "No title available"}
                 </Text>
-                {exp.liveUrl && (
+                {award.certificateUrl && (
                   <a
-                    href={exp.liveUrl}
+                    href={award.certificateUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -144,19 +146,19 @@ export function ProjectsBlock({ projects = [] }: ProjectsBlockProps) {
                   whiteSpace: "nowrap",
                 }}
               >
-                {exp.description}
+                {award.description || "No description available"}
               </span>
             </Column>
           </Row>
           <Row vertical="end" horizontal="center" fitWidth fillHeight>
             <Text className="font-body font-normal text-muted-foreground text-md">
-              {exp.date.toLocaleString("default", { month: "short" })}
+              {award.date.toLocaleString("default", { month: "short" }) || "NaN"}
             </Text>
             <Text className="font-body font-normal text-muted-foreground text-md">
               &nbsp;
             </Text>
             <Text className="font-body font-normal text-muted-foreground text-md">
-              {exp.date.getFullYear()}
+              {award.date.getFullYear() || "NaN"}
             </Text>
           </Row>
         </Row>

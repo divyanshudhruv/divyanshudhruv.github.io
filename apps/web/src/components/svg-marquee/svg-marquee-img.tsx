@@ -390,7 +390,7 @@ const SVGMarqueeImg = () => {
         }}
       >
         {images.map((url, index) => (
-          <ImageTrailItem key={index}>
+          <ImageTrailItem key={index + url}>
             <div className="w-30 sm:w-38 h-full relative ">
               <img src={url} alt="image" className="object-cover" />
             </div>
