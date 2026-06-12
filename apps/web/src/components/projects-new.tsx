@@ -46,7 +46,7 @@ export function ProjectsBlock({ projects }: ProjectsBlockProps) {
               className="min-w-0"
             >
               <Row gap={0.5} center>
-                <Text className="font-body font-normal text-foreground text-lg">
+                <Text className="font-body font-medium text-foreground/80 text-lg">
                   {exp.title}
                 </Text>
                 {exp.liveUrl && (

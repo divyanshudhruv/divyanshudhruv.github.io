@@ -53,6 +53,8 @@ import SVGMarqueeImg from "@/components/svg-marquee/svg-marquee-img";
 import ProjectCard from "@/components/projects";
 import { ProjectsBlock } from "@/components/projects-new";
 import { Lens } from "@/components/lens";
+import { ViewChart } from "@/components/chart";
+import { FluidGradientText } from "@/components/fluid-gradient-text";
 
 const bitcount_single = DotGothic16({
   subsets: ["latin"],
@@ -86,14 +88,7 @@ export default function Home() {
       vertical="start"
       className="h-[vh]"
     >
-      <Flex
-        className=""
-        vertical="center"
-        horizontal="between"
-        fillWidth
-        direction="row"
-        fitHeight
-      >
+      <Flex vertical="start" fillWidth direction="column" fitHeight>
         <Column vertical="center" horizontal="start">
           <Flex
             className={bitcount_single.className}
@@ -123,12 +118,12 @@ export default function Home() {
         <Flex data-theme="light"></Flex>
       </Flex>
       {/* ================================================================ */}
-
       <Flex
         className=" bg-accent rounded-3xl "
         fillHeight
         fillWidth
         padding={3}
+        direction="column"
         horizontal="center"
         vertical="start"
       >
@@ -224,49 +219,49 @@ export default function Home() {
             gap={"12"}
           >
             <Lens>
-            <Media
-              src="https://mritcuhqiyieibsbspwt.supabase.co/storage/v1/object/public/assets/site-media/6de62dbd-d8d4-43b9-915c-f7ea250938d5/1781017684713-fxr10o.jpg"
-              alt=""
-              className="rounded-2xl"
-              unoptimized
-              aspectRatio="3 / 4"
-            />
+              <Media
+                src="https://mritcuhqiyieibsbspwt.supabase.co/storage/v1/object/public/assets/site-media/6de62dbd-d8d4-43b9-915c-f7ea250938d5/1781017684713-fxr10o.jpg"
+                alt=""
+                className="rounded-2xl"
+                unoptimized
+                aspectRatio="3 / 4"
+              />
             </Lens>
             <Lens>
-            <Media
-              src="https://mritcuhqiyieibsbspwt.supabase.co/storage/v1/object/public/assets/site-media/6de62dbd-d8d4-43b9-915c-f7ea250938d5/1781021304729-jzuf4f.png"
-              alt=""
-              unoptimized
-              className="rounded-2xl"
-              aspectRatio="4 / 3"
-            />
+              <Media
+                src="https://mritcuhqiyieibsbspwt.supabase.co/storage/v1/object/public/assets/site-media/6de62dbd-d8d4-43b9-915c-f7ea250938d5/1781021304729-jzuf4f.png"
+                alt=""
+                unoptimized
+                className="rounded-2xl"
+                aspectRatio="4 / 3"
+              />
             </Lens>
             <Lens>
-            <Media
-              src="https://mritcuhqiyieibsbspwt.supabase.co/storage/v1/object/public/assets/site-media/6de62dbd-d8d4-43b9-915c-f7ea250938d5/1781015525373-1yythf.jpg"
-              alt=""
-              className="rounded-2xl"
-              aspectRatio="3 / 4"
-              unoptimized
-            />
+              <Media
+                src="https://mritcuhqiyieibsbspwt.supabase.co/storage/v1/object/public/assets/site-media/6de62dbd-d8d4-43b9-915c-f7ea250938d5/1781015525373-1yythf.jpg"
+                alt=""
+                className="rounded-2xl"
+                aspectRatio="3 / 4"
+                unoptimized
+              />
             </Lens>
             <Lens>
-            <Media
-              src="https://mritcuhqiyieibsbspwt.supabase.co/storage/v1/object/public/assets/site-media/6de62dbd-d8d4-43b9-915c-f7ea250938d5/1781015567660-0m349m.jpg"
-              alt=""
-              className="rounded-2xl"
-              aspectRatio="4 / 5"
-              unoptimized
-            />
+              <Media
+                src="https://mritcuhqiyieibsbspwt.supabase.co/storage/v1/object/public/assets/site-media/6de62dbd-d8d4-43b9-915c-f7ea250938d5/1781015567660-0m349m.jpg"
+                alt=""
+                className="rounded-2xl"
+                aspectRatio="4 / 5"
+                unoptimized
+              />
             </Lens>
             <Lens>
-            <Media
-              src="https://mritcuhqiyieibsbspwt.supabase.co/storage/v1/object/public/assets/site-media/6de62dbd-d8d4-43b9-915c-f7ea250938d5/1781017857397-neo5cq.png"
-              alt=""
-              className="rounded-2xl"
-              aspectRatio="1 / 1"
-              unoptimized
-            />
+              <Media
+                src="https://mritcuhqiyieibsbspwt.supabase.co/storage/v1/object/public/assets/site-media/6de62dbd-d8d4-43b9-915c-f7ea250938d5/1781017857397-neo5cq.png"
+                alt=""
+                className="rounded-2xl"
+                aspectRatio="1 / 1"
+                unoptimized
+              />
             </Lens>
             <Lens>
               <Media
@@ -464,7 +459,6 @@ export default function Home() {
             <Column fillWidth>
               {" "}
               <ProjectsBlock projects={projectsData} />
-            
             </Column>
           </Flex>
           {/* ================================================================ */}
@@ -504,7 +498,69 @@ export default function Home() {
               <MusicWidget />
             </Row>
           </Flex>
-        </Column>
+          {/* ================================================================ */}
+
+          <Flex
+            direction="column"
+            horizontal="start"
+            vertical="start"
+            gap={1}
+            fillWidth
+            fitHeight
+          >
+            <Inline className="font-display font-default font-s text-foreground">
+              <b>
+                Awards and{" "}
+                <span className="text-muted-foreground">certifications.</span>
+              </b>
+            </Inline>
+            <Text className="font-body font-normal text-muted-foreground text-lg">
+              Some of my favourite widgets that I use on my dashboard:
+            </Text>
+            <Row
+              horizontal="start"
+              vertical="center"
+              fitHeight
+              fillWidth
+              gap={1}
+            >
+              {" "}
+              <WeatherCard
+                city={weather?.city ?? "Vadodara"}
+                temperature={weather?.temperature ?? 328}
+                feelsLike={weather?.feelsLike ?? 42}
+                high={weather?.high ?? 39}
+                low={weather?.low ?? 29}
+              />
+              <ProjectEvents />
+              <MusicWidget />
+            </Row>
+          </Flex>
+
+          {/* ================================================================ */}
+
+          <Flex
+            direction="column"
+            horizontal="start"
+            vertical="start"
+            gap={1}
+            fillWidth
+            fitHeight
+          >
+            <Inline className="font-display font-default font-s text-foreground">
+              <b>
+                Insights<span className="text-muted-foreground"></span>
+              </b>
+            </Inline>
+            <Text className="font-body font-normal text-muted-foreground text-lg">
+              Live insights of the visitors of this website.
+            </Text>
+            <ViewChart />
+          </Flex>
+        </Column>{" "}
+      </Flex>{" "}
+      <Flex fillWidth>
+        <FluidGradientText text="divyanshudhruv" />
       </Flex>
     </Flex>
   );

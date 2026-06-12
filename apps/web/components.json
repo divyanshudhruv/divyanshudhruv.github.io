@@ -23,6 +23,8 @@
   },
   "registries": {
     "@waves-cn": "https://waves-cn.vercel.app/r/{name}.json",
-    "@magicui": "https://magicui.design/r/{name}"
+    "@magicui": "https://magicui.design/r/{name}",
+    "@bklit": "https://ui.bklit.com/r/{name}.json",
+    "@ncdai": "https://chanhdai.com/r/{name}.json"
   }
 }
