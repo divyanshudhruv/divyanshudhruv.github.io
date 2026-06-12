@@ -359,7 +359,13 @@ export default function Home() {
               intersection of rigorous technical engineering and creative
               discipline.
             </Text>
-            <Flex direction="row" horizontal="start" vertical="center" gap={1}>
+            <Flex
+              direction="row"
+              horizontal="start"
+              vertical="center"
+              gap={1}
+              marginTop={1}
+            >
               {" "}
               <PremiumButton
                 text="Email me"
@@ -499,13 +505,12 @@ export default function Home() {
               contribute to building some cool stuff. Here are my work and
               education:
             </Text>{" "}
-            <Column fillWidth gap={1}>
+            <Column fillWidth gap={1} marginTop={1}>
               <ExperienceBlock experiences={experiences} />
               <hr />
               <ExperienceBlock experiences={education} />
             </Column>
-            <Flex fillWidth height={1} />
-            <Column fillWidth gap={1}>
+            <Column fillWidth gap={1} marginTop={1}>
               <Text className="font-body font-normal text-muted-foreground text-lg">
                 Also I was given an opportunity to be the organizer of the
                 tech-fest hackathon held at DPSV. Earlier in 2024 I had
@@ -550,7 +555,7 @@ export default function Home() {
             <Text className="font-body font-normal text-muted-foreground text-lg">
               Some of my favourite projects that I've worked on:
             </Text>
-            <Column fillWidth>
+            <Column fillWidth marginTop={1}>
               {" "}
               <ProjectsBlock projects={projectsData} />
             </Column>
@@ -600,6 +605,7 @@ export default function Home() {
               fitHeight
               fillWidth
               gap={1}
+              marginTop={1}
             >
               {" "}
               <WeatherCard
@@ -631,7 +637,7 @@ export default function Home() {
               I've had the privilege of receiving recognition for my work and
               have successfully completed various certifications.
             </Text>{" "}
-            <Column fillWidth>
+            <Column fillWidth marginTop={1}>
               {" "}
               <AwardsBlock awards={[]} />
             </Column>
@@ -677,7 +683,7 @@ export default function Home() {
               The below are some of my blogs and writings that i have published
               on various platforms (not really).
             </Text>{" "}
-            <Column fillWidth>
+            <Column fillWidth marginTop={1}>
               {" "}
               <AwardsBlock awards={[]} />
             </Column>
@@ -691,7 +697,7 @@ export default function Home() {
               {" "}
               <PremiumButton
                 text="View more"
-                boxColor="bg-purple-500"
+                boxColor="bg-taupe-500"
                 pattern="linkedin"
               />
               <Text className="font-body font-normal text-muted-foreground text-lg">
@@ -735,18 +741,35 @@ export default function Home() {
             gap={0.5}
           >
             {" "}
+            <Flex fillWidth paddingBottom={2}>
+              <hr className=" w-full text-taupe-900"></hr>
+            </Flex>
             <Text
               className="font-body font-normal text-foreground/80 text-lg"
               align="right"
             >
-              You've been browsing this website for
+              You've been browsing this website in current session for:
             </Text>{" "}
             <TimerRoot variant="outline" size="lg">
               <TimerIcon loading={true} />
               <TimerDisplay time="01:23" />
             </TimerRoot>
+            <hr></hr>
+            <hr></hr>
+            <Text
+              className="font-body font-normal text-foreground/80 text-lg"
+              align="right"
+            >
+              Total Time spent on this website:
+            </Text>{" "}
+            <TimerRoot variant="outline" size="lg">
+              <TimerIcon loading={true} />
+              <TimerDisplay time="01:23" />
+            </TimerRoot>
+            <Flex fillWidth paddingTop={2}>
+              <hr className=" w-full text-taupe-900"></hr>
+            </Flex>
           </Flex>
-          <hr className=" w-full text-taupe-900"></hr>
           {/* ================================================================ */}
           <Flex
             direction="column"

@@ -1,7 +1,7 @@
 "use client";
 
 import { scaleLinear, scaleTime } from "@visx/scale";
-import { bisector, extent } from "d3-array";
+import { bisector, extent } from "d3";
 import type { Transition } from "motion/react";
 import {
   Children,

@@ -8,55 +8,176 @@ import {
   Play,
   SkipBack,
   SkipForward,
+  ExternalLink,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
-import { absoluteUrl, cn } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { Media } from "@once-ui-system/core";
 
 export type MusicTrack = {
+  id: string;
   title: string;
   artist: string;
+  albumArt: string;
+  previewUrl: string | null;
+  spotifyUrl: string;
 };
 
 export type MusicWidgetProps = {
   className?: string;
-  tracks?: MusicTrack[];
-  coverUrl?: string;
-  defaultPlaying?: boolean;
 };
 
-const DEFAULT_TRACKS: MusicTrack[] = [
-  { title: "Never Gonna Give You Up", artist: "Rick Astley" },
-  { title: "It Must Have Been Love", artist: "Roxette" },
-  { title: "Take On Me", artist: "A-ha" },
-];
-
-export default function MusicWidget({
-  className,
-  tracks = DEFAULT_TRACKS,
-  coverUrl = absoluteUrl("/widget/music.jpg"),
-  defaultPlaying = false,
-}: MusicWidgetProps) {
+export default function MusicWidget({ className }: MusicWidgetProps) {
+  const [tracks, setTracks] = useState<MusicTrack[]>([]);
   const [index, setIndex] = useState(0);
-  const [playing, setPlaying] = useState(defaultPlaying);
-  const safeTracks = tracks.length > 0 ? tracks : DEFAULT_TRACKS;
-  const track = safeTracks[index % safeTracks.length];
+  const [playing, setPlaying] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [isCurrentlyPlaying, setIsCurrentlyPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    const fetchTracks = () => {
+      fetch("/api/spotify/recently-played")
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.error) throw new Error(data.error);
+          if (!data.tracks?.length) throw new Error("No tracks");
+          setTracks(data.tracks);
+          setIsCurrentlyPlaying(data.isCurrentlyPlaying ?? false);
+          setError(null);
+          setLoading(false);
+        })
+        .catch((err) => {
+          setError(err.message);
+          setLoading(false);
+        });
+    };
+
+    fetchTracks();
+    const interval = setInterval(fetchTracks, 30_000);
+    window.addEventListener("focus", fetchTracks);
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener("focus", fetchTracks);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!audioRef.current) {
+      audioRef.current = new Audio();
+    }
+    const audio = audioRef.current;
+
+    return () => {
+      audio.pause();
+      audio.src = "";
+    };
+  }, []);
+
+  useEffect(() => {
+    setIndex((i) => Math.min(i, Math.max(0, tracks.length - 1)));
+  }, [tracks.length]);
+
+  const track = tracks[index] ?? null;
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio || !track) return;
+
+    if (track.previewUrl) {
+      audio.src = track.previewUrl;
+      if (playing) {
+        audio.play().catch(() => setPlaying(false));
+      }
+    }
+
+    return () => {
+      audio.pause();
+    };
+  }, [track?.id]);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio || !track?.previewUrl) return;
+
+    if (playing) {
+      audio.play().catch(() => setPlaying(false));
+    } else {
+      audio.pause();
+    }
+  }, [playing]);
+
+  useEffect(() => {
+    setPlaying(isCurrentlyPlaying);
+  }, [isCurrentlyPlaying]);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    const handleEnded = () => {
+      setIndex((i) => (i + 1) % tracks.length);
+    };
+
+    audio.addEventListener("ended", handleEnded);
+    return () => audio.removeEventListener("ended", handleEnded);
+  }, [tracks.length]);
+
+  const goPrev = () => {
+    setIndex((i) => (i - 1 + tracks.length) % tracks.length);
+  };
+
+  const goNext = () => {
+    setIndex((i) => (i + 1) % tracks.length);
+  };
+
+  const togglePlay = () => {
+    if (isCurrentlyPlaying) return;
+    setPlaying((p) => !p);
+  };
+
+  if (loading) {
+    return (
+      <div
+        className={cn(
+          "flex size-52 flex-col items-center justify-center rounded-3xl border border-border bg-linear-to-br from-muted/80 to-muted p-16 pb-12 text-foreground shadow-md",
+          className,
+        )}
+      >
+        <p className="text-xs text-muted-foreground">Loading...</p>
+      </div>
+    );
+  }
+
+  if (error || !track) {
+    return (
+      <div
+        className={cn(
+          "flex size-52 flex-col items-center justify-center rounded-3xl border border-border bg-linear-to-br from-muted/80 to-muted p-16 pb-12 text-foreground shadow-md",
+          className,
+        )}
+      >
+        <p className="text-center text-xs text-muted-foreground">
+          {error ? "Couldn't load music" : "No tracks yet"}
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div
       className={cn(
-        "flex size-52 flex-col rounded-3xl border border-border bg-linear-to-br from-muted/80 to-muted p-16 pb-12 text-foreground shadow-md",
+        "flex size-52 flex-col rounded-3xl border border-border bg-linear-to-br from-muted/80 to-muted p-16 pb-8 text-foreground shadow-md",
         className,
       )}
     >
       <div className="relative flex min-h-0 flex-1 flex-col justify-between">
-        <div className="flex gap-2">
+        <div className="flex gap-4">
           <Media
-            src={
-              "https://i.scdn.co/image/ab67616d0000b2735a096ba5808b000eda4ac98b"
-            }
-            alt=""
+            src={track.albumArt}
+            alt={`${track.title} album art`}
             className="size-20 shrink-0 rounded-2xl object-cover"
             unoptimized
             width={5}
@@ -73,25 +194,25 @@ export default function MusicWidget({
             <Music2
               size={16}
               className={cn("transition-all", {
-                hidden: !playing,
+                hidden: !playing || !isCurrentlyPlaying,
                 "animate-in zoom-in repeat-infinite direction-alternate-reverse duration-1000 delay-500":
-                  playing,
+                  playing && isCurrentlyPlaying,
               })}
             />
             <Music3
               size={14}
               className={cn("transition-all", {
-                hidden: !playing,
+                hidden: !playing || !isCurrentlyPlaying,
                 "animate-in zoom-in repeat-infinite direction-alternate-reverse duration-1000":
-                  playing,
+                  playing && isCurrentlyPlaying,
               })}
             />
             <Music
               size={18}
               className={cn("transition-all", {
-                hidden: !playing,
+                hidden: !playing || !isCurrentlyPlaying,
                 "animate-in zoom-in repeat-infinite direction-alternate-reverse duration-1000 delay-300":
-                  playing,
+                  playing && isCurrentlyPlaying,
               })}
             />
           </div>
@@ -106,22 +227,28 @@ export default function MusicWidget({
         </div>
       </div>
 
-      <div className="mt-2 flex items-center justify-evenly">
+      <div className="flex items-center justify-evenly">
         <button
           type="button"
           aria-label="Previous track"
-          className="touch-manipulation flex min-h-11 min-w-11 items-center justify-center rounded-full"
-          onClick={() =>
-            setIndex((i) => (i - 1 + safeTracks.length) % safeTracks.length)
-          }
+          disabled={isCurrentlyPlaying}
+          className={cn(
+            "touch-manipulation flex min-h-11 min-w-11 items-center justify-center rounded-full transition-opacity",
+            isCurrentlyPlaying && "cursor-not-allowed opacity-40",
+          )}
+          onClick={goPrev}
         >
           <SkipBack className="size-5 fill-current" />
         </button>
         <button
           type="button"
           aria-label={playing ? "Pause" : "Play"}
-          className="touch-manipulation flex min-h-11 min-w-11 items-center justify-center rounded-full"
-          onClick={() => setPlaying((p) => !p)}
+          disabled={!isCurrentlyPlaying}
+          className={cn(
+            "touch-manipulation flex min-h-11 min-w-11 items-center justify-center rounded-full transition-opacity",
+            !isCurrentlyPlaying && "cursor-not-allowed opacity-40",
+          )}
+          onClick={togglePlay}
         >
           {playing ? (
             <Pause className="size-6 fill-current" />
@@ -132,11 +259,38 @@ export default function MusicWidget({
         <button
           type="button"
           aria-label="Next track"
-          className="touch-manipulation flex min-h-11 min-w-11 items-center justify-center rounded-full"
-          onClick={() => setIndex((i) => (i + 1) % safeTracks.length)}
+          disabled={isCurrentlyPlaying}
+          className={cn(
+            "touch-manipulation flex min-h-11 min-w-11 items-center justify-center rounded-full transition-opacity",
+            isCurrentlyPlaying && "cursor-not-allowed opacity-40",
+          )}
+          onClick={goNext}
         >
           <SkipForward className="size-5 fill-current" />
         </button>
+      </div>
+
+      <div className="mt-1 flex items-center justify-center gap-1.5">
+        {!isCurrentlyPlaying && (
+          <span className="text-[10px] text-muted-foreground/90">
+            Last played
+          </span>
+        )}
+
+        {isCurrentlyPlaying && (
+          <span className="text-[10px] text-muted-foreground/90">
+            Now playing
+          </span>
+        )}
+        <a
+          href={track.spotifyUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-1 text-[10px] text-muted-foreground hover:text-foreground transition-colors"
+        >
+          <ExternalLink size={10} />
+          Play on Spotify
+        </a>
       </div>
     </div>
   );
