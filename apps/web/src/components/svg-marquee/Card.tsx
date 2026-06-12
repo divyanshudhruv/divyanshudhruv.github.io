@@ -10,7 +10,7 @@ const Card = ({ index, artwork }: CardProps) => {
   const currentArtwork = artwork || artworks[index % artworks.length];
 
   return (
-    <div className="card">
+    <div className="card" style={{zIndex:99}}>
       <div
         className="card-background"
         style={{

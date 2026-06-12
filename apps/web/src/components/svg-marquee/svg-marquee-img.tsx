@@ -14,7 +14,8 @@ import { useRef } from "react";
 import * as d3 from "d3";
 import Card from "./Card";
 import { artworks } from "./artworks";
-import { Flex } from "@once-ui-system/core";
+import { Flex, Media } from "@once-ui-system/core";
+import ImageTrail, { ImageTrailItem } from "../image-trail";
 
 type MarqueeAlongPathProps = {
   children: React.ReactNode;
@@ -339,7 +340,19 @@ const MarqueeAlongPath = ({
 const path = "M 3 187 C 112 187 226 184 247 71 C 242 -70 -76 187 285 190 H 295";
 
 // "M0 0.781 C138.5 0.781 305.5 -7.719 305.5 137.281 C305.5 300.652 -75 0.781 484.5 0.781 H587.5";
-
+const images = [
+  "https://skiper-ui.com/skiperv1/skiper18/mouse1.svg",
+  "https://skiper-ui.com/skiperv1/skiper18/mouse2.svg",
+  "https://skiper-ui.com/skiperv1/skiper18/mouse3.svg",
+  "https://skiper-ui.com/skiperv1/skiper18/mouse4.svg",
+  "https://skiper-ui.com/skiperv1/skiper18/mouse5.svg",
+  "https://skiper-ui.com/skiperv1/skiper18/mouse6.svg",
+  // "https://skiper-ui.com/skiperv1/skiper18/mouse7.svg",
+  "https://skiper-ui.com/skiperv1/skiper18/mouse8.svg",
+  "https://skiper-ui.com/skiperv1/skiper18/mouse9.svg",
+  // "https://skiper-ui.com/skiperv1/skiper18/mouse10.svg",
+  "https://skiper-ui.com/skiperv1/skiper18/mouse11.svg",
+];
 const SVGMarqueeImg = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
@@ -349,8 +362,9 @@ const SVGMarqueeImg = () => {
       style={{ aspectRatio: `${588 / 400}` }}
       center
       fillHeight
-      overflow="hidden"
+      // overflow="hidden"
     >
+      {" "}
       <MarqueeAlongPath
         path={path}
         baseVelocity={5}
@@ -361,6 +375,28 @@ const SVGMarqueeImg = () => {
           <Card key={i} index={i} artwork={artwork} />
         ))}
       </MarqueeAlongPath>
+      <ImageTrail
+        threshold={60}
+        keyframes={{ opacity: [0, 1, 1, 0], scale: [1, 1, 0] }}
+        keyframesOptions={{
+          opacity: { duration: 1, times: [0, 0.001, 0.9, 1] },
+          scale: { duration: 1, times: [0, 0.8, 1] },
+        }}
+        style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 9,
+          backgroundColor: "transparent",
+        }}
+      >
+        {images.map((url, index) => (
+          <ImageTrailItem key={index}>
+            <div className="w-30 sm:w-38 h-full relative ">
+              <img src={url} alt="image" className="object-cover" />
+            </div>
+          </ImageTrailItem>
+        ))}
+      </ImageTrail>
     </Flex>
   );
 };

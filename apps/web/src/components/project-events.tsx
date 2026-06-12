@@ -20,11 +20,14 @@ export type CalendarEventProps = {
   projects?: CalendarEventItem[];
   maxVisible?: number;
 };
+import type { Projects } from "@/components/projects-new";
+import { projectsData } from "@/resources/projects";
 
 export const DEFAULT_CALENDAR_PROJECTS: CalendarEventItem[] = [
-  { title: "Design critique", desc: "10:00 – 10:45", variant: "violet" },
-  { title: "Lunch with Alex", desc: "12:30 – 1:15", variant: "cyan" },
-  { title: "Ship review", desc: "3:00 – 4:00", variant: "emerald" },
+  ...projectsData.map((project) => ({
+    title: project.title as string,
+    desc: project.description as string,
+  })),
 ];
 
 const VARIANT_STYLES: Record<
@@ -69,7 +72,7 @@ function eventdescStart(desc: string) {
 }
 
 function EventRow({ event }: { event: CalendarEventItem }) {
-  const variant = VARIANT_STYLES[event.variant ?? "violet"];
+  const variant = VARIANT_STYLES[["violet", "cyan", "emerald", "amber", "rose"][Math.floor(Math.random() * 5)] as CalendarEventVariant];
   return (
     <li
       className={cn("flex shrink-0 gap-2 rounded-md px-8 py-4", variant.chip)}
@@ -102,7 +105,6 @@ function EventRow({ event }: { event: CalendarEventItem }) {
 
 export default function ProjectEvents({
   className,
-  date = new Date(),
   projects = DEFAULT_CALENDAR_PROJECTS,
   maxVisible = 2,
 }: CalendarEventProps) {
@@ -120,7 +122,8 @@ export default function ProjectEvents({
     >
       <div className="flex shrink-0 items-baseline gap-1.5">
         <p className="text-[15px] font-semibold leading-snug text-rose-500">
-          {/* {date.toLocaleString("default", { weekday: "short" })} */} Projects
+          {/* {date.toLocaleString("default", { weekday: "short" })} */}{" "}
+          Projects
         </p>
         <p className="text-[22px] font-normal leading-snug tabular-nums tracking-tight text-foreground">
           {/* {date.getDate()} */} {projects.length}

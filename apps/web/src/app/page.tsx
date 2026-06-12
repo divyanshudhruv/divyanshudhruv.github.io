@@ -19,6 +19,7 @@ import {
 } from "@once-ui-system/core";
 import { useState, useEffect } from "react";
 import { FaGithub } from "react-icons/fa";
+import { projectsData } from "@/resources/projects";
 
 import { DotGothic16 } from "next/font/google";
 import { Inline } from "@/components/inline";
@@ -50,7 +51,8 @@ import { experiences } from "@/resources/experiences";
 import { education } from "@/resources/experiences";
 import SVGMarqueeImg from "@/components/svg-marquee/svg-marquee-img";
 import ProjectCard from "@/components/projects";
-import { projectsData } from "@/resources/projects";
+import { ProjectsBlock } from "@/components/projects-new";
+import { Lens } from "@/components/lens";
 
 const bitcount_single = DotGothic16({
   subsets: ["latin"],
@@ -221,54 +223,60 @@ export default function Home() {
             xs={{ columns: 1 }}
             gap={"12"}
           >
+            <Lens>
             <Media
               src="https://mritcuhqiyieibsbspwt.supabase.co/storage/v1/object/public/assets/site-media/6de62dbd-d8d4-43b9-915c-f7ea250938d5/1781017684713-fxr10o.jpg"
-              enlarge
               alt=""
               className="rounded-2xl"
               unoptimized
               aspectRatio="3 / 4"
-            />{" "}
+            />
+            </Lens>
+            <Lens>
             <Media
               src="https://mritcuhqiyieibsbspwt.supabase.co/storage/v1/object/public/assets/site-media/6de62dbd-d8d4-43b9-915c-f7ea250938d5/1781021304729-jzuf4f.png"
-              enlarge
               alt=""
               unoptimized
               className="rounded-2xl"
               aspectRatio="4 / 3"
-            />{" "}
+            />
+            </Lens>
+            <Lens>
             <Media
               src="https://mritcuhqiyieibsbspwt.supabase.co/storage/v1/object/public/assets/site-media/6de62dbd-d8d4-43b9-915c-f7ea250938d5/1781015525373-1yythf.jpg"
-              enlarge
               alt=""
               className="rounded-2xl"
               aspectRatio="3 / 4"
               unoptimized
-            />{" "}
+            />
+            </Lens>
+            <Lens>
             <Media
               src="https://mritcuhqiyieibsbspwt.supabase.co/storage/v1/object/public/assets/site-media/6de62dbd-d8d4-43b9-915c-f7ea250938d5/1781015567660-0m349m.jpg"
-              enlarge
               alt=""
               className="rounded-2xl"
               aspectRatio="4 / 5"
               unoptimized
             />
+            </Lens>
+            <Lens>
             <Media
               src="https://mritcuhqiyieibsbspwt.supabase.co/storage/v1/object/public/assets/site-media/6de62dbd-d8d4-43b9-915c-f7ea250938d5/1781017857397-neo5cq.png"
-              enlarge
               alt=""
               className="rounded-2xl"
               aspectRatio="1 / 1"
               unoptimized
             />
-            <Media
-              src="https://mritcuhqiyieibsbspwt.supabase.co/storage/v1/object/public/assets/site-media/6de62dbd-d8d4-43b9-915c-f7ea250938d5/1781015545636-vzy0p5.jpg"
-              enlarge
-              alt=""
-              unoptimized
-              className="rounded-2xl"
-              aspectRatio="4 / 3"
-            />
+            </Lens>
+            <Lens>
+              <Media
+                src="https://mritcuhqiyieibsbspwt.supabase.co/storage/v1/object/public/assets/site-media/6de62dbd-d8d4-43b9-915c-f7ea250938d5/1781015545636-vzy0p5.jpg"
+                alt=""
+                unoptimized
+                className="rounded-2xl"
+                aspectRatio="4 / 3"
+              />
+            </Lens>
           </MasonryGrid>
           {/* ================================================================ */}
 
@@ -453,11 +461,11 @@ export default function Home() {
             <Text className="font-body font-normal text-muted-foreground text-lg">
               Some of my favourite projects that I've worked on:
             </Text>
-            <Grid fillWidth fitHeight columns={2} gap={2}>
-              {projectsData.map((project) => (
-                <ProjectCard key={project.title} {...project} />
-              ))}
-            </Grid>
+            <Column fillWidth>
+              {" "}
+              <ProjectsBlock projects={projectsData} />
+            
+            </Column>
           </Flex>
           {/* ================================================================ */}
 

@@ -1,27 +1,28 @@
 {
-	"$schema": "https://ui.shadcn.com/schema.json",
-	"style": "base-rhea",
-	"rsc": true,
-	"tsx": true,
-	"tailwind": {
-		"config": "",
-		"css": "../../packages/ui/src/styles/globals.css",
-		"baseColor": "taupe",
-		"cssVariables": true,
-		"prefix": ""
-	},
-	"iconLibrary": "phosphor",
-	"rtl": false,
-	"menuColor": "default",
-	"menuAccent": "subtle",
-	"aliases": {
-		"components": "@/components",
-		"utils": "@homepage/ui/lib/utils",
-		"ui": "@homepage/ui/components",
-		"lib": "@/lib",
-		"hooks": "@/hooks"
-	},
-	"registries": {
-		"@waves-cn": "https://waves-cn.vercel.app/r/{name}.json"
-	}
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "base-rhea",
+  "rsc": true,
+  "tsx": true,
+  "tailwind": {
+    "config": "",
+    "css": "../../packages/ui/src/styles/globals.css",
+    "baseColor": "taupe",
+    "cssVariables": true,
+    "prefix": ""
+  },
+  "iconLibrary": "phosphor",
+  "rtl": false,
+  "menuColor": "default",
+  "menuAccent": "subtle",
+  "aliases": {
+    "components": "@/components",
+    "utils": "@homepage/ui/lib/utils",
+    "ui": "@homepage/ui/components",
+    "lib": "@/lib",
+    "hooks": "@/hooks"
+  },
+  "registries": {
+    "@waves-cn": "https://waves-cn.vercel.app/r/{name}.json",
+    "@magicui": "https://magicui.design/r/{name}"
+  }
 }

@@ -38,7 +38,7 @@ export function StackButton({
       <Row
         fitWidth
         fitHeight
-        className={cn("h-[32px] border-dashed border-2 rounded-lg bg-border")}
+        className={cn("h-[32px]  border-2 rounded-lg bg-border transition-all hover:bg-taupe-300")}
         padding={0.25}
         gap={0.5}
         center
