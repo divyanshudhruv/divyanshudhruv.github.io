@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import * as React from "react";
 import type WaveSurfer from "wavesurfer.js";
-import WavesurferPlayer from "@/lib/wave-cn";
+import WavesurferPlayer from "@/components/waves-cn/wave-cn";
 
 export interface WavePlayerProps {
 	/** Audio source URL */

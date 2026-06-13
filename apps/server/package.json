@@ -14,7 +14,6 @@
 		"@homepage/auth": "workspace:*",
 		"@homepage/db": "workspace:*",
 		"@homepage/env": "workspace:*",
-		"@sinclair/typebox": "^0.34.49",
 		"better-auth": "catalog:",
 		"dotenv": "catalog:",
 		"elysia": "^1.4.28",
