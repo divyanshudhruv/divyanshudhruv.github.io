@@ -19,9 +19,9 @@ const aspectRatios = [
   "4 / 3",
 ];
 
-export default function PhotoGrid() {
+export default function PhotoGrid({ id }: { id: string }) {
   return (
-    <MasonryGrid
+    <MasonryGrid id={id}
       columns={3}
       m={{ columns: 2 }}
       s={{ columns: 1 }}

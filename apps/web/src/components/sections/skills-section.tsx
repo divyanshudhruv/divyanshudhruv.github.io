@@ -9,9 +9,9 @@ import {
 import { StackButton } from "@/components/stack-button";
 import { stacksData } from "@/resources/stacks";
 
-export default function SkillsSection() {
+export default function SkillsSection({ id }: { id: string }) {
   return (
-    <SectionRoot>
+    <SectionRoot id={id}>
       <SectionHeading before="Skills &" highlight="stacks." />
       <SectionText>
         Here's a snapshot of the technologies I work with regularly:

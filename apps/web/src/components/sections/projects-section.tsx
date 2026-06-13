@@ -8,9 +8,9 @@ import {
 import { ProjectsBlock } from "@/components/projects-block";
 import { projectsData } from "@/resources/projects";
 
-export default function ProjectsSection() {
+export default function ProjectsSection({ id }: { id: string }) {
   return (
-    <SectionRoot>
+    <SectionRoot id={id}>
       <SectionHeading before="Featured" highlight="projects." />
       <SectionText>
         Some of my favourite projects that I've worked on:

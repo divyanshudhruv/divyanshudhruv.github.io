@@ -18,7 +18,7 @@ function formatTotalTime(s: number) {
   return `${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}:${sec.toString().padStart(2, "0")}`;
 }
 
-export default function TimerSection() {
+export default function TimerSection({ id }: { id: string }) {
   const [totalTime, setTotalTime] = useState(0);
   const totalStoredRef = useRef(0);
   const sessionRef = useRef(0);
@@ -55,7 +55,7 @@ export default function TimerSection() {
   }, [session.elapsedTime]);
 
   return (
-    <Flex
+    <Flex id={id}
       direction="column"
       fillWidth
       horizontal="center"

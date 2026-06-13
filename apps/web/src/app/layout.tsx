@@ -7,53 +7,53 @@ import { cn } from "@homepage/ui/lib/utils";
 import { Flex } from "@once-ui-system/core";
 import { ReactLenis } from "lenis/react";
 import Providers from "@/components/providers";
+import { getMetadata } from "@/lib/metadata";
+import { JsonLd } from "@/resources/metadata/json-ld";
 
 const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-sans" });
 
 const geistSans = Geist({
-	variable: "--font-geist-sans",
-	subsets: ["latin"],
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
-	variable: "--font-geist-mono",
-	subsets: ["latin"],
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-	title: "homepage",
-	description: "homepage",
-};
+export const metadata: Metadata = getMetadata();
 
 export default function RootLayout({
-	children,
+  children,
 }: Readonly<{
-	children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-	return (
-		<html
-			lang="en"
-			suppressHydrationWarning
-			className={cn("font-sans", dmSans.variable)}
-		>
-			<head />
-			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-			>
-				<ReactLenis root>
-					<Providers>
-						<Flex
-							fillWidth
-							fillHeight
-							className="bg-border dark:bg-accent-foreground"
-							horizontal="center"
-							vertical="start"
-						>
-							{children}
-						</Flex>
-					</Providers>
-				</ReactLenis>
-			</body>
-		</html>
-	);
+  return (
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={cn("font-sans", dmSans.variable)}
+    >
+      <head />
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <ReactLenis root>
+          <JsonLd />
+          <Providers>
+            <Flex
+              fillWidth
+              fillHeight
+              className="bg-border dark:bg-accent-foreground"
+              horizontal="center"
+              vertical="start"
+            >
+              {children}
+            </Flex>
+          </Providers>
+        </ReactLenis>
+      </body>
+    </html>
+  );
 }

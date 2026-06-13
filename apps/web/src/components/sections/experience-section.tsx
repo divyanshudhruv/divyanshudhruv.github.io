@@ -11,9 +11,9 @@ import { ExperienceBlock } from "@/components/experience-block";
 import SVGMarqueeImg from "@/components/svg-marquee/svg-marquee-img";
 import { education, experiences } from "@/resources/experiences";
 
-export default function ExperienceSection() {
+export default function ExperienceSection({ id }: { id: string }) {
   return (
-    <SectionRoot>
+    <SectionRoot id={id}>
       <SectionHeading before="Work and" highlight="Education." />
       <SectionText>
         I've been fortunate to work with some incredible organizations and

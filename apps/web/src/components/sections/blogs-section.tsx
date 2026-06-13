@@ -7,9 +7,9 @@ import {
 } from "@/components/section/section-heading";
 import { AwardsBlock } from "@/components/awards-block";
 
-export default function BlogsSection() {
+export default function BlogsSection({ id }: { id: string }) {
   return (
-    <SectionRoot>
+    <SectionRoot id={id}>
       <SectionHeading before="Blogs and" highlight="writings." />
       <SectionText>
         The below are some of my blogs and writings that i have published on

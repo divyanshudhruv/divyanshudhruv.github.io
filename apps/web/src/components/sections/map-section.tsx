@@ -18,9 +18,9 @@ const markers: MyMarker[] = [
   },
 ];
 
-export default function MapSection() {
+export default function MapSection({ id }: { id: string }) {
   return (
-    <Flex fillWidth fitHeight>
+    <Flex id={id} fillWidth fitHeight>
       <DottedMap<MyMarker>
         markers={markers}
         pulse={true}

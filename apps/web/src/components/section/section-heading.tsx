@@ -34,9 +34,10 @@ export function SectionText({ children }: SectionTextProps) {
 
 type SectionRootProps = {
 	children: ReactNode;
+	id:string
 };
 
-export function SectionRoot({ children }: SectionRootProps) {
+export function SectionRoot({ children,id }: SectionRootProps) {
 	return (
 		<Flex
 			direction="column"
@@ -45,6 +46,7 @@ export function SectionRoot({ children }: SectionRootProps) {
 			gap={1}
 			fillWidth
 			fitHeight
+			id={id}
 		>
 			{children}
 		</Flex>

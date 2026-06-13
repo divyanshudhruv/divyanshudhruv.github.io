@@ -5,9 +5,9 @@ import {
   SectionText,
 } from "@/components/section/section-heading";
 
-export default function AboutSection() {
+export default function AboutSection({ id }: { id: string }) {
   return (
-    <SectionRoot>
+    <SectionRoot id={id}>
       <SectionHeading before="A little about" highlight="me." />
       <SectionText>
         I'm full-stack developer and Y Combinator Startup School India fellow. I

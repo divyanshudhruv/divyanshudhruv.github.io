@@ -16,9 +16,9 @@ const ViewChart = dynamic(
   },
 );
 
-export default function InsightsSection() {
+export default function InsightsSection({ id }: { id: string }) {
   return (
-    <SectionRoot>
+    <SectionRoot id={id}>
       <SectionHeading before="Insights" />
       <SectionText>
         The graph below shows the live insights of the visitors of this website.

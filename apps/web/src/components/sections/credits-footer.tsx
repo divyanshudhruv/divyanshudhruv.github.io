@@ -5,9 +5,9 @@ import { CreditsGrid } from "@/components/section/credits-grid";
 import ImageTrail, { ImageTrailItem } from "@/components/image-trail";
 import { images } from "@/resources/image-trail";
 
-export default function CreditsFooter() {
+export default function CreditsFooter({ id }: { id: string }) {
   return (
-    <Flex
+    <Flex id={id}
       direction="column"
       fillWidth
       fitHeight

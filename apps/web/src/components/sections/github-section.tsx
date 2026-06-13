@@ -31,9 +31,9 @@ const ContributionLegend = dynamic(
   { ssr: false },
 );
 
-export default function GitHubSection() {
+export default function GitHubSection({ id }: { id: string }) {
   return (
-    <Flex fillWidth fillHeight direction="column" overflow="hidden" gap={0.5}>
+    <Flex id={id} fillWidth fillHeight direction="column" overflow="hidden" gap={0.5}>
       <GitHubCalendar
         username="divyanshudhruv"
         colorScheme="orange"

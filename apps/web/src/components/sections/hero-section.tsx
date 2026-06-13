@@ -18,7 +18,7 @@ const WavePlayer = dynamic(
 
 const pfpDurations = pfpOverlays.map(() => 3000);
 
-export default function HeroSection() {
+export default function HeroSection({ id }: { id: string }) {
   const [pfpIndex, setPfpIndex] = useState(0);
   const [pfp, setPfp] = useState(pfpOverlays[0]);
   const [pfpFade, setPfpFade] = useState(true);
@@ -37,7 +37,7 @@ export default function HeroSection() {
   }, [pfpIndex]);
 
   return (
-    <Flex direction="column" horizontal="start" vertical="start" gap={1}>
+    <Flex id={id} direction="column" horizontal="start" vertical="start" gap={1}>
       <Media
         src={pfp}
         width={8}

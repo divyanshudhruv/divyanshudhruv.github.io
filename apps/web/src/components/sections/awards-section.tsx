@@ -7,11 +7,11 @@ import {
 } from "@/components/section/section-heading";
 import { AwardsBlock } from "@/components/awards-block";
 
-export default function AwardsSection() {
+export default function AwardsSection({ id }: { id: string }) {
   return (
-    <SectionRoot>
+    <SectionRoot id={id}>
       <SectionHeading before="Awards and" highlight="certifications." />
-      <SectionText>
+      <SectionText >
         I've had the privilege of receiving recognition for my work and have
         successfully completed various certifications.
       </SectionText>

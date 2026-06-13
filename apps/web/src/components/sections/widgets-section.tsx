@@ -17,7 +17,7 @@ const MusicWidget = dynamic(() => import("@/components/music-widget"), {
   ),
 });
 
-export default function WidgetsSection() {
+export default function WidgetsSection({ id }: { id: string }) {
   const [weather, setWeather] = useState<WeatherData | null>(null);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export default function WidgetsSection() {
   }, []);
 
   return (
-    <SectionRoot>
+    <SectionRoot id={id}>
       <SectionHeading before="Some" highlight="widgets." />
       <SectionText>
         Some of my favourite widgets that I use on my dashboard:
