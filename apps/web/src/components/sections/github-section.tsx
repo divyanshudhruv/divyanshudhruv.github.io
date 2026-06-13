@@ -9,17 +9,17 @@ const GitHubCalendar = dynamic(
       default: m.GitHubCalendar,
     })),
   {
-    ssr: false,
-    loading: () => (
-      <Flex fillWidth fillHeight direction="column" overflow="hidden" gap={0.5} className="rounded-lg">
-        <MatrixFx
-          height={18}
-          colors={["brand-solid-strong", "accent-solid-strong"]}
-          trigger="mount"
-          flicker
-        />
-      </Flex>
-    ),
+    ssr: true,
+    // loading: () => (
+    //   <Flex fillWidth fillHeight direction="column" overflow="hidden" gap={0.5} className="rounded-lg">
+    //     <MatrixFx
+    //       height={18}
+    //       colors={["brand-solid-strong", "accent-solid-strong"]}
+    //       trigger="mount"
+    //       flicker
+    //     />
+    //   </Flex>
+    // ),
   },
 );
 

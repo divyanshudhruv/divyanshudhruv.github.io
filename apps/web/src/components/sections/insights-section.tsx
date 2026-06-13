@@ -12,10 +12,7 @@ const ViewChart = dynamic(
   () =>
     import("@/components/view-chart").then((m) => ({ default: m.ViewChart })),
   {
-    ssr: false,
-    loading: () => (
-      <div className="h-[300px] w-full animate-pulse rounded-2xl bg-muted" />
-    ),
+    ssr: true,
   },
 );
 

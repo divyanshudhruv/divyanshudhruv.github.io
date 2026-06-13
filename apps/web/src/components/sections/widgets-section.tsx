@@ -39,11 +39,11 @@ export default function WidgetsSection() {
         marginTop={1}
       >
         <WeatherCard
-          city={weather?.city ?? "Vadodara"}
-          temperature={weather?.temperature ?? 328}
-          feelsLike={weather?.feelsLike ?? 42}
-          high={weather?.high ?? 39}
-          low={weather?.low ?? 29}
+          city={weather?.city ?? "NaN"}
+          temperature={weather?.temperature ?? 0}
+          feelsLike={weather?.feelsLike ?? 0}
+          high={weather?.high ?? 0}
+          low={weather?.low ?? 0}
         />
         <MusicWidget />
       </Row>

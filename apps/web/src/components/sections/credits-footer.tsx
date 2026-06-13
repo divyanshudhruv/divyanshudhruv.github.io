@@ -38,6 +38,7 @@ export default function CreditsFooter() {
         ))}
       </ImageTrail>
       <CreditsGrid />
+      
     </Flex>
   );
 }

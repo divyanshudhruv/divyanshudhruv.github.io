@@ -12,11 +12,8 @@ const WavePlayer = dynamic(
     import("@/components/waves-cn/wave-player").then((m) => ({
       default: m.WavePlayer,
     })),
-  {
-    loading: () => (
-      <div className="h-[44px] w-full animate-pulse rounded-full bg-transparent" />
-    ),
-  },
+  { ssr: true },
+ 
 );
 
 const pfpDurations = pfpOverlays.map(() => 3000);
