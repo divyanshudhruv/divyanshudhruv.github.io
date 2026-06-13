@@ -38,6 +38,7 @@ export function ProjectsBlock({ projects = [] }: ProjectsBlockProps) {
 						maxWidth={3}
 						maxHeight={3}
 						className="overflow-hidden rounded-xl"
+						unoptimized
 					/>
 					<Column
 						fillWidth

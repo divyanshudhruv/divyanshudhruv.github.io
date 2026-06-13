@@ -59,6 +59,7 @@ export function StackButton({
           height={1.5}
           className="rounded-md"
           minWidth={1.5}
+		  unoptimized
           maxWidth={1.5}
           minHeight={1.5}
           maxHeight={1.5}
