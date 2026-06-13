@@ -6,6 +6,7 @@ import {
 	SectionRoot,
 	SectionText,
 } from "@/components/section/section-heading";
+import { socials } from "@/resources/socials";
 
 export default function BlogsSection({ id }: { id: string }) {
 	return (
@@ -25,6 +26,7 @@ export default function BlogsSection({ id }: { id: string }) {
 						boxColor: "bg-taupe-500",
 						pattern: "linkedin",
 						ariaLabel: "View more blogs",
+						href: socials.linkedin,
 					},
 					{
 						text: "Do nothing",

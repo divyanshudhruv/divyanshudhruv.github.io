@@ -7,6 +7,7 @@ import {
 	SectionText,
 } from "@/components/section/section-heading";
 import { projectsData } from "@/resources/projects";
+import { socials } from "@/resources/socials";
 
 export default function ProjectsSection({ id }: { id: string }) {
 	return (
@@ -20,11 +21,12 @@ export default function ProjectsSection({ id }: { id: string }) {
 			</Column>
 			<ActionRow
 				buttons={[
-					{ text: "View more", boxColor: "bg-rose-500", pattern: "linkedin" },
+					{ text: "View more", boxColor: "bg-rose-500", pattern: "linkedin", href: socials.linkedin },
 					{
 						text: "View on Github",
 						boxColor: "bg-indigo-500",
 						pattern: "arrow",
+						href: socials.github,
 					},
 				]}
 			/>

@@ -4,6 +4,7 @@ import {
 	SectionRoot,
 	SectionText,
 } from "@/components/section/section-heading";
+import { socials } from "@/resources/socials";
 
 export default function AboutSection({ id }: { id: string }) {
 	return (
@@ -25,12 +26,13 @@ export default function AboutSection({ id }: { id: string }) {
 			</SectionText>
 			<ActionRow
 				buttons={[
-					{ text: "Email me", boxColor: "bg-orange-500", pattern: "mail" },
-					{ text: "DM me on X", boxColor: "bg-teal-500", pattern: "x" },
+					{ text: "Email me", boxColor: "bg-orange-500", pattern: "mail", href: socials.email },
+					{ text: "DM me on X", boxColor: "bg-teal-500", pattern: "x", href: socials.x },
 					{
 						text: "Connect on LinkedIn",
 						boxColor: "bg-sky-500",
 						pattern: "linkedin",
+						href: socials.linkedin,
 					},
 				]}
 			/>

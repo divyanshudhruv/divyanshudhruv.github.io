@@ -31,6 +31,7 @@ export default function InsightsSection({ id }: { id: string }) {
 						text: "Reload for updates",
 						boxColor: "bg-taupe-500",
 						pattern: "arrow",
+						action: () => window.location.reload(),
 					},
 				]}
 			/>

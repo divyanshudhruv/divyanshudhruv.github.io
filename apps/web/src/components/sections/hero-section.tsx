@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Inline } from "@/components/inline";
 import PremiumButton from "@/components/premium-button";
 import { pfpOverlays } from "@/resources/pfp-overlays";
+import { socials } from "@/resources/socials";
 
 const WavePlayer = dynamic(
 	() =>
@@ -94,6 +95,7 @@ export default function HeroSection({ id }: { id: string }) {
 					text="Github"
 					className="w-fit"
 					boxColor="bg-orange-500"
+					href={socials.github}
 				/>
 				<WavePlayer
 					src="/isee.mp3"

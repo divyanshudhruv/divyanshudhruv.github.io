@@ -8,6 +8,7 @@ interface PremiumButtonProps {
 	className?: string;
 	boxColor?: string;
 	pattern?: "arrow" | "x" | "mail" | "linkedin" | "repository" | "globe";
+	href?: string;
 	onClick?: () => void;
 	ariaLabel?: string;
 }
@@ -17,22 +18,24 @@ const PremiumButton = ({
 	className,
 	boxColor,
 	pattern = "arrow",
+	href,
 	onClick,
 	ariaLabel,
 }: PremiumButtonProps) => {
+	const Tag = href ? "a" : "button";
 	return (
-		<button
-			type="button"
+		<Tag
+			{...(Tag === "button" ? { type: "button" } : { href, target: "_blank", rel: "noopener noreferrer" })}
 			onClick={onClick}
 			aria-label={ariaLabel}
 			className={cn(
-				"relative flex h-[44px] cursor-pointer items-center gap-2 rounded-[8px] bg-foreground pr-5 pl-[52px] tracking-tight transition-all hover:scale-[1.00] active:scale-[0.98] dark:border dark:border-neutral-800",
+				"relative flex h-[44px] cursor-pointer items-center gap-2 rounded-[8px] bg-foreground pr-5 pl-[52px] tracking-tight transition-all hover:scale-[1.00] active:scale-[0.98] dark:border dark:border-neutral-800 no-underline",
 				className,
 			)}
 		>
 			<Box boxColor={boxColor} pattern={pattern} />
 			<span className="font-medium text-white">{text}</span>
-		</button>
+		</Tag>
 	);
 };
 
