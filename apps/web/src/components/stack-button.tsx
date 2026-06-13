@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@homepage/ui/lib/utils";
 import { Media, Row } from "@once-ui-system/core";
 import { useState } from "react";

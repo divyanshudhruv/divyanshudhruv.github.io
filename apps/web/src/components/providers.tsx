@@ -7,6 +7,7 @@ import {
 	ToastProvider,
 } from "@once-ui-system/core";
 import { iconLibrary } from "@/resources/icon";
+import { PostHogProvider } from "./posthog-provider";
 import { ThemeProvider } from "./theme-provider";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
@@ -20,7 +21,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
 						enableSystem
 						disableTransitionOnChange
 					>
-						{children}
+						<PostHogProvider>{children}</PostHogProvider>
 						<Toaster richColors />
 					</ThemeProvider>
 				</IconProvider>

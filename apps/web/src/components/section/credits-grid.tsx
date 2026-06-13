@@ -1,3 +1,4 @@
+import * as React from "react";
 import { Grid, Text } from "@once-ui-system/core";
 
 const credits: [string, string][] = [
@@ -20,8 +21,8 @@ const credits: [string, string][] = [
 export function CreditsGrid() {
 	return (
 		<Grid fillWidth columns={2} gap={0.5}>
-			{credits.map(([label, value]) => (
-				<>
+			{credits.map(([label, value], i) => (
+				<React.Fragment key={i}>
 					<Text
 						className="font-body font-normal text-lg text-muted-foreground/80"
 						align="right"
@@ -42,7 +43,7 @@ export function CreditsGrid() {
 							{value}
 						</span>
 					</Text>
-				</>
+				</React.Fragment>
 			))}
 		</Grid>
 	);
