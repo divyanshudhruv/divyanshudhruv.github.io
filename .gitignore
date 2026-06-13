@@ -53,5 +53,7 @@ coverage
 tmp
 temp
 
+# Architecture docs (internal, not for commit)
+ARCHITECTURE.md
 
 .agents

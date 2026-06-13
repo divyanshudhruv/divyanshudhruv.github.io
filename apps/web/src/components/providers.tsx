@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { Toaster } from "@homepage/ui/components/sonner";
 import {
 	IconProvider,
@@ -7,8 +8,12 @@ import {
 	ToastProvider,
 } from "@once-ui-system/core";
 import { iconLibrary } from "@/resources/icon";
-import { PostHogProvider } from "./posthog-provider";
 import { ThemeProvider } from "./theme-provider";
+
+const PostHogProvider = dynamic(
+	() => import("./posthog-provider").then((m) => m.PostHogProvider),
+	{ ssr: false },
+);
 
 export default function Providers({ children }: { children: React.ReactNode }) {
 	return (

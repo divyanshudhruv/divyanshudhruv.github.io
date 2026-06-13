@@ -37,9 +37,9 @@ export function ExperienceBlock({ experiences }: ExperienceBlockProps) {
 							height={3}
 							minWidth={3}
 							minHeight={3}
+							unoptimized
 							maxWidth={3}
 							maxHeight={3}
-							unoptimized
 							className={`overflow-hidden rounded-xl ${exp.invert ? "invert-100" : ""}`}
 						/>
 						<Column vertical="center" horizontal="start">
@@ -48,7 +48,12 @@ export function ExperienceBlock({ experiences }: ExperienceBlockProps) {
 									{exp.company}
 								</Text>
 								{exp.url && (
-									<a href={exp.url} target="_blank" rel="noopener noreferrer">
+									<a
+										href={exp.url}
+										target="_blank"
+										rel="noopener noreferrer"
+										aria-label="Visit company website"
+									>
 										<HiArrowTopRightOnSquare
 											size={15}
 											strokeWidth={0.4}

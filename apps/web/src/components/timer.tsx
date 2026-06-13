@@ -237,7 +237,7 @@ export function useTimer({
 	const [milliseconds, setMilliseconds] = useState(0);
 	const [isRunning, setIsRunning] = useState(false);
 	const startTimeRef = useRef<number>(0);
-	const rafRef = useRef<number | null>(null);
+	const rafRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
 	const reset = useCallback(() => {
 		setElapsedTime(0);
@@ -248,37 +248,33 @@ export function useTimer({
 	const start = useCallback(() => {
 		setIsRunning(true);
 		startTimeRef.current = performance.now();
+		setElapsedTime(0);
+		setMilliseconds(0);
 	}, []);
 
 	const stop = useCallback(() => {
 		setIsRunning(false);
 		if (rafRef.current) {
-			cancelAnimationFrame(rafRef.current);
+			clearInterval(rafRef.current);
+			rafRef.current = null;
 		}
 	}, []);
 
 	useEffect(() => {
 		if (!isRunning) return;
 
-		const updateTimer = () => {
+		const interval = setInterval(() => {
 			const now = performance.now();
 			const elapsed = now - startTimeRef.current;
+			setElapsedTime(Math.floor(elapsed / 1000));
+			setMilliseconds(Math.floor(elapsed % 1000));
+		}, 1000);
 
-			const newElapsedTime = Math.floor(elapsed / 1000);
-			const newMilliseconds = Math.floor(elapsed % 1000);
-
-			setElapsedTime(newElapsedTime);
-			setMilliseconds(newMilliseconds);
-
-			rafRef.current = requestAnimationFrame(updateTimer);
-		};
-
-		rafRef.current = requestAnimationFrame(updateTimer);
+		rafRef.current = interval;
 
 		return () => {
-			if (rafRef.current) {
-				cancelAnimationFrame(rafRef.current);
-			}
+			clearInterval(interval);
+			rafRef.current = null;
 		};
 	}, [isRunning]);
 

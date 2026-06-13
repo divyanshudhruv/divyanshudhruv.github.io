@@ -37,8 +37,7 @@ export function ProjectsBlock({ projects = [] }: ProjectsBlockProps) {
 						minHeight={3}
 						maxWidth={3}
 						maxHeight={3}
-						unoptimized
-						className={"overflow-hidden rounded-xl"}
+						className="overflow-hidden rounded-xl"
 					/>
 					<Column
 						fillWidth
@@ -50,13 +49,13 @@ export function ProjectsBlock({ projects = [] }: ProjectsBlockProps) {
 							<Text className="font-body font-medium text-foreground/80 text-lg">
 								No title available
 							</Text>
-							<a href={"#"} target="_blank" rel="noopener noreferrer">
+							<span aria-hidden>
 								<HiArrowTopRightOnSquare
 									size={15}
 									strokeWidth={0.4}
-									className="cursor-pointer text-muted-foreground hover:text-foreground"
+									className="text-muted-foreground"
 								/>
-							</a>
+							</span>
 						</Row>
 						<span
 							className="pr-15.5 font-body font-normal text-md text-muted-foreground"
@@ -107,7 +106,6 @@ export function ProjectsBlock({ projects = [] }: ProjectsBlockProps) {
 							minHeight={3}
 							maxWidth={3}
 							maxHeight={3}
-							unoptimized
 							className={`overflow-hidden rounded-xl ${exp.invert ? "invert-100" : ""}`}
 						/>
 						<Column
@@ -125,6 +123,7 @@ export function ProjectsBlock({ projects = [] }: ProjectsBlockProps) {
 										href={exp.liveUrl}
 										target="_blank"
 										rel="noopener noreferrer"
+										aria-label="View live project"
 									>
 										<HiArrowTopRightOnSquare
 											size={15}

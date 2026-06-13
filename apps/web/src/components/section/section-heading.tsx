@@ -34,10 +34,10 @@ export function SectionText({ children }: SectionTextProps) {
 
 type SectionRootProps = {
 	children: ReactNode;
-	id:string
+	id: string;
 };
 
-export function SectionRoot({ children,id }: SectionRootProps) {
+export function SectionRoot({ children, id }: SectionRootProps) {
 	return (
 		<Flex
 			direction="column"

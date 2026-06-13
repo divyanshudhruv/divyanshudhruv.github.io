@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import { DM_Sans, Geist, Geist_Mono } from "next/font/google";
-// import "@once-ui-system/core/css/styles.css";
-// import "@once-ui-system/core/css/tokens.css";
 import "../index.css";
 import { cn } from "@homepage/ui/lib/utils";
 import { Flex } from "@once-ui-system/core";
@@ -13,23 +11,23 @@ import { JsonLd } from "@/resources/metadata/json-ld";
 const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-sans" });
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+	variable: "--font-geist-sans",
+	subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+	variable: "--font-geist-mono",
+	subsets: ["latin"],
 });
 
 export const metadata: Metadata = getMetadata();
 
 export default function RootLayout({
-  children,
+	children,
 }: Readonly<{
-  children: React.ReactNode;
+	children: React.ReactNode;
 }>) {
-  return (
+	return (
     <html
       lang="en"
       suppressHydrationWarning
@@ -41,17 +39,19 @@ export default function RootLayout({
       >
         <ReactLenis root>
           <JsonLd />
-          <Providers>
-            <Flex
-              fillWidth
-              fillHeight
-              className="bg-border dark:bg-accent-foreground"
-              horizontal="center"
-              vertical="start"
-            >
-              {children}
-            </Flex>
-          </Providers>
+          <main>
+            <Providers>
+              <Flex
+                fillWidth
+                fillHeight
+                className="bg-border dark:bg-accent-foreground"
+                horizontal="center"
+                vertical="start"
+              >
+                {children}
+              </Flex>
+            </Providers>{" "}
+          </main>
         </ReactLenis>
       </body>
     </html>

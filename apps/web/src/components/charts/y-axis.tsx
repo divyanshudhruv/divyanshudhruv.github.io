@@ -66,7 +66,13 @@ const YAxisInner = memo(function YAxisInner({
 		const [min, max] = domain;
 		const range = max - min;
 		if (range === 0) {
-			return [{ value: min, y: margin.top + innerHeight / 2, label: formatTickValue(min) }];
+			return [
+				{
+					value: min,
+					y: margin.top + innerHeight / 2,
+					label: formatTickValue(min),
+				},
+			];
 		}
 		const rawTicks: number[] = [];
 		const step = range / (numTicks - 1);
@@ -99,7 +105,7 @@ const YAxisInner = memo(function YAxisInner({
 						transform: "translateY(-50%)",
 					}}
 				>
-					<span className="text-xs text-[var(--chart-label,var(--color-zinc-500))]">
+					<span className="text-[var(--chart-label,var(--color-zinc-500))] text-xs">
 						{tick.label}
 					</span>
 				</div>

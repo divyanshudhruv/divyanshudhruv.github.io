@@ -14,7 +14,6 @@ import {
 	useState,
 } from "react";
 import { Area, type AreaProps } from "./area";
-import { type SeriesBarProps, SeriesBar } from "./series-bar";
 import type { LineConfig, Margin } from "./chart-context";
 import { ChartLoadingLabel } from "./chart-loading-label";
 import {
@@ -24,6 +23,7 @@ import {
 	DEFAULT_Y_DOMAIN_TWEEN_MS,
 	resolveRestingChartPhase,
 } from "./chart-phase";
+import { SeriesBar, type SeriesBarProps } from "./series-bar";
 import { TimeSeriesChartInner } from "./time-series-chart-shell";
 
 export interface ComposedChartProps {
@@ -76,9 +76,7 @@ function extractLineConfigs(children: ReactNode): LineConfig[] {
 		} else if (child.type === SeriesBar && props?.dataKey) {
 			configs.push({
 				dataKey: props.dataKey,
-				stroke:
-					(props as SeriesBarProps).fill ||
-					"var(--chart-line-primary)",
+				stroke: (props as SeriesBarProps).fill || "var(--chart-line-primary)",
 				strokeWidth: 0,
 				yAxisId: (props as SeriesBarProps).yAxisId,
 			});

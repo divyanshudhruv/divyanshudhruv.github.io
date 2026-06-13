@@ -1,8 +1,8 @@
 "use client";
 
 import { useMemo } from "react";
-import { computeSeriesBarWidth } from "./series-bar-layout";
 import { chartCssVars, useChartStable, useYScale } from "./chart-context";
+import { computeSeriesBarWidth } from "./series-bar-layout";
 
 export interface SeriesBarProps {
 	dataKey: string;

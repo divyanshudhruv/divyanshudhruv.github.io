@@ -2,10 +2,27 @@ import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
 
+class SpotifyAuthError extends Error {
+	constructor(
+		message: string,
+		public status: number,
+	) {
+		super(message);
+		this.name = "SpotifyAuthError";
+	}
+}
+
 async function getAccessToken(): Promise<string> {
-	const clientId = process.env.SPOTIFY_CLIENT_ID!;
-	const clientSecret = process.env.SPOTIFY_CLIENT_SECRET!;
-	const refreshToken = process.env.SPOTIFY_REFRESH_TOKEN!;
+	const clientId = process.env.SPOTIFY_CLIENT_ID;
+	const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
+	const refreshToken = process.env.SPOTIFY_REFRESH_TOKEN;
+
+	if (!clientId || !clientSecret || !refreshToken) {
+		throw new SpotifyAuthError(
+			"Missing Spotify credentials — check SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SPOTIFY_REFRESH_TOKEN in .env",
+			400,
+		);
+	}
 
 	const tokenRes = await fetch("https://accounts.spotify.com/api/token", {
 		method: "POST",
@@ -21,6 +38,21 @@ async function getAccessToken(): Promise<string> {
 	});
 
 	const data = await tokenRes.json();
+
+	if (!tokenRes.ok) {
+		throw new SpotifyAuthError(
+			`Spotify token refresh failed (${tokenRes.status}): ${data.error_description ?? data.error ?? "unknown error"}`,
+			tokenRes.status,
+		);
+	}
+
+	if (!data.access_token) {
+		throw new SpotifyAuthError(
+			"Spotify returned success but no access_token — refresh token may be expired",
+			401,
+		);
+	}
+
 	return data.access_token;
 }
 
@@ -88,7 +120,12 @@ export async function GET() {
 
 		if (!res.ok) {
 			const err = await res.text();
-			return NextResponse.json({ error: err }, { status: res.status });
+			let parsed: { error?: { message?: string } } | null = null;
+			try {
+				parsed = JSON.parse(err);
+			} catch {}
+			const message = parsed?.error?.message ?? err;
+			return NextResponse.json({ error: `Spotify API error (${res.status}): ${message}` }, { status: res.status });
 		}
 
 		const recentlyPlayedData = await res.json();
@@ -127,6 +164,7 @@ export async function GET() {
 
 		return NextResponse.json({ tracks, isCurrentlyPlaying: false });
 	} catch (err) {
-		return NextResponse.json({ error: String(err) }, { status: 500 });
+		const status = err instanceof SpotifyAuthError ? err.status : 500;
+		return NextResponse.json({ error: String(err) }, { status });
 	}
 }

@@ -37,12 +37,10 @@
 		"check": "biome check --write ."
 	},
 	"dependencies": {
-		"@floating-ui/react-dom": "^2.1.8",
 		"@homepage/env": "workspace:*",
 		"@once-ui-system/core": "^1.7.9",
 		"dotenv": "catalog:",
 		"next": "^16.2.7",
-		"prismjs": "^1.30.0",
 		"react": "^19.2.7",
 		"react-dom": "^19.2.7",
 		"react-icons": "^5.6.0",

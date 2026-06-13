@@ -40,9 +40,7 @@ function generateFallbackData(): InsightsDay[] {
 
 async function queryPosthogEvents() {
 	const baseUrl = `https://app.posthog.com/api/projects/${process.env.POSTHOG_PROJECT_ID}/events/`;
-	const since = new Date(
-		Date.now() - 30 * 24 * 60 * 60 * 1000,
-	)
+	const since = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)
 		.toISOString()
 		.slice(0, 10);
 

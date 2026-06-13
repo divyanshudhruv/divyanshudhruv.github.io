@@ -42,6 +42,5 @@ export const pfpOverlays = [
 	"https://img.avatardecoration.com/decorations/lightning.png",
 	"https://img.avatardecoration.com/decorations/earth.png",
 	"https://img.avatardecoration.com/decorations/balance.png",
-	"https://img.avatardecoration.com/decorations/firecrackers.png",
 	"https://img.avatardecoration.com/decorations/doodlezard.png",
 ];

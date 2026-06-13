@@ -6,6 +6,7 @@ type ActionButton = {
 	text: string;
 	boxColor?: string;
 	pattern?: "mail" | "x" | "linkedin" | "arrow";
+	ariaLabel?: string;
 };
 
 type ActionRowProps = {
@@ -26,6 +27,7 @@ export function ActionRow({ buttons }: ActionRowProps) {
 						text={btn.text}
 						boxColor={btn.boxColor}
 						pattern={btn.pattern}
+						ariaLabel={btn.ariaLabel}
 					/>
 				</Fragment>
 			))}

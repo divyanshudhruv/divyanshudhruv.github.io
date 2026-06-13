@@ -5,9 +5,7 @@ const personSchema = {
 	"@type": "Person",
 	name: config.site.name,
 	url: config.site.url,
-	sameAs: [
-		"https://github.com/divyanshudhruv",
-	],
+	sameAs: ["https://github.com/divyanshudhruv"],
 };
 
 export function JsonLd() {

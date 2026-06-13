@@ -9,6 +9,7 @@ interface PremiumButtonProps {
 	boxColor?: string;
 	pattern?: "arrow" | "x" | "mail" | "linkedin" | "repository" | "globe";
 	onClick?: () => void;
+	ariaLabel?: string;
 }
 
 const PremiumButton = ({
@@ -17,10 +18,13 @@ const PremiumButton = ({
 	boxColor,
 	pattern = "arrow",
 	onClick,
+	ariaLabel,
 }: PremiumButtonProps) => {
 	return (
 		<button
+			type="button"
 			onClick={onClick}
+			aria-label={ariaLabel}
 			className={cn(
 				"relative flex h-[44px] cursor-pointer items-center gap-2 rounded-[8px] bg-foreground pr-5 pl-[52px] tracking-tight transition-all hover:scale-[1.00] active:scale-[0.98] dark:border dark:border-neutral-800",
 				className,
@@ -44,7 +48,7 @@ const Box = ({
 	useEffect(() => {
 		const timer = setInterval(() => {
 			setStep((prev) => (prev + 1) % 14);
-		}, 100);
+		}, 250);
 		return () => clearInterval(timer);
 	}, []);
 
