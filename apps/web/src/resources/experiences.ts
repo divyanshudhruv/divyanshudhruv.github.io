@@ -12,7 +12,7 @@ export const experiences: Experience[] = [
 	},
 	{
 		company: "Once UI",
-		role: "FS Developer Intern",
+		role: "OS Developer Collaborator",
 		logo: "/onceui.png",
 		url: "https://once-ui.com/home",
 		startDate: "May 2026",
@@ -22,7 +22,7 @@ export const experiences: Experience[] = [
 		company: "Next Bench",
 		role: "Software Engineer",
 		logo: "https://media.licdn.com/dms/image/v2/D560BAQFyPNfJhr3kZw/company-logo_200_200/B56Zs1v9oTKIAE-/0/1766133325738?e=1782950400&v=beta&t=tjhKiDsNlgc83wlAxrIEBIAisxT88QrwjqQuKQMSHqo",
-		url: "https://nextbench.com",
+		url: "https://nextbench.school",
 		startDate: "Feb 2025",
 		endDate: "Jan 2026",
 	},

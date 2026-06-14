@@ -2,7 +2,7 @@
 
 import { usePathname, useSearchParams } from "next/navigation";
 import posthog from "posthog-js";
-import { Suspense, useEffect } from "react";
+import { Suspense, useEffect, useRef } from "react";
 
 function PageViewTracker({ children }: { children: React.ReactNode }) {
 	const pathname = usePathname();
@@ -18,7 +18,12 @@ function PageViewTracker({ children }: { children: React.ReactNode }) {
 }
 
 export function PostHogProvider({ children }: { children: React.ReactNode }) {
+	const initialized = useRef(false);
+
 	useEffect(() => {
+		if (initialized.current) return;
+		initialized.current = true;
+
 		posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY!, {
 			api_host: "/ingest",
 			capture_pageview: false,

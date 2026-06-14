@@ -47,7 +47,7 @@ export function StackButton({
         fitWidth
         fitHeight
         className={cn(
-          "h-[32px] rounded-lg border-2 bg-border transition-all hover:bg-taupe-300",
+          "h-[32px] rounded-lg border-2 bg-border transition-all hover:bg-taupe-300 p-1.5",
         )}
         padding={0.25}
         gap={0.5}

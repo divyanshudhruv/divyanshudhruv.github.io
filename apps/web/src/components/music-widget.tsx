@@ -35,9 +35,13 @@ export default function MusicWidget({ className }: MusicWidgetProps) {
   const [error, setError] = useState<string | null>(null);
   const [isCurrentlyPlaying, setIsCurrentlyPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const isFetchingRef = useRef(false);
 
   useEffect(() => {
     const fetchTracks = () => {
+      if (isFetchingRef.current) return;
+      isFetchingRef.current = true;
+
       fetch("/api/spotify/recently-played")
         .then((res) => res.json())
         .then((data) => {
@@ -46,20 +50,28 @@ export default function MusicWidget({ className }: MusicWidgetProps) {
           setTracks(data.tracks);
           setIsCurrentlyPlaying(data.isCurrentlyPlaying ?? false);
           setError(null);
-          setLoading(false);
         })
         .catch((err) => {
           setError(err.message);
+        })
+        .finally(() => {
+          isFetchingRef.current = false;
           setLoading(false);
         });
     };
 
     fetchTracks();
-    const interval = setInterval(fetchTracks, 30_000);
-    window.addEventListener("focus", fetchTracks);
+    const interval = setInterval(fetchTracks, 60_000);
+    let focusTimer: ReturnType<typeof setTimeout>;
+    const onFocus = () => {
+      clearTimeout(focusTimer);
+      focusTimer = setTimeout(fetchTracks, 2_000);
+    };
+    window.addEventListener("focus", onFocus);
     return () => {
       clearInterval(interval);
-      window.removeEventListener("focus", fetchTracks);
+      clearTimeout(focusTimer);
+      window.removeEventListener("focus", onFocus);
     };
   }, []);
 

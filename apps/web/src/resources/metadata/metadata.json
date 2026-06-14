@@ -1,21 +1,20 @@
 {
-	"site": {
-		"url": "https://divyanshudhruv.github.io",
-		"name": "Home / Divyanshu Dhruv",
-		"tagline": "I build things that build itself.",
-		"description": "I'm a FS developer with a passion for building cool stuff."
-	},
-	"openGraph": {
-		"locale": "en_US",
-		"type": "website",
-		"image": "/resources/og-default.png"
-	},
-	"twitter": {
-		"card": "summary_large_image",
-		"image": "/resources/twitter-image.png"
-	},
-	"robots": {
-		"index": true,
-		"follow": true
-	}
+  "site": {
+    "url": "https://divyanshudhruv.github.io",
+    "name": "Home / Divyanshu Dhruv",
+    "description": "I'm a FS developer with a passion for building cool stuff."
+  },
+  "openGraph": {
+    "locale": "en_US",
+    "type": "website",
+    "image": "/og.png"
+  },
+  "twitter": {
+    "card": "summary_large_image",
+    "image": "/og.png"
+  },
+  "robots": {
+    "index": true,
+    "follow": true
+  }
 }

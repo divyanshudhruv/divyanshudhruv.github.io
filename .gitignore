@@ -57,3 +57,10 @@ temp
 ARCHITECTURE.md
 
 .agents
+
+apps/server
+
+packages/*
+!packages/ui
+
+.next
