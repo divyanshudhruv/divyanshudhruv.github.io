@@ -74,9 +74,9 @@ export default function HeroSection({ id }: { id: string }) {
       </Flex>
       <Inline className="font-default font-display font-s text-foreground wrap-break-word">
         <b>
-          Hi I'm Divyanshu Dhruv — intern at{" "}
+          Hi I'm Divyanshu Dhruv — upcoming intern at{" "}
           <span className="text-muted-foreground">
-            Once UI. Previously at Next Bench
+            Once UI. Previously at Next Bench.
           </span>
         </b>
       </Inline>

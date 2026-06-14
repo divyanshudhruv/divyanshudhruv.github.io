@@ -29,11 +29,7 @@
 		"build": "turbo build",
 		"check-types": "turbo check-types",
 		"dev:web": "turbo -F web dev",
-		"dev:server": "turbo -F server dev",
-		"db:push": "turbo -F @homepage/db db:push",
-		"db:studio": "turbo -F @homepage/db db:studio",
-		"db:generate": "turbo -F @homepage/db db:generate",
-		"db:migrate": "turbo -F @homepage/db db:migrate",
+
 		"check": "biome check --write ."
 	},
 	"dependencies": {
@@ -49,7 +45,6 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.4.16",
-		"@homepage/config": "workspace:*",
 		"@types/bun": "catalog:",
 		"lefthook": "^2.1.9",
 		"turbo": "^2.9.16",

@@ -10,7 +10,6 @@
 	},
 	"dependencies": {
 		"@base-ui/react": "^1.5.0",
-		"@homepage/auth": "workspace:*",
 		"@homepage/env": "workspace:*",
 		"@homepage/ui": "workspace:*",
 		"@once-ui-system/core": "^1.7.9",
@@ -46,12 +45,12 @@
 		"zod": "catalog:"
 	},
 	"devDependencies": {
-		"babel-plugin-react-compiler": "^1.0.0",
-		"@homepage/config": "workspace:*",
 		"@tailwindcss/postcss": "^4.1.18",
+		"@types/d3": "^7.4.3",
 		"@types/node": "^20",
 		"@types/react": "catalog:",
 		"@types/react-dom": "catalog:",
+		"babel-plugin-react-compiler": "^1.0.0",
 		"tailwindcss": "catalog:",
 		"typescript": "catalog:"
 	}
