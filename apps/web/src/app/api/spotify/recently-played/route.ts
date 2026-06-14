@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 const cache = new Map<string, { data: unknown; timestamp: number }>();
-const CACHE_TTL = 29_000;
+const CACHE_TTL = 25_000;
 
 class SpotifyAuthError extends Error {
 	constructor(

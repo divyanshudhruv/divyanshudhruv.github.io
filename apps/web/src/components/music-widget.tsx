@@ -42,7 +42,10 @@ export default function MusicWidget({ className }: MusicWidgetProps) {
       if (isFetchingRef.current) return;
       isFetchingRef.current = true;
 
-      fetch("/api/spotify/recently-played")
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 10_000);
+
+      fetch("/api/spotify/recently-played", { signal: controller.signal })
         .then((res) => res.json())
         .then((data) => {
           if (data.error) throw new Error(data.error);
@@ -55,13 +58,14 @@ export default function MusicWidget({ className }: MusicWidgetProps) {
           setError(err.message);
         })
         .finally(() => {
+          clearTimeout(timeout);
           isFetchingRef.current = false;
           setLoading(false);
         });
     };
 
     fetchTracks();
-    const interval = setInterval(fetchTracks, 60_000);
+    const interval = setInterval(fetchTracks, 30_000);
     let focusTimer: ReturnType<typeof setTimeout>;
     const onFocus = () => {
       clearTimeout(focusTimer);

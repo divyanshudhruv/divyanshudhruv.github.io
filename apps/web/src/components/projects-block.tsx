@@ -158,7 +158,7 @@ export function ProjectsBlock({ projects = [] }: ProjectsBlockProps) {
             <Text className="font-body font-normal text-md text-muted-foreground">
               {exp.date.getFullYear()}
             </Text>
-          </Row>
+          </Row> 
         </Row>
       ))}
     </Column>

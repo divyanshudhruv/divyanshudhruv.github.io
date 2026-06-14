@@ -17,7 +17,7 @@ type ActionRowProps = {
 
 export function ActionRow({ buttons }: ActionRowProps) {
 	return (
-		<Flex fitWidth marginTop={1} direction="row" vertical="center" gap={1}>
+		<Flex fitWidth marginTop={1} direction="row" vertical="center" gap={1} wrap>
 			{buttons.map((btn, i) => (
 				<Fragment key={btn.text}>
 					{i > 0 && (

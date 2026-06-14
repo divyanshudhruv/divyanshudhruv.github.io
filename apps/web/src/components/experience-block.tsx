@@ -27,7 +27,7 @@ export function ExperienceBlock({ experiences }: ExperienceBlockProps) {
 					vertical="end"
 					className="rounded-2xl"
 				>
-					<Row center gap={0.65}>
+					<Row fillWidth center gap={0.65} className="overflow-hidden">
 						<Media
 							src={
 								exp.logo ??
@@ -42,7 +42,7 @@ export function ExperienceBlock({ experiences }: ExperienceBlockProps) {
 							maxHeight={3}
 							className={`overflow-hidden rounded-xl ${exp.invert ? "invert-100" : ""}`}
 						/>
-						<Column vertical="center" horizontal="start">
+						<Column fillWidth vertical="center" horizontal="start" className="min-w-0">
 							<Row gap={0.5} center>
 								<Text className="font-body font-medium text-foreground/80 text-lg">
 									{exp.company}
@@ -62,16 +62,29 @@ export function ExperienceBlock({ experiences }: ExperienceBlockProps) {
 									</a>
 								)}
 							</Row>
-							<Text className="font-body font-normal text-md text-muted-foreground">
+							<span
+								className="pr-15.5 font-body font-normal text-md text-muted-foreground"
+								style={{
+									display: "block",
+									width: "100%",
+									overflow: "hidden",
+									textOverflow: "ellipsis",
+									whiteSpace: "nowrap",
+								}}
+							>
 								{exp.role}
-							</Text>
+							</span>
 						</Column>
 					</Row>
-					<Column vertical="end" horizontal="center" fitWidth fillHeight>
-						<Text className="font-body font-normal text-md text-muted-foreground">
-							{exp.startDate} - {exp.endDate ?? "Now"}
-						</Text>
-					</Column>
+					<Row vertical="end" horizontal="center" fitWidth fillHeight>
+						<Text className="font-body font-normal text-md text-muted-foreground">{exp.startDate.split(" ")[0]}</Text>
+						<Text className="font-body font-normal text-md text-muted-foreground">&nbsp;</Text>
+						<Text className="font-body font-normal text-md text-muted-foreground">{exp.startDate.split(" ").slice(1).join(" ")}</Text>
+						<Text className="font-body font-normal text-md text-muted-foreground">&nbsp;-&nbsp;</Text>
+						<Text className="font-body font-normal text-md text-muted-foreground">{(exp.endDate ?? "Now").split(" ")[0]}</Text>
+						<Text className="font-body font-normal text-md text-muted-foreground">&nbsp;</Text>
+						<Text className="font-body font-normal text-md text-muted-foreground">{(exp.endDate ?? "Now").split(" ").slice(1).join(" ")}</Text>
+					</Row>
 				</Row>
 			))}
 		</Column>

@@ -68,7 +68,7 @@ export default function TimerSection({ id }: { id: string }) {
 			</Flex>
 			<Text
 				className="font-body font-normal text-foreground/80 text-lg"
-				align="right"
+				align="center"
 			>
 				You've been browsing this website in current session for:
 			</Text>
@@ -80,7 +80,7 @@ export default function TimerSection({ id }: { id: string }) {
 			<hr />
 			<Text
 				className="font-body font-normal text-foreground/80 text-lg"
-				align="right"
+				align="center"
 			>
 				Total Time spent on this website:
 			</Text>

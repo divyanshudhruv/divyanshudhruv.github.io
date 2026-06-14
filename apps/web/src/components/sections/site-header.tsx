@@ -69,6 +69,7 @@ export default function SiteHeader() {
 					vertical="end"
 					horizontal="end"
 					fillHeight
+					m={{hide:true}}
 				>
 					{navLinks.map((link) => (
 						<a

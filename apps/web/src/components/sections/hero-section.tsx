@@ -42,34 +42,37 @@ export default function HeroSection({ id }: { id: string }) {
       direction="column"
       horizontal="start"
       vertical="start"
+      fillWidth
       gap={1}
     >
-      <Media
-        src={pfp}
-        width={8}
-        top={0}
-        left={0}
-        height={8}
-        position="absolute"
-        minHeight={8}
-        minWidth={8}
-        maxHeight={8}
-        unoptimized
-        maxWidth={8}
-        className={`z-[9999] scale-[1.25] transition-opacity duration-500 ${pfpFade ? "opacity-100" : "opacity-0"}`}
-      />
-      <Media
-        src="https://i.pinimg.com/736x/bf/d9/8c/bfd98c0376634716e58cabeea9fbcd5d.jpg"
-        width={8}
-        height={8}
-        minHeight={8}
-        minWidth={8}
-        maxHeight={8}
-        unoptimized
-        maxWidth={8}
-        className="rounded-2xl"
-      />
-      <Inline className="font-default font-display font-s text-foreground">
+      <Flex fit>
+        <Media
+          src={pfp}
+          width={8}
+          top={0}
+          left={0}
+          height={8}
+          position="absolute"
+          minHeight={8}
+          minWidth={8}
+          maxHeight={8}
+          unoptimized
+          maxWidth={8}
+          className={`z-[9999] scale-[1.25] transition-opacity duration-500 ${pfpFade ? "opacity-100" : "opacity-0"}`}
+        />
+        <Media
+          src="https://i.pinimg.com/736x/bf/d9/8c/bfd98c0376634716e58cabeea9fbcd5d.jpg"
+          width={8}
+          height={8}
+          minHeight={8}
+          minWidth={8}
+          maxHeight={8}
+          unoptimized
+          maxWidth={8}
+          className="rounded-2xl"
+        />
+      </Flex>
+      <Inline className="font-default font-display font-s text-foreground wrap-break-word">
         <b>
           Hi I'm Divyanshu Dhruv — intern at{" "}
           <span className="text-muted-foreground">
@@ -77,7 +80,7 @@ export default function HeroSection({ id }: { id: string }) {
           </span>
         </b>
       </Inline>
-      <Text className="font-body font-normal text-md text-muted-foreground">
+      <Text className="font-body font-normal text-md text-muted-foreground wrap-break-word">
         Hi lol, I am a developer who is passionate about building products that
         solve real-world problems. I enjoy working on end-to-end projects, but I
         thrive when I can get my hands dirty with both code and pixels. I make
@@ -89,7 +92,6 @@ export default function HeroSection({ id }: { id: string }) {
         direction="row"
         gap={1}
         m={{ direction: "column-reverse" }}
-        paddingRight={8}
       >
         <PremiumButton
           text="Github"
@@ -97,11 +99,13 @@ export default function HeroSection({ id }: { id: string }) {
           boxColor="bg-orange-500"
           href={socials.github}
         />
-        <WavePlayer
-          src="/struct.mp3"
-          waveHeight={28}
-          className="h-[44px] rounded-full border border-border bg-accent bg-linear-to-br from-white/80 to-muted shadow-[0_2px_2px_-1px_rgba(0,0,0,0.1)]"
-        />
+        <Flex fillWidth className="pr-0 md:pr-40">
+          <WavePlayer
+            src="/struct.mp3"
+            waveHeight={28}
+            className="h-[44px] w-full rounded-full border border-border bg-accent bg-linear-to-br from-white/80 to-muted shadow-[0_2px_2px_-1px_rgba(0,0,0,0.1)]"
+          />
+        </Flex>
       </Flex>
     </Flex>
   );

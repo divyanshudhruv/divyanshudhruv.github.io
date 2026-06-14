@@ -34,7 +34,7 @@ export default function Home() {
         className="rounded-3xl bg-accent"
         fillHeight
         fillWidth
-        padding={3}
+        padding={2}
         direction="column"
         horizontal="center"
         vertical="start"

@@ -36,6 +36,7 @@ export default function WidgetsSection({ id }: { id: string }) {
 				fitHeight
 				fillWidth
 				gap={1}
+				wrap
 				marginTop={1}
 			>
 				<WeatherCard

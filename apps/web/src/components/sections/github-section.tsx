@@ -26,7 +26,7 @@ export default function GitHubSection({ id }: { id: string }) {
 			fillWidth
 			fillHeight
 			direction="column"
-			overflow="hidden"
+			overflowY="hidden"
 			gap={0.5}
 		>
 			<GitHubCalendar
