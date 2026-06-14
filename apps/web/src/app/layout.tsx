@@ -7,7 +7,8 @@ import { ReactLenis } from "lenis/react";
 import Providers from "@/components/providers";
 import { getMetadata } from "@/lib/metadata";
 import { JsonLd } from "@/resources/metadata/json-ld";
-
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-sans" });
 
 const geistSans = Geist({
@@ -39,6 +40,8 @@ export default function RootLayout({
       >
         <ReactLenis root>
           <JsonLd />
+          <Analytics/>
+          <SpeedInsights/>
           <main>
             <Providers>
               <Flex

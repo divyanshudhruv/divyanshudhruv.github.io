@@ -14,6 +14,8 @@
 		"@homepage/env": "workspace:*",
 		"@homepage/ui": "workspace:*",
 		"@once-ui-system/core": "^1.7.9",
+		"@vercel/analytics": "^2.0.1",
+		"@vercel/speed-insights": "^2.0.0",
 		"@visx/curve": "4.0.1-alpha.0",
 		"@visx/event": "4.0.1-alpha.0",
 		"@visx/grid": "4.0.1-alpha.0",
