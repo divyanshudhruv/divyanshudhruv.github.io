@@ -49,8 +49,12 @@ export interface GitHubCalendarProps {
 	weekStart?: WeekStart;
 	/** Staggered scale-in animation via Motion */
 	animate?: boolean;
-	/** Time range to display in the grid */
-	timeRange?: "3-months" | "6-months" | "1-year";
+	/** Start date (inclusive) to show contributions from (e.g. "2025-01-01") */
+	startDate?: string;
+	/** End date (inclusive). "auto" uses current date, or provide a specific date (e.g. "2025-12-31"). Defaults to "auto" */
+	endDate?: string;
+	/** Show year toggle buttons derived from data */
+	showYearButtons?: boolean;
 	/** Callback fired when data is successfully loaded client-side */
 	onDataLoaded?: (data: ContributionDay[]) => void;
 }
@@ -143,13 +147,16 @@ export function GitHubCalendar({
 	showDayLabels = true,
 	weekStart = "sun",
 	animate = false,
-	timeRange = "3-months",
+	startDate,
+	endDate,
+	showYearButtons = false,
 	onDataLoaded,
 }: GitHubCalendarProps) {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const [data, setData] = useState<ContributionDay[]>([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
+	const [selectedYear, setSelectedYear] = useState<number | null>(null);
 
 	const [tooltip, setTooltip] = useState<TooltipState>({
 		visible: false,
@@ -188,6 +195,10 @@ export function GitHubCalendar({
 						}));
 						const sorted = mapped.sort((a, b) => a.date.localeCompare(b.date));
 						setData(sorted);
+						if (showYearButtons && sorted.length) {
+							const latestYear = Number(sorted[sorted.length - 1].date.split("-")[0]);
+							setSelectedYear((prev) => prev ?? latestYear);
+						}
 						if (onDataLoaded) {
 							onDataLoaded(sorted);
 						}
@@ -209,23 +220,30 @@ export function GitHubCalendar({
 		};
 	}, [username]);
 
-	// ── Filter data based on timeRange ────────────────────────────────────────
+	// ── Derive available years from data ─────────────────────────────────────
+	const years = useMemo(() => {
+		if (!data.length) return [];
+		const yearSet = new Set(data.map((d) => d.date.split("-")[0]));
+		return Array.from(yearSet).map(Number).sort((a, b) => b - a);
+	}, [data]);
+
+	// ── Filter data based on year buttons / startDate-endDate range ─────────
 	const filteredData = useMemo(() => {
 		if (!data || !data.length) return [];
 
-		const latestDate = new Date();
-		const thresholdDate = new Date(latestDate);
-		if (timeRange === "3-months") {
-			thresholdDate.setMonth(thresholdDate.getMonth() - 3);
-		} else if (timeRange === "6-months") {
-			thresholdDate.setMonth(thresholdDate.getMonth() - 6);
-		} else {
-			thresholdDate.setFullYear(thresholdDate.getFullYear() - 1);
+		if (showYearButtons && selectedYear) {
+			const yearStr = String(selectedYear);
+			return data.filter((day) => day.date.startsWith(yearStr));
 		}
 
-		const thresholdStr = thresholdDate.toISOString().split("T")[0];
-		return data.filter((day) => day.date >= thresholdStr);
-	}, [data, timeRange]);
+		const today = new Date().toISOString().split("T")[0];
+		const end = !endDate || endDate === "auto" ? today : endDate;
+		return data.filter((day) => {
+			if (startDate && day.date < startDate) return false;
+			if (day.date > end) return false;
+			return true;
+		});
+	}, [data, startDate, endDate, showYearButtons, selectedYear]);
 
 	// ── Build week columns ────────────────────────────────────────────────────
 	const weeks = useMemo(() => {
@@ -303,17 +321,13 @@ export function GitHubCalendar({
 	const TOP = showMonthLabels ? 22 : 0;
 
 	// ── Render Skeleton Loader ────────────────────────────────────────────────
-	const skeletonWeeksCount = useMemo(() => {
-		if (timeRange === "3-months") return 13;
-		if (timeRange === "6-months") return 26;
-		return 53;
-	}, [timeRange]);
+	const skeletonWeeksCount = 53;
 
 	const skeletonWeeks = useMemo(() => {
 		return Array.from({ length: skeletonWeeksCount }, () =>
 			Array(7).fill(null),
 		);
-	}, [skeletonWeeksCount]);
+	}, []);
 
 	if (loading) {
 		const gridW = skeletonWeeksCount * step - cellGap;
@@ -398,6 +412,26 @@ export function GitHubCalendar({
 	const gridH = 7 * step - cellGap;
 
 	return (
+		<div className="flex flex-col gap-4">
+			{/* ── Year buttons ────────────────────────────────────────────────── */}
+			{showYearButtons && years.length > 1 && (
+				<div className="flex gap-2 flex-wrap">
+					{years.map((year) => (
+						<button
+							key={year}
+							onClick={() => setSelectedYear(year)}
+							className={cn(
+								"px-3 py-1 text-sm rounded-md transition-colors",
+								selectedYear === year
+									? "bg-zinc-700 text-white"
+									: "bg-zinc-800 text-zinc-400 hover:text-zinc-200",
+							)}
+						>
+							{year}
+						</button>
+					))}
+				</div>
+			)}
 		<div
 			ref={containerRef}
 			className="relative select-none"
@@ -522,6 +556,7 @@ export function GitHubCalendar({
 					<span className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-zinc-700" />
 				</div>
 			)}
+		</div>
 		</div>
 	);
 }
