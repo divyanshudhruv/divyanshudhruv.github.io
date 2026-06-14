@@ -128,8 +128,8 @@ export function ProjectsBlock({ projects = [] }: ProjectsBlockProps) {
                   >
                     <ExternalLink
                       size={15}
-                      strokeWidth={0.4}
-                      className="cursor-pointer text-muted-foreground hover:text-foreground"
+                      strokeWidth={1}
+                      className="cursor-pointer text-foreground stroke-foreground "
                     />
                   </a>
                 )}
@@ -158,7 +158,7 @@ export function ProjectsBlock({ projects = [] }: ProjectsBlockProps) {
             <Text className="font-body font-normal text-md text-muted-foreground">
               {exp.date.getFullYear()}
             </Text>
-          </Row> 
+          </Row>
         </Row>
       ))}
     </Column>

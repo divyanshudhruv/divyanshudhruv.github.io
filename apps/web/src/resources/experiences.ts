@@ -15,7 +15,7 @@ export const experiences: Experience[] = [
 		role: "OS Developer Collaborator",
 		logo: "/onceui.png",
 		url: "https://once-ui.com/home",
-		startDate: "May 26",
+		startDate: "Apr 26",
 		endDate: "Now",
 	},
 	{

@@ -17,71 +17,67 @@ export interface AwardsBlockProps {
 export function AwardsBlock({ awards = [] }: AwardsBlockProps) {
 	if (awards.length === 0) {
 		return (
-			<Row
-				key={"#"}
-				fillWidth
-				fitHeight
-				horizontal="between"
-				vertical="end"
-				className="rounded-2xl"
-			>
-				<Row fillWidth center gap={0.65} className="overflow-hidden">
-				<Media
-						src={
-							"https://i.pinimg.com/736x/ed/a9/3e/eda93eef7541d94a899a717a6753666b.jpg"
-						}
-						width={3}
-						height={3}
-						minWidth={3}
-						minHeight={3}
-						maxWidth={3}
-						maxHeight={3}
-						className="overflow-hidden rounded-xl"
-					/>
-					<Column
-						fillWidth
-						vertical="center"
-						horizontal="start"
-					>
-						<Row gap={0.5} center>
-							<Text className="font-body font-medium text-foreground/80 text-lg">
-								No title available
-							</Text>
-							<span aria-hidden>
-								<ExternalLink
-									size={15}
-									strokeWidth={0.4}
-									className="text-muted-foreground"
-								/>
-							</span>
-						</Row>
-						<span
-							className="pr-15.5 font-body font-normal text-md text-muted-foreground"
-							style={{
-								display: "block",
-								width: "100%",
-								overflow: "hidden",
-								textOverflow: "ellipsis",
-								whiteSpace: "nowrap",
-							}}
-						>
-							No description available
-						</span>
-					</Column>
-				</Row>
-				<Row vertical="end" horizontal="center" fitWidth fillHeight>
-					<Text className="font-body font-normal text-md text-muted-foreground">
-						NaN
-					</Text>
-					<Text className="font-body font-normal text-md text-muted-foreground">
-						&nbsp;
-					</Text>
-					<Text className="font-body font-normal text-md text-muted-foreground">
-						NaN
-					</Text>
-				</Row>
-			</Row>
-		);
+      <Row
+        key={"#"}
+        fillWidth
+        fitHeight
+        horizontal="between"
+        vertical="end"
+        className="rounded-2xl"
+      >
+        <Row fillWidth center gap={0.65} className="overflow-hidden">
+          <Media
+            src={
+              "https://i.pinimg.com/736x/ed/a9/3e/eda93eef7541d94a899a717a6753666b.jpg"
+            }
+            width={3}
+            height={3}
+            minWidth={3}
+            minHeight={3}
+            maxWidth={3}
+            maxHeight={3}
+            className="overflow-hidden rounded-xl"
+          />
+          <Column fillWidth vertical="center" horizontal="start">
+            <Row gap={0.5} center>
+              <Text className="font-body font-medium text-foreground/80 text-lg">
+                No title available
+              </Text>
+              <span aria-hidden>
+                <ExternalLink
+                  size={15}
+                  strokeWidth={1}
+                  className="cursor-pointer text-foreground stroke-foreground "
+                />
+              </span>
+            </Row>
+            <span
+              className="pr-15.5 font-body font-normal text-md text-muted-foreground"
+              style={{
+                display: "block",
+                width: "100%",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+              }}
+            >
+              No description available
+            </span>
+          </Column>
+        </Row>
+        <Row vertical="end" horizontal="center" fitWidth fillHeight>
+          <Text className="font-body font-normal text-md text-muted-foreground">
+            NaN
+          </Text>
+          <Text className="font-body font-normal text-md text-muted-foreground">
+            &nbsp;
+          </Text>
+          <Text className="font-body font-normal text-md text-muted-foreground">
+            NaN
+          </Text>
+        </Row>
+      </Row>
+    );
 	}
 
 	return (

@@ -53,11 +53,12 @@ export function ExperienceBlock({ experiences }: ExperienceBlockProps) {
 										target="_blank"
 										rel="noopener noreferrer"
 										aria-label="Visit company website"
+										className="text-foreground"
 									>
 										<ExternalLink
 											size={15}
-											strokeWidth={0.4}
-											className="cursor-pointer text-muted-foreground hover:text-foreground"
+											strokeWidth={1}
+											className="cursor-pointer text-foreground stroke-foreground "
 										/>
 									</a>
 								)}
@@ -76,7 +77,7 @@ export function ExperienceBlock({ experiences }: ExperienceBlockProps) {
 							</span>
 						</Column>
 					</Row>
-					<Row vertical="end" horizontal="center" fitWidth fillHeight>
+					<Row vertical="center" horizontal="end" fillWidth fillHeight>
 						<Text className="font-body font-normal text-md text-muted-foreground">{exp.startDate.split(" ")[0]}</Text>
 						<Text className="font-body font-normal text-md text-muted-foreground">&nbsp;</Text>
 						<Text className="font-body font-normal text-md text-muted-foreground">{exp.startDate.split(" ").slice(1).join(" ")}</Text>
