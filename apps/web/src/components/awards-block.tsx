@@ -1,5 +1,5 @@
 import { Column, Media, Row, Text } from "@once-ui-system/core";
-import { HiArrowTopRightOnSquare } from "react-icons/hi2";
+import { ExternalLink } from "lucide-react";
 
 export interface Awards {
 	title: string;
@@ -48,7 +48,7 @@ export function AwardsBlock({ awards = [] }: AwardsBlockProps) {
 								No title available
 							</Text>
 							<span aria-hidden>
-								<HiArrowTopRightOnSquare
+								<ExternalLink
 									size={15}
 									strokeWidth={0.4}
 									className="text-muted-foreground"
@@ -126,7 +126,7 @@ export function AwardsBlock({ awards = [] }: AwardsBlockProps) {
 										rel="noopener noreferrer"
 										aria-label="View certificate"
 									>
-										<HiArrowTopRightOnSquare
+										<ExternalLink
 											size={15}
 											strokeWidth={0.4}
 											className="cursor-pointer text-muted-foreground hover:text-foreground"

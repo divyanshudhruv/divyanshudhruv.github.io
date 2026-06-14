@@ -1,5 +1,5 @@
 import { Column, Media, Row, Text } from "@once-ui-system/core";
-import { HiArrowTopRightOnSquare } from "react-icons/hi2";
+import { ExternalLink } from "lucide-react";
 
 export interface Experience {
 	company: string;
@@ -54,7 +54,7 @@ export function ExperienceBlock({ experiences }: ExperienceBlockProps) {
 										rel="noopener noreferrer"
 										aria-label="Visit company website"
 									>
-										<HiArrowTopRightOnSquare
+										<ExternalLink
 											size={15}
 											strokeWidth={0.4}
 											className="cursor-pointer text-muted-foreground hover:text-foreground"

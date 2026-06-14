@@ -13,7 +13,7 @@ const WavePlayer = dynamic(
     import("@/components/waves-cn/wave-player").then((m) => ({
       default: m.WavePlayer,
     })),
-  { ssr: true },
+  { ssr: false },
 );
 
 const pfpDurations = pfpOverlays.map(() => 3000);
