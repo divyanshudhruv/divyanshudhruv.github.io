@@ -81,7 +81,7 @@ export default function HeroSection({ id }: { id: string }) {
         </b>
       </Inline>
       <Text className="font-body font-normal text-md text-muted-foreground wrap-break-word">
-        Hi lol, I am a developer who is passionate about building products that
+        Hi lol, I am an 18 y/o developer who is passionate about building products that
         solve real-world problems. I enjoy working on end-to-end projects, but I
         thrive when I can get my hands dirty with both code and pixels. I make
         music too.

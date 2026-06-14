@@ -7,12 +7,13 @@ import { Suspense, useEffect, useRef } from "react";
 function PageViewTracker({ children }: { children: React.ReactNode }) {
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
+	const pageUrl = pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : "");
 
 	useEffect(() => {
 		posthog.capture("$pageview", {
-			$current_url: pathname + searchParams.toString(),
+			$current_url: pageUrl,
 		});
-	}, [pathname, searchParams]);
+	}, [pageUrl]);
 
 	return <>{children}</>;
 }
@@ -25,7 +26,7 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
 		initialized.current = true;
 
 		posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY!, {
-			api_host: "/ingest",
+			api_host: "/a",
 			capture_pageview: false,
 		});
 	}, []);

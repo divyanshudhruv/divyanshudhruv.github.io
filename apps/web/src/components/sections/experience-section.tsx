@@ -1,4 +1,4 @@
-import { Column } from "@once-ui-system/core";
+import { Column, Flex } from "@once-ui-system/core";
 import { ExperienceBlock } from "@/components/experience-block";
 import { ActionRow } from "@/components/section/action-row";
 import {
@@ -45,7 +45,8 @@ export default function ExperienceSection({ id }: { id: string }) {
 					]}
 				/>
 			</Column>
-			<SVGMarqueeImg />
+			<Flex s={{ hide: true }} fillWidth fitHeight>
+			<SVGMarqueeImg /></Flex>
 		</SectionRoot>
 	);
 }

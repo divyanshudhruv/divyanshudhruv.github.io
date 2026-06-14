@@ -77,7 +77,7 @@ export function ExperienceBlock({ experiences }: ExperienceBlockProps) {
 							</span>
 						</Column>
 					</Row>
-					<Row vertical="center" horizontal="end" fillWidth fillHeight>
+					<Row vertical="center" horizontal="end" fillWidth fillHeight s={{ hide: true }}>
 						<Text className="font-body font-normal text-md text-muted-foreground">{exp.startDate.split(" ")[0]}</Text>
 						<Text className="font-body font-normal text-md text-muted-foreground">&nbsp;</Text>
 						<Text className="font-body font-normal text-md text-muted-foreground">{exp.startDate.split(" ").slice(1).join(" ")}</Text>
