@@ -46,7 +46,10 @@ export default function ExperienceSection({ id }: { id: string }) {
 				/>
 			</Column>
 			<Flex s={{ hide: true }} fillWidth fitHeight>
-			<SVGMarqueeImg /></Flex>
+			<SVGMarqueeImg />
+			
+			
+			</Flex>
 		</SectionRoot>
 	);
 }

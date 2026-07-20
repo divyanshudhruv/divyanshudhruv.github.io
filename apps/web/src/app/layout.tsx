@@ -8,6 +8,8 @@ import Providers from "@/components/providers";
 import { getMetadata } from "@/lib/metadata";
 import { JsonLd } from "@/resources/metadata/json-ld";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import {SimpleMouseFollow} from "./../../../../packages/ui/src/components/ui/skiper-ui/skiper61";
+
 import { Analytics } from "@vercel/analytics/next";
 const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -36,12 +38,12 @@ export default function RootLayout({
     >
       <head />
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden cursor-none [&_*]:!cursor-none`}
       >
         <ReactLenis root>
           <JsonLd />
-          <Analytics/>
-          <SpeedInsights/>
+          <Analytics />
+          <SpeedInsights /> <SimpleMouseFollow />
           <main>
             <Providers>
               <Flex

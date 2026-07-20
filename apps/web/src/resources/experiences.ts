@@ -1,10 +1,19 @@
 import type { Experience } from "@/components/experience-block";
 
 export const experiences: Experience[] = [
+		{
+		company: "Dopler",
+		role: "Summer Intern",
+		logo: "https://media.licdn.com/dms/image/v2/D4D0BAQGAnV2jtngGYA/company-logo_200_200/B4DZ9p9kKNJ4AI-/0/1784189174718/dopler_app_logo?e=1785974400&v=beta&t=ryiXje6ShWipcflsLvq-s3aw0PZ9zUSpRfxBzchOmt4",
+		url: "#",
+		startDate: "Mar 26",
+		endDate: "Now",
+		invert: false,
+	},
 	{
 		company: "Basalt3",
 		role: "Lead Architect",
-		logo: "https://media.licdn.com/dms/image/v2/D4D0BAQFiRkk2y3lyTw/company-logo_100_100/B4DZ1n2_OaHIAQ-/0/1775563962004/basalt3_logo?e=1782950400&v=beta&t=1XcJfY53gb3y7DPeadtcVbqnFSSP6htjY8mr8cOOpZw",
+		logo: "https://github.com/basalt3.png",
 		url: "https://basalt3.home",
 		startDate: "Mar 26",
 		endDate: "Now",
@@ -21,7 +30,7 @@ export const experiences: Experience[] = [
 	{
 		company: "Next Bench",
 		role: "Software Engineer",
-		logo: "https://media.licdn.com/dms/image/v2/D560BAQFyPNfJhr3kZw/company-logo_200_200/B56Zs1v9oTKIAE-/0/1766133325738?e=1782950400&v=beta&t=tjhKiDsNlgc83wlAxrIEBIAisxT88QrwjqQuKQMSHqo",
+		logo: "https://media.licdn.com/dms/image/v2/D560BAQFyPNfJhr3kZw/company-logo_200_200/B56Zs1v9oTKIAE-/0/1766133325738?e=1785974400&v=beta&t=sZGKaoUOfjozw43CXcGLd5uLutufOl6q6aYPJMoI920",
 		url: "https://nextbench.school",
 		startDate: "Feb 25",
 		endDate: "Jan 26",
@@ -58,7 +67,7 @@ export const education: Experience[] = [
 		role: "Primary & Junior School",
 		logo: "https://i.pinimg.com/736x/79/1e/e1/791ee1429e8899bc9a5ffa0583dfc8f8.jpg",
 		url: "#",
-		startDate: "Jun 25",
-		endDate: "May 24",
+		startDate: "May 24",
+		endDate: "Jun 25",
 	},
 ];

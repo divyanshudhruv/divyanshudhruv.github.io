@@ -24,7 +24,8 @@ export function ViewChart() {
 		fetch(`/api/insights?t=${Date.now()}`)
 			.then((r) => r.json())
 			.then((d) => {
-				setData(d);
+				const items = d.data ?? d;
+				setData(items);
 				setStatus("ready");
 			})
 			.catch(() => {

@@ -57,9 +57,9 @@ export function StackButton({
           src={faviconSrc}
           width={1.5}
           height={1.5}
-          className="rounded-md"
+          className="rounded-md "
           minWidth={1.5}
-		  unoptimized
+          unoptimized
           maxWidth={1.5}
           minHeight={1.5}
           maxHeight={1.5}

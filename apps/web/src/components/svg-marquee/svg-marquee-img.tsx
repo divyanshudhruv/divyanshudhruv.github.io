@@ -321,7 +321,7 @@ const SVGMarqueeImg = () => {
 					<Card key={i} index={i} artwork={artwork} />
 				))}
 			</MarqueeAlongPath>
-			<ImageTrail
+			{/* <ImageTrail
 				threshold={60}
 				keyframes={{ opacity: [0, 1, 1, 0], scale: [1, 1, 0] }}
 				keyframesOptions={{
@@ -342,7 +342,7 @@ const SVGMarqueeImg = () => {
 						</div>
 					</ImageTrailItem>
 				))}
-			</ImageTrail>
+			</ImageTrail> */}
 		</Flex>
 	);
 };

@@ -80,7 +80,12 @@ async function queryPosthogEvents() {
   return allEvents;
 }
 
-export async function getInsightsData(): Promise<InsightsDay[]> {
+export interface InsightsResponse {
+  data: InsightsDay[];
+  meta: { isFallback: boolean };
+}
+
+export async function getInsightsData(): Promise<InsightsResponse> {
   const events = await queryPosthogEvents();
 
   const todayKey = new Date().toISOString().slice(0, 10);
@@ -136,5 +141,5 @@ export async function getInsightsData(): Promise<InsightsDay[]> {
     }
   }
 
-  return chartData;
+  return { data: chartData, meta: { isFallback: useFallbackForPast } };
 }

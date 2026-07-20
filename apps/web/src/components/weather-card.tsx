@@ -1,6 +1,6 @@
 import { CircleArrowUp, CloudSunRain } from "lucide-react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@homepage/ui/lib/utils";
 
 export type WeatherCardProps = {
 	className?: string;

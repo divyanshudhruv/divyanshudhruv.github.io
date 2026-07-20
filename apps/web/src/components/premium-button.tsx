@@ -24,19 +24,21 @@ const PremiumButton = ({
 }: PremiumButtonProps) => {
 	const Tag = href ? "a" : "button";
 	return (
-		<Tag
-			{...(Tag === "button" ? { type: "button" } : { href, target: "_blank", rel: "noopener noreferrer" })}
-			onClick={onClick}
-			aria-label={ariaLabel}
-			className={cn(
-				"relative flex h-[44px] cursor-pointer items-center gap-2 rounded-[8px] bg-foreground pr-5 pl-[52px] tracking-tight transition-all hover:scale-[1.00] active:scale-[0.98] dark:border dark:border-neutral-800 no-underline",
-				className,
-			)}
-		>
-			<Box boxColor={boxColor} pattern={pattern} />
-			<span className="font-medium text-white">{text}</span>
-		</Tag>
-	);
+    <Tag
+      {...(Tag === "button"
+        ? { type: "button" }
+        : { href, target: "_blank", rel: "noopener noreferrer" })}
+      onClick={onClick}
+      aria-label={ariaLabel}
+      className={cn(
+        "relative flex h-[44px] cursor-pointer items-center gap-2 rounded-[8px] bg-foreground pr-5 pl-[52px] tracking-tight transition-all duration-400 ease-out hover:transition-transform hover:duration-400 hover:ease-out hover:scale-105 active:scale-[0.98] dark:border dark:border-neutral-800 no-underline",
+        className,
+      )}
+    >
+      <Box boxColor={boxColor} pattern={pattern} />
+      <span className="font-medium text-white">{text}</span>
+    </Tag>
+  );
 };
 
 const Box = ({
@@ -113,7 +115,7 @@ const Box = ({
 
 	return (
 		<div
-			className={`absolute inset-y-0 left-4 my-auto flex size-9 flex-col items-center justify-center gap-px rounded-[4px] shadow-sm transition-all duration-400 ease-out ${boxColor}`}
+			className={`absolute inset-y-0 left-4 my-auto flex size-9 flex-col items-center justify-center gap-px rounded-[4px] shadow-sm transition-all duration-400 ease-out ${boxColor} `}
 		>
 			{[0, 1, 2, 3, 4].map((row) => (
 				<div key={row} className="flex gap-[2px]">

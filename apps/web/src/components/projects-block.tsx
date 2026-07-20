@@ -7,7 +7,7 @@ export interface Projects {
   imageUrl?: string;
   repoUrl?: string;
   liveUrl?: string;
-  date: Date;
+  date: Date | string;
   invert?: boolean;
 }
 
@@ -149,15 +149,23 @@ export function ProjectsBlock({ projects = [] }: ProjectsBlockProps) {
             </Column>
           </Row>
           <Row vertical="end" horizontal="center" fitWidth fillHeight>
-            <Text className="font-body font-normal text-md text-muted-foreground">
-              {exp.date.toLocaleString("default", { month: "short" })}
-            </Text>
-            <Text className="font-body font-normal text-md text-muted-foreground">
-              &nbsp;
-            </Text>
-            <Text className="font-body font-normal text-md text-muted-foreground">
-              {exp.date.getFullYear()}
-            </Text>
+            {exp.date instanceof Date ? (
+              <>
+                <Text className="font-body font-normal text-md text-muted-foreground">
+                  {exp.date.toLocaleString("default", { month: "short" })}
+                </Text>
+                <Text className="font-body font-normal text-md text-muted-foreground">
+                  &nbsp;
+                </Text>
+                <Text className="font-body font-normal text-md text-muted-foreground">
+                  {exp.date.getFullYear()}
+                </Text>
+              </>
+            ) : (
+              <Text className="font-body font-normal text-md text-muted-foreground">
+                {exp.date}
+              </Text>
+            )}
           </Row>
         </Row>
       ))}

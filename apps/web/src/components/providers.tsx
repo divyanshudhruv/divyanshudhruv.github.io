@@ -1,14 +1,14 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { Toaster } from "@homepage/ui/components/sonner";
 import {
 	IconProvider,
 	LayoutProvider,
 	ToastProvider,
 } from "@once-ui-system/core";
-import { iconLibrary } from "@/resources/icon";
-import { ThemeProvider } from "./theme-provider";
+import { iconLibrary } from "@/lib/icon-library";
 
 const PostHogProvider = dynamic(
 	() => import("./posthog-provider").then((m) => m.PostHogProvider),
@@ -20,7 +20,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
 		<LayoutProvider>
 			<ToastProvider>
 				<IconProvider icons={iconLibrary}>
-					<ThemeProvider
+					<NextThemesProvider
 						attribute="class"
 						defaultTheme="light"
 						enableSystem
@@ -28,7 +28,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
 					>
 						<PostHogProvider>{children}</PostHogProvider>
 						<Toaster richColors />
-					</ThemeProvider>
+					</NextThemesProvider>
 				</IconProvider>
 			</ToastProvider>
 		</LayoutProvider>

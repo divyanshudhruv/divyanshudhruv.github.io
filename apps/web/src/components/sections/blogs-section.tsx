@@ -1,5 +1,4 @@
-import { Column } from "@once-ui-system/core";
-import { AwardsBlock } from "@/components/awards-block";
+import { Column, Text } from "@once-ui-system/core";
 import { ActionRow } from "@/components/section/action-row";
 import {
 	SectionHeading,
@@ -17,7 +16,9 @@ export default function BlogsSection({ id }: { id: string }) {
 				various platforms (not really).
 			</SectionText>
 			<Column fillWidth marginTop={1}>
-				<AwardsBlock awards={[]} />
+				<Text className="font-body text-muted-foreground">
+					No blogs yet — check back later.
+				</Text>
 			</Column>
 			<ActionRow
 				buttons={[

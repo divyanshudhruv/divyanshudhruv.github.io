@@ -1,6 +1,14 @@
 import { Column, Media, Row, Text } from "@once-ui-system/core";
 import { ExternalLink } from "lucide-react";
 
+function formatDateRange(start: string, end?: string): string {
+	const fmt = (d: string) => {
+		const p = d.split(" ");
+		return p.length === 2 ? `${p[0]} ${p[1]}` : d;
+	};
+	return `${fmt(start)} - ${end ? fmt(end) : "Now"}`;
+}
+
 export interface Experience {
 	company: string;
 	role: string;
@@ -78,13 +86,9 @@ export function ExperienceBlock({ experiences }: ExperienceBlockProps) {
 						</Column>
 					</Row>
 					<Row vertical="center" horizontal="end" fillWidth fillHeight s={{ hide: true }}>
-						<Text className="font-body font-normal text-md text-muted-foreground">{exp.startDate.split(" ")[0]}</Text>
-						<Text className="font-body font-normal text-md text-muted-foreground">&nbsp;</Text>
-						<Text className="font-body font-normal text-md text-muted-foreground">{exp.startDate.split(" ").slice(1).join(" ")}</Text>
-						<Text className="font-body font-normal text-md text-muted-foreground">&nbsp;-&nbsp;</Text>
-						<Text className="font-body font-normal text-md text-muted-foreground">{(exp.endDate ?? "Now").split(" ")[0]}</Text>
-						<Text className="font-body font-normal text-md text-muted-foreground">&nbsp;</Text>
-						<Text className="font-body font-normal text-md text-muted-foreground">{(exp.endDate ?? "Now").split(" ").slice(1).join(" ")}</Text>
+						<Text className="font-body font-normal text-md text-muted-foreground">
+							{formatDateRange(exp.startDate, exp.endDate)}
+						</Text>
 					</Row>
 				</Row>
 			))}

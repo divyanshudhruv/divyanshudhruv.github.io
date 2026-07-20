@@ -1,6 +1,6 @@
 "use client";
 
-import { Flex, Media, Text } from "@once-ui-system/core";
+import { Flex, Media, Row, Text } from "@once-ui-system/core";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { Inline } from "@/components/inline";
@@ -72,19 +72,25 @@ export default function HeroSection({ id }: { id: string }) {
           className="rounded-2xl"
         />
       </Flex>
-      <Inline className="font-default font-display font-s text-foreground wrap-break-word">
+      <Inline className="font-default font-display font-s text-foreground wrap-break-word opacity-90">
         <b>
           Hi I'm Divyanshu Dhruv — upcoming intern at{" "}
           <span className="text-muted-foreground">
-            Once UI. Previously at Next Bench.
+            Dopler. Previously at Next Bench.
           </span>
         </b>
       </Inline>
-      <Text className="font-body font-normal text-md text-muted-foreground wrap-break-word">
-        Hi lol, I am an 18 y/o developer who is passionate about building products that
-        solve real-world problems. I enjoy working on end-to-end projects, but I
-        thrive when I can get my hands dirty with both code and pixels. I make
-        music too.
+      <Text
+        variant="label-default-xl"
+        onBackground="neutral-weak"
+        className="opacity-70 font-medium"
+      >
+        <b>
+          Hi lol, I am an 18 y/o developer who is passionate about building
+          products that solve real-world problems. I enjoy working on end-to-end
+          projects, but I thrive when I can get my hands dirty with both code
+          and pixels. I make music too.
+        </b>
       </Text>
       <Flex
         fillWidth
@@ -93,12 +99,20 @@ export default function HeroSection({ id }: { id: string }) {
         gap={1}
         m={{ direction: "column-reverse" }}
       >
-        <PremiumButton
-          text="Github"
-          className="w-fit"
-          boxColor="bg-orange-500"
-          href={socials.github}
-        />
+        <Row center gap={1} className="duration-400">
+          <PremiumButton
+            text="Github"
+            className="w-fit"
+            boxColor="bg-orange-500"
+            href={socials.github}
+          />
+          {/* <PremiumButton
+            text="Linkedin"
+            className="w-fit"
+            boxColor="bg-sky-500"
+            href={socials.linkedin}
+          /> */}
+        </Row>
         <Flex fillWidth className="pr-0 md:pr-40">
           <WavePlayer
             src="/struct.mp3"
