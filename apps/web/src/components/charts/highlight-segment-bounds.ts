@@ -32,11 +32,33 @@ export const INACTIVE_SEGMENT: SegmentBounds = {
  * (clamped to the ends); an active drag-selection uses the dragged pixel range
  * directly and takes priority over hover.
  */
+/** Interpolate pixel x at a fractional data index */
+function xAtFractionalIndex(
+	data: Record<string, unknown>[],
+	xScale: (value: Date) => number | undefined,
+	xAccessor: (d: Record<string, unknown>) => Date,
+	fractionalIdx: number,
+): number {
+	const intIdx = Math.max(0, Math.min(Math.floor(fractionalIdx), data.length - 2));
+	const frac = fractionalIdx - intIdx;
+	const p0 = data[intIdx];
+	const p1 = data[intIdx + 1];
+	if (!(p0 && p1)) {
+		return p0 ? (xScale(xAccessor(p0)) ?? 0) : 0;
+	}
+	const x0 = xScale(xAccessor(p0)) ?? 0;
+	const x1 = xScale(xAccessor(p1)) ?? 0;
+	return x0 + (x1 - x0) * frac;
+}
+
 export function computeSegmentBounds(
 	data: Record<string, unknown>[],
 	xScale: (value: Date) => number | undefined,
 	xAccessor: (d: Record<string, unknown>) => Date,
-	tooltipData: Pick<TooltipData, "index"> | null | undefined,
+	tooltipData:
+		| Pick<TooltipData, "index" | "hoverLeftIndex" | "hoverRatio">
+		| null
+		| undefined,
 	selection:
 		| Pick<ChartSelection, "active" | "startX" | "endX">
 		| null
@@ -54,6 +76,20 @@ export function computeSegmentBounds(
 
 	if (!tooltipData) {
 		return INACTIVE_SEGMENT;
+	}
+
+	// Use interpolated position when available for smooth cursor tracking;
+	// fall back to snapped index for unchanged data structures.
+	if (
+		tooltipData.hoverLeftIndex !== undefined &&
+		tooltipData.hoverRatio !== undefined
+	) {
+		const center = tooltipData.hoverLeftIndex + tooltipData.hoverRatio;
+		const left = Math.max(0, center - 1);
+		const right = Math.min(data.length - 1, center + 1);
+		const startX = xAtFractionalIndex(data, xScale, xAccessor, left);
+		const endX = xAtFractionalIndex(data, xScale, xAccessor, right);
+		return { x: startX, width: Math.max(0, endX - startX), isActive: true };
 	}
 
 	const idx = tooltipData.index;

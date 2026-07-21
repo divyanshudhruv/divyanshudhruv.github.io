@@ -168,13 +168,14 @@ function ChartTooltipInner({
 	};
 
 	// Resolve indicator color (static or from hovered point)
-	const indicatorColor = indicatorColorProp == null
-		? chartCssVars.crosshair
-		: typeof indicatorColorProp === "function"
-			? tooltipData
-				? indicatorColorProp(tooltipData.point)
-				: chartCssVars.crosshair
-			: indicatorColorProp;
+	const indicatorColor =
+		indicatorColorProp == null
+			? chartCssVars.crosshair
+			: typeof indicatorColorProp === "function"
+				? tooltipData
+					? indicatorColorProp(tooltipData.point)
+					: chartCssVars.crosshair
+				: indicatorColorProp;
 
 	// Title from date or category
 	const title = !tooltipData
@@ -247,10 +248,9 @@ function ChartTooltipInner({
 				containerWidth={width}
 				panelStyle={panelStyle}
 				springConfig={boxMotion.springConfig}
-				top={isHorizontal ? undefined : margin.top}
 				visible={visible}
 				x={xWithMargin}
-				y={isHorizontal ? yWithMargin : margin.top}
+				y={height / 2}
 			>
 				{content && tooltipData
 					? content({

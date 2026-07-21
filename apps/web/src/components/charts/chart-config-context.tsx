@@ -37,6 +37,7 @@ function ChartConfigProvider({ value, children }: ChartConfigProviderProps) {
 	};
 
 	return (
+		// react-doctor-disable-next-line react-doctor/context-provider-value-from-unmemoized-local-literal
 		<ChartConfigContext.Provider value={merged}>
 			{children}
 		</ChartConfigContext.Provider>

@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { Flex } from "@once-ui-system/core";
+import Image from "next/image";
 import ImageTrail, { ImageTrailItem } from "@/components/image-trail";
 import { CreditsGrid } from "@/components/section/credits-grid";
 import { images } from "@/resources/image-trail";
@@ -31,7 +31,7 @@ export default function CreditsFooter({ id }: { id: string }) {
 			>
 				{images.map((url, index) => (
 					<ImageTrailItem key={index + url}>
-						<div className="relative h-full w-30 sm:w-38">
+						<div className="relative h-30 w-30 sm:h-38 sm:w-38">
 							<Image
 								src={url}
 								alt=""

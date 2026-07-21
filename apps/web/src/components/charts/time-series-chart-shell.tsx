@@ -246,14 +246,15 @@ function TimeSeriesChartCore({
 	const innerWidth = width - margin.left - margin.right;
 	const innerHeight = height - margin.top - margin.bottom;
 
-	const resolveYDomain = (sourceData: Record<string, unknown>[], dataKeys: string[]) => {
+	const resolveYDomain = (
+		sourceData: Record<string, unknown>[],
+		dataKeys: string[],
+	) => {
 		const axisGroups = groupLinesByYAxisId(lines);
 		const usesDefaultOnly =
 			axisGroups.size === 1 && axisGroups.has(DEFAULT_Y_AXIS_ID);
 		const domainMax =
-			usesDefaultOnly && yScaleDomainMax != null
-				? yScaleDomainMax
-				: undefined;
+			usesDefaultOnly && yScaleDomainMax != null ? yScaleDomainMax : undefined;
 		return resolveTimeSeriesYDomain(sourceData, dataKeys, domainMax);
 	};
 
@@ -290,7 +291,9 @@ function TimeSeriesChartCore({
 		return value instanceof Date ? value : new Date(value as string | number);
 	};
 
-	const bisectDate = bisector<Record<string, unknown>, Date>((d) => xAccessor(d)).left;
+	const bisectDate = bisector<Record<string, unknown>, Date>((d) =>
+		xAccessor(d),
+	).left;
 
 	const visiblePlotData = !xDomain
 		? plotData
@@ -366,7 +369,9 @@ function TimeSeriesChartCore({
 		scaleLinear({ range: [innerHeight, 0], domain: [0, 100], nice: true }),
 	);
 
-	const dateLabels = visiblePlotData.map((d) => shortDateFmt.format(xAccessor(d)));
+	const dateLabels = visiblePlotData.map((d) =>
+		shortDateFmt.format(xAccessor(d)),
+	);
 
 	const canInteract = isLoaded && isChartInteractionPhase(chartPhase);
 

@@ -1,4 +1,5 @@
-import { Column, Media, Row, Text } from "@once-ui-system/core";
+import { Column, Row, Text } from "@once-ui-system/core";
+import Image from "next/image";
 import { ExternalLink } from "lucide-react";
 
 export interface Projects {
@@ -27,19 +28,16 @@ export function ProjectsBlock({ projects = [] }: ProjectsBlockProps) {
 				className="rounded-2xl"
 			>
 				<Row fillWidth center gap={0.65} className="overflow-hidden">
-					<Media
-						src={
-							"https://i.pinimg.com/736x/ed/a9/3e/eda93eef7541d94a899a717a6753666b.jpg"
-						}
-						width={3}
-						height={3}
-						minWidth={3}
-						minHeight={3}
-						maxWidth={3}
-						maxHeight={3}
-						className="overflow-hidden rounded-xl"
-						unoptimized
-					/>
+					<div className="size-[48px] shrink-0 overflow-hidden rounded-xl">
+						<Image
+							src="https://i.pinimg.com/736x/ed/a9/3e/eda93eef7541d94a899a717a6753666b.jpg"
+							alt=""
+							width={48}
+							height={48}
+							className="object-cover size-full"
+							unoptimized
+						/>
+					</div>
 					<Column
 						fillWidth
 						vertical="center"
@@ -99,16 +97,16 @@ export function ProjectsBlock({ projects = [] }: ProjectsBlockProps) {
 					className="rounded-2xl"
 				>
 					<Row fillWidth center gap={0.65} className="overflow-hidden">
-						<Media
-							src={exp.imageUrl as string}
-							width={3}
-							height={3}
-							minWidth={3}
-							minHeight={3}
-							maxWidth={3}
-							maxHeight={3}
-							className={`overflow-hidden rounded-xl ${exp.invert ? "invert-100" : ""}`}
-						/>
+						<div className="size-[48px] shrink-0 overflow-hidden rounded-xl">
+							<Image
+								src={exp.imageUrl as string}
+								alt=""
+								width={48}
+								height={48}
+								className={`object-cover size-full ${exp.invert ? "invert-100" : ""}`}
+								unoptimized
+							/>
+						</div>
 						<Column
 							fillWidth
 							vertical="center"

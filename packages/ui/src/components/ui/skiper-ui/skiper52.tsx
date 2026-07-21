@@ -1,9 +1,10 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, LazyMotion, domAnimation, m } from "framer-motion";
+import Image from "next/image";
+
 import { useState } from "react";
 import "swiper/swiper.css";
-
 import { cn } from "@homepage/ui/lib/utils";
 
 const images = [
@@ -55,7 +56,6 @@ const images = [
 ];
 
 const Skiper52 = () => {
-
 	return (
 		<div className="flex h-full w-full items-center justify-center overflow-hidden bg-[#f5f4f3]">
 			<HoverExpand_001 className="" images={images} />{" "}
@@ -72,75 +72,80 @@ const HoverExpand_001 = ({
 	images: { src: string; alt: string; code: string }[];
 	className?: string;
 }) => {
-	const [activeImage, setActiveImage] = useState<number | null>(1);
+	const [activeImage, setActiveImage] = useState<number | null>(0);
 
 	return (
-		<motion.div
-			initial={{ opacity: 0, translateY: 20 }}
-			animate={{ opacity: 1, translateY: 0 }}
-			transition={{
-				duration: 0.3,
-				delay: 0.5,
-			}}
-			className={cn("relative w-full max-w-6xl", className)}
-			//px-5
-		>
-			<motion.div
-				initial={{ opacity: 0 }}
-				animate={{ opacity: 1 }}
-				transition={{ duration: 0.3 }}
-				className="w-full"
+		<LazyMotion features={domAnimation}>
+			<m.div
+				initial={{ opacity: 0, translateY: 20 }}
+				animate={{ opacity: 1, translateY: 0 }}
+				transition={{
+					duration: 0.3,
+					delay: 0.5,
+				}}
+				className={cn("relative w-full max-w-6xl", className)}
 			>
-				<div className="flex w-full items-center justify-center gap-1">
-					{images.map((image, index) => (
-						<motion.div
-							key={image.src}
-							layout
-							className="relative cursor-pointer overflow-hidden rounded-[20px]"
-							style={{
-								width: activeImage === index ? "24rem" : "5rem",
-								height: "24rem",
-							}}
-							transition={{ duration: 0.3, ease: "easeInOut" }}
-							onClick={() => setActiveImage(index)}
-							onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setActiveImage(index); }}
-							onHoverStart={() => setActiveImage(index)}
-						>
-							<AnimatePresence>
-								{activeImage === index && (
-									<motion.div
-										initial={{ opacity: 0 }}
-										animate={{ opacity: 1 }}
-										exit={{ opacity: 0 }}
-										className="absolute h-full w-full bg-linear-to-t from-black/40 to-transparent"
-									/>
-								)}
-							</AnimatePresence>
-							<AnimatePresence>
-								{activeImage === index && (
-									<motion.div
-										initial={{ opacity: 0 }}
-										animate={{ opacity: 1 }}
-										exit={{ opacity: 0 }}
-										className="absolute flex h-full w-full flex-col items-end justify-end p-4"
-									>
-										<p className="text-left text-white/50 text-xs">
-											{image.code}
-										</p>
-									</motion.div>
-								)}
-							</AnimatePresence>
-							{/* biome-ignore lint/performance/noImgElement: next/image not available in shared package */}
-							<img
-								src={image.src}
-								className="size-full object-cover"
-								alt={image.alt}
-							/>
-						</motion.div>
-					))}
-				</div>
-			</motion.div>
-		</motion.div>
+				<m.div
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					transition={{ duration: 0.3 }}
+					className="w-full"
+				>
+					<div className="flex w-full items-center justify-center gap-1">
+						{images.map((image, index) => (
+							<m.div
+								key={image.src}
+								layout
+								role="button"
+								className="relative cursor-pointer overflow-hidden rounded-[20px]"
+								style={{
+									width: activeImage === index ? "24rem" : "5rem",
+									height: "24rem",
+								}}
+								transition={{ duration: 0.3, ease: "easeInOut" }}
+								onClick={() => setActiveImage(index)}
+								onKeyDown={(e) => {
+									if (e.key === "Enter" || e.key === " ") setActiveImage(index);
+								}}
+								onMouseEnter={() => setActiveImage(index)}
+							>
+								<AnimatePresence>
+									{activeImage === index && (
+										<m.div
+											initial={{ opacity: 0 }}
+											animate={{ opacity: 1 }}
+											exit={{ opacity: 0 }}
+											className="absolute h-full w-full bg-linear-to-t from-black/40 to-transparent"
+										/>
+									)}
+								</AnimatePresence>
+								<AnimatePresence>
+									{activeImage === index && (
+										<m.div
+											initial={{ opacity: 0 }}
+											animate={{ opacity: 1 }}
+											exit={{ opacity: 0 }}
+											className="absolute flex h-full w-full flex-col items-end justify-end p-4"
+										>
+											<p className="text-left text-white/50 text-xs">
+												{image.code}
+											</p>
+										</m.div>
+									)}
+								</AnimatePresence>
+								<Image
+									src={image.src}
+									fill
+									className="object-cover"
+									alt={image.alt}
+									sizes="(max-width: 768px) 100vw, 384px"
+								/>
+							</m.div>
+						))}
+					</div>
+				</m.div>
+			</m.div>
+		</LazyMotion>
 	);
 };
 

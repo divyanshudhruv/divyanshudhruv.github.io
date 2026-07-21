@@ -2,7 +2,13 @@
 
 // TODO create a how to collection and plce it in them
 
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import {
+	domAnimation,
+	LazyMotion,
+	m,
+	useMotionValue,
+	useSpring,
+} from "framer-motion";
 import React from "react";
 
 const SPRING = {
@@ -36,16 +42,18 @@ const SimpleMouseFollow = () => {
 	}, [y.set, x.set, opacity.set]);
 
 	return (
-		<div className="pointer-events-none fixed inset-0 z-50 cursor-none">
-			<motion.div
-				style={{
-					x,
-					y,
-					opacity,
-				}}
-				className="size-5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#cccccc90]"
-			/>
-		</div>
+		<LazyMotion features={domAnimation}>
+			<div className="pointer-events-none fixed inset-0 z-50 cursor-none">
+				<m.div
+					style={{
+						x,
+						y,
+						opacity,
+					}}
+					className="size-5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#cccccc90]"
+				/>
+			</div>
+		</LazyMotion>
 	);
 };
 
@@ -56,32 +64,34 @@ const SpringMouseFollow = () => {
 	const scaleSpring = useSpring(0, SPRING);
 
 	return (
-		<div
-			onPointerMove={(e) => {
-				const bounds = e.currentTarget.getBoundingClientRect();
-				xSpring.set(e.clientX - bounds.left);
-				ySpring.set(e.clientY - bounds.top);
-			}}
-			onPointerEnter={() => {
-				opacitySpring.set(1);
-				scaleSpring.set(1);
-			}}
-			onPointerLeave={() => {
-				opacitySpring.set(0);
-				scaleSpring.set(0);
-			}}
-			className="mt-20 size-[500px] overflow-hidden rounded-4xl bg-background"
-		>
-			<motion.div
-				style={{
-					x: xSpring,
-					y: ySpring,
-					opacity: opacitySpring,
-					scale: scaleSpring,
+		<LazyMotion features={domAnimation}>
+			<div
+				onPointerMove={(e) => {
+					const bounds = e.currentTarget.getBoundingClientRect();
+					xSpring.set(e.clientX - bounds.left);
+					ySpring.set(e.clientY - bounds.top);
 				}}
-				className="size-10 rounded-4xl bg-orange-500"
-			/>
-		</div>
+				onPointerEnter={() => {
+					opacitySpring.set(1);
+					scaleSpring.set(1);
+				}}
+				onPointerLeave={() => {
+					opacitySpring.set(0);
+					scaleSpring.set(0);
+				}}
+				className="mt-20 size-[500px] overflow-hidden rounded-4xl bg-background"
+			>
+				<m.div
+					style={{
+						x: xSpring,
+						y: ySpring,
+						opacity: opacitySpring,
+						scale: scaleSpring,
+					}}
+					className="size-10 rounded-4xl bg-orange-500"
+				/>
+			</div>
+		</LazyMotion>
 	);
 };
 

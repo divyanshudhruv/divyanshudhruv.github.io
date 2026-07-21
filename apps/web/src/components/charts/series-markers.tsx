@@ -1,7 +1,7 @@
 "use client";
 ("use memo");
 
-import { type ReactNode } from "react";
+import type { ReactNode } from "react";
 import { clipRevealTransition } from "./animation";
 import {
 	defaultScatterColors,

@@ -9,7 +9,7 @@ import {
 } from "@/components/section/section-heading";
 import { projectsData } from "@/resources/projects";
 import { socials } from "@/resources/socials";
-import { HoverExpand_001 } from "./../../../../../packages/ui/src/components/ui/skiper-ui/skiper52";
+import { HoverExpand_001 } from "@homepage/ui/components/ui/skiper-ui/skiper52";
 
 export default function ProjectsSection({ id }: { id: string }) {
 	return (

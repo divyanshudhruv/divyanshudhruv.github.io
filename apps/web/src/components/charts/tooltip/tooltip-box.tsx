@@ -111,7 +111,7 @@ function TooltipBoxInner({
 		const el = tooltipRef.current;
 		const w = el.offsetWidth;
 		const h = el.offsetHeight;
-		if (w > 0 && h > 0) {
+		if (w > 0 && h > 0 && (w !== measuredSize.w || h !== measuredSize.h)) {
 			setMeasuredSize({ w, h });
 		}
 		const { w: w2, h: h2 } = measuredSize;

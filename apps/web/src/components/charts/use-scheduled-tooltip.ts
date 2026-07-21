@@ -51,22 +51,10 @@ export function useScheduledTooltip<T>(): ScheduledTooltipControls<T> {
 
 	const scheduleTooltip = (tooltip: T, dedupeKey?: string) => {
 		const key = dedupeKey ?? defaultDedupeKey(tooltip);
-		pendingRef.current = tooltip;
-		pendingKeyRef.current = key;
 		if (key === lastKeyRef.current) {
 			return;
 		}
-		if (rafRef.current !== null) {
-			return;
-		}
-		rafRef.current = requestAnimationFrame(() => {
-			rafRef.current = null;
-			const next = pendingRef.current;
-			const nextKey = pendingKeyRef.current;
-			if (next && nextKey) {
-				commitTooltip(next, nextKey);
-			}
-		});
+		commitTooltip(tooltip, key);
 	};
 
 	const clearTooltip = () => {

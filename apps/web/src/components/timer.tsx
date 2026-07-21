@@ -3,7 +3,13 @@
 import { cn } from "@homepage/ui/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
 import { Clock } from "lucide-react";
-import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, {
+	useCallback,
+	useEffect,
+	useLayoutEffect,
+	useRef,
+	useState,
+} from "react";
 
 const timerVariants = cva(
 	[

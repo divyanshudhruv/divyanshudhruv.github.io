@@ -32,7 +32,6 @@ function scrollTo(e: React.MouseEvent<HTMLAnchorElement>) {
 }
 
 export default function SiteHeader() {
-
 	return (
 		<Flex
 			vertical="end"

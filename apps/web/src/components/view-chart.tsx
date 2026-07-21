@@ -16,26 +16,42 @@ type ChartDay = {
 	sessions: number;
 };
 
-export function ViewChart() {
+function useInsights() {
 	const [data, setData] = useState<ChartDay[]>([]);
 	const [status, setStatus] = useState<"loading" | "ready">("loading");
 
 	useEffect(() => {
-		fetch(`/api/insights?t=${Date.now()}`)
-			.then((r) => {
-				if (!r.ok) throw new Error(`HTTP ${r.status}`);
-				return r.json();
-			})
-			.then((d) => {
+		const controller = new AbortController();
+
+		(async () => {
+			try {
+				const r = await fetch(`/api/insights?t=${Date.now()}`, {
+					signal: controller.signal,
+				});
+				if (!r.ok) {
+					setData([]);
+					setStatus("ready");
+					return;
+				}
+				const d = await r.json();
 				const items = d.data ?? d;
 				setData(items);
 				setStatus("ready");
-			})
-			.catch(() => {
+			} catch (err) {
+				if (err instanceof DOMException && err.name === "AbortError") return;
 				setData([]);
 				setStatus("ready");
-			});
+			}
+		})();
+
+		return () => controller.abort();
 	}, []);
+
+	return { data, status };
+}
+
+export function ViewChart() {
+	const { data, status } = useInsights();
 
 	const chartData = data.map((d) => ({
 		date: new Date(d.date),

@@ -22,7 +22,7 @@ export function CreditsGrid() {
 	return (
 		<Grid fillWidth columns={2} gap={0.5}>
 			{credits.map(([label, value]) => (
-				<React.Fragment key={label}>
+				<React.Fragment key={`${label || ""}::${value}`}>
 					<Text
 						className="font-body font-normal text-lg text-muted-foreground/80"
 						align="right"

@@ -46,6 +46,10 @@ export interface TooltipData {
 	yPositions: Record<string, number>;
 	/** X positions for each series (for grouped bars), keyed by dataKey */
 	xPositions?: Record<string, number>;
+	/** Left data point index for interpolation (between d0 and d1) */
+	hoverLeftIndex?: number;
+	/** Interpolation ratio 0..1 between d0 and d1 */
+	hoverRatio?: number;
 }
 
 export interface LineConfig {
@@ -265,7 +269,9 @@ export function ChartProvider({
 	};
 
 	return (
+		// react-doctor-disable-next-line react-doctor/context-provider-value-from-unmemoized-local-literal
 		<ChartStableContext.Provider value={stable}>
+			{/* react-doctor-disable-next-line react-doctor/context-provider-value-from-unmemoized-local-literal */}
 			<ChartHoverContext.Provider value={hover}>
 				{children}
 			</ChartHoverContext.Provider>

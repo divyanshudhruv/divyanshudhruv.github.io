@@ -23,6 +23,7 @@ function ChartLegendHoverProvider({
 	const value = { hoveredIndex, setHoveredIndex: onHoverChange };
 
 	return (
+		// react-doctor-disable-next-line react-doctor/context-provider-value-from-unmemoized-local-literal
 		<ChartLegendHoverContext.Provider value={value}>
 			{children}
 		</ChartLegendHoverContext.Provider>

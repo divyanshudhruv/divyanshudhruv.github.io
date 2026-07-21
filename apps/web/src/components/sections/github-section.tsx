@@ -34,7 +34,7 @@ export default function GitHubSection({ id }: { id: string }) {
 				colorScheme="orange"
 				cellSize={16}
 				cellShape="rounded"
-				showDayLabels={true}
+				display={{ dayLabels: true }}
 				startDate="2024-09-06"
 				endDate="auto"
 			/>

@@ -46,13 +46,9 @@ export function useHighlightSegment({
 	const wasActiveRef = useRef(false);
 
 	useEffect(() => {
-		const isFirstActive = bounds.isActive && !wasActiveRef.current;
-		if (isFirstActive) {
+		if (bounds.isActive) {
 			xSpring.jump(bounds.x);
 			widthSpring.jump(bounds.width);
-		} else {
-			xSpring.set(bounds.x);
-			widthSpring.set(bounds.width);
 		}
 		wasActiveRef.current = bounds.isActive;
 	}, [bounds.x, bounds.width, bounds.isActive, xSpring, widthSpring]);

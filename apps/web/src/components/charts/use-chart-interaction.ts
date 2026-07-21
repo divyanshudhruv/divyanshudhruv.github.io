@@ -87,29 +87,48 @@ export function useChartInteraction({
 
 		let d = d0;
 		let finalIndex = index - 1;
+		let ratio = 0;
+
 		if (d1) {
 			const d0Time = xAccessor(d0).getTime();
 			const d1Time = xAccessor(d1).getTime();
-			if (x0.getTime() - d0Time > d1Time - x0.getTime()) {
+			const dt = d1Time - d0Time;
+			if (dt > 0) {
+				ratio = (x0.getTime() - d0Time) / dt;
+			}
+			if (ratio > 0.5) {
 				d = d1;
 				finalIndex = index;
 			}
 		}
 
+		const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+
+		const d0x = xScale(xAccessor(d0)) ?? 0;
+		const d1x = d1 ? (xScale(xAccessor(d1)) ?? 0) : d0x;
+		const interpolatedX = lerp(d0x, d1x, ratio);
+
 		const yPositions: Record<string, number> = {};
 		for (const line of lines) {
-			const value = d[line.dataKey];
-			if (typeof value === "number") {
+			const v0 = d0[line.dataKey];
+			const v1 = d1?.[line.dataKey];
+			if (typeof v0 === "number" && typeof v1 === "number") {
+				const interpolatedValue = lerp(v0, v1, ratio);
 				const axisScale = yScales[normalizeYAxisId(line.yAxisId)] ?? yScale;
-				yPositions[line.dataKey] = axisScale(value) ?? 0;
+				yPositions[line.dataKey] = axisScale(interpolatedValue) ?? 0;
+			} else if (typeof v0 === "number") {
+				const axisScale = yScales[normalizeYAxisId(line.yAxisId)] ?? yScale;
+				yPositions[line.dataKey] = axisScale(v0) ?? 0;
 			}
 		}
 
 		return {
 			point: d,
 			index: finalIndex,
-			x: xScale(xAccessor(d)) ?? 0,
+			x: interpolatedX,
 			yPositions,
+			hoverLeftIndex: index - 1,
+			hoverRatio: ratio,
 		};
 	};
 

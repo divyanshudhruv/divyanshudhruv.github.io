@@ -13,10 +13,11 @@ import {
 	CutoutCardInsetLabel,
 	CutoutCardMedia,
 	CutoutCardOverlay,
+	CutoutCardPin,
 	CutoutCorner,
-	cutoutCardSurfaceClassName,
 	useCutoutContentStaggerVariants,
-} from "./../../../../packages/ui/src/components/ui/skiper-ui/cutout-card";
+} from "@homepage/ui/components/ui/skiper-ui/cutout-card";
+import { cutoutCardSurfaceClassName } from "@homepage/ui/components/ui/skiper-ui/cutout-card-tokens";
 
 function ProjectCard() {
 	const stagger = useCutoutContentStaggerVariants();
@@ -28,7 +29,7 @@ function ProjectCard() {
 		<div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-2">
 			{randomProjects.map((project) => (
 				<CutoutCard key={project.title} className={cutoutCardSurfaceClassName}>
-					<CutoutCardMedia className="h-72">
+					<CutoutCardMedia className="h-72 w-full">
 						<CutoutCardImage
 							alt={project.title}
 							src={project.imageUrl ?? ""}

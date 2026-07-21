@@ -2,7 +2,7 @@
 
 import { cn } from "@homepage/ui/lib/utils";
 import { useControllableState } from "@radix-ui/react-use-controllable-state";
-import { motion, useReducedMotion } from "motion/react";
+import { domAnimation, LazyMotion, m, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import {
 	type ComponentProps,
@@ -13,23 +13,7 @@ import {
 	useContext,
 	useMemo,
 } from "react";
-
-// ============================================================================
-// Tokens — optional chrome for demos / quick styling
-// ============================================================================
-
-/** Border + shadow stack using theme tokens so elevation reads in light and dark. */
-const cutoutCardSurfaceShadowClassName = cn(
-	"border border-border/80 dark:border-border/60",
-	"transition-[box-shadow,border-color] duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]",
-	"hover:border-border",
-	"bg-card opacity-70",
-);
-
-export const cutoutCardSurfaceClassName = cn(
-	"group/cutout relative cursor-pointer overflow-hidden rounded-[20px] bg-card text-card-foreground",
-	cutoutCardSurfaceShadowClassName,
-);
+import { cutoutCardSurfaceClassName } from "./cutout-card-tokens";
 
 /** Staggered text/footer entrance inside `CutoutCardContent` — use with `motion.div` children. */
 export function useCutoutContentStaggerVariants() {
@@ -104,7 +88,7 @@ export function useOptionalCutoutCard() {
 // ============================================================================
 
 export type CutoutCardProps = Omit<
-	ComponentProps<typeof motion.div>,
+	ComponentProps<typeof m.div>,
 	"defaultValue"
 > & {
 	/** When set, hover state is controlled by the parent. */
@@ -171,23 +155,25 @@ export function CutoutCard({
 
 	return (
 		<CutoutCardContext.Provider value={ctx}>
-			<motion.div
-				animate={{ opacity: 1 }}
-				className={cn(className)}
-				data-slot="cutout-card"
-				data-state={ctx.hovered ? "hovered" : "idle"}
-				initial={{ opacity: 0 }}
-				onMouseEnter={handleMouseEnter}
-				onMouseLeave={handleMouseLeave}
-				transition={
-					reduceMotion
-						? { duration: 0.22, ease: [0.23, 1, 0.32, 1] }
-						: { duration: 0.36, ease: [0.23, 1, 0.32, 1] }
-				}
-				{...props}
-			>
-				{children}
-			</motion.div>
+			<LazyMotion features={domAnimation}>
+				<m.div
+					animate={{ opacity: 1 }}
+					className={cn(className)}
+					data-slot="cutout-card"
+					data-state={ctx.hovered ? "hovered" : "idle"}
+					initial={{ opacity: 0 }}
+					onMouseEnter={handleMouseEnter}
+					onMouseLeave={handleMouseLeave}
+					transition={
+						reduceMotion
+							? { duration: 0.22, ease: [0.23, 1, 0.32, 1] }
+							: { duration: 0.36, ease: [0.23, 1, 0.32, 1] }
+					}
+					{...props}
+				>
+					{children}
+				</m.div>
+			</LazyMotion>
 		</CutoutCardContext.Provider>
 	);
 }
@@ -349,7 +335,7 @@ export function CutoutCardPin({ className, ...props }: CutoutCardPinProps) {
 // Context-sensitive action region
 // ============================================================================
 
-export type CutoutCardActionProps = ComponentProps<typeof motion.div> & {
+export type CutoutCardActionProps = ComponentProps<typeof m.div> & {
 	/**
 	 * When true (default), visibility follows card hover from context.
 	 * Set false to always show the region.
@@ -367,7 +353,7 @@ export function CutoutCardAction({
 	const visible = !revealOnHover || hovered;
 
 	return (
-		<motion.div
+		<m.div
 			animate={
 				visible
 					? { opacity: 1, transform: "translateY(0px)" }

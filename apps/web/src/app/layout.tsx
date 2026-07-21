@@ -9,7 +9,7 @@ import { ReactLenis } from "lenis/react";
 import Providers from "@/components/providers";
 import { getMetadata } from "@/lib/metadata";
 import { JsonLd } from "@/resources/metadata/json-ld";
-import { SimpleMouseFollow } from "./../../../../packages/ui/src/components/ui/skiper-ui/skiper61";
+import { CursorFollower } from "@/components/cursor-follower";
 
 const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -38,12 +38,12 @@ export default function RootLayout({
 		>
 			<head />
 			<body
-				className={`${geistSans.variable} ${geistMono.variable} [&_*]:!cursor-none cursor-none overflow-x-hidden antialiased`}
+				className={`${geistSans.variable} ${geistMono.variable} overflow-x-hidden antialiased`}
 			>
 				<ReactLenis root>
 					<JsonLd />
 					<Analytics />
-					<SpeedInsights /> <SimpleMouseFollow />
+					<SpeedInsights /> <CursorFollower />
 					<main>
 						<Providers>
 							<Flex

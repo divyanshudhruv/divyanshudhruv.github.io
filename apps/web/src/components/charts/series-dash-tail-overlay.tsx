@@ -1,5 +1,6 @@
 "use client";
 ("use memo");
+
 import { DashTailStroke } from "./dash-tail-stroke";
 import { resolveDashStartX, resolveDashTailBounds } from "./path-stroke-utils";
 
@@ -32,9 +33,10 @@ function SeriesDashTailOverlayImpl({
 }: SeriesDashTailOverlayProps) {
 	const hasDashTail = resolveDashTailBounds(dashFromIndex, data.length);
 
-	const dashStartX = !hasDashTail || dashFromIndex == null
-		? 0
-		: resolveDashStartX(data, dashFromIndex, xScale, xAccessor);
+	const dashStartX =
+		!hasDashTail || dashFromIndex == null
+			? 0
+			: resolveDashStartX(data, dashFromIndex, xScale, xAccessor);
 
 	// Linear (index-based) approximation of the path length at `dashFromIndex`.
 	// The accurate version (`findPathLengthAtX` binary search via
@@ -46,9 +48,10 @@ function SeriesDashTailOverlayImpl({
 	// For evenly-spaced time-series data — the standard case — this is exact at
 	// flat regions of the curve and only differs by a pixel or two where the
 	// curve has steep y-variation, which is imperceptible at the dash boundary.
-	const dashStartLength = !hasDashTail || dashFromIndex == null || pathLength <= 0
-		? 0
-		: (dashFromIndex / Math.max(1, data.length - 1)) * pathLength;
+	const dashStartLength =
+		!hasDashTail || dashFromIndex == null || pathLength <= 0
+			? 0
+			: (dashFromIndex / Math.max(1, data.length - 1)) * pathLength;
 
 	if (!hasDashTail || dashFromIndex == null || pathLength <= 0) {
 		return null;

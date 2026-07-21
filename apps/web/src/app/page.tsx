@@ -14,8 +14,8 @@ import ProjectsSection from "@/components/sections/projects-section";
 import SiteHeader from "@/components/sections/site-header";
 import SkillsSection from "@/components/sections/skills-section";
 import TimerSection from "@/components/sections/timer-section";
-import CrowdCanvas from "./../../../../packages/ui/src/components/ui/skiper-ui/skiper39";
-import { ProgressiveBlur } from "./../../../../packages/ui/src/components/ui/skiper-ui/skiper41";
+import CrowdCanvas from "@homepage/ui/components/ui/skiper-ui/skiper39";
+import { ProgressiveBlur } from "@homepage/ui/components/ui/skiper-ui/skiper41";
 export default function Home() {
 	return (
 		<>

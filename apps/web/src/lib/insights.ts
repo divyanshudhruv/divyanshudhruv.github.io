@@ -122,9 +122,10 @@ export async function getInsightsData(): Promise<InsightsResponse> {
 	const fallbackData = useFallbackForPast ? generateFallbackData() : null;
 
 	const today = new Date();
-	const fallbackMap = useFallbackForPast && fallbackData
-		? new Map(fallbackData.map((f) => [f.date, f]))
-		: null;
+	const fallbackMap =
+		useFallbackForPast && fallbackData
+			? new Map(fallbackData.map((f) => [f.date, f]))
+			: null;
 
 	const chartData: InsightsDay[] = [];
 
