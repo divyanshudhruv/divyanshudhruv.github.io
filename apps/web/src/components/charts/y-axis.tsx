@@ -1,8 +1,13 @@
 "use client";
 
-import { memo, useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { useChartStable } from "./chart-context";
+
+interface TickableScale {
+	domain(): number[];
+	ticks(count: number): number[];
+}
 
 export interface YAxisProps {
 	numTicks?: number;
@@ -61,10 +66,10 @@ function YAxisInner({
 	numTicks: number;
 }) {
 	const ticks: TickItem[] = (() => {
-		const domain = (yScale as unknown as { domain(): number[] }).domain();
+		const scale = yScale as unknown as TickableScale;
+		const domain = scale.domain();
 		const [min, max] = domain;
-		const range = max - min;
-		if (range === 0) {
+		if (min === max) {
 			return [
 				{
 					value: min,
@@ -73,11 +78,7 @@ function YAxisInner({
 				},
 			];
 		}
-		const rawTicks: number[] = [];
-		const step = range / (numTicks - 1);
-		for (let i = 0; i < numTicks; i++) {
-			rawTicks.push(min + i * step);
-		}
+		const rawTicks = scale.ticks(numTicks);
 		return rawTicks.map((value) => ({
 			value,
 			y: (yScale(value) ?? 0) + margin.top,

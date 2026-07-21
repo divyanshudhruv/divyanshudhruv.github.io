@@ -125,9 +125,14 @@ export function WavePlayer({
 		onFinish?.();
 	};
 
+	const lastTimeUpdateRef = React.useRef(0);
 	const handleTimeupdate = (ws: WaveSurfer) => {
 		const t = ws.getCurrentTime();
-		setCurrentTime(t);
+		const now = Date.now();
+		if (now - lastTimeUpdateRef.current > 250) {
+			setCurrentTime(t);
+			lastTimeUpdateRef.current = now;
+		}
 		onTimeUpdate?.(t, ws.getDuration());
 	};
 

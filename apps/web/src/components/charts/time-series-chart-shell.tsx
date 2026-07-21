@@ -101,12 +101,11 @@ function resolveTimeSeriesYDomain(
 	const { minValue, maxValue } = collectNumericExtents(data, dataKeys);
 
 	if (minValue >= 0) {
-		const top = maxValue <= 0 ? 100 : maxValue * 1.1;
+		const top = maxValue <= 0 ? 100 : maxValue;
 		return [0, top];
 	}
 
-	const padding = (maxValue - minValue) * 0.05 || 1;
-	return [minValue - padding, maxValue + padding];
+	return [minValue, maxValue];
 }
 
 /** Markers render after the interaction overlay so they stay clickable. */

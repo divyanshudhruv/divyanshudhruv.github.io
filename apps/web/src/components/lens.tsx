@@ -56,6 +56,8 @@ export function Lens({
 	const [isHovering, setIsHovering] = useState(false);
 	const [mousePosition, setMousePosition] = useState<Position>(position);
 	const containerRef = useRef<HTMLDivElement>(null);
+	const mousePosRef = useRef(position);
+	const rafRef = useRef<number | null>(null);
 
 	const currentPosition = (() => {
 		if (isStatic) return position;
@@ -65,10 +67,16 @@ export function Lens({
 
 	const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
 		const rect = e.currentTarget.getBoundingClientRect();
-		setMousePosition({
+		mousePosRef.current = {
 			x: e.clientX - rect.left,
 			y: e.clientY - rect.top,
-		});
+		};
+		if (!rafRef.current) {
+			rafRef.current = requestAnimationFrame(() => {
+				rafRef.current = null;
+				setMousePosition(mousePosRef.current);
+			});
+		}
 	};
 
 	const handleKeyDown = (e: React.KeyboardEvent) => {
