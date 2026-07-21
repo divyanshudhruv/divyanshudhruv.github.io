@@ -40,6 +40,15 @@ export const projectsData: Projects[] = [
 		repoUrl: "https://github.com/divyanshudhruv/cummand",
 		invert: true,
 		date: "Present",
+	},	{
+		title: "echoflow",
+		description:
+			"A standalone speech-to-text conversion application that accurately transcribes audio input into written text with support for multiple languages, real-time processing, and export capabilities.",
+		imageUrl:
+			"https://i.pinimg.com/736x/36/8a/ec/368aeccc48afb0dbc5efe4763127bd72.jpg",
+		repoUrl: "https://github.com/divyanshudhruv/echoflow",
+		invert: false,
+		date: "Present",
 	},
 	{
 		title: "cummand",
@@ -97,16 +106,7 @@ export const projectsData: Projects[] = [
 		repoUrl: "https://github.com/divyanshudhruv/peerpipe",
 		date: new Date("2026-03-21"),
 	},
-	{
-		title: "echoflow",
-		description:
-			"A standalone speech-to-text conversion application that accurately transcribes audio input into written text with support for multiple languages, real-time processing, and export capabilities.",
-		imageUrl:
-			"https://i.pinimg.com/736x/36/8a/ec/368aeccc48afb0dbc5efe4763127bd72.jpg",
-		repoUrl: "https://github.com/divyanshudhruv/echoflow",
-		invert: false,
-		date: "Present",
-	},
+
 	{
 		title: "keyshard",
 		description:

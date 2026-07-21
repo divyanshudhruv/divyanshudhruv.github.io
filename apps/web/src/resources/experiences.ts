@@ -6,7 +6,7 @@ export const experiences: Experience[] = [
 		role: "Summer Intern",
 		logo: "https://media.licdn.com/dms/image/v2/D4D0BAQGAnV2jtngGYA/company-logo_200_200/B4DZ9p9kKNJ4AI-/0/1784189174718/dopler_app_logo?e=1785974400&v=beta&t=ryiXje6ShWipcflsLvq-s3aw0PZ9zUSpRfxBzchOmt4",
 		url: "#",
-		startDate: "Mar 26",
+		startDate: "Jul 26",
 		endDate: "Now",
 		invert: false,
 	},
@@ -24,7 +24,7 @@ export const experiences: Experience[] = [
 		role: "OS Developer Collaborator",
 		logo: "/onceui.png",
 		url: "https://once-ui.com/home",
-		startDate: "Apr 26",
+		startDate: "Mar 25",
 		endDate: "Now",
 	},
 	{
