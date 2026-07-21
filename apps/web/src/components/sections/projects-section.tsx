@@ -9,6 +9,7 @@ import {
 import { projectsData } from "@/resources/projects";
 import { socials } from "@/resources/socials";
 import { HoverExpand_001 } from "./../../../../../packages/ui/src/components/ui/skiper-ui/skiper52";
+import { ProjectCard } from "@/components/project-card";
 
 export default function ProjectsSection({ id }: { id: string }) {
   return (
@@ -28,6 +29,9 @@ export default function ProjectsSection({ id }: { id: string }) {
             code: p.title,
           }))}
         />{" "}
+      </Flex>{" "}
+      <Flex fillWidth marginTop={1}>
+        <ProjectCard />
       </Flex>
       <ActionRow
         buttons={[

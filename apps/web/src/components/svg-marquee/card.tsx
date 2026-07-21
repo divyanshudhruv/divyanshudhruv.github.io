@@ -18,7 +18,7 @@ const Card = ({ index, artwork }: CardProps) => {
 				}}
 			/>
 			<div className="card-footer">
-				<div className="card-artist">{currentArtwork.artist}</div>
+				<div className="card-artist">{currentArtwork.link || "Unknown"}</div>
 			</div>
 		</div>
 	);

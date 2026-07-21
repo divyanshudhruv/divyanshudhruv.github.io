@@ -94,7 +94,7 @@ const HoverExpand_001 = ({
           {images.map((image, index) => (
             <motion.div
               key={index}
-              className="relative cursor-pointer overflow-hidden rounded-3xl"
+              className="relative cursor-pointer overflow-hidden rounded-[20px]"
               initial={{ width: "2.5rem", height: "20rem" }}
               animate={{
                 width: activeImage === index ? "24rem" : "5rem",

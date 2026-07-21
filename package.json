@@ -34,6 +34,7 @@
 	"dependencies": {
 		"@homepage/env": "workspace:*",
 		"@once-ui-system/core": "^1.7.12",
+		"@radix-ui/react-use-controllable-state": "^1.2.4",
 		"dotenv": "catalog:",
 		"framer-motion": "^12.42.2",
 		"next": "^16.2.7",
