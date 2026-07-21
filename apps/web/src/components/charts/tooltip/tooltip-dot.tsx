@@ -1,6 +1,8 @@
 "use client";
 
-import { motion, useSpring } from "motion/react";
+import { useSpring } from "motion/react";
+import * as m from "motion/react-m";
+import { useEffect } from "react";
 import { type SpringConfig, useChartConfig } from "../chart-config-context";
 import { chartCssVars } from "../chart-context";
 
@@ -34,10 +36,12 @@ export function TooltipDot({
 	const animatedX = useSpring(x, effectiveSpring);
 	const animatedY = useSpring(y, effectiveSpring);
 
-	if (animate) {
-		animatedX.set(x);
-		animatedY.set(y);
-	}
+	useEffect(() => {
+		if (animate) {
+			animatedX.set(x);
+			animatedY.set(y);
+		}
+	}, [animate, animatedX, animatedY, x, y]);
 
 	if (!visible) {
 		return null;
@@ -57,7 +61,7 @@ export function TooltipDot({
 	}
 
 	return (
-		<motion.circle
+		<m.circle
 			cx={animatedX}
 			cy={animatedY}
 			fill={color}

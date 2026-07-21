@@ -10,7 +10,7 @@ interface ChartLegendHoverContextValue {
 const ChartLegendHoverContext =
 	createContext<ChartLegendHoverContextValue | null>(null);
 
-export function ChartLegendHoverProvider({
+function ChartLegendHoverProvider({
 	hoveredIndex,
 	onHoverChange,
 	children,

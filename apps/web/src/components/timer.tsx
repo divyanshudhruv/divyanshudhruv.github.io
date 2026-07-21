@@ -239,6 +239,11 @@ export function useTimer({
 	const [isRunning, setIsRunning] = useState(false);
 	const startTimeRef = useRef<number>(0);
 	const rafRef = useRef<ReturnType<typeof setInterval> | null>(null);
+	const onTickRef = useRef(onTick);
+
+	useEffect(() => {
+		onTickRef.current = onTick;
+	}, [onTick]);
 
 	const reset = useCallback(() => {
 		setElapsedTime(0);
@@ -267,8 +272,11 @@ export function useTimer({
 		const interval = setInterval(() => {
 			const now = performance.now();
 			const elapsed = now - startTimeRef.current;
-			setElapsedTime(Math.floor(elapsed / 1000));
-			setMilliseconds(Math.floor(elapsed % 1000));
+			const secs = Math.floor(elapsed / 1000);
+			const ms = Math.floor(elapsed % 1000);
+			setElapsedTime(secs);
+			setMilliseconds(ms);
+			onTickRef.current?.(secs, ms);
 		}, 1000);
 
 		rafRef.current = interval;
@@ -289,12 +297,6 @@ export function useTimer({
 			stop();
 		}
 	}, [loading, resetOnLoadingChange, reset, start, stop]);
-
-	useEffect(() => {
-		if (onTick) {
-			onTick(elapsedTime, milliseconds);
-		}
-	}, [elapsedTime, milliseconds, onTick]);
 
 	const formatTime = useCallback(
 		(totalSeconds: number, ms: number) => {

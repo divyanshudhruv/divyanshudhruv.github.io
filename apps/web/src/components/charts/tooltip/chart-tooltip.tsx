@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useSpring } from "motion/react";
+import { useSpring } from "motion/react";
+import * as m from "motion/react-m";
 import { memo, useEffect, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
 import {
@@ -311,15 +312,13 @@ const ChartTooltipInner = memo(function ChartTooltipInner({
 
 export function ChartTooltip(props: ChartTooltipProps) {
 	const { containerRef } = useChartStable();
-	const [mounted, setMounted] = useState(false);
+	const [container, setContainer] = useState<HTMLElement | null>(null);
 
-	// Only render portals on client side after mount
 	useEffect(() => {
-		setMounted(true);
-	}, []);
+		setContainer(containerRef.current);
+	}, [containerRef]);
 
-	const container = containerRef.current;
-	if (!(mounted && container)) {
+	if (!container) {
 		return null;
 	}
 
@@ -359,17 +358,18 @@ function DatePillTrackerInner({
 	const effectiveSpring = springConfig ?? tooltipSpring;
 	const animatedX = useSpring(xWithMargin, effectiveSpring);
 
-	if (!discreteInteraction) {
-		animatedX.set(xWithMargin);
-	}
+	useEffect(() => {
+		if (!discreteInteraction) {
+			animatedX.set(xWithMargin);
+		}
+	}, [animatedX, discreteInteraction, xWithMargin]);
 
-	// biome-ignore lint/correctness/useExhaustiveDependencies: we need to jump the animatedX when the visible prop changes
 	useEffect(() => {
 		animatedX.set(xWithMargin);
-	}, [animatedX, visible]);
+	}, [animatedX, xWithMargin]);
 
 	return (
-		<motion.div
+		<m.div
 			className="pointer-events-none absolute z-50"
 			style={{
 				left: discreteInteraction ? xWithMargin : animatedX,
@@ -382,7 +382,7 @@ function DatePillTrackerInner({
 				labels={labels}
 				visible={visible}
 			/>
-		</motion.div>
+		</m.div>
 	);
 }
 

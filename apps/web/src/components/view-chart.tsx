@@ -22,7 +22,10 @@ export function ViewChart() {
 
 	useEffect(() => {
 		fetch(`/api/insights?t=${Date.now()}`)
-			.then((r) => r.json())
+			.then((r) => {
+				if (!r.ok) throw new Error(`HTTP ${r.status}`);
+				return r.json();
+			})
 			.then((d) => {
 				const items = d.data ?? d;
 				setData(items);

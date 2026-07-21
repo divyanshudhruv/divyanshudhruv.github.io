@@ -6,6 +6,7 @@ import {
 	LayoutProvider,
 	ToastProvider,
 } from "@once-ui-system/core";
+import { domAnimation, LazyMotion } from "motion/react";
 import dynamic from "next/dynamic";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { iconLibrary } from "@/lib/icon-library";
@@ -26,7 +27,9 @@ export default function Providers({ children }: { children: React.ReactNode }) {
 						enableSystem
 						disableTransitionOnChange
 					>
-						<PostHogProvider>{children}</PostHogProvider>
+						<LazyMotion features={domAnimation}>
+							<PostHogProvider>{children}</PostHogProvider>
+						</LazyMotion>
 						<Toaster richColors />
 					</NextThemesProvider>
 				</IconProvider>

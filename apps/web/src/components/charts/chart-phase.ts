@@ -31,7 +31,7 @@ export function isChartInteractionPhase(phase: ChartPhase): boolean {
 	return phase === "ready";
 }
 
-export const DEFAULT_CHART_LIFECYCLE = {
+const DEFAULT_CHART_LIFECYCLE = {
 	chartPhase: "ready",
 	chartStatus: "ready",
 	loadingLabel: undefined,

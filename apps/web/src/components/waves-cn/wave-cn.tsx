@@ -5,6 +5,7 @@ import {
 	type ReactElement,
 	type RefObject,
 	useEffect,
+	useMemo,
 	useRef,
 	useState,
 } from "react";
@@ -31,7 +32,7 @@ export type WavesurferProps = PartialWavesurferOptions &
 		className?: string;
 	};
 
-export const WAVESURFER_DEFAULTS = {
+const WAVESURFER_DEFAULTS = {
 	waveColor: "var(--muted-foreground)",
 	progressColor: "var(--primary)",
 	height: 64,
@@ -54,21 +55,25 @@ const WavesurferPlayer = memo(
 	(props: WavesurferProps): ReactElement => {
 		const containerRef = useRef<HTMLDivElement | null>(null);
 		const wsRef = useRef<WaveSurfer | null>(null);
+		const [isReady, setIsReady] = useState(false);
 		const { className, ...rest } = props;
 
 		// ── Separate options from event handlers
-		const options: Partial<WaveSurferOptions> = {};
-		const eventProps: OnWavesurferEvents = {};
-		for (const key in rest) {
-			if (isEventProp(key))
-				eventProps[key as keyof OnWavesurferEvents] = rest[
-					key as keyof typeof rest
-				] as never;
-			else
-				options[key as keyof PartialWavesurferOptions] = rest[
-					key as keyof typeof rest
-				] as never;
-		}
+		const [eventProps, options] = useMemo(() => {
+			const opts: Partial<WaveSurferOptions> = {};
+			const events: OnWavesurferEvents = {};
+			for (const key in rest) {
+				if (isEventProp(key))
+					events[key as keyof OnWavesurferEvents] = rest[
+						key as keyof typeof rest
+					] as never;
+				else
+					opts[key as keyof PartialWavesurferOptions] = rest[
+						key as keyof typeof rest
+					] as never;
+			}
+			return [events, opts] as const;
+		}, [rest]);
 
 		// ── Resolve CSS vars
 		const waveColor =
@@ -82,11 +87,15 @@ const WavesurferPlayer = memo(
 
 		// ── Keep event handlers in a ref — changes never cause re-subscription
 		const eventsRef = useRef(eventProps);
-		eventsRef.current = eventProps;
+		useEffect(() => {
+			eventsRef.current = eventProps;
+		}, [eventProps]);
 
 		// ── Keep non-url options in a ref — changes applied imperatively
 		const optionsRef = useRef(options);
-		optionsRef.current = options;
+		useEffect(() => {
+			optionsRef.current = options;
+		}, [options]);
 
 		// ── Create instance only when url or structural options change
 		const url = options.url as string | undefined;
@@ -111,7 +120,7 @@ const WavesurferPlayer = memo(
 		useEffect(() => {
 			if (!containerRef.current) return;
 
-			const ws = WaveSurfer.create({
+			wsRef.current = WaveSurfer.create({
 				...WAVESURFER_DEFAULTS,
 				url,
 				height,
@@ -128,9 +137,8 @@ const WavesurferPlayer = memo(
 				container: containerRef.current,
 			});
 
-			wsRef.current = ws;
+			const ws = wsRef.current;
 
-			// Subscribe to all events via ref — always calls latest handler
 			const eventEntries = Object.keys(eventsRef.current);
 			const unsubs = eventEntries.map((name) => {
 				const event = getEventName(name);
@@ -143,8 +151,13 @@ const WavesurferPlayer = memo(
 				);
 			});
 
+			unsubs.push(ws.on("ready", () => setIsReady(true)));
+			unsubs.push(ws.on("load", () => setIsReady(false)));
+			unsubs.push(ws.on("destroy", () => setIsReady(false)));
+
 			return () => {
 				for (const fn of unsubs) fn();
+				setIsReady(false);
 				ws.destroy();
 				wsRef.current = null;
 			};
@@ -173,27 +186,6 @@ const WavesurferPlayer = memo(
 		}, [resolvedWaveColor, resolvedProgressColor]);
 
 		// ── Skeleton
-		const [isReady, setIsReady] = useState(false);
-		useEffect(() => {
-			const ws = wsRef.current;
-			if (!ws) return;
-
-			// Sync immediately with current instance — avoids skeleton flash on re-render
-			// when the instance already exists and audio is already decoded
-			setIsReady(ws.getDuration() > 0);
-
-			const unsubs = [
-				ws.on("ready", () => setIsReady(true)),
-				ws.on("load", () => setIsReady(false)),
-				ws.on("destroy", () => setIsReady(false)),
-			];
-			return () => {
-				for (const fn of unsubs) fn();
-			};
-			// Re-attach when instance changes (url change creates new instance)
-			// eslint-disable-next-line react-hooks/exhaustive-deps
-		}, []);
-
 		return (
 			<div className={className} style={{ position: "relative" }}>
 				{!isReady && (
@@ -237,7 +229,7 @@ const WavesurferPlayer = memo(
 export default WavesurferPlayer;
 
 // ─── Hook ────────────────────────────────────────────────────────────────────
-export function useWavesurfer({
+function useWavesurfer({
 	container,
 	waveColor = WAVESURFER_DEFAULTS.waveColor,
 	progressColor = WAVESURFER_DEFAULTS.progressColor,

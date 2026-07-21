@@ -1,7 +1,8 @@
 "use client";
 
 import { cn } from "@homepage/ui/lib/utils";
-import { motion, useSpring } from "motion/react";
+import { useSpring } from "motion/react";
+import * as m from "motion/react-m";
 import type { RefObject } from "react";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
@@ -45,7 +46,7 @@ export interface TooltipBoxProps {
 export function TooltipBox(props: TooltipBoxProps) {
 	const [mounted, setMounted] = useState(false);
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		setMounted(true);
 	}, []);
 
@@ -81,12 +82,10 @@ function TooltipBoxInner({
 	const effectiveSpring = springConfig ?? tooltipBoxSpring;
 
 	const tooltipRef = useRef<HTMLDivElement>(null);
-	const tooltipWidthRef = useRef(180);
-	const tooltipHeightRef = useRef(80);
+	const [measuredSize, setMeasuredSize] = useState({ w: 180, h: 80 });
 	const [staticPosition, setStaticPosition] = useState({ left: x, top: y });
 
-	const tw = tooltipWidthRef.current;
-	const th = tooltipHeightRef.current;
+	const { w: tw, h: th } = measuredSize;
 	const shouldFlipX = x + tw + offset > containerWidth;
 	const targetX = shouldFlipX ? x - offset - tw : x + offset;
 	const targetY = Math.max(
@@ -97,12 +96,17 @@ function TooltipBoxInner({
 	const animatedLeft = useSpring(targetX, effectiveSpring);
 	const animatedTop = useSpring(targetY, effectiveSpring);
 
-	if (animate && leftOverride === undefined) {
-		animatedLeft.set(targetX);
-	}
-	if (animate && topOverride === undefined) {
-		animatedTop.set(targetY);
-	}
+	useEffect(() => {
+		if (animate && leftOverride === undefined) {
+			animatedLeft.set(targetX);
+		}
+	}, [animate, leftOverride, animatedLeft, targetX]);
+
+	useEffect(() => {
+		if (animate && topOverride === undefined) {
+			animatedTop.set(targetY);
+		}
+	}, [animate, topOverride, animatedTop, targetY]);
 
 	useLayoutEffect(() => {
 		if (!tooltipRef.current) {
@@ -111,14 +115,10 @@ function TooltipBoxInner({
 		const el = tooltipRef.current;
 		const w = el.offsetWidth;
 		const h = el.offsetHeight;
-		if (w > 0) {
-			tooltipWidthRef.current = w;
+		if (w > 0 && h > 0) {
+			setMeasuredSize({ w, h });
 		}
-		if (h > 0) {
-			tooltipHeightRef.current = h;
-		}
-		const w2 = tooltipWidthRef.current;
-		const h2 = tooltipHeightRef.current;
+		const { w: w2, h: h2 } = measuredSize;
 		const flip = x + w2 + offset > containerWidth;
 		const tx = flip ? x - offset - w2 : x + offset;
 		const ty = Math.max(
@@ -146,6 +146,7 @@ function TooltipBoxInner({
 		animate,
 		animatedLeft,
 		animatedTop,
+		measuredSize,
 	]);
 
 	const prevFlipRef = useRef(shouldFlipX);
@@ -166,7 +167,7 @@ function TooltipBoxInner({
 	const transformOrigin = isFlipped ? "right top" : "left top";
 
 	return createPortal(
-		<motion.div
+		<m.div
 			animate={{ opacity: 1 }}
 			className={cn("pointer-events-none absolute z-50", className)}
 			exit={{ opacity: 0 }}
@@ -175,7 +176,7 @@ function TooltipBoxInner({
 			style={{ left: finalLeft, top: finalTop }}
 			transition={{ duration: 0.1 }}
 		>
-			<motion.div
+			<m.div
 				animate={{ scale: 1, opacity: 1, x: 0 }}
 				className="min-w-[140px] overflow-hidden rounded-lg bg-chart-tooltip-background text-chart-tooltip-foreground shadow-lg backdrop-blur-md"
 				initial={{ scale: 0.85, opacity: 0, x: isFlipped ? 20 : -20 }}
@@ -184,8 +185,8 @@ function TooltipBoxInner({
 				transition={{ type: "spring", stiffness: 300, damping: 25 }}
 			>
 				{children}
-			</motion.div>
-		</motion.div>,
+			</m.div>
+		</m.div>,
 		container,
 	);
 }

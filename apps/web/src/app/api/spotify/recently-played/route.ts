@@ -1,8 +1,5 @@
 import { NextResponse } from "next/server";
 
-const cache = new Map<string, { data: unknown; timestamp: number }>();
-const CACHE_TTL = 25_000;
-
 class SpotifyAuthError extends Error {
 	constructor(
 		message: string,
@@ -38,6 +35,12 @@ async function getAccessToken(): Promise<string> {
 		cache: "no-store",
 	});
 
+	if (!tokenRes.ok) {
+		throw new SpotifyAuthError(
+			"Failed to fetch Spotify token",
+			tokenRes.status,
+		);
+	}
 	const data = await tokenRes.json();
 
 	if (!tokenRes.ok) {
@@ -86,20 +89,7 @@ function mapTrack(item: {
 	};
 }
 
-function respond(data: unknown, init?: ResponseInit) {
-	const response = NextResponse.json(data, init);
-	if (response.status < 400) {
-		cache.set("recently-played", { data, timestamp: Date.now() });
-	}
-	return response;
-}
-
-export async function GET() {
-	const cached = cache.get("recently-played");
-	if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
-		return NextResponse.json(cached.data);
-	}
-
+export async function POST() {
 	try {
 		const accessToken = await getAccessToken();
 
@@ -115,7 +105,7 @@ export async function GET() {
 		if (nowPlayingRes.status === 200) {
 			nowPlayingData = (await nowPlayingRes.json()) as Record<string, unknown>;
 			if (nowPlayingData?.is_playing && nowPlayingData?.item) {
-				return respond({
+				return NextResponse.json({
 					tracks: [
 						mapTrack(nowPlayingData.item as Parameters<typeof mapTrack>[0]),
 					],
@@ -179,7 +169,7 @@ export async function GET() {
 			tracks = tracks.slice(0, 5);
 		}
 
-		return respond({ tracks, isCurrentlyPlaying: false });
+		return NextResponse.json({ tracks, isCurrentlyPlaying: false });
 	} catch (err) {
 		const status = err instanceof SpotifyAuthError ? err.status : 500;
 		return NextResponse.json({ error: String(err) }, { status });

@@ -11,7 +11,6 @@ import {
 	type ReactElement,
 	type ReactNode,
 	useCallback,
-	useEffect,
 	useMemo,
 } from "react";
 import {
@@ -19,7 +18,12 @@ import {
 	DEFAULT_CHART_ENTER_TRANSITION,
 } from "./animation";
 import { resolveChartChildElement } from "./chart-child-passthrough";
-import { ChartProvider, type LineConfig, type Margin } from "./chart-context";
+import {
+	ChartProvider,
+	type LineConfig,
+	type Margin,
+	type TooltipData,
+} from "./chart-context";
 import { isGradientDefComponent, isPatternDefComponent } from "./chart-defs";
 import { shortDateFmt } from "./chart-formatters";
 import {
@@ -45,7 +49,10 @@ import {
 } from "./series-bar-layout";
 import { useStaticChartPreview } from "./static-chart-preview-context";
 import { useAnimatedYDomains } from "./use-animated-y-domains";
-import { useChartInteraction } from "./use-chart-interaction";
+import {
+	type ChartSelection,
+	useChartInteraction,
+} from "./use-chart-interaction";
 import { useChartPhaseOrchestrator } from "./use-chart-phase-orchestrator";
 import {
 	buildYScalesFromDomains,
@@ -104,7 +111,7 @@ function resolveTimeSeriesYDomain(
 }
 
 /** Markers render after the interaction overlay so they stay clickable. */
-export function isPostOverlayComponent(child: ReactElement): boolean {
+function isPostOverlayComponent(child: ReactElement): boolean {
 	const childType = child.type as {
 		displayName?: string;
 		name?: string;
@@ -139,7 +146,7 @@ const CLIP_EXCLUDED_COMPONENT_NAMES = new Set([
 ]);
 
 /** Grid and axes stay visible during series clip reveal (e.g. loading → ready). */
-export function isClipExcludedComponent(child: ReactElement): boolean {
+function isClipExcludedComponent(child: ReactElement): boolean {
 	const childType = child.type as { displayName?: string; name?: string };
 	const componentName =
 		typeof child.type === "function"
@@ -279,11 +286,8 @@ const TimeSeriesChartCore = memo(function TimeSeriesChartCore({
 		skipEnterReveal: staticPreview,
 		targetData: data,
 		yDomainTweenDuration,
+		onPhaseChange,
 	});
-
-	useEffect(() => {
-		onPhaseChange?.(chartPhase);
-	}, [chartPhase, onPhaseChange]);
 
 	const xAccessor = useCallback(
 		(d: Record<string, unknown>): Date => {
@@ -319,9 +323,6 @@ const TimeSeriesChartCore = memo(function TimeSeriesChartCore({
 		});
 	}, [innerWidth, plotData, xAccessor, xDomain]);
 
-	// When brushing, keep the full series for path rendering so edge fades stay
-	// anchored to the viewport while the line pans through them. Y-domain and
-	// interaction still use the filtered visible slice.
 	const seriesSourceData = xDomain ? plotData : visiblePlotData;
 
 	const renderData = useMemo(() => {
@@ -415,6 +416,172 @@ const TimeSeriesChartCore = memo(function TimeSeriesChartCore({
 		yScale,
 		yScales,
 	});
+
+	return (
+		<ChartSvgRenderer
+			animationDuration={animationDuration}
+			animationEasing={animationEasing}
+			chartPhase={chartPhase}
+			chartStatus={chartStatus}
+			clearSelection={clearSelection}
+			clipPathId={clipPathId}
+			columnWidth={columnWidth}
+			composedBarDataKeys={composedBarDataKeys}
+			composedBarGap={composedBarGap}
+			composedBarSize={composedBarSize}
+			composedMaxBarSize={composedMaxBarSize}
+			composedStacked={composedStacked}
+			composedStackOffsets={composedStackOffsets}
+			composedStackGap={composedStackGap}
+			concealEpoch={concealEpoch}
+			containerRef={containerRef}
+			dateLabels={dateLabels}
+			enterTransition={enterTransition}
+			height={height}
+			innerHeight={innerHeight}
+			innerWidth={innerWidth}
+			interactionHandlers={interactionHandlers}
+			interactionStyle={interactionStyle}
+			isLoaded={isLoaded}
+			loadingLabel={loadingLabel}
+			lines={lines}
+			margin={margin}
+			notifyLoadingPulseComplete={notifyLoadingPulseComplete}
+			notifyRevealConcealComplete={notifyRevealConcealComplete}
+			plotData={plotData}
+			renderData={renderData}
+			revealEpoch={revealEpoch}
+			selection={selection}
+			setTooltipData={setTooltipData}
+			staticPreview={staticPreview}
+			tooltipData={tooltipData}
+			visiblePlotData={visiblePlotData}
+			width={width}
+			xAccessor={xAccessor}
+			xDomain={xDomain}
+			xDomainSlotCount={xDomainSlotCount}
+			xScale={xScale}
+			yDomainSkeletonByAxis={yDomainSkeletonByAxis}
+			yDomainTargetByAxis={yDomainTargetByAxis}
+			yDomainTweenDuration={yDomainTweenDuration}
+			yScale={yScale}
+			yScales={yScales}
+		>
+			{children}
+		</ChartSvgRenderer>
+	);
+});
+
+interface ChartSvgRendererProps {
+	animationDuration: number;
+	animationEasing: string;
+	chartPhase: ChartPhase;
+	chartStatus: ChartStatus;
+	children: ReactNode;
+	clearSelection: () => void;
+	clipPathId: string;
+	columnWidth: number;
+	composedBarDataKeys?: string[];
+	composedBarGap?: number;
+	composedBarSize?: number;
+	composedMaxBarSize?: number;
+	composedStacked?: boolean;
+	composedStackOffsets?: Map<number, Map<string, number>>;
+	composedStackGap?: number;
+	concealEpoch: number;
+	containerRef: React.RefObject<HTMLDivElement | null>;
+	dateLabels: string[];
+	enterTransition?: Transition;
+	height: number;
+	innerHeight: number;
+	innerWidth: number;
+	interactionHandlers: {
+		onMouseMove?: (event: React.MouseEvent<SVGGElement>) => void;
+		onMouseLeave?: () => void;
+		onMouseDown?: (event: React.MouseEvent<SVGGElement>) => void;
+		onMouseUp?: () => void;
+		onTouchStart?: (event: React.TouchEvent<SVGGElement>) => void;
+		onTouchMove?: (event: React.TouchEvent<SVGGElement>) => void;
+		onTouchEnd?: () => void;
+	};
+	interactionStyle: React.CSSProperties;
+	isLoaded: boolean;
+	loadingLabel?: string;
+	lines: LineConfig[];
+	margin: Margin;
+	notifyLoadingPulseComplete: () => void;
+	notifyRevealConcealComplete: () => void;
+	plotData: Record<string, unknown>[];
+	renderData: Record<string, unknown>[];
+	revealEpoch: number;
+	selection: ChartSelection | null;
+	setTooltipData: React.Dispatch<React.SetStateAction<TooltipData | null>>;
+	staticPreview: boolean;
+	tooltipData: TooltipData | null;
+	visiblePlotData: Record<string, unknown>[];
+	width: number;
+	xAccessor: (d: Record<string, unknown>) => Date;
+	xDomain?: [Date, Date];
+	xDomainSlotCount?: number;
+	xScale: ReturnType<typeof scaleTime<number>>;
+	yDomainSkeletonByAxis: Record<string, [number, number]>;
+	yDomainTargetByAxis: Record<string, [number, number]>;
+	yDomainTweenDuration: number;
+	yScale: ReturnType<typeof scaleLinear<number>>;
+	yScales: Record<string, ReturnType<typeof scaleLinear<number>>>;
+}
+
+function ChartSvgRenderer(props: ChartSvgRendererProps) {
+	const {
+		animationDuration,
+		animationEasing,
+		chartPhase,
+		chartStatus,
+		children,
+		clearSelection,
+		clipPathId,
+		columnWidth,
+		composedBarDataKeys,
+		composedBarGap,
+		composedBarSize,
+		composedMaxBarSize,
+		composedStacked,
+		composedStackOffsets,
+		composedStackGap,
+		concealEpoch,
+		containerRef,
+		dateLabels,
+		enterTransition,
+		height,
+		innerHeight,
+		innerWidth,
+		interactionHandlers,
+		interactionStyle,
+		isLoaded,
+		loadingLabel,
+		lines,
+		margin,
+		notifyLoadingPulseComplete,
+		notifyRevealConcealComplete,
+		plotData,
+		renderData,
+		revealEpoch,
+		selection,
+		setTooltipData,
+		staticPreview,
+		tooltipData,
+		visiblePlotData,
+		width,
+		xAccessor,
+		xDomain,
+		xDomainSlotCount,
+		xScale,
+		yDomainSkeletonByAxis,
+		yDomainTargetByAxis,
+		yDomainTweenDuration,
+		yScale,
+		yScales,
+	} = props;
 
 	const defsChildren: ReactElement[] = [];
 	const clipExcludedChildren: ReactElement[] = [];
@@ -624,4 +791,4 @@ const TimeSeriesChartCore = memo(function TimeSeriesChartCore({
 			</svg>
 		</ChartProvider>
 	);
-});
+}

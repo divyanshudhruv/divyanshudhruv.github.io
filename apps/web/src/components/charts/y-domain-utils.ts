@@ -90,7 +90,7 @@ export function computeYDomainsByAxis({
 }
 
 /** Merge domain maps, normalizing axis ids to strings. */
-export function mergeYDomainRecords(
+function mergeYDomainRecords(
 	...records: Record<string, YDomain>[]
 ): Record<string, YDomain> {
 	const merged: Record<string, YDomain> = {};

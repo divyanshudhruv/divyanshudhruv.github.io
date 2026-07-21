@@ -41,7 +41,7 @@ export function isChartDefsComponent(child: ReactElement): boolean {
 }
 
 /** Split hoisted defs: @visx/pattern nodes already wrap `<defs>` and render at the svg root. */
-export function partitionChartDefNodes(defNodes: ReactElement[]): {
+function partitionChartDefNodes(defNodes: ReactElement[]): {
 	patternDefNodes: ReactElement[];
 	gradientDefNodes: ReactElement[];
 } {
@@ -59,7 +59,7 @@ export function partitionChartDefNodes(defNodes: ReactElement[]): {
 	return { patternDefNodes, gradientDefNodes };
 }
 
-export function collectChartDefsChildren(children: ReactNode): ReactElement[] {
+function collectChartDefsChildren(children: ReactNode): ReactElement[] {
 	const defNodes: ReactElement[] = [];
 
 	Children.forEach(children, (child) => {

@@ -99,7 +99,7 @@ export default function HeroSection({ id }: { id: string }) {
 				gap={1}
 				m={{ direction: "column-reverse" }}
 			>
-				<Row center gap={1} className="duration-400">
+				<Row center gap={1} className="transition-colors duration-400">
 					<PremiumButton
 						text="Github"
 						className="w-fit"

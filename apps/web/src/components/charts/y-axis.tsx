@@ -26,14 +26,13 @@ function formatTickValue(value: number): string {
 
 export function YAxis({ numTicks = 5 }: YAxisProps) {
 	const { containerRef, yScale, margin, innerHeight } = useChartStable();
-	const [mounted, setMounted] = useState(false);
+	const [container, setContainer] = useState<HTMLDivElement | null>(null);
 
 	useEffect(() => {
-		setMounted(true);
-	}, []);
+		setContainer(containerRef.current);
+	}, [containerRef]);
 
-	const container = containerRef.current;
-	if (!(mounted && container)) {
+	if (!container) {
 		return null;
 	}
 

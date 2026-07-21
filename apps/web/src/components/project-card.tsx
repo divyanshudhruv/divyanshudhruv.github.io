@@ -1,8 +1,8 @@
 "use client";
 
 import { ExternalLink } from "lucide-react";
-import { motion } from "motion/react";
-import { useMemo } from "react";
+import * as m from "motion/react-m";
+import { useLayoutEffect, useState } from "react";
 import { projectsData } from "@/resources/projects";
 import {
 	CutoutCard,
@@ -20,10 +20,15 @@ import {
 
 function ProjectCard() {
 	const stagger = useCutoutContentStaggerVariants();
-	const randomProjects = useMemo(
-		() => [...projectsData].sort(() => Math.random() - 0.5).slice(0, 6),
-		[],
+	const [randomProjects, setRandomProjects] = useState(() =>
+		[...projectsData].sort(() => 0.5 - 0.5).slice(0, 6),
 	);
+
+	useLayoutEffect(() => {
+		setRandomProjects(
+			[...projectsData].sort(() => Math.random() - 0.5).slice(0, 6),
+		);
+	}, []);
 
 	return (
 		<div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-2">
@@ -62,43 +67,43 @@ function ProjectCard() {
 						</CutoutCardInsetLabel>
 					</CutoutCardMedia>
 					<CutoutCardContent>
-						<motion.div
+						<m.div
 							variants={stagger.container}
 							initial="hidden"
 							whileInView="show"
 							viewport={{ once: true }}
 							className="space-y-3"
 						>
-							<motion.h3
+							<m.h3
 								variants={stagger.item}
 								className="font-semibold text-lg tracking-tight"
 							>
 								{project.title}
-							</motion.h3>
-							<motion.p
+							</m.h3>
+							<m.p
 								variants={stagger.item}
 								className="line-clamp-2 text-muted-foreground text-sm"
 							>
 								{project.description}
-							</motion.p>
-						</motion.div>
+							</m.p>
+						</m.div>
 					</CutoutCardContent>
 					<CutoutCardFooter className="px-6 pb-6">
-						<motion.div
+						<m.div
 							variants={stagger.container}
 							initial="hidden"
 							whileInView="show"
 							viewport={{ once: true }}
 							className="flex items-center gap-2 text-muted-foreground text-xs"
 						>
-							<motion.span variants={stagger.item}>
+							<m.span variants={stagger.item}>
 								{project.date instanceof Date ? "Completed" : "Active"}
-							</motion.span>
-							<motion.span variants={stagger.item}>&middot;</motion.span>
-							<motion.span variants={stagger.item}>
+							</m.span>
+							<m.span variants={stagger.item}>&middot;</m.span>
+							<m.span variants={stagger.item}>
 								{project.repoUrl ? project.repoUrl.split("/").pop() : "Private"}
-							</motion.span>
-						</motion.div>
+							</m.span>
+						</m.div>
 					</CutoutCardFooter>
 					{project.repoUrl && (
 						<CutoutCardAction className="right-6 bottom-20">

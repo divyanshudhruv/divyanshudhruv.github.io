@@ -1,11 +1,12 @@
 "use client";
 
 import { cn } from "@homepage/ui/lib/utils";
-import { motion, useReducedMotion, type Variants } from "motion/react";
+import { useReducedMotion, type Variants } from "motion/react";
+import * as m from "motion/react-m";
 import { type ComponentProps, useCallback } from "react";
 
 export type ShimmeringTextProps = Omit<
-	ComponentProps<typeof motion.span>,
+	ComponentProps<typeof m.span>,
 	"children"
 > & {
 	/** The text to render with the shimmering effect. */
@@ -57,7 +58,7 @@ export function ShimmeringText({
 	);
 
 	return (
-		<motion.span
+		<m.span
 			className={cn(
 				"inline-flex select-none items-center leading-none",
 				"[--color:var(--muted-foreground)] [--shimmering-color:var(--foreground)]",
@@ -66,7 +67,7 @@ export function ShimmeringText({
 			{...props}
 		>
 			{text.split("").map((char, index) => (
-				<motion.span
+				<m.span
 					animate={stopped ? "stopped" : "running"}
 					aria-hidden
 					className="inline-block whitespace-pre leading-none"
@@ -75,9 +76,9 @@ export function ShimmeringText({
 					variants={createCharVariants(index)}
 				>
 					{char}
-				</motion.span>
+				</m.span>
 			))}
 			<span className="sr-only">{text}</span>
-		</motion.span>
+		</m.span>
 	);
 }

@@ -23,7 +23,7 @@ export default function PhotoGrid({ id }: { id: string }) {
 			gap="12"
 		>
 			{images.map((src, i) => (
-				<Lens key={i}>
+				<Lens key={`${src}-${i}`}>
 					<Media
 						src={src}
 						alt=""

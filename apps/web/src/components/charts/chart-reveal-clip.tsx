@@ -1,7 +1,7 @@
 "use client";
 
 import type { Transition } from "motion/react";
-import { motion } from "motion/react";
+import * as m from "motion/react-m";
 import { clipRevealTransition } from "./animation";
 
 export type ChartRevealClipMode = "reveal" | "conceal";
@@ -56,19 +56,18 @@ export function ChartRevealClip({
 	}
 
 	if (mode === "conceal") {
-		// Mirror the LTR reveal: advance the clip's left edge rightward while width
-		// shrinks (same geometry as `LineLoadingPulseStroke` exit half-cycle).
-		const rightEdge = -padding + paddedWidth;
-
 		return (
 			<clipPath id={clipPathId}>
-				<motion.rect
-					animate={{ width: 0, x: rightEdge }}
+				<m.rect
+					animate={{ scaleX: 0 }}
 					height={paddedHeight}
-					initial={{ width: paddedWidth, x: -padding }}
+					initial={{ scaleX: 1 }}
 					key={`conceal-${revealEpoch}`}
 					onAnimationComplete={() => onComplete?.()}
+					style={{ originX: 1, originY: 0.5 }}
 					transition={transition}
+					width={paddedWidth}
+					x={-padding}
 					y={-padding}
 				/>
 			</clipPath>
@@ -77,11 +76,12 @@ export function ChartRevealClip({
 
 	return (
 		<clipPath id={clipPathId}>
-			<motion.rect
-				animate={{ width: paddedWidth }}
+			<m.rect
+				animate={{ scaleX: 1 }}
 				height={paddedHeight}
-				initial={{ width: 0 }}
+				initial={{ scaleX: 0 }}
 				key={`reveal-${revealEpoch}`}
+				style={{ originX: 0, originY: 0.5 }}
 				transition={transition}
 				width={paddedWidth}
 				x={-padding}

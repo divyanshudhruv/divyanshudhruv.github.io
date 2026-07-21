@@ -64,3 +64,4 @@ packages/*
 !packages/ui
 
 .next
+/.agents

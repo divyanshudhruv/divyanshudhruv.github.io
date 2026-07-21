@@ -1,7 +1,7 @@
 "use client";
 
 import type { Variants } from "motion/react";
-import { motion } from "motion/react";
+import * as m from "motion/react-m";
 import { memo } from "react";
 import { DEFAULT_CHART_ENTER_TRANSITION } from "./animation";
 
@@ -167,7 +167,7 @@ export function SeriesPointMarker({
 
 	return (
 		<g transform={`translate(${cx}, ${cy})`}>
-			<motion.g
+			<m.g
 				animate="visible"
 				initial="hidden"
 				key={`${dataKey}-${index}-${revealEpoch}`}
@@ -182,28 +182,9 @@ export function SeriesPointMarker({
 					stroke={stroke}
 					strokeWidth={strokeWidth}
 				/>
-			</motion.g>
+			</m.g>
 		</g>
 	);
 }
 
-export function getSeriesMarkerVisualExtent(
-	style: Pick<
-		SeriesPointMarkerStyle,
-		| "radius"
-		| "strokeWidth"
-		| "ringGap"
-		| "outlineWidth"
-		| "showActiveHighlight"
-	>,
-): number {
-	const radius = style.radius ?? 5;
-	const strokeWidth = style.strokeWidth ?? 2;
-	const ringGap = style.ringGap ?? 2;
-	const outlineWidth = style.outlineWidth ?? 0;
-	const showActiveHighlight = style.showActiveHighlight ?? true;
-	const ring = strokeWidth > 0 ? ringGap + strokeWidth : 0;
-	const outline = outlineWidth > 0 ? outlineWidth : 0;
-	const highlightPad = showActiveHighlight ? radius * 0.35 : 0;
-	return radius + ring + outline + highlightPad + 2;
-}
+export { getSeriesMarkerVisualExtent } from "./series-point-marker-utils";

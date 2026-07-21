@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@homepage/ui/lib/utils";
-import { motion } from "motion/react";
+import * as m from "motion/react-m";
 import { useTheme } from "next-themes";
 import type React from "react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -81,7 +81,7 @@ const MONTH_LABELS = [
 // GitHub-style: only Mon / Wed / Fri shown
 const DAY_LABELS = ["", "Mon", "", "Wed", "", "Fri", ""];
 
-export const COLOR_THEMES: Record<
+const COLOR_THEMES: Record<
 	ColorScheme,
 	[string, string, string, string, string]
 > = {
@@ -94,7 +94,7 @@ export const COLOR_THEMES: Record<
 	halloween: ["#21262d", "#631c03", "#bd5604", "#fa7a18", "#f9f871"],
 };
 
-export const COLOR_THEMES_LIGHT: Record<
+const COLOR_THEMES_LIGHT: Record<
 	ColorScheme,
 	[string, string, string, string, string]
 > = {
@@ -107,7 +107,7 @@ export const COLOR_THEMES_LIGHT: Record<
 	halloween: ["#E8E4E3", "#fef08a", "#fbbf24", "#ea580c", "#7c2d12"],
 };
 
-export function getContributionLevel(count: number): 0 | 1 | 2 | 3 | 4 {
+function getContributionLevel(count: number): 0 | 1 | 2 | 3 | 4 {
 	if (count === 0) return 0;
 	if (count <= 3) return 1;
 	if (count <= 6) return 2;
@@ -361,9 +361,9 @@ export function GitHubCalendar({
 						className="absolute left-0 flex flex-col justify-between"
 						style={{ top: TOP, width: LEFT - 4, height: gridH }}
 					>
-						{["Mon", "Wed", "Fri"].map((label, i) => (
+						{["Mon", "Wed", "Fri"].map((label) => (
 							<div
-								key={i}
+								key={label}
 								className="flex h-3.5 items-center justify-end pr-1 text-[11px] text-zinc-600"
 							>
 								{label}
@@ -467,7 +467,7 @@ export function GitHubCalendar({
 					>
 						{DAY_LABELS.map((lbl, i) => (
 							<div
-								key={i}
+								key={lbl}
 								className="flex items-center justify-end pr-1 text-[11px] text-zinc-500"
 								style={{ height: cellSize, marginBottom: i < 6 ? cellGap : 0 }}
 							>
@@ -478,7 +478,7 @@ export function GitHubCalendar({
 				)}
 
 				{/* ── Cell grid ──────────────────────────────────────────────────── */}
-				<motion.div
+				<m.div
 					key={`${animate}-${weeks.length}`}
 					className="absolute flex"
 					style={{ top: TOP, left: LEFT, gap: cellGap }}
@@ -503,7 +503,7 @@ export function GitHubCalendar({
 								const bg = palette[level];
 								const hasData = day !== null;
 								return (
-									<motion.div
+									<m.div
 										key={di}
 										role="gridcell"
 										aria-label={
@@ -548,7 +548,7 @@ export function GitHubCalendar({
 							})}
 						</div>
 					))}
-				</motion.div>
+				</m.div>
 
 				{/* ── Tooltip ────────────────────────────────────────────────────── */}
 				{showTooltip && tooltip.visible && (

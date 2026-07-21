@@ -21,8 +21,8 @@ const credits: [string, string][] = [
 export function CreditsGrid() {
 	return (
 		<Grid fillWidth columns={2} gap={0.5}>
-			{credits.map(([label, value], i) => (
-				<React.Fragment key={i}>
+			{credits.map(([label, value]) => (
+				<React.Fragment key={label}>
 					<Text
 						className="font-body font-normal text-lg text-muted-foreground/80"
 						align="right"

@@ -14,7 +14,7 @@ export function filterDataByXDomain(
 	});
 }
 
-export function resolveDataXExtent(
+function resolveDataXExtent(
 	data: Record<string, unknown>[],
 	xAccessor: (d: Record<string, unknown>) => Date,
 ): [Date, Date] | null {

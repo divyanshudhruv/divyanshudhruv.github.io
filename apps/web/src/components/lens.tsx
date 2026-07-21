@@ -1,6 +1,7 @@
 "use client";
 
-import { AnimatePresence, motion, useMotionTemplate } from "motion/react";
+import { AnimatePresence } from "motion/react";
+import * as m from "motion/react-m";
 import type React from "react";
 import { useCallback, useMemo, useRef, useState } from "react";
 
@@ -31,6 +32,8 @@ interface LensProps {
 	/** The aria label of the lens */
 	ariaLabel?: string;
 }
+
+("use memo");
 
 export function Lens({
 	children,
@@ -72,17 +75,13 @@ export function Lens({
 		if (e.key === "Escape") setIsHovering(false);
 	}, []);
 
-	const maskImage = useMotionTemplate`radial-gradient(circle ${
-		lensSize / 2
-	}px at ${currentPosition.x}px ${
-		currentPosition.y
-	}px, ${lensColor} 100%, transparent 100%)`;
+	const maskImage = `radial-gradient(circle ${lensSize / 2}px at ${currentPosition.x}px ${currentPosition.y}px, ${lensColor} 100%, transparent 100%)`;
 
 	const LensContent = useMemo(() => {
 		const { x, y } = currentPosition;
 
 		return (
-			<motion.div
+			<m.div
 				initial={{ opacity: 0, scale: 0.58 }}
 				animate={{ opacity: 1, scale: 1 }}
 				exit={{ opacity: 0, scale: 0.8 }}
@@ -104,7 +103,7 @@ export function Lens({
 				>
 					{children}
 				</div>
-			</motion.div>
+			</m.div>
 		);
 	}, [currentPosition, maskImage, zoomFactor, children, duration]);
 

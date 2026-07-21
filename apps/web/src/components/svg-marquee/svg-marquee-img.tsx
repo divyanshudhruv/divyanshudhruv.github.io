@@ -1,12 +1,12 @@
 "use client";
 
 import {
-	motion,
 	useAnimationFrame,
 	useMotionValue,
 	useSpring,
 	useTransform,
 } from "motion/react";
+import * as m from "motion/react-m";
 
 import "./index.css";
 import { Flex } from "@once-ui-system/core";
@@ -32,7 +32,7 @@ type MarqueeItemProps = {
 	repeatIndex: number;
 	zIndexBase: number;
 	scaledPath: string;
-	isHovered: React.MutableRefObject<boolean>;
+	onHoverChange: (hovered: boolean) => void;
 	children: React.ReactNode;
 };
 
@@ -126,7 +126,7 @@ const MarqueeItem = ({
 	repeatIndex,
 	zIndexBase,
 	scaledPath,
-	isHovered,
+	onHoverChange,
 	children,
 }: MarqueeItemProps) => {
 	const itemOffset = useTransform(baseOffset, (v: number) => {
@@ -147,7 +147,7 @@ const MarqueeItem = ({
 	});
 
 	return (
-		<motion.div
+		<m.div
 			className="marquee-item"
 			style={{
 				offsetPath: `path('${scaledPath}')`,
@@ -157,11 +157,11 @@ const MarqueeItem = ({
 				opacity: opacity,
 			}}
 			aria-hidden={repeatIndex > 0}
-			onMouseEnter={() => (isHovered.current = true)}
-			onMouseLeave={() => (isHovered.current = false)}
+			onMouseEnter={() => onHoverChange(true)}
+			onMouseLeave={() => onHoverChange(false)}
 		>
 			{children}
-		</motion.div>
+		</m.div>
 	);
 };
 
@@ -297,7 +297,9 @@ const MarqueeAlongPath = ({
 						repeatIndex={repeatIndex}
 						zIndexBase={zIndexBase}
 						scaledPath={scaledPath}
-						isHovered={isHovered}
+						onHoverChange={(v) => {
+							isHovered.current = v;
+						}}
 					>
 						{child}
 					</MarqueeItem>
@@ -317,7 +319,7 @@ const SVGMarqueeImg = () => {
 			{" "}
 			<MarqueeAlongPath path={path} baseVelocity={5} repeat={4}>
 				{artworks.map((artwork, i) => (
-					<Card key={i} index={i} artwork={artwork} />
+					<Card key={`${artwork.src}-${i}`} index={i} artwork={artwork} />
 				))}
 			</MarqueeAlongPath>
 			{/* <ImageTrail

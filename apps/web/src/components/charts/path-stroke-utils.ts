@@ -1,6 +1,6 @@
 import { type RefObject, useEffect, useState } from "react";
 
-export function findPathLengthAtX(
+function findPathLengthAtX(
 	path: SVGPathElement | null,
 	pathLength: number,
 	targetX: number,

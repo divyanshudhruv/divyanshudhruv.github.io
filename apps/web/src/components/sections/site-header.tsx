@@ -80,7 +80,7 @@ export default function SiteHeader() {
 						>
 							<Text
 								variant="label-default-l"
-								className="text-muted-foreground transition-all hover:text-foreground"
+								className="text-muted-foreground transition-colors hover:text-foreground"
 							>
 								{link.label}
 							</Text>

@@ -312,7 +312,7 @@ function isBetterTickLayout(
  * Picks tick indices with the most even on-screen spacing. Tries
  * `targetCount ± 1` and evaluates every gap layout when feasible.
  */
-export function selectEvenlySpacedIndices(
+function selectEvenlySpacedIndices(
 	length: number,
 	targetCount: number,
 	options?: {
@@ -477,14 +477,13 @@ function buildDomainTicks({
 
 export function XAxis(props: XAxisProps) {
 	const { containerRef } = useChartStable();
-	const [mounted, setMounted] = useState(false);
+	const [container, setContainer] = useState<HTMLDivElement | null>(null);
 
 	useEffect(() => {
-		setMounted(true);
-	}, []);
+		setContainer(containerRef.current);
+	}, [containerRef]);
 
-	const container = containerRef.current;
-	if (!(mounted && container)) {
+	if (!container) {
 		return null;
 	}
 

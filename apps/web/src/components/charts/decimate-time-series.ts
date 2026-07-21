@@ -87,7 +87,7 @@ export function maxRenderPointsForWidth(innerWidth: number): number {
 }
 
 /** Bucket OHLC rows into fewer candles while preserving high/low extremes. */
-export function decimateOhlcData<T extends Record<string, unknown>>(
+function decimateOhlcData<T extends Record<string, unknown>>(
 	data: T[],
 	maxPoints: number,
 ): T[] {

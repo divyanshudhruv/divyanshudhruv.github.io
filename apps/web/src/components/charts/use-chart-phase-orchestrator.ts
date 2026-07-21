@@ -17,6 +17,8 @@ export interface UseChartPhaseOrchestratorOptions {
 	revealSignature?: string;
 	/** Skip mount/signature enter reveal (static docs previews). */
 	skipEnterReveal?: boolean;
+	/** Called synchronously when chartPhase transitions to a new value. */
+	onPhaseChange?: (phase: ChartPhase) => void;
 }
 
 export function useChartPhaseOrchestrator({
@@ -27,8 +29,9 @@ export function useChartPhaseOrchestrator({
 	yDomainTweenDuration,
 	revealSignature = "",
 	skipEnterReveal = false,
+	onPhaseChange,
 }: UseChartPhaseOrchestratorOptions) {
-	const [chartPhase, setChartPhase] = useState<ChartPhase>(() =>
+	const [chartPhase, setChartPhaseState] = useState<ChartPhase>(() =>
 		resolveRestingChartPhase(chartStatus),
 	);
 	const [plotData, setPlotData] = useState<Record<string, unknown>[]>(() =>
@@ -39,7 +42,21 @@ export function useChartPhaseOrchestrator({
 	const [isLoaded, setIsLoaded] = useState(() => chartStatus === "ready");
 	const prevStatusRef = useRef(chartStatus);
 	const phaseRef = useRef(chartPhase);
-	phaseRef.current = chartPhase;
+	const onPhaseChangeRef = useRef(onPhaseChange);
+
+	useEffect(() => {
+		onPhaseChangeRef.current = onPhaseChange;
+	}, [onPhaseChange]);
+
+	const setChartPhase = useCallback((phase: ChartPhase) => {
+		setChartPhaseState(phase);
+		phaseRef.current = phase;
+		onPhaseChangeRef.current?.(phase);
+	}, []);
+
+	useEffect(() => {
+		phaseRef.current = chartPhase;
+	}, [chartPhase]);
 
 	useEffect(() => {
 		const prevStatus = prevStatusRef.current;

@@ -61,6 +61,9 @@ async function queryPosthogEvents() {
 			},
 			cache: "no-store",
 		});
+		if (!res.ok) {
+			throw new Error(`PostHog API error: ${res.status}`);
+		}
 		const json: {
 			results?: Array<{
 				timestamp: string;

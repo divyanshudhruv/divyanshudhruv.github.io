@@ -1,7 +1,8 @@
 "use client";
 
-import { type MotionValue, motion } from "motion/react";
-import { type RefObject, useId } from "react";
+import type { MotionValue } from "motion/react";
+import * as m from "motion/react-m";
+import { type RefObject, useEffect, useId, useState } from "react";
 
 // Hover-highlight overlay: re-strokes the base path `d`, clipped to a vertical
 // band whose x/width spring to track the hovered point, so only the segment
@@ -34,20 +35,27 @@ export function HighlightSegment({
 	width,
 }: HighlightSegmentProps) {
 	const clipId = useId();
-	if (!(visible && pathRef.current)) {
+	const [pathD, setPathD] = useState("");
+
+	useEffect(() => {
+		setPathD(pathRef.current?.getAttribute("d") || "");
+	}, [pathRef]);
+
+	if (!visible) {
 		return null;
 	}
+
 	return (
 		<>
 			<defs>
 				<clipPath id={clipId}>
-					<motion.rect height={height} width={width} x={x} y={0} />
+					<m.rect height={height} width={width} x={x} y={0} />
 				</clipPath>
 			</defs>
-			<motion.path
+			<m.path
 				animate={{ opacity: 1 }}
 				clipPath={`url(#${clipId})`}
-				d={pathRef.current.getAttribute("d") || ""}
+				d={pathD}
 				exit={{ opacity: 0 }}
 				fill="none"
 				initial={{ opacity: 0 }}

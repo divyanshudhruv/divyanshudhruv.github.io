@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@homepage/ui/lib/utils";
-import { motion } from "motion/react";
+import * as m from "motion/react-m";
 import { ShimmeringText } from "../shimmering-text";
 import {
 	LINE_LOADING_PULSE_EASE,
@@ -27,7 +27,7 @@ export function ChartLoadingLabel({
 	}
 
 	return (
-		<motion.div
+		<m.div
 			animate={{
 				y: exiting ? LOADING_LABEL_EXIT_Y_PX : 0,
 				opacity: exiting ? 0 : 1,
@@ -49,7 +49,7 @@ export function ChartLoadingLabel({
 				className="font-medium text-sm tracking-wide [--color:var(--muted-foreground)] [--shimmering-color:var(--foreground)]"
 				text={text}
 			/>
-		</motion.div>
+		</m.div>
 	);
 }
 

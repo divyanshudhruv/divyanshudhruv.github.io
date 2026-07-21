@@ -19,7 +19,7 @@ import {
 // ============================================================================
 
 /** Border + shadow stack using theme tokens so elevation reads in light and dark. */
-export const cutoutCardSurfaceShadowClassName = cn(
+const cutoutCardSurfaceShadowClassName = cn(
 	"border border-border/80 dark:border-border/60",
 	"transition-[box-shadow,border-color] duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]",
 	"hover:border-border",
