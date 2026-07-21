@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import config from "@/resources/metadata/metadata.json" with { type: "json" };
+import config from "@/content/metadata.json" with { type: "json" };
 
 export function getMetadata(): Metadata {
 	return {

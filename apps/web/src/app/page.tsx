@@ -1,5 +1,7 @@
 "use client";
 
+import CrowdCanvas from "@homepage/ui/skiper-ui/crowd-canvas";
+import { ProgressiveBlur } from "@homepage/ui/skiper-ui/progressive-blur";
 import { Column, Flex } from "@once-ui-system/core";
 import { FluidGradientText } from "@/components/fluid-gradient-text";
 import AboutSection from "@/components/sections/about-section";
@@ -14,8 +16,6 @@ import ProjectsSection from "@/components/sections/projects-section";
 import SiteHeader from "@/components/sections/site-header";
 import SkillsSection from "@/components/sections/skills-section";
 import TimerSection from "@/components/sections/timer-section";
-import CrowdCanvas from "@homepage/ui/components/ui/skiper-ui/skiper39";
-import { ProgressiveBlur } from "@homepage/ui/components/ui/skiper-ui/skiper41";
 export default function Home() {
 	return (
 		<>

@@ -6,7 +6,10 @@ import * as m from "motion/react-m";
 import type { RefObject } from "react";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { type SpringConfig, useChartConfig } from "../chart-config-context";
+import {
+	type SpringConfig,
+	useChartConfig,
+} from "../contexts/chart-config-context";
 
 export interface TooltipBoxProps {
 	/** X position in pixels (relative to container) */

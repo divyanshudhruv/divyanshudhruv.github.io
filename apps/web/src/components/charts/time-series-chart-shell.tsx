@@ -13,53 +13,52 @@ import {
 	type ReactNode,
 } from "react";
 import {
-	DEFAULT_ANIMATION_EASING,
-	DEFAULT_CHART_ENTER_TRANSITION,
-} from "./animation";
-import { resolveChartChildElement } from "./chart-child-passthrough";
-import {
 	ChartProvider,
+	type ChartRenderPhase,
 	type LineConfig,
 	type Margin,
 	type TooltipData,
-} from "./chart-context";
-import { isGradientDefComponent, isPatternDefComponent } from "./chart-defs";
-import { shortDateFmt } from "./chart-formatters";
+} from "./contexts/chart-context";
+import { useStaticChartPreview } from "./contexts/static-chart-preview-context";
+import { useAnimatedYDomains } from "./hooks/use-animated-y-domains";
+import {
+	type ChartSelection,
+	useChartInteraction,
+} from "./hooks/use-chart-interaction";
+import { useChartPhaseOrchestrator } from "./hooks/use-chart-phase-orchestrator";
+import { ChartRevealClip } from "./renderers/chart-reveal-clip";
+import {
+	DEFAULT_ANIMATION_EASING,
+	DEFAULT_CHART_ENTER_TRANSITION,
+} from "./utils/animation";
+import { shortDateFmt } from "./utils/chart-formatters";
 import {
 	type ChartPhase,
 	type ChartStatus,
 	DEFAULT_CHART_STATUS,
 	DEFAULT_Y_DOMAIN_TWEEN_MS,
 	isChartInteractionPhase,
-} from "./chart-phase";
-import { ChartRevealClip } from "./chart-reveal-clip";
+} from "./utils/chart-phase";
 import {
 	decimateTimeSeries,
 	maxRenderPointsForWidth,
-} from "./decimate-time-series";
-import { filterDataByXDomain } from "./filter-data-by-x-domain";
+} from "./utils/decimate-time-series";
+import { filterDataByXDomain } from "./utils/filter-data-by-x-domain";
 import {
 	generateChartSkeletonData,
 	generateChartSkeletonFromTarget,
-} from "./generate-chart-skeleton-data";
+} from "./utils/generate-chart-skeleton-data";
 import {
 	computeSeriesBarRevealClipPadding,
 	computeSeriesBarWidth,
-} from "./series-bar-layout";
-import { useStaticChartPreview } from "./static-chart-preview-context";
-import { useAnimatedYDomains } from "./use-animated-y-domains";
-import {
-	type ChartSelection,
-	useChartInteraction,
-} from "./use-chart-interaction";
-import { useChartPhaseOrchestrator } from "./use-chart-phase-orchestrator";
+} from "./utils/series-bar-layout";
 import {
 	buildYScalesFromDomains,
 	DEFAULT_Y_AXIS_ID,
 	getPrimaryYScale,
 	groupLinesByYAxisId,
-} from "./y-axis-scales";
-import { computeYDomainsByAxis } from "./y-domain-utils";
+} from "./utils/y-axis-scales";
+import { computeYDomainsByAxis } from "./utils/y-domain-utils";
 
 function collectNumericExtents(
 	data: Record<string, unknown>[],
@@ -108,49 +107,22 @@ function resolveTimeSeriesYDomain(
 	return [minValue, maxValue];
 }
 
-/** Markers render after the interaction overlay so they stay clickable. */
-function isPostOverlayComponent(child: ReactElement): boolean {
-	const childType = child.type as {
-		displayName?: string;
-		name?: string;
-		__isChartMarkers?: boolean;
-	};
-
-	if (childType.__isChartMarkers) {
-		return true;
-	}
-
-	const componentName =
-		typeof child.type === "function"
-			? childType.displayName || childType.name || ""
-			: "";
-
-	return (
-		componentName === "ChartMarkers" ||
-		componentName === "MarkerGroup" ||
-		componentName === "ChartBrush"
-	);
+function getChartPhase(child: ReactElement): ChartRenderPhase | null {
+	const phase = (child.type as { chartPhase?: ChartRenderPhase }).chartPhase;
+	return phase ?? null;
 }
-
-const CLIP_EXCLUDED_COMPONENT_NAMES = new Set([
-	"Background",
-	"Grid",
-	"XAxis",
-	"YAxis",
-	"BarXAxis",
-	"BarYAxis",
-	"LiveXAxis",
-	"LiveYAxis",
-]);
 
 /** Grid and axes stay visible during series clip reveal (e.g. loading → ready). */
 function isClipExcludedComponent(child: ReactElement): boolean {
-	const childType = child.type as { displayName?: string; name?: string };
-	const componentName =
-		typeof child.type === "function"
-			? childType.displayName || childType.name || ""
-			: "";
-	return CLIP_EXCLUDED_COMPONENT_NAMES.has(componentName);
+	return getChartPhase(child) === "clipExcluded";
+}
+
+function isOverlayComponent(child: ReactElement): boolean {
+	return getChartPhase(child) === "overlay";
+}
+
+function isDefComponent(child: ReactElement): boolean {
+	return getChartPhase(child) === "defs";
 }
 
 function ensureChildKey(child: ReactElement, index: number): ReactElement {
@@ -561,8 +533,8 @@ function ChartSvgRenderer(props: ChartSvgRendererProps) {
 
 	const defsChildren: ReactElement[] = [];
 	const clipExcludedChildren: ReactElement[] = [];
-	const preOverlayChildren: ReactElement[] = [];
-	const postOverlayChildren: ReactElement[] = [];
+	const clipRevealedChildren: ReactElement[] = [];
+	const overlayChildren: ReactElement[] = [];
 
 	Children.forEach(children, (child, index) => {
 		if (!isValidElement(child)) {
@@ -570,18 +542,15 @@ function ChartSvgRenderer(props: ChartSvgRendererProps) {
 		}
 
 		const keyedChild = ensureChildKey(child, index);
-		const resolvedChild = resolveChartChildElement(keyedChild);
 
-		if (isGradientDefComponent(resolvedChild)) {
-			defsChildren.push(resolvedChild);
-		} else if (isPatternDefComponent(resolvedChild)) {
-			preOverlayChildren.push(resolvedChild);
-		} else if (isPostOverlayComponent(resolvedChild)) {
-			postOverlayChildren.push(resolvedChild);
-		} else if (isClipExcludedComponent(resolvedChild)) {
-			clipExcludedChildren.push(resolvedChild);
+		if (isDefComponent(keyedChild)) {
+			defsChildren.push(keyedChild);
+		} else if (isOverlayComponent(keyedChild)) {
+			overlayChildren.push(keyedChild);
+		} else if (isClipExcludedComponent(keyedChild)) {
+			clipExcludedChildren.push(keyedChild);
 		} else {
-			preOverlayChildren.push(resolvedChild);
+			clipRevealedChildren.push(keyedChild);
 		}
 	});
 
@@ -665,27 +634,48 @@ function ChartSvgRenderer(props: ChartSvgRendererProps) {
 				});
 			})();
 
+	function renderDefs(defChildren: ReactNode) {
+		return (
+			<defs>
+				{defChildren}
+				{useClipReveal ? (
+					<ChartRevealClip
+						animating={isRevealAnimating || isRevealConcealing}
+						clipPathId={clipPathId}
+						enterTransition={effectiveEnterTransition}
+						height={innerHeight + 20}
+						mode={isRevealConcealing ? "conceal" : "reveal"}
+						onComplete={
+							isRevealConcealing ? notifyRevealConcealComplete : undefined
+						}
+						padding={revealClipPadding}
+						revealEpoch={isRevealConcealing ? concealEpoch : revealEpoch}
+						targetWidth={innerWidth}
+					/>
+				) : null}
+			</defs>
+		);
+	}
+
+	function renderClipExcluded(clipExcludedChildrenList: ReactNode) {
+		return <>{clipExcludedChildrenList}</>;
+	}
+
+	function renderClipRevealed(clipRevealedChildrenList: ReactNode) {
+		if (useClipReveal) {
+			return <g clipPath={`url(#${clipPathId})`}>{clipRevealedChildrenList}</g>;
+		}
+		return <>{clipRevealedChildrenList}</>;
+	}
+
+	function renderOverlay(overlayChildrenList: ReactNode) {
+		return <>{overlayChildrenList}</>;
+	}
+
 	return (
 		<ChartProvider value={contextValue}>
 			<svg aria-hidden="true" height={height} width={width}>
-				<defs>
-					{defsChildren}
-					{useClipReveal ? (
-						<ChartRevealClip
-							animating={isRevealAnimating || isRevealConcealing}
-							clipPathId={clipPathId}
-							enterTransition={effectiveEnterTransition}
-							height={innerHeight + 20}
-							mode={isRevealConcealing ? "conceal" : "reveal"}
-							onComplete={
-								isRevealConcealing ? notifyRevealConcealComplete : undefined
-							}
-							padding={revealClipPadding}
-							revealEpoch={isRevealConcealing ? concealEpoch : revealEpoch}
-							targetWidth={innerWidth}
-						/>
-					) : null}
-				</defs>
+				{renderDefs(defsChildren)}
 
 				<rect fill="transparent" height={height} width={width} x={0} y={0} />
 
@@ -702,13 +692,9 @@ function ChartSvgRenderer(props: ChartSvgRendererProps) {
 						y={0}
 					/>
 
-					{clipExcludedChildren}
-					{useClipReveal ? (
-						<g clipPath={`url(#${clipPathId})`}>{preOverlayChildren}</g>
-					) : (
-						preOverlayChildren
-					)}
-					{postOverlayChildren}
+					{renderClipExcluded(clipExcludedChildren)}
+					{renderClipRevealed(clipRevealedChildren)}
+					{renderOverlay(overlayChildren)}
 				</g>
 			</svg>
 		</ChartProvider>

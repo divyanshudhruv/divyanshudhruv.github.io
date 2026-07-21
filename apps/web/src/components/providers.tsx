@@ -12,7 +12,7 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { iconLibrary } from "@/lib/icon-library";
 
 const PostHogProvider = dynamic(
-	() => import("./posthog-provider").then((m) => m.PostHogProvider),
+	() => import("@/components/analytics").then((m) => m.PostHogProvider),
 	{ ssr: false },
 );
 

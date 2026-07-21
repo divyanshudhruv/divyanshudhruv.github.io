@@ -145,9 +145,7 @@ function useGitHubContributions(
 								count: day.count,
 							}),
 						);
-						const sorted = mapped.sort((a, b) =>
-							a.date.localeCompare(b.date),
-						);
+						const sorted = mapped.sort((a, b) => a.date.localeCompare(b.date));
 						setData(sorted);
 						if (showYearButtons && sorted.length) {
 							const latestYear = Number(
@@ -172,7 +170,10 @@ function useGitHubContributions(
 			}
 		})();
 
-		return () => { controller.abort(); ignore = true; };
+		return () => {
+			controller.abort();
+			ignore = true;
+		};
 	}, [username, showYearButtons, onDataLoaded]);
 
 	return { data, loading, error, selectedYear, setSelectedYear };

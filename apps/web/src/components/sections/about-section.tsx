@@ -1,10 +1,10 @@
-import { ActionRow } from "@/components/section/action-row";
+import { ActionRow } from "@/components/section-ui/action-row";
 import {
 	SectionHeading,
 	SectionRoot,
 	SectionText,
-} from "@/components/section/section-heading";
-import { socials } from "@/resources/socials";
+} from "@/components/section-ui/section-heading";
+import { socials } from "@/content/socials";
 
 export default function AboutSection({ id }: { id: string }) {
 	return (

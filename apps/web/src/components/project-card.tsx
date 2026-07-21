@@ -1,9 +1,5 @@
 "use client";
 
-import { ExternalLink } from "lucide-react";
-import * as m from "motion/react-m";
-import { useState } from "react";
-import { projectsData } from "@/resources/projects";
 import {
 	CutoutCard,
 	CutoutCardAction,
@@ -16,8 +12,12 @@ import {
 	CutoutCardPin,
 	CutoutCorner,
 	useCutoutContentStaggerVariants,
-} from "@homepage/ui/components/ui/skiper-ui/cutout-card";
-import { cutoutCardSurfaceClassName } from "@homepage/ui/components/ui/skiper-ui/cutout-card-tokens";
+} from "@homepage/ui/skiper-ui/cutout-card";
+import { cutoutCardSurfaceClassName } from "@homepage/ui/skiper-ui/cutout-card-tokens";
+import { ExternalLink } from "lucide-react";
+import * as m from "motion/react-m";
+import { useState } from "react";
+import { projectsData } from "@/content/projects";
 
 function ProjectCard() {
 	const stagger = useCutoutContentStaggerVariants();

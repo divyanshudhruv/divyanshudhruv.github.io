@@ -1,16 +1,18 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { ActionRow } from "@/components/section/action-row";
+import { ActionRow } from "@/components/section-ui/action-row";
 import {
 	SectionHeading,
 	SectionRoot,
 	SectionText,
-} from "@/components/section/section-heading";
+} from "@/components/section-ui/section-heading";
 
 const ViewChart = dynamic(
 	() =>
-		import("@/components/view-chart").then((m) => ({ default: m.ViewChart })),
+		import("@/components/insights-chart").then((m) => ({
+			default: m.ViewChart,
+		})),
 	{
 		ssr: true,
 	},

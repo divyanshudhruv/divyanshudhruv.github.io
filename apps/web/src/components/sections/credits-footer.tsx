@@ -1,8 +1,8 @@
 import { Flex } from "@once-ui-system/core";
 import Image from "next/image";
 import ImageTrail, { ImageTrailItem } from "@/components/image-trail";
-import { CreditsGrid } from "@/components/section/credits-grid";
-import { images } from "@/resources/image-trail";
+import { CreditsGrid } from "@/components/section-ui/credits-grid";
+import { images } from "@/content/image-trail";
 
 export default function CreditsFooter({ id }: { id: string }) {
 	return (

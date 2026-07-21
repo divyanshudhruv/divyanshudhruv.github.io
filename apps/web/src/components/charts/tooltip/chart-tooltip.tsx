@@ -8,15 +8,15 @@ import {
 	resolveTooltipBoxMotion,
 	type SpringConfig,
 	useChartConfig,
-} from "../chart-config-context";
+} from "../contexts/chart-config-context";
 import {
 	chartCssVars,
 	type LineConfig,
 	useChart,
 	useChartStable,
-} from "../chart-context";
-import { weekdayDateFmt } from "../chart-formatters";
-import type { IndicatorFadeEdges } from "../indicator-fade";
+} from "../contexts/chart-context";
+import { weekdayDateFmt } from "../utils/chart-formatters";
+import type { IndicatorFadeEdges } from "../utils/indicator-fade";
 import { DateTicker } from "./date-ticker";
 import { TooltipBox } from "./tooltip-box";
 import { TooltipContent, type TooltipRow } from "./tooltip-content";
@@ -279,6 +279,8 @@ function ChartTooltipInner({
 
 	return createPortal(tooltipContent, container);
 }
+
+ChartTooltipInner.chartPhase = "overlay" as const;
 
 export function ChartTooltip(props: ChartTooltipProps) {
 	const { containerRef } = useChartStable();

@@ -1,15 +1,15 @@
+import { HoverExpand_001 } from "@homepage/ui/skiper-ui/hover-expand";
 import { Column, Flex } from "@once-ui-system/core";
 import { ProjectCard } from "@/components/project-card";
 import { ProjectsBlock } from "@/components/projects-block";
-import { ActionRow } from "@/components/section/action-row";
+import { ActionRow } from "@/components/section-ui/action-row";
 import {
 	SectionHeading,
 	SectionRoot,
 	SectionText,
-} from "@/components/section/section-heading";
-import { projectsData } from "@/resources/projects";
-import { socials } from "@/resources/socials";
-import { HoverExpand_001 } from "@homepage/ui/components/ui/skiper-ui/skiper52";
+} from "@/components/section-ui/section-heading";
+import { projectsData } from "@/content/projects";
+import { socials } from "@/content/socials";
 
 export default function ProjectsSection({ id }: { id: string }) {
 	return (

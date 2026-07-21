@@ -2,10 +2,9 @@
 
 import "./index.css";
 import { Flex } from "@once-ui-system/core";
-import * as d3 from "d3";
-import React, { useEffect, useRef, useState } from "react";
-import { artworks } from "../../resources/artworks";
-import Card from "./card";
+import React, { useEffect, useRef } from "react";
+import { artworks } from "../../content/artworks";
+import Card from "./marquee-card";
 
 type MarqueeAlongPathProps = {
 	children: React.ReactNode;
@@ -20,61 +19,15 @@ type MarqueeItemProps = {
 	itemIndex: number;
 	totalItems: number;
 	zIndexBase: number;
-	scaledPath: string;
+	path: string;
 	children: React.ReactNode;
-};
-
-const parsePathToPoints = (
-	pathString: string,
-	maxSamples = 100,
-): Array<[number, number]> => {
-	const points: Array<[number, number]> = [];
-	const svg = d3.create("svg");
-	const path = svg.append("path").attr("d", pathString);
-	const pathNode = path.node() as SVGPathElement;
-	if (pathNode) {
-		const totalLength = pathNode.getTotalLength();
-		const numSamples = Math.min(maxSamples, totalLength);
-		for (let i = 0; i <= numSamples; i++) {
-			const point = pathNode.getPointAtLength((i / numSamples) * totalLength);
-			points.push([point.x, point.y]);
-		}
-	}
-	return points;
-};
-
-const createScaledPath = (
-	originalPath: string,
-	originalWidth: number,
-	originalHeight: number,
-	newWidth: number,
-	newHeight: number,
-): string => {
-	const points = parsePathToPoints(originalPath);
-	const xScale = d3
-		.scaleLinear()
-		.domain([0, originalWidth])
-		.range([0, newWidth]);
-	const yScale = d3
-		.scaleLinear()
-		.domain([0, originalHeight])
-		.range([0, newHeight]);
-	const scaledPoints = points.map(
-		([x, y]) => [xScale(x), yScale(y)] as [number, number],
-	);
-	const line = d3
-		.line()
-		.x((d) => d[0])
-		.y((d) => d[1])
-		.curve(d3.curveBasis);
-	return line(scaledPoints) || "";
 };
 
 const MarqueeItem = ({
 	itemIndex,
 	totalItems,
 	zIndexBase,
-	scaledPath,
+	path,
 	children,
 }: MarqueeItemProps) => {
 	const delay = -((itemIndex / totalItems) * 20);
@@ -82,7 +35,7 @@ const MarqueeItem = ({
 		<div
 			className="marquee-item"
 			style={{
-				offsetPath: `path('${scaledPath}')`,
+				offsetPath: `path('${path}')`,
 				offsetRotate: "auto",
 				animationDelay: `${delay}s`,
 				zIndex: zIndexBase + itemIndex,
@@ -120,13 +73,21 @@ const MarqueeAlongPath = ({
 		const el = wrapperRef.current;
 		if (!el) return;
 		if (containerRef.current) {
-			containerRef.current.style.setProperty("--marquee-duration", `${duration}s`);
+			containerRef.current.style.setProperty(
+				"--marquee-duration",
+				`${duration}s`,
+			);
 		}
 		const observer = new IntersectionObserver(
 			([entry]) => {
 				if (containerRef.current) {
-					containerRef.current.style.setProperty("--marquee-duration", `${duration}s`);
-					containerRef.current.style.animationPlayState = entry.isIntersecting ? "running" : "paused";
+					containerRef.current.style.setProperty(
+						"--marquee-duration",
+						`${duration}s`,
+					);
+					containerRef.current.style.animationPlayState = entry.isIntersecting
+						? "running"
+						: "paused";
 				}
 			},
 			{ threshold: 0 },
@@ -135,52 +96,23 @@ const MarqueeAlongPath = ({
 		return () => observer.disconnect();
 	}, [duration]);
 
-	const [useScaleMethod] = useState<1 | 2>(1);
 	const marqueeContainerRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
-		if (useScaleMethod === 1) {
-			const updateScale = () => {
-				const wrapper = wrapperRef.current;
-				const marqueeContainer = marqueeContainerRef.current;
-				if (!wrapper || !marqueeContainer) return;
-				const scale = (wrapper.clientWidth / 588) * 1.9;
-				marqueeContainer.style.transform = `scale(${scale})`;
-				marqueeContainer.style.transformOrigin = "top left";
-			};
-			updateScale();
-			window.addEventListener("resize", updateScale);
-			return () => window.removeEventListener("resize", updateScale);
-		}
-	}, [useScaleMethod]);
+		const updateScale = () => {
+			const wrapper = wrapperRef.current;
+			const marqueeContainer = marqueeContainerRef.current;
+			if (!wrapper || !marqueeContainer) return;
+			const scale = (wrapper.clientWidth / 588) * 1.9;
+			marqueeContainer.style.transform = `scale(${scale})`;
+			marqueeContainer.style.transformOrigin = "top left";
+		};
+		updateScale();
+		window.addEventListener("resize", updateScale);
+		return () => window.removeEventListener("resize", updateScale);
+	}, []);
 
-	const [scaledPath, setScaledPath] = useState(path);
-
-	useEffect(() => {
-		if (useScaleMethod === 2) {
-			const updatePath = () => {
-				const wrapper = wrapperRef.current;
-				if (!wrapper) return;
-				const containerWidth = wrapper.clientWidth;
-				const containerHeight = wrapper.clientHeight;
-				const originalWidth = 588;
-				const originalHeight = 187;
-				const newPath = createScaledPath(
-					path,
-					originalWidth,
-					originalHeight,
-					containerWidth,
-					containerHeight,
-				);
-				setScaledPath(newPath);
-			};
-			updatePath();
-			window.addEventListener("resize", updatePath);
-			return () => window.removeEventListener("resize", updatePath);
-		}
-	}, [path, useScaleMethod]);
-
-		return (
+	return (
 		<div
 			className="container flex"
 			ref={wrapperRef}
@@ -191,14 +123,17 @@ const MarqueeAlongPath = ({
 				ref={marqueeContainerRef}
 				style={{ position: "relative", width: "100%", height: "100%" }}
 			>
-				<div ref={containerRef} style={{ position: "relative", width: "100%", height: "100%" }}>
+				<div
+					ref={containerRef}
+					style={{ position: "relative", width: "100%", height: "100%" }}
+				>
 					{items.map(({ child, itemIndex, key }) => (
 						<MarqueeItem
 							key={key}
 							itemIndex={itemIndex}
 							totalItems={items.length}
 							zIndexBase={zIndexBase}
-							scaledPath={scaledPath}
+							path={path}
 						>
 							{child}
 						</MarqueeItem>

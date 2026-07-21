@@ -10,8 +10,8 @@
 		"./globals.css": "./src/styles/globals.css",
 		"./lib/*": "./src/lib/*.ts",
 		"./components/*": "./src/components/*.tsx",
-		"./components/ui/skiper-ui": "./src/components/ui/skiper-ui/index.ts",
-		"./components/ui/skiper-ui/*": "./src/components/ui/skiper-ui/*.tsx",
+		"./skiper-ui": "./src/skiper-ui/index.ts",
+		"./skiper-ui/*": "./src/skiper-ui/*.tsx",
 		"./hooks/*": "./src/hooks/*.ts",
 		"./postcss.config": "./postcss.config.mjs"
 	},

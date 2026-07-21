@@ -7,7 +7,7 @@ import {
 	LINE_LOADING_PULSE_EASE,
 	LOADING_LABEL_EXIT_S,
 	LOADING_LABEL_EXIT_Y_PX,
-} from "./line-loading-timing";
+} from "./utils/line-loading-timing";
 
 export interface ChartLoadingLabelProps {
 	/** Label shown centered over the chart. */

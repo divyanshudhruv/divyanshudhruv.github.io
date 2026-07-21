@@ -1,1 +1,1 @@
-export * from "./components/ui/skiper-ui";
+export * from "./skiper-ui";

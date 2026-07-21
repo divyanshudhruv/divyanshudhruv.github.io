@@ -1,6 +1,6 @@
 import { Column, Row, Text } from "@once-ui-system/core";
-import Image from "next/image";
 import { ExternalLink } from "lucide-react";
+import Image from "next/image";
 
 export interface Projects {
 	title: string;
@@ -34,7 +34,7 @@ export function ProjectsBlock({ projects = [] }: ProjectsBlockProps) {
 							alt=""
 							width={48}
 							height={48}
-							className="object-cover size-full"
+							className="size-full object-cover"
 							unoptimized
 						/>
 					</div>
@@ -103,7 +103,7 @@ export function ProjectsBlock({ projects = [] }: ProjectsBlockProps) {
 								alt=""
 								width={48}
 								height={48}
-								className={`object-cover size-full ${exp.invert ? "invert-100" : ""}`}
+								className={`size-full object-cover ${exp.invert ? "invert-100" : ""}`}
 								unoptimized
 							/>
 						</div>

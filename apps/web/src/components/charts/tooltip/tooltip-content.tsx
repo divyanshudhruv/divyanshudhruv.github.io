@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { intFmt } from "../chart-formatters";
+import { intFmt } from "../utils/chart-formatters";
 
 export interface TooltipRow {
 	color: string;

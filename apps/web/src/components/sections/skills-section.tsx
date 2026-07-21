@@ -3,9 +3,9 @@ import {
 	SectionHeading,
 	SectionRoot,
 	SectionText,
-} from "@/components/section/section-heading";
+} from "@/components/section-ui/section-heading";
 import { StackButton } from "@/components/stack-button";
-import { stacksData } from "@/resources/stacks";
+import { stacksData } from "@/content/stacks";
 
 export default function SkillsSection({ id }: { id: string }) {
 	return (

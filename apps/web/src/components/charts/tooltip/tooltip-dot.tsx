@@ -3,8 +3,11 @@
 import { useSpring } from "motion/react";
 import * as m from "motion/react-m";
 import { useEffect } from "react";
-import { type SpringConfig, useChartConfig } from "../chart-config-context";
-import { chartCssVars } from "../chart-context";
+import {
+	type SpringConfig,
+	useChartConfig,
+} from "../contexts/chart-config-context";
+import { chartCssVars } from "../contexts/chart-context";
 
 export interface TooltipDotProps {
 	x: number;
