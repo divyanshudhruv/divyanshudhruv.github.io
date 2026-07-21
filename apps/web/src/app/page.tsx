@@ -3,8 +3,6 @@
 import { Column, Flex } from "@once-ui-system/core";
 import { FluidGradientText } from "@/components/fluid-gradient-text";
 import AboutSection from "@/components/sections/about-section";
-import AwardsSection from "@/components/sections/awards-section";
-import BlogsSection from "@/components/sections/blogs-section";
 import CreditsFooter from "@/components/sections/credits-footer";
 import ExperienceSection from "@/components/sections/experience-section";
 import GitHubSection from "@/components/sections/github-section";
@@ -16,76 +14,72 @@ import ProjectsSection from "@/components/sections/projects-section";
 import SiteHeader from "@/components/sections/site-header";
 import SkillsSection from "@/components/sections/skills-section";
 import TimerSection from "@/components/sections/timer-section";
-import WidgetsSection from "@/components/sections/widgets-section";
 import CrowdCanvas from "./../../../../packages/ui/src/components/ui/skiper-ui/skiper39";
 import { ProgressiveBlur } from "./../../../../packages/ui/src/components/ui/skiper-ui/skiper41";
-import { Skiper19Line } from "./../../../../packages/ui/src/components/ui/skiper-ui/skiper19";
-import ImageTrail, { ImageTrailItem } from "@/components/image-trail";
-import { images } from "@/resources/image-trail";
 export default function Home() {
-  return (
-    <>
-      <ProgressiveBlur position="top" backgroundColor="#f5f4f3" height="0px" />
-      <Flex
-        fillWidth
-        fitHeight
-        minWidth="100vw"
-        paddingX={1.5}
-        paddingY={1.5}
-        horizontal="center"
-        direction="column"
-        gap={1}
-        vertical="start"
-        className="h-[vh]"
-      >
-        <SiteHeader />{" "}
-        <Flex direction="column" fitHeight fillWidth>
-          <Flex
-            className="rounded-3xl bg-accent"
-            fillHeight
-            fillWidth
-            paddingX={2}
-            paddingY={2}
-            direction="column"
-            horizontal="center"
-            vertical="start"
-          >
-            {" "}
-            <Column
-              fillWidth
-              fillHeight
-              horizontal="start"
-              vertical="start"
-              maxWidth="s"
-              gap={4}
-            >
-              <HeroSection id="hero" />
-              <GitHubSection id="github" />
-              <PhotoGrid id="photo" />
-              <AboutSection id="about" />
-              <MapSection id="map" />
-              <SkillsSection id="skills" />
-              <ExperienceSection id="experience" />
-              <ProjectsSection id="projects" />
-              {/* <WidgetsSection id="widgets" />
+	return (
+		<>
+			<ProgressiveBlur position="top" backgroundColor="#f5f4f3" height="0px" />
+			<Flex
+				fillWidth
+				fitHeight
+				minWidth="100vw"
+				paddingX={1.5}
+				paddingY={1.5}
+				horizontal="center"
+				direction="column"
+				gap={1}
+				vertical="start"
+				className="h-[vh]"
+			>
+				<SiteHeader />{" "}
+				<Flex direction="column" fitHeight fillWidth>
+					<Flex
+						className="rounded-3xl bg-accent"
+						fillHeight
+						fillWidth
+						paddingX={2}
+						paddingY={2}
+						direction="column"
+						horizontal="center"
+						vertical="start"
+					>
+						{" "}
+						<Column
+							fillWidth
+							fillHeight
+							horizontal="start"
+							vertical="start"
+							maxWidth="s"
+							gap={4}
+						>
+							<HeroSection id="hero" />
+							<GitHubSection id="github" />
+							<PhotoGrid id="photo" />
+							<AboutSection id="about" />
+							<MapSection id="map" />
+							<SkillsSection id="skills" />
+							<ExperienceSection id="experience" />
+							<ProjectsSection id="projects" />
+							{/* <WidgetsSection id="widgets" />
           <AwardsSection id="awards" />
           <BlogsSection id="blogs" /> */}
-              <InsightsSection id="insights" />
-              <TimerSection id="timer" />
-              <CreditsFooter id="credits" />
-            </Column>
-          </Flex>
-          <Flex
-            fillWidth
-            className="relative rounded-3xl bg-accent"
-            overflowX="hidden"
-            overflowY="visible"
-            style={{ minHeight: "55svh", minWidth: "100%" }}
-          >
-            {
-              //  " NOT SURE ABOUT THE BELOW TO PUT OR NOT, SO I WILL KEEP IT COMMENTED LOL"
-            }
-            {/* <ImageTrail
+							<InsightsSection id="insights" />
+							<TimerSection id="timer" />
+							<CreditsFooter id="credits" />
+						</Column>
+					</Flex>
+					<Flex
+						fillWidth
+						className="relative rounded-3xl bg-accent"
+						overflowX="hidden"
+						overflowY="visible"
+						style={{ minHeight: "55svh", minWidth: "100%" }}
+					>
+						{
+							//  " NOT SURE ABOUT THE BELOW TO PUT OR NOT, SO I WILL KEEP IT COMMENTED LOL"
+						}
+						{/* <ImageTrail
               threshold={60}
               keyframes={{ opacity: [0, 1, 1, 0], scale: [1, 1, 0] }}
               keyframesOptions={{
@@ -107,21 +101,21 @@ export default function Home() {
                 </ImageTrailItem>
               ))}
             </ImageTrail> */}
-            <CrowdCanvas src="/images/peeps/all-peeps.png" rows={15} cols={7} />
-          </Flex>
-        </Flex>
-        <Flex fillWidth paddingBottom={0.75}>
-          <FluidGradientText text="divyanshudhruv" />
-        </Flex>
-      </Flex>
-      {/* <div className="relative h-[200vh] w-full bg-[#FAFDEE]">
+						<CrowdCanvas src="/images/peeps/all-peeps.png" rows={15} cols={7} />
+					</Flex>
+				</Flex>
+				<Flex fillWidth paddingBottom={0.75}>
+					<FluidGradientText text="divyanshudhruv" />
+				</Flex>
+			</Flex>
+			{/* <div className="relative h-[200vh] w-full bg-[#FAFDEE]">
         <Skiper19Line className="sticky top-0 h-screen w-full" />
       </div> */}
-      <ProgressiveBlur
-        position="bottom"
-        backgroundColor="#f5f4f3"
-        height="110px"
-      />
-    </>
-  );
+			<ProgressiveBlur
+				position="bottom"
+				backgroundColor="#f5f4f3"
+				height="110px"
+			/>
+		</>
+	);
 }

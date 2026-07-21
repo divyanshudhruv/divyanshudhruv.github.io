@@ -124,7 +124,7 @@ interface TooltipState {
 }
 
 function fmtDate(dateStr: string): string {
-	return new Date(dateStr + "T00:00:00").toLocaleDateString("en-US", {
+	return new Date(`${dateStr}T00:00:00`).toLocaleDateString("en-US", {
 		month: "short",
 		day: "numeric",
 		year: "numeric",
@@ -189,14 +189,18 @@ export function GitHubCalendar({
 				if (isMounted) {
 					const contributions = json?.contributions;
 					if (Array.isArray(contributions)) {
-						const mapped = contributions.map((day: any) => ({
-							date: day.date,
-							count: day.count,
-						}));
+						const mapped = contributions.map(
+							(day: { date: string; count: number }) => ({
+								date: day.date,
+								count: day.count,
+							}),
+						);
 						const sorted = mapped.sort((a, b) => a.date.localeCompare(b.date));
 						setData(sorted);
 						if (showYearButtons && sorted.length) {
-							const latestYear = Number(sorted[sorted.length - 1].date.split("-")[0]);
+							const latestYear = Number(
+								sorted[sorted.length - 1].date.split("-")[0],
+							);
 							setSelectedYear((prev) => prev ?? latestYear);
 						}
 						if (onDataLoaded) {
@@ -218,18 +222,20 @@ export function GitHubCalendar({
 		return () => {
 			isMounted = false;
 		};
-	}, [username]);
+	}, [username, showYearButtons, onDataLoaded]);
 
 	// ── Derive available years from data ─────────────────────────────────────
 	const years = useMemo(() => {
 		if (!data.length) return [];
 		const yearSet = new Set(data.map((d) => d.date.split("-")[0]));
-		return Array.from(yearSet).map(Number).sort((a, b) => b - a);
+		return Array.from(yearSet)
+			.map(Number)
+			.sort((a, b) => b - a);
 	}, [data]);
 
 	// ── Filter data based on year buttons / startDate-endDate range ─────────
 	const filteredData = useMemo(() => {
-		if (!data || !data.length) return [];
+		if (!data?.length) return [];
 
 		if (showYearButtons && selectedYear) {
 			const yearStr = String(selectedYear);
@@ -250,7 +256,7 @@ export function GitHubCalendar({
 		const grid: (ContributionDay | null)[][] = [];
 		if (!filteredData.length) return grid;
 
-		const firstDate = new Date(filteredData[0].date + "T00:00:00");
+		const firstDate = new Date(`${filteredData[0].date}T00:00:00`);
 		const dow = firstDate.getDay();
 		const offset = weekStart === "sun" ? dow : (dow + 6) % 7;
 
@@ -277,7 +283,7 @@ export function GitHubCalendar({
 		weeks.forEach((week, colIdx) => {
 			for (const day of week) {
 				if (day) {
-					const month = new Date(day.date + "T00:00:00").getMonth();
+					const month = new Date(`${day.date}T00:00:00`).getMonth();
 					if (month !== lastMonth) {
 						positions.push({ label: MONTH_LABELS[month], col: colIdx });
 						lastMonth = month;
@@ -292,7 +298,7 @@ export function GitHubCalendar({
 	const borderRadius = useMemo(() => {
 		if (cellShape === "circle") return "50%";
 		if (cellShape === "rounded")
-			return Math.max(3, Math.floor(cellSize / 3)) + "px";
+			return `${Math.max(3, Math.floor(cellSize / 3))}px`;
 		return "2px";
 	}, [cellShape, cellSize]);
 
@@ -415,13 +421,14 @@ export function GitHubCalendar({
 		<div className="flex flex-col gap-4">
 			{/* ── Year buttons ────────────────────────────────────────────────── */}
 			{showYearButtons && years.length > 1 && (
-				<div className="flex gap-2 flex-wrap">
+				<div className="flex flex-wrap gap-2">
 					{years.map((year) => (
 						<button
+							type="button"
 							key={year}
 							onClick={() => setSelectedYear(year)}
 							className={cn(
-								"px-3 py-1 text-sm rounded-md transition-colors",
+								"rounded-md px-3 py-1 text-sm transition-colors",
 								selectedYear === year
 									? "bg-zinc-700 text-white"
 									: "bg-zinc-800 text-zinc-400 hover:text-zinc-200",
@@ -432,131 +439,134 @@ export function GitHubCalendar({
 					))}
 				</div>
 			)}
-		<div
-			ref={containerRef}
-			className="relative select-none"
-			style={{ width: gridW + LEFT, minHeight: gridH + TOP }}
-		>
-			{/* ── Month labels ───────────────────────────────────────────────── */}
-			{showMonthLabels && (
-				<div className="absolute top-0" style={{ left: LEFT }}>
-					{monthPositions.map(({ label, col }) => (
-						<span
-							key={`${label}-${col}`}
-							className="absolute text-[11px] text-zinc-500 leading-none"
-							style={{ left: col * step, top: 4 }}
-						>
-							{label}
-						</span>
-					))}
-				</div>
-			)}
+			<div
+				ref={containerRef}
+				className="relative select-none"
+				style={{ width: gridW + LEFT, minHeight: gridH + TOP }}
+			>
+				{/* ── Month labels ───────────────────────────────────────────────── */}
+				{showMonthLabels && (
+					<div className="absolute top-0" style={{ left: LEFT }}>
+						{monthPositions.map(({ label, col }) => (
+							<span
+								key={`${label}-${col}`}
+								className="absolute text-[11px] text-zinc-500 leading-none"
+								style={{ left: col * step, top: 4 }}
+							>
+								{label}
+							</span>
+						))}
+					</div>
+				)}
 
-			{/* ── Day-of-week labels ─────────────────────────────────────────── */}
-			{showDayLabels && (
-				<div
-					className="absolute left-0 flex flex-col"
-					style={{ top: TOP, width: LEFT - 4 }}
+				{/* ── Day-of-week labels ─────────────────────────────────────────── */}
+				{showDayLabels && (
+					<div
+						className="absolute left-0 flex flex-col"
+						style={{ top: TOP, width: LEFT - 4 }}
+					>
+						{DAY_LABELS.map((lbl, i) => (
+							<div
+								key={i}
+								className="flex items-center justify-end pr-1 text-[11px] text-zinc-500"
+								style={{ height: cellSize, marginBottom: i < 6 ? cellGap : 0 }}
+							>
+								{lbl}
+							</div>
+						))}
+					</div>
+				)}
+
+				{/* ── Cell grid ──────────────────────────────────────────────────── */}
+				<motion.div
+					key={`${animate}-${weeks.length}`}
+					className="absolute flex"
+					style={{ top: TOP, left: LEFT, gap: cellGap }}
+					role="grid"
+					aria-label="Contribution activity calendar"
+					initial={animate ? { opacity: 0 } : false}
+					animate={animate ? { opacity: 1 } : {}}
+					transition={{ duration: 0.3 }}
 				>
-					{DAY_LABELS.map((lbl, i) => (
+					{weeks.map((week, wi) => (
+						// biome-ignore lint/a11y/useSemanticElements: flex layout requires div
 						<div
-							key={i}
-							className="flex items-center justify-end pr-1 text-[11px] text-zinc-500"
-							style={{ height: cellSize, marginBottom: i < 6 ? cellGap : 0 }}
+							key={wi}
+							role="row"
+							tabIndex={-1}
+							className="flex flex-col"
+							style={{ gap: cellGap }}
+							aria-label={`Week ${wi + 1}`}
 						>
-							{lbl}
+							{week.map((day, di) => {
+								const level = day ? getContributionLevel(day.count) : 0;
+								const bg = palette[level];
+								const hasData = day !== null;
+								return (
+									<motion.div
+										key={di}
+										role="gridcell"
+										aria-label={
+											day
+												? `${fmtDate(day.date)}: ${day.count} contribution${day.count !== 1 ? "s" : ""}`
+												: undefined
+										}
+										tabIndex={hasData ? 0 : -1}
+										style={{
+											width: cellSize,
+											height: cellSize,
+											backgroundColor: bg,
+											borderRadius,
+											cursor: "pointer",
+											flexShrink: 0,
+										}}
+										initial={animate ? { scale: 0, opacity: 0 } : false}
+										animate={animate ? { scale: 1, opacity: 1 } : {}}
+										transition={
+											animate
+												? {
+														delay: wi * 0.012 + di * 0.004,
+														duration: 0.2,
+														ease: "easeOut",
+													}
+												: {}
+										}
+										whileHover={
+											hasData ? { scale: 1.3, filter: "brightness(1.35)" } : {}
+										}
+										className={cn(
+											"focus:outline-none",
+											hasData &&
+												"focus:ring-1 focus:ring-zinc-400 focus:ring-offset-1 focus:ring-offset-zinc-900",
+										)}
+										onMouseEnter={
+											day ? (e) => handleMouseEnter(e, day) : undefined
+										}
+										onMouseLeave={day ? handleMouseLeave : undefined}
+									/>
+								);
+							})}
 						</div>
 					))}
-				</div>
-			)}
+				</motion.div>
 
-			{/* ── Cell grid ──────────────────────────────────────────────────── */}
-			<motion.div
-				key={`${animate}-${weeks.length}`}
-				className="absolute flex"
-				style={{ top: TOP, left: LEFT, gap: cellGap }}
-				role="grid"
-				aria-label="Contribution activity calendar"
-				initial={animate ? { opacity: 0 } : false}
-				animate={animate ? { opacity: 1 } : {}}
-				transition={{ duration: 0.3 }}
-			>
-				{weeks.map((week, wi) => (
+				{/* ── Tooltip ────────────────────────────────────────────────────── */}
+				{showTooltip && tooltip.visible && (
 					<div
-						key={wi}
-						role="row"
-						className="flex flex-col"
-						style={{ gap: cellGap }}
+						role="tooltip"
+						className="pointer-events-none absolute z-50 -translate-x-1/2 whitespace-nowrap rounded-md border border-zinc-700 bg-zinc-800/95 px-2.5 py-1.5 text-xs text-zinc-100 backdrop-blur-sm"
+						style={{ left: tooltip.x + LEFT, top: tooltip.y + TOP - 44 }}
 					>
-						{week.map((day, di) => {
-							const level = day ? getContributionLevel(day.count) : 0;
-							const bg = palette[level];
-							const hasData = day !== null;
-							return (
-								<motion.div
-									key={di}
-									role="gridcell"
-									aria-label={
-										day
-											? `${fmtDate(day.date)}: ${day.count} contribution${day.count !== 1 ? "s" : ""}`
-											: undefined
-									}
-									tabIndex={hasData ? 0 : -1}
-									style={{
-										width: cellSize,
-										height: cellSize,
-										backgroundColor: bg,
-										borderRadius,
-										cursor: "pointer",
-										flexShrink: 0,
-									}}
-									initial={animate ? { scale: 0, opacity: 0 } : false}
-									animate={animate ? { scale: 1, opacity: 1 } : {}}
-									transition={
-										animate
-											? {
-													delay: wi * 0.012 + di * 0.004,
-													duration: 0.2,
-													ease: "easeOut",
-												}
-											: {}
-									}
-									whileHover={
-										hasData ? { scale: 1.3, filter: "brightness(1.35)" } : {}
-									}
-									className={cn(
-										"focus:outline-none",
-										hasData &&
-											"focus:ring-1 focus:ring-zinc-400 focus:ring-offset-1 focus:ring-offset-zinc-900",
-									)}
-									onMouseEnter={
-										day ? (e) => handleMouseEnter(e, day) : undefined
-									}
-									onMouseLeave={day ? handleMouseLeave : undefined}
-								/>
-							);
-						})}
+						<span className="font-semibold text-zinc-50">
+							{tooltip.count} contribution{tooltip.count !== 1 ? "s" : ""}
+						</span>
+						<span className="ml-1.5 text-zinc-400">
+							on {fmtDate(tooltip.date)}
+						</span>
+						<span className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-zinc-700" />
 					</div>
-				))}
-			</motion.div>
-
-			{/* ── Tooltip ────────────────────────────────────────────────────── */}
-			{showTooltip && tooltip.visible && (
-				<div
-					role="tooltip"
-					className="pointer-events-none absolute z-50 -translate-x-1/2 whitespace-nowrap rounded-md border border-zinc-700 bg-zinc-800/95 px-2.5 py-1.5 text-xs text-zinc-100 backdrop-blur-sm"
-					style={{ left: tooltip.x + LEFT, top: tooltip.y + TOP - 44 }}
-				>
-					<span className="font-semibold text-zinc-50">
-						{tooltip.count} contribution{tooltip.count !== 1 ? "s" : ""}
-					</span>
-					<span className="ml-1.5 text-zinc-400">
-						on {fmtDate(tooltip.date)}
-					</span>
-					<span className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-zinc-700" />
-				</div>
-			)}
-		</div>
+				)}
+			</div>
 		</div>
 	);
 }
@@ -578,13 +588,17 @@ export function ContributionLegend({
 	const borderRadius = useMemo(() => {
 		if (cellShape === "circle") return "50%";
 		if (cellShape === "rounded")
-			return Math.max(3, Math.floor(cellSize / 3)) + "px";
+			return `${Math.max(3, Math.floor(cellSize / 3))}px`;
 		return "2px";
 	}, [cellShape, cellSize]);
 	const themes = resolvedTheme === "light" ? COLOR_THEMES_LIGHT : COLOR_THEMES;
 	const palette = colors ?? themes[colorScheme] ?? themes.green;
 	return (
-		<div className="flex items-center gap-1.5" aria-label="Contribution legend">
+		<div
+			className="flex items-center gap-1.5"
+			role="img"
+			aria-label="Contribution legend"
+		>
 			<span className="text-[11px] text-zinc-500">Less</span>
 			{palette.map((color, i) => (
 				<div

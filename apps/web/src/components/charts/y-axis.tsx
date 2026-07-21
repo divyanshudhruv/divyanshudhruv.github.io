@@ -84,7 +84,7 @@ const YAxisInner = memo(function YAxisInner({
 			y: (yScale(value) ?? 0) + margin.top,
 			label: formatTickValue(value),
 		}));
-	}, [yScale, margin.top, margin.left, innerHeight, numTicks]);
+	}, [yScale, margin.top, innerHeight, numTicks]);
 
 	return createPortal(
 		<div

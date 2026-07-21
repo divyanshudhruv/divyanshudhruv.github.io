@@ -170,6 +170,7 @@ export const TimerDisplay = React.forwardRef<HTMLDivElement, TimerDisplayProps>(
 			<div
 				ref={ref}
 				className={cn(timerDisplayVariants({ size }), className)}
+				role="status"
 				aria-label={label || `Timer: ${time}`}
 				{...props}
 			>
@@ -327,7 +328,6 @@ export function useTimer({
 							.padStart(2, "0")}`,
 					};
 				}
-				case "SS.MS":
 				default:
 					return {
 						seconds: totalSeconds.toString().padStart(2, "0"),

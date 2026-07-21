@@ -1,5 +1,5 @@
-import config from "./metadata.json" with { type: "json" };
 import { socials } from "@/resources/socials";
+import config from "./metadata.json" with { type: "json" };
 
 const personSchema = {
 	"@context": "https://schema.org",

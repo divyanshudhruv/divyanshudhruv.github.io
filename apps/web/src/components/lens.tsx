@@ -116,9 +116,8 @@ export function Lens({
 			onMouseLeave={() => setIsHovering(false)}
 			onMouseMove={handleMouseMove}
 			onKeyDown={handleKeyDown}
-			role="region"
+			role="img"
 			aria-label={ariaLabel}
-			tabIndex={0}
 		>
 			{children}
 			{isStatic || defaultPosition ? (

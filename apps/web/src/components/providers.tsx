@@ -1,13 +1,13 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { Toaster } from "@homepage/ui/components/sonner";
 import {
 	IconProvider,
 	LayoutProvider,
 	ToastProvider,
 } from "@once-ui-system/core";
+import dynamic from "next/dynamic";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { iconLibrary } from "@/lib/icon-library";
 
 const PostHogProvider = dynamic(

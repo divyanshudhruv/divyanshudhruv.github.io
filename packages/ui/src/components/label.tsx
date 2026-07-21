@@ -1,8 +1,13 @@
 import { cn } from "@homepage/ui/lib/utils";
 import type * as React from "react";
 
-function Label({ className, ...props }: React.ComponentProps<"label">) {
+function Label({
+	className,
+	children,
+	...props
+}: React.ComponentProps<"label">) {
 	return (
+		// biome-ignore lint/a11y/noLabelWithoutControl: reusable label, control provided by consumer
 		<label
 			data-slot="label"
 			className={cn(
@@ -10,7 +15,9 @@ function Label({ className, ...props }: React.ComponentProps<"label">) {
 				className,
 			)}
 			{...props}
-		/>
+		>
+			{children}
+		</label>
 	);
 }
 

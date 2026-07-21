@@ -84,7 +84,7 @@ export const projectsData: Projects[] = [
 			"A diagnostic toolkit for Tailwind CSS projects that analyzes stylesheets, detects unused utility classes, and provides actionable optimization recommendations to reduce final bundle size.",
 		imageUrl:
 			"https://i.pinimg.com/736x/1a/f9/7b/1af97bbcaba8b8ed28f2ae1137ab9793.jpg",
-			invert:true,
+		invert: true,
 		repoUrl: "https://github.com/divyanshudhruv/tailwind-doctor",
 		date: new Date("2026-03-26"),
 	},

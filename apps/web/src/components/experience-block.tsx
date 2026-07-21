@@ -50,7 +50,12 @@ export function ExperienceBlock({ experiences }: ExperienceBlockProps) {
 							maxHeight={3}
 							className={`overflow-hidden rounded-xl ${exp.invert ? "invert-100" : ""}`}
 						/>
-						<Column fillWidth vertical="center" horizontal="start" className="min-w-0">
+						<Column
+							fillWidth
+							vertical="center"
+							horizontal="start"
+							className="min-w-0"
+						>
 							<Row gap={0.5} center>
 								<Text className="font-body font-medium text-foreground/80 text-lg">
 									{exp.company}
@@ -66,7 +71,7 @@ export function ExperienceBlock({ experiences }: ExperienceBlockProps) {
 										<ExternalLink
 											size={15}
 											strokeWidth={1}
-											className="cursor-pointer text-foreground stroke-foreground "
+											className="cursor-pointer stroke-foreground text-foreground"
 										/>
 									</a>
 								)}
@@ -85,7 +90,13 @@ export function ExperienceBlock({ experiences }: ExperienceBlockProps) {
 							</span>
 						</Column>
 					</Row>
-					<Row vertical="center" horizontal="end" fillWidth fillHeight s={{ hide: true }}>
+					<Row
+						vertical="center"
+						horizontal="end"
+						fillWidth
+						fillHeight
+						s={{ hide: true }}
+					>
 						<Text className="font-body font-normal text-md text-muted-foreground">
 							{formatDateRange(exp.startDate, exp.endDate)}
 						</Text>

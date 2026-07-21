@@ -29,7 +29,8 @@
 		"build": "turbo build",
 		"check-types": "turbo check-types",
 		"dev:web": "turbo -F web dev",
-		"check": "biome check --write ."
+		"check": "biome check --write .",
+		"doctor": "npx react-doctor@latest"
 	},
 	"dependencies": {
 		"@homepage/env": "workspace:*",

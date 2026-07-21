@@ -46,48 +46,53 @@ export function FluidGradientText({
 	};
 
 	return (
-		<div
-			className="relative size-full overflow-hidden "
-			// after:absolute after:bottom-0 after:h-px after:w-full after:bg-current/15
-			onMouseMove={handleMouseMove}
-			onMouseLeave={handleMouseLeave}
-		>
-			<svg
-				className="size-full translate-y-[37.5%] select-none"
-				viewBox={`0 0 ${svgViewBoxWidth} ${svgViewBoxHeight}`}
-				fill="none"
-				xmlns="http://www.w3.org/2000/svg"
+		<>
+			{/* biome-ignore lint/a11y/noStaticElementInteractions: decorative gradient, mouse-only effect */}
+			<div
+				className="relative size-full overflow-hidden"
+				// after:absolute after:bottom-0 after:h-px after:w-full after:bg-current/15
+				onMouseMove={handleMouseMove}
+				onMouseLeave={handleMouseLeave}
 			>
-				<text
-					x="50%"
-					y="50%"
-					textAnchor="middle"
-					dominantBaseline="central"
-					stroke="currentColor"
-					strokeOpacity="0.1"
-					strokeWidth="2"
-					fill="url(#fluid_gradient_text_linear)"
-					style={{
-						fontSize: svgViewBoxHeight,
-						fontWeight: "bold",
-					}}
+				<svg
+					className="size-full translate-y-[37.5%] select-none"
+					viewBox={`0 0 ${svgViewBoxWidth} ${svgViewBoxHeight}`}
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+					aria-label="Fluid gradient text"
 				>
-					{text}
-				</text>
-				<defs>
-					<motion.linearGradient
-						id="fluid_gradient_text_linear"
-						x1={gradientX1}
-						y1="0"
-						x2={svgViewBoxWidth / 2}
-						y2={svgViewBoxHeight}
-						gradientUnits="userSpaceOnUse"
+					<title>Fluid gradient text effect</title>
+					<text
+						x="50%"
+						y="50%"
+						textAnchor="middle"
+						dominantBaseline="central"
+						stroke="currentColor"
+						strokeOpacity="0.1"
+						strokeWidth="2"
+						fill="url(#fluid_gradient_text_linear)"
+						style={{
+							fontSize: svgViewBoxHeight,
+							fontWeight: "bold",
+						}}
 					>
-						<stop offset="0.625" stopColor="currentColor" stopOpacity="0" />
-						<stop offset="1" stopColor="currentColor" />
-					</motion.linearGradient>
-				</defs>
-			</svg>
-		</div>
+						{text}
+					</text>
+					<defs>
+						<motion.linearGradient
+							id="fluid_gradient_text_linear"
+							x1={gradientX1}
+							y1="0"
+							x2={svgViewBoxWidth / 2}
+							y2={svgViewBoxHeight}
+							gradientUnits="userSpaceOnUse"
+						>
+							<stop offset="0.625" stopColor="currentColor" stopOpacity="0" />
+							<stop offset="1" stopColor="currentColor" />
+						</motion.linearGradient>
+					</defs>
+				</svg>
+			</div>
+		</>
 	);
 }

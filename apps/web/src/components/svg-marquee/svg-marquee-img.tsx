@@ -9,12 +9,10 @@ import {
 } from "motion/react";
 
 import "./index.css";
-import { Flex, Media } from "@once-ui-system/core";
+import { Flex } from "@once-ui-system/core";
 import * as d3 from "d3";
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { images } from "@/resources/image-trail";
 import { artworks } from "../../resources/artworks";
-import ImageTrail, { ImageTrailItem } from "../image-trail";
 import Card from "./card";
 
 type MarqueeAlongPathProps = {
@@ -27,6 +25,7 @@ type MarqueeAlongPathProps = {
 };
 
 type MarqueeItemProps = {
+	// biome-ignore lint/suspicious/noExplicitAny: used as MotionValue<number> via useTransform, not plain number
 	baseOffset: any;
 	itemIndex: number;
 	totalItems: number;
@@ -239,11 +238,11 @@ const MarqueeAlongPath = ({
 			window.addEventListener("resize", updateScale);
 			return () => window.removeEventListener("resize", updateScale);
 		}
-	}, []);
+	}, [useScaleMethod]);
 
 	// Scale method #2 with D3
 	const [scaledPath, setScaledPath] = useState(path);
-	const [currentViewBox, setCurrentViewBox] = useState("0 0 588 187");
+	const [_currentViewBox, setCurrentViewBox] = useState("0 0 588 187");
 
 	useEffect(() => {
 		if (useScaleMethod === 2) {
@@ -276,7 +275,7 @@ const MarqueeAlongPath = ({
 			window.addEventListener("resize", updatePath);
 			return () => window.removeEventListener("resize", updatePath);
 		}
-	}, [path]);
+	}, [path, useScaleMethod]);
 
 	return (
 		<div

@@ -89,7 +89,9 @@ export function DottedMap<M extends Marker = Marker>({
 			className={cn("text-gray-500 dark:text-gray-500", className)}
 			style={{ width: "100%", height: "100%", ...style }}
 			{...svgProps}
+			aria-label="World map with highlighted locations"
 		>
+			<title>World Map</title>
 			{points.map((point, index) => {
 				const rowIndex = yToRowIndex.get(point.y) ?? 0;
 				const offsetX = stagger && rowIndex % 2 === 1 ? xStep / 2 : 0;

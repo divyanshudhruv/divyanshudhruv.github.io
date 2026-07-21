@@ -2,6 +2,7 @@
 
 "use client";
 
+import { cn } from "@homepage/ui/lib/utils";
 import type { AnimationOptions, DOMKeyframesDefinition } from "motion";
 import { useAnimate } from "motion/react";
 import React, {
@@ -10,8 +11,6 @@ import React, {
 	useEffect,
 	useMemo,
 } from "react";
-
-import { cn } from "@homepage/ui/lib/utils";
 
 interface ImageTrailProps extends HTMLAttributes<HTMLDivElement> {
 	/**
@@ -131,7 +130,7 @@ const ImageTrail = ({
 			{ length: allImages.current.length },
 			(_, index) => index,
 		);
-	}, [containerRef, allImages]);
+	}, [containerRef]);
 
 	const handleMouseMove = (e: React.MouseEvent) => {
 		const containerRect = containerRef?.current?.getBoundingClientRect();

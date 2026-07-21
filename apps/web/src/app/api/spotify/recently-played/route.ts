@@ -139,7 +139,10 @@ export async function GET() {
 				parsed = JSON.parse(err);
 			} catch {}
 			const message = parsed?.error?.message ?? err;
-			return NextResponse.json({ error: `Spotify API error (${res.status}): ${message}` }, { status: res.status });
+			return NextResponse.json(
+				{ error: `Spotify API error (${res.status}): ${message}` },
+				{ status: res.status },
+			);
 		}
 
 		const recentlyPlayedData = await res.json();

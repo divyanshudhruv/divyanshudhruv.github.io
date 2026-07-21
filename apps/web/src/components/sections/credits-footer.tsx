@@ -31,7 +31,8 @@ export default function CreditsFooter({ id }: { id: string }) {
 				{images.map((url, index) => (
 					<ImageTrailItem key={index + url}>
 						<div className="relative h-full w-30 sm:w-38">
-							<img src={url} alt="" className="object-cover" />
+							{/* biome-ignore lint/performance/noImgElement: dynamic list, cannot use next/Image */}
+							<img src={url} alt="" className="object-cover" loading="lazy" />
 						</div>
 					</ImageTrailItem>
 				))}

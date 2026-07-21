@@ -144,7 +144,7 @@ const WavesurferPlayer = memo(
 			});
 
 			return () => {
-				unsubs.forEach((fn) => fn());
+				for (const fn of unsubs) fn();
 				ws.destroy();
 				wsRef.current = null;
 			};
@@ -159,6 +159,9 @@ const WavesurferPlayer = memo(
 			minPxPerSec,
 			cursorWidth,
 			dragToSeek,
+			resolvedProgressColor,
+			resolvedWaveColor,
+			media,
 		]);
 
 		// ── Apply color changes imperatively — zero remount on theme switch
@@ -184,10 +187,12 @@ const WavesurferPlayer = memo(
 				ws.on("load", () => setIsReady(false)),
 				ws.on("destroy", () => setIsReady(false)),
 			];
-			return () => unsubs.forEach((fn) => fn());
+			return () => {
+				for (const fn of unsubs) fn();
+			};
 			// Re-attach when instance changes (url change creates new instance)
 			// eslint-disable-next-line react-hooks/exhaustive-deps
-		}, [wsRef.current]);
+		}, []);
 
 		return (
 			<div className={className} style={{ position: "relative" }}>
@@ -247,16 +252,16 @@ export function useWavesurfer({
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [currentTime, setCurrentTime] = useState(0);
 
-	const url = options.url as string | undefined;
-	const height =
+	const _url = options.url as string | undefined;
+	const _height =
 		(options.height as number | undefined) ?? WAVESURFER_DEFAULTS.height;
-	const barWidth =
+	const _barWidth =
 		(options.barWidth as number | undefined) ?? WAVESURFER_DEFAULTS.barWidth;
-	const barGap =
+	const _barGap =
 		(options.barGap as number | undefined) ?? WAVESURFER_DEFAULTS.barGap;
-	const barRadius =
+	const _barRadius =
 		(options.barRadius as number | undefined) ?? WAVESURFER_DEFAULTS.barRadius;
-	const minPxPerSec =
+	const _minPxPerSec =
 		(options.minPxPerSec as number | undefined) ??
 		WAVESURFER_DEFAULTS.minPxPerSec;
 
@@ -294,11 +299,12 @@ export function useWavesurfer({
 			}),
 		];
 		return () => {
-			unsubs.forEach((fn) => fn());
+			for (const fn of unsubs) fn();
 			ws.destroy();
 		};
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [url, height, barWidth, barGap, barRadius, minPxPerSec]);
+		// biome-ignore lint/correctness/useExhaustiveDependencies: container.current is a ref used as instance key
+	}, [resolvedWaveColor, resolvedProgressColor, container.current, options]);
 
 	useEffect(() => {
 		wavesurfer?.setOptions({
