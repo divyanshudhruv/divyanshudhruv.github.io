@@ -20,17 +20,18 @@ const navLinks = [
 	{ label: "Insights", href: "#insights" },
 ];
 
+function scrollTo(e: React.MouseEvent<HTMLAnchorElement>) {
+	e.preventDefault();
+	const href = e.currentTarget.getAttribute("href");
+	if (!href) return;
+	const id = href.slice(1);
+	const el = document.getElementById(id);
+	if (el) {
+		el.scrollIntoView({ behavior: "smooth" });
+	}
+}
+
 export default function SiteHeader() {
-	const scrollTo = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
-		e.preventDefault();
-		const href = e.currentTarget.getAttribute("href");
-		if (!href) return;
-		const id = href.slice(1);
-		const el = document.getElementById(id);
-		if (el) {
-			el.scrollIntoView({ behavior: "smooth" });
-		}
-	}, []);
 
 	return (
 		<Flex

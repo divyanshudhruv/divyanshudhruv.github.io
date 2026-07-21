@@ -122,6 +122,10 @@ export async function getInsightsData(): Promise<InsightsResponse> {
 	const fallbackData = useFallbackForPast ? generateFallbackData() : null;
 
 	const today = new Date();
+	const fallbackMap = useFallbackForPast && fallbackData
+		? new Map(fallbackData.map((f) => [f.date, f]))
+		: null;
+
 	const chartData: InsightsDay[] = [];
 
 	for (let i = INSIGHTS_DAYS - 1; i >= 0; i--) {
@@ -138,7 +142,7 @@ export async function getInsightsData(): Promise<InsightsResponse> {
 				sessions: liveEntry.sessions.size,
 			});
 		} else if (useFallbackForPast && key !== todayKey) {
-			const fb = fallbackData?.find((f) => f.date === key);
+			const fb = fallbackMap?.get(key);
 			chartData.push(fb ?? { date: key, views: 0, visitors: 0, sessions: 0 });
 		} else {
 			chartData.push({ date: key, views: 0, visitors: 0, sessions: 0 });

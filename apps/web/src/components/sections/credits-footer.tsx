@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Flex } from "@once-ui-system/core";
 import ImageTrail, { ImageTrailItem } from "@/components/image-trail";
 import { CreditsGrid } from "@/components/section/credits-grid";
@@ -31,8 +32,14 @@ export default function CreditsFooter({ id }: { id: string }) {
 				{images.map((url, index) => (
 					<ImageTrailItem key={index + url}>
 						<div className="relative h-full w-30 sm:w-38">
-							{/* biome-ignore lint/performance/noImgElement: dynamic list, cannot use next/Image */}
-							<img src={url} alt="" className="object-cover" loading="lazy" />
+							<Image
+								src={url}
+								alt=""
+								className="object-cover"
+								sizes="30vw"
+								fill
+								loading="lazy"
+							/>
 						</div>
 					</ImageTrailItem>
 				))}

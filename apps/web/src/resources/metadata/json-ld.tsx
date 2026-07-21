@@ -9,11 +9,21 @@ const personSchema = {
 	sameAs: [socials.github],
 };
 
+function toSafeJson(data: unknown): string {
+	return JSON.stringify(data)
+		.replace(/&/g, "\\u0026")
+		.replace(/</g, "\\u003C")
+		.replace(/>/g, "\\u003E")
+		.replace(/\//g, "\\u002F");
+}
+
+const schemaScript = toSafeJson(personSchema);
+
 export function JsonLd() {
 	return (
 		<script
 			type="application/ld+json"
-			dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+			dangerouslySetInnerHTML={{ __html: schemaScript }}
 		/>
 	);
 }

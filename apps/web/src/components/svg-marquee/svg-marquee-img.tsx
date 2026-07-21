@@ -48,6 +48,11 @@ const wrap = (min: number, max: number, value: number): number => {
 	return ((((value - min) % range) + range) % range) + min;
 };
 
+const springConfig = {
+	stiffness: 100,
+	damping: 20,
+};
+
 /**
  * Parse SVG path string into coordinate points using D3
  * This extracts the actual coordinates from the path for scaling
@@ -175,15 +180,10 @@ const MarqueeAlongPath = ({
 	const baseOffset = useMotionValue(0);
 	const isHovered = useRef(false);
 
-	const springConfig = {
-		stiffness: 100,
-		damping: 20,
-	};
-
 	const hoverFactorValue = useMotionValue(1);
 	const smoothHoverFactor = useSpring(hoverFactorValue, springConfig);
 
-	const items = useMemo(() => {
+	const items = (() => {
 		const childrenArray = React.Children.toArray(children);
 
 		return childrenArray.flatMap((child, childIndex) =>
@@ -199,7 +199,7 @@ const MarqueeAlongPath = ({
 				};
 			}),
 		);
-	}, [children, repeat]);
+	})();
 
 	useAnimationFrame((_, delta) => {
 		if (isHovered.current) {
@@ -319,7 +319,7 @@ const SVGMarqueeImg = () => {
 			{" "}
 			<MarqueeAlongPath path={path} baseVelocity={5} repeat={4}>
 				{artworks.map((artwork, i) => (
-					<Card key={`${artwork.src}-${i}`} index={i} artwork={artwork} />
+					<Card key={artwork.src} index={i} artwork={artwork} />
 				))}
 			</MarqueeAlongPath>
 			{/* <ImageTrail

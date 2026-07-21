@@ -4,7 +4,7 @@ import { cn } from "@homepage/ui/lib/utils";
 import { useSpring } from "motion/react";
 import * as m from "motion/react-m";
 import type { RefObject } from "react";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { type SpringConfig, useChartConfig } from "../chart-config-context";
 
@@ -44,11 +44,7 @@ export interface TooltipBoxProps {
 // Inner-only-on-visible so `useSpring` initializes at the cursor's actual x/y
 // instead of (0, 0) on first hover.
 export function TooltipBox(props: TooltipBoxProps) {
-	const [mounted, setMounted] = useState(false);
-
-	useLayoutEffect(() => {
-		setMounted(true);
-	}, []);
+	const [mounted] = useState(true);
 
 	const container = props.containerRef.current;
 	if (!(mounted && container)) {
@@ -108,7 +104,7 @@ function TooltipBoxInner({
 		}
 	}, [animate, topOverride, animatedTop, targetY]);
 
-	useLayoutEffect(() => {
+	useEffect(() => {
 		if (!tooltipRef.current) {
 			return;
 		}

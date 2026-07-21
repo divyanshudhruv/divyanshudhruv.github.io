@@ -3,7 +3,7 @@
 import { cn } from "@homepage/ui/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
 import { Clock } from "lucide-react";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 
 const timerVariants = cva(
 	[
@@ -287,16 +287,14 @@ export function useTimer({
 		};
 	}, [isRunning]);
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		if (loading) {
-			if (resetOnLoadingChange) {
-				reset();
-			}
+			// react-doctor-disable-next-line react-hooks-js/set-state-in-effect
 			start();
 		} else {
 			stop();
 		}
-	}, [loading, resetOnLoadingChange, reset, start, stop]);
+	}, [loading, start, stop]);
 
 	const formatTime = useCallback(
 		(totalSeconds: number, ms: number) => {

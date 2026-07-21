@@ -8,8 +8,6 @@ import {
 	type CSSProperties,
 	isValidElement,
 	type ReactNode,
-	useCallback,
-	useMemo,
 	useRef,
 	useState,
 } from "react";
@@ -153,7 +151,7 @@ function ChartInner({
 	containerRef,
 	onPhaseChange,
 }: ChartInnerProps) {
-	const lines = useMemo(() => extractAreaConfigs(children), [children]);
+	const lines = extractAreaConfigs(children);
 
 	return (
 		<TimeSeriesChartInner
@@ -209,13 +207,10 @@ export function AreaChart({
 	const [chartPhase, setChartPhase] = useState<ChartPhase>(() =>
 		resolveRestingChartPhase(status),
 	);
-	const handlePhaseChange = useCallback(
-		(phase: ChartPhase) => {
-			setChartPhase(phase);
-			onPhaseChange?.(phase);
-		},
-		[onPhaseChange],
-	);
+	const handlePhaseChange = (phase: ChartPhase) => {
+		setChartPhase(phase);
+		onPhaseChange?.(phase);
+	};
 
 	const showLoadingLabel = Boolean(
 		loadingLabel?.trim() &&

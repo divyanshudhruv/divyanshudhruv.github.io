@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export interface ScheduledTooltipControls<T> {
 	tooltipData: T | null;
@@ -41,38 +41,35 @@ export function useScheduledTooltip<T>(): ScheduledTooltipControls<T> {
 		};
 	}, []);
 
-	const commitTooltip = useCallback((tooltip: T, dedupeKey: string) => {
+	const commitTooltip = (tooltip: T, dedupeKey: string) => {
 		if (dedupeKey === lastKeyRef.current) {
 			return;
 		}
 		lastKeyRef.current = dedupeKey;
 		setTooltipData(tooltip);
-	}, []);
+	};
 
-	const scheduleTooltip = useCallback(
-		(tooltip: T, dedupeKey?: string) => {
-			const key = dedupeKey ?? defaultDedupeKey(tooltip);
-			pendingRef.current = tooltip;
-			pendingKeyRef.current = key;
-			if (key === lastKeyRef.current) {
-				return;
+	const scheduleTooltip = (tooltip: T, dedupeKey?: string) => {
+		const key = dedupeKey ?? defaultDedupeKey(tooltip);
+		pendingRef.current = tooltip;
+		pendingKeyRef.current = key;
+		if (key === lastKeyRef.current) {
+			return;
+		}
+		if (rafRef.current !== null) {
+			return;
+		}
+		rafRef.current = requestAnimationFrame(() => {
+			rafRef.current = null;
+			const next = pendingRef.current;
+			const nextKey = pendingKeyRef.current;
+			if (next && nextKey) {
+				commitTooltip(next, nextKey);
 			}
-			if (rafRef.current !== null) {
-				return;
-			}
-			rafRef.current = requestAnimationFrame(() => {
-				rafRef.current = null;
-				const next = pendingRef.current;
-				const nextKey = pendingKeyRef.current;
-				if (next && nextKey) {
-					commitTooltip(next, nextKey);
-				}
-			});
-		},
-		[commitTooltip],
-	);
+		});
+	};
 
-	const clearTooltip = useCallback(() => {
+	const clearTooltip = () => {
 		if (rafRef.current !== null) {
 			cancelAnimationFrame(rafRef.current);
 			rafRef.current = null;
@@ -81,11 +78,11 @@ export function useScheduledTooltip<T>(): ScheduledTooltipControls<T> {
 		pendingKeyRef.current = null;
 		lastKeyRef.current = null;
 		setTooltipData(null);
-	}, []);
+	};
 
-	const resetTooltipDedupe = useCallback(() => {
+	const resetTooltipDedupe = () => {
 		lastKeyRef.current = null;
-	}, []);
+	};
 
 	return {
 		tooltipData,

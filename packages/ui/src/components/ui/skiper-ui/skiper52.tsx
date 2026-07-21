@@ -6,54 +6,55 @@ import "swiper/swiper.css";
 
 import { cn } from "@homepage/ui/lib/utils";
 
+const images = [
+	{
+		src: "/images/x.com/13.jpeg",
+		alt: "Illustrations by my fav AarzooAly",
+		code: "# 23",
+	},
+	{
+		src: "/images/x.com/32.jpeg",
+		alt: "Illustrations by my fav AarzooAly",
+		code: "# 23",
+	},
+	{
+		src: "/images/x.com/20.jpeg",
+		alt: "Illustrations by my fav AarzooAly",
+		code: "# 23",
+	},
+	{
+		src: "/images/x.com/21.jpeg",
+		alt: "Illustrations by my fav AarzooAly",
+		code: "# 23",
+	},
+	{
+		src: "/images/x.com/19.jpeg",
+		alt: "Illustrations by my fav AarzooAly",
+		code: "# 23",
+	},
+	{
+		src: "/images/x.com/1.jpeg",
+		alt: "Illustrations by my fav AarzooAly",
+		code: "# 23",
+	},
+	{
+		src: "/images/x.com/2.jpeg",
+		alt: "Illustrations by my fav AarzooAly",
+		code: "# 23",
+	},
+	{
+		src: "/images/x.com/3.jpeg",
+		alt: "Illustrations by my fav AarzooAly",
+		code: "# 23",
+	},
+	{
+		src: "/images/x.com/4.jpeg",
+		alt: "Illustrations by my fav AarzooAly",
+		code: "# 23",
+	},
+];
+
 const Skiper52 = () => {
-	const images = [
-		{
-			src: "/images/x.com/13.jpeg",
-			alt: "Illustrations by my fav AarzooAly",
-			code: "# 23",
-		},
-		{
-			src: "/images/x.com/32.jpeg",
-			alt: "Illustrations by my fav AarzooAly",
-			code: "# 23",
-		},
-		{
-			src: "/images/x.com/20.jpeg",
-			alt: "Illustrations by my fav AarzooAly",
-			code: "# 23",
-		},
-		{
-			src: "/images/x.com/21.jpeg",
-			alt: "Illustrations by my fav AarzooAly",
-			code: "# 23",
-		},
-		{
-			src: "/images/x.com/19.jpeg",
-			alt: "Illustrations by my fav AarzooAly",
-			code: "# 23",
-		},
-		{
-			src: "/images/x.com/1.jpeg",
-			alt: "Illustrations by my fav AarzooAly",
-			code: "# 23",
-		},
-		{
-			src: "/images/x.com/2.jpeg",
-			alt: "Illustrations by my fav AarzooAly",
-			code: "# 23",
-		},
-		{
-			src: "/images/x.com/3.jpeg",
-			alt: "Illustrations by my fav AarzooAly",
-			code: "# 23",
-		},
-		{
-			src: "/images/x.com/4.jpeg",
-			alt: "Illustrations by my fav AarzooAly",
-			code: "# 23",
-		},
-	];
 
 	return (
 		<div className="flex h-full w-full items-center justify-center overflow-hidden bg-[#f5f4f3]">
@@ -93,15 +94,16 @@ const HoverExpand_001 = ({
 				<div className="flex w-full items-center justify-center gap-1">
 					{images.map((image, index) => (
 						<motion.div
-							key={index}
+							key={image.src}
+							layout
 							className="relative cursor-pointer overflow-hidden rounded-[20px]"
-							initial={{ width: "2.5rem", height: "20rem" }}
-							animate={{
+							style={{
 								width: activeImage === index ? "24rem" : "5rem",
-								height: activeImage === index ? "24rem" : "24rem",
+								height: "24rem",
 							}}
 							transition={{ duration: 0.3, ease: "easeInOut" }}
 							onClick={() => setActiveImage(index)}
+							onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setActiveImage(index); }}
 							onHoverStart={() => setActiveImage(index)}
 						>
 							<AnimatePresence>
@@ -110,7 +112,7 @@ const HoverExpand_001 = ({
 										initial={{ opacity: 0 }}
 										animate={{ opacity: 1 }}
 										exit={{ opacity: 0 }}
-										className="absolute h-full w-full bg-gradient-to-t from-black/40 to-transparent"
+										className="absolute h-full w-full bg-linear-to-t from-black/40 to-transparent"
 									/>
 								)}
 							</AnimatePresence>
@@ -128,6 +130,7 @@ const HoverExpand_001 = ({
 									</motion.div>
 								)}
 							</AnimatePresence>
+							{/* biome-ignore lint/performance/noImgElement: next/image not available in shared package */}
 							<img
 								src={image.src}
 								className="size-full object-cover"

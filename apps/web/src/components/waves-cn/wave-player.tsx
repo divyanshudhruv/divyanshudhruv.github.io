@@ -1,4 +1,5 @@
 "use client";
+("use memo");
 
 import { Button } from "@homepage/ui/components/button";
 import { cn } from "@homepage/ui/lib/utils";
@@ -68,94 +69,79 @@ export function WavePlayer({
 
 	const [isReady, setIsReady] = React.useState(false);
 	const [isPlaying, setIsPlaying] = React.useState(false);
-	const [volume, setVolume] = React.useState(defaultVolume);
-	const [isMuted, setIsMuted] = React.useState(false);
+	const volumeRef = React.useRef(defaultVolume);
+	const isMutedRef = React.useRef(false);
 	const [duration, setDuration] = React.useState(0);
 	const [currentTime, setCurrentTime] = React.useState(0);
 
-	const togglePlay = React.useCallback(
-		() => wavesurferRef.current?.playPause(),
-		[],
-	);
+	const togglePlay = () => wavesurferRef.current?.playPause();
 
-	const _restart = React.useCallback(() => {
+	const _restart = () => {
 		if (!wavesurferRef.current || !isReady) return;
 		wavesurferRef.current.setTime(0);
 		wavesurferRef.current.play();
-	}, [isReady]);
+	};
 
-	const _handleVolume = React.useCallback((v: number | readonly number[]) => {
+	const _handleVolume = (v: number | readonly number[]) => {
 		const value = Array.isArray(v) ? v[0] : v;
-		setVolume(value);
-		setIsMuted(value === 0);
+		volumeRef.current = value;
+		isMutedRef.current = value === 0;
 		wavesurferRef.current?.setVolume(value);
-	}, []);
+	};
 
-	const _toggleMute = React.useCallback(() => {
+	const _toggleMute = () => {
 		if (!wavesurferRef.current) return;
-		const next = !isMuted;
-		setIsMuted(next);
-		wavesurferRef.current.setVolume(next ? 0 : volume);
-	}, [isMuted, volume]);
+		const next = !isMutedRef.current;
+		isMutedRef.current = next;
+		wavesurferRef.current.setVolume(next ? 0 : volumeRef.current);
+	};
 
-	const _handleSeek = React.useCallback(
-		(v: number | readonly number[]) => {
-			if (!wavesurferRef.current || !isReady) return;
-			const value = Array.isArray(v) ? v[0] : v;
-			wavesurferRef.current.seekTo(value);
-		},
-		[isReady],
-	);
+	const _handleSeek = (v: number | readonly number[]) => {
+		if (!wavesurferRef.current || !isReady) return;
+		const value = Array.isArray(v) ? v[0] : v;
+		wavesurferRef.current.seekTo(value);
+	};
 
-	const handleReady = React.useCallback(
-		(ws: WaveSurfer) => {
-			wavesurferRef.current = ws;
-			ws.setVolume(defaultVolume);
-			if (autoPlay) ws.play();
-			setDuration(ws.getDuration());
-			setIsReady(true);
-		},
-		[defaultVolume, autoPlay],
-	);
+	const handleReady = (ws: WaveSurfer) => {
+		wavesurferRef.current = ws;
+		ws.setVolume(defaultVolume);
+		if (autoPlay) ws.play();
+		setDuration(ws.getDuration());
+		setIsReady(true);
+	};
 
-	const handlePlay = React.useCallback(() => {
+	const handlePlay = () => {
 		setIsPlaying(true);
 		onPlay?.();
-	}, [onPlay]);
+	};
 
-	const handlePause = React.useCallback(() => {
+	const handlePause = () => {
 		setIsPlaying(false);
 		onPause?.();
-	}, [onPause]);
+	};
 
-	const handleFinish = React.useCallback(
-		(_ws: WaveSurfer) => {
-			setIsPlaying(false);
-			onFinish?.();
-		},
-		[onFinish],
-	);
+	const handleFinish = (_ws: WaveSurfer) => {
+		setIsPlaying(false);
+		onFinish?.();
+	};
 
-	const handleTimeupdate = React.useCallback(
-		(ws: WaveSurfer) => {
-			const t = ws.getCurrentTime();
-			setCurrentTime(t);
-			onTimeUpdate?.(t, ws.getDuration());
-		},
-		[onTimeUpdate],
-	);
+	const handleTimeupdate = (ws: WaveSurfer) => {
+		const t = ws.getCurrentTime();
+		setCurrentTime(t);
+		onTimeUpdate?.(t, ws.getDuration());
+	};
 
-	const handleSeeking = React.useCallback((ws: WaveSurfer) => {
+	const handleSeeking = (ws: WaveSurfer) => {
 		setCurrentTime(ws.getCurrentTime());
-	}, []);
+	};
 
-	const handleDestroy = React.useCallback(() => {
+	const handleDestroy = () => {
 		wavesurferRef.current = null;
 		setIsReady(false);
 		setIsPlaying(false);
 		setCurrentTime(0);
 		setDuration(0);
-	}, []);
+	};
 
 	// ── Derived
 	const _progress = duration > 0 ? currentTime / duration : 0;

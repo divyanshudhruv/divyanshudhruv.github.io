@@ -34,13 +34,9 @@ export function useHighlightSegment({
 	const { tooltipData, selection } = useChartHover();
 	const { highlightSpring } = useChartConfig();
 
-	const bounds = useMemo(
-		() =>
-			enabled
-				? computeSegmentBounds(data, xScale, xAccessor, tooltipData, selection)
-				: INACTIVE_SEGMENT,
-		[enabled, data, xScale, xAccessor, tooltipData, selection],
-	);
+	const bounds = enabled
+		? computeSegmentBounds(data, xScale, xAccessor, tooltipData, selection)
+		: INACTIVE_SEGMENT;
 
 	const xSpring = useSpring(0, highlightSpring);
 	const widthSpring = useSpring(0, highlightSpring);

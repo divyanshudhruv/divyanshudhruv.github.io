@@ -1,6 +1,7 @@
 "use client";
+("use memo");
 
-import { createContext, type ReactNode, useContext, useMemo } from "react";
+import { createContext, type ReactNode, useContext } from "react";
 
 export interface SpringConfig {
 	stiffness: number;
@@ -30,13 +31,10 @@ export interface ChartConfigProviderProps {
 }
 
 function ChartConfigProvider({ value, children }: ChartConfigProviderProps) {
-	const merged = useMemo<ChartConfigValue>(
-		() => ({
-			...DEFAULT_CHART_CONFIG,
-			...value,
-		}),
-		[value],
-	);
+	const merged: ChartConfigValue = {
+		...DEFAULT_CHART_CONFIG,
+		...value,
+	};
 
 	return (
 		<ChartConfigContext.Provider value={merged}>

@@ -18,9 +18,14 @@ function formatTotalTime(s: number) {
 	return `${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}:${sec.toString().padStart(2, "0")}`;
 }
 
+function readInitialTotal(): number {
+	if (typeof window === "undefined") return 0;
+	const saved = localStorage.getItem(TOTAL_KEY);
+	return saved ? Number.parseInt(saved, 10) : 0;
+}
+
 export default function TimerSection({ id }: { id: string }) {
-	const [totalTime, setTotalTime] = useState(0);
-	const totalStoredRef = useRef(0);
+	const [storedTotal] = useState(readInitialTotal);
 	const sessionRef = useRef(0);
 
 	const session = useTimer({ loading: true, format: "HH:MM:SS" });
@@ -29,16 +34,15 @@ export default function TimerSection({ id }: { id: string }) {
 		sessionRef.current = session.elapsedTime;
 	});
 
-	useEffect(() => {
-		const saved = localStorage.getItem(TOTAL_KEY);
-		const initial = saved ? Number.parseInt(saved, 10) : 0;
-		totalStoredRef.current = initial;
-		setTotalTime(initial);
+	const totalTime = storedTotal + session.elapsedTime;
 
+	const saveRef = useRef(storedTotal);
+
+	useEffect(() => {
 		const save = () => {
 			localStorage.setItem(
 				TOTAL_KEY,
-				String(totalStoredRef.current + sessionRef.current),
+				String(saveRef.current + sessionRef.current),
 			);
 		};
 
@@ -49,10 +53,6 @@ export default function TimerSection({ id }: { id: string }) {
 			document.removeEventListener("visibilitychange", save);
 		};
 	}, []);
-
-	useEffect(() => {
-		setTotalTime(totalStoredRef.current + session.elapsedTime);
-	}, [session.elapsedTime]);
 
 	return (
 		<Flex

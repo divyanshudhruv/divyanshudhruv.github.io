@@ -490,7 +490,7 @@ export function XAxis(props: XAxisProps) {
 	return <XAxisInner {...props} container={container} />;
 }
 
-const XAxisInner = memo(function XAxisInner({
+function XAxisInner({
 	numTicks = 5,
 	tickerHalfWidth = 50,
 	tickMode = "domain",
@@ -499,7 +499,7 @@ const XAxisInner = memo(function XAxisInner({
 	const { xScale, margin, tooltipData, data, xAccessor, dateLabels, xDomain } =
 		useChart();
 
-	const labelsToShow = useMemo(() => {
+	const labelsToShow = (() => {
 		// Brush (any extent): snap ticks to data rows with even index spacing.
 		if (tickMode === "data" || xDomain != null) {
 			return buildDataAlignedTicks({
@@ -517,16 +517,7 @@ const XAxisInner = memo(function XAxisInner({
 			numTicks,
 			xScale,
 		});
-	}, [
-		tickMode,
-		xDomain,
-		data,
-		dateLabels,
-		xAccessor,
-		xScale,
-		margin.left,
-		numTicks,
-	]);
+	})();
 
 	const isHovering = tooltipData !== null;
 	const crosshairX = tooltipData ? tooltipData.x + margin.left : null;
@@ -553,7 +544,7 @@ const XAxisInner = memo(function XAxisInner({
 		</div>,
 		container,
 	);
-});
+}
 
 XAxis.displayName = "XAxis";
 

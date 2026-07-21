@@ -47,7 +47,7 @@ export function YAxis({ numTicks = 5 }: YAxisProps) {
 	);
 }
 
-const YAxisInner = memo(function YAxisInner({
+function YAxisInner({
 	container,
 	yScale,
 	margin,
@@ -60,7 +60,7 @@ const YAxisInner = memo(function YAxisInner({
 	innerHeight: number;
 	numTicks: number;
 }) {
-	const ticks = useMemo<TickItem[]>(() => {
+	const ticks: TickItem[] = (() => {
 		const domain = (yScale as unknown as { domain(): number[] }).domain();
 		const [min, max] = domain;
 		const range = max - min;
@@ -83,7 +83,7 @@ const YAxisInner = memo(function YAxisInner({
 			y: (yScale(value) ?? 0) + margin.top,
 			label: formatTickValue(value),
 		}));
-	}, [yScale, margin.top, innerHeight, numTicks]);
+	})();
 
 	return createPortal(
 		<div
@@ -112,7 +112,7 @@ const YAxisInner = memo(function YAxisInner({
 		</div>,
 		container,
 	);
-});
+}
 
 YAxisInner.displayName = "YAxisInner";
 

@@ -59,7 +59,7 @@ const WavesurferPlayer = memo(
 		const { className, ...rest } = props;
 
 		// ── Separate options from event handlers
-		const [eventProps, options] = useMemo(() => {
+		const [eventProps, options] = (() => {
 			const opts: Partial<WaveSurferOptions> = {};
 			const events: OnWavesurferEvents = {};
 			for (const key in rest) {
@@ -73,7 +73,7 @@ const WavesurferPlayer = memo(
 					] as never;
 			}
 			return [events, opts] as const;
-		}, [rest]);
+		})();
 
 		// ── Resolve CSS vars
 		const waveColor =
@@ -197,7 +197,7 @@ const WavesurferPlayer = memo(
 							inset: 0,
 							borderRadius: 4,
 							background: "hsl(var(--muted))",
-							animation: "pulse 2s cubic-bezier(0.4,0,0.6,1) infinite",
+							animation: "pulse 1s cubic-bezier(0.4,0,0.6,1) infinite",
 						}}
 					/>
 				)}
@@ -228,98 +228,19 @@ const WavesurferPlayer = memo(
 
 export default WavesurferPlayer;
 
-// ─── Hook ────────────────────────────────────────────────────────────────────
-function useWavesurfer({
-	container,
-	waveColor = WAVESURFER_DEFAULTS.waveColor,
-	progressColor = WAVESURFER_DEFAULTS.progressColor,
-	...options
-}: Omit<WaveSurferOptions, "container"> & {
-	container: RefObject<HTMLDivElement | null>;
-}) {
-	const resolvedWaveColor = useCssVar(waveColor as string);
-	const resolvedProgressColor = useCssVar(progressColor as string);
-	const [wavesurfer, setWavesurfer] = useState<WaveSurfer | null>(null);
-	const [isReady, setIsReady] = useState(false);
-	const [isPlaying, setIsPlaying] = useState(false);
-	const [currentTime, setCurrentTime] = useState(0);
-
-	const _url = options.url as string | undefined;
-	const _height =
-		(options.height as number | undefined) ?? WAVESURFER_DEFAULTS.height;
-	const _barWidth =
-		(options.barWidth as number | undefined) ?? WAVESURFER_DEFAULTS.barWidth;
-	const _barGap =
-		(options.barGap as number | undefined) ?? WAVESURFER_DEFAULTS.barGap;
-	const _barRadius =
-		(options.barRadius as number | undefined) ?? WAVESURFER_DEFAULTS.barRadius;
-	const _minPxPerSec =
-		(options.minPxPerSec as number | undefined) ??
-		WAVESURFER_DEFAULTS.minPxPerSec;
-
-	useEffect(() => {
-		if (!container.current) return;
-		const ws = WaveSurfer.create({
-			...WAVESURFER_DEFAULTS,
-			...options,
-			waveColor: resolvedWaveColor,
-			progressColor: resolvedProgressColor,
-			container: container.current,
-		});
-		setWavesurfer(ws);
-		const unsubs = [
-			ws.on("load", () => {
-				setIsReady(false);
-				setIsPlaying(false);
-				setCurrentTime(0);
-			}),
-			ws.on("ready", () => {
-				setIsReady(true);
-			}),
-			ws.on("play", () => {
-				setIsPlaying(true);
-			}),
-			ws.on("pause", () => {
-				setIsPlaying(false);
-			}),
-			ws.on("timeupdate", () => {
-				setCurrentTime(ws.getCurrentTime());
-			}),
-			ws.on("destroy", () => {
-				setIsReady(false);
-				setIsPlaying(false);
-			}),
-		];
-		return () => {
-			for (const fn of unsubs) fn();
-			ws.destroy();
-		};
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-		// biome-ignore lint/correctness/useExhaustiveDependencies: container.current is a ref used as instance key
-	}, [resolvedWaveColor, resolvedProgressColor, container.current, options]);
-
-	useEffect(() => {
-		wavesurfer?.setOptions({
-			waveColor: resolvedWaveColor,
-			progressColor: resolvedProgressColor,
-		});
-	}, [wavesurfer, resolvedWaveColor, resolvedProgressColor]);
-
-	return { wavesurfer, isReady, isPlaying, currentTime };
-}
-
 // ─── CSS var resolver ────────────────────────────────────────────────────────
 export function useCssVar(value: string): string {
+	const isCssVar = value.startsWith("var(");
 	const [resolved, setResolved] = useState(value);
 
 	useEffect(() => {
-		const match = value.match(/^var\((--[^)]+)\)$/);
-		if (!match) {
-			setResolved(value);
-			return;
-		}
+		if (!isCssVar) return;
 
-		const varName = match[1];
+		const match = value.match(/^var\((--[^)]+)\)$/);
+
+		const varName = match?.[1];
+		if (!varName) return;
+
 		const resolve = () => {
 			const raw = getComputedStyle(document.documentElement)
 				.getPropertyValue(varName)
@@ -328,14 +249,14 @@ export function useCssVar(value: string): string {
 			setResolved(raw ? (isHsl ? `hsl(${raw})` : raw) : value);
 		};
 
-		resolve();
+		queueMicrotask(resolve);
 		const observer = new MutationObserver(resolve);
 		observer.observe(document.documentElement, {
 			attributes: true,
 			attributeFilter: ["class", "style", "data-theme"],
 		});
 		return () => observer.disconnect();
-	}, [value]);
+	}, [value, isCssVar]);
 
 	return resolved;
 }

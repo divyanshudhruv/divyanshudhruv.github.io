@@ -1,8 +1,9 @@
 "use client";
+("use memo");
 
 import { useSpring } from "motion/react";
 import * as m from "motion/react-m";
-import { memo, useEffect, useMemo, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 const TICKER_ITEM_HEIGHT = 24;
 /** Full scroll stacks are skipped above this count — single label + instant updates. */
@@ -14,7 +15,7 @@ export interface DateTickerProps {
 	visible: boolean;
 }
 
-const DateTickerCompact = memo(function DateTickerCompact({
+function DateTickerCompact({
 	currentIndex,
 	labels,
 }: Omit<DateTickerProps, "visible">) {
@@ -27,42 +28,40 @@ const DateTickerCompact = memo(function DateTickerCompact({
 			</div>
 		</div>
 	);
-});
+}
 
-const DateTickerInner = memo(function DateTickerInner({
+function DateTickerInner({
 	currentIndex,
 	labels,
 }: Omit<DateTickerProps, "visible">) {
 	// Parse labels into month and day parts
-	const parsedLabels = useMemo(() => {
-		return labels.map((label, index) => {
-			const parts = label.split(" ");
-			const month = parts[0] || "";
-			const day = parts[1] || "";
-			return { month, day, full: label, key: `${label}::${index}` };
-		});
-	}, [labels]);
+	const parsedLabels = labels.map((label, index) => {
+		const parts = label.split(" ");
+		const month = parts[0] || "";
+		const day = parts[1] || "";
+		return { month, day, full: label, key: `${label}::${index}` };
+	});
 
 	// Month segments: one entry per consecutive run (Jan → Feb → …), keyed by start index
-	const monthSegments = useMemo(() => {
+	const monthSegments = (() => {
 		const segments: { month: string; key: string; startIndex: number }[] = [];
 
-		parsedLabels.forEach((label, index) => {
+		parsedLabels.forEach((label) => {
 			const prev = segments.at(-1);
 			if (!prev || prev.month !== label.month) {
 				segments.push({
 					month: label.month,
-					key: `${label.month}-${index}`,
-					startIndex: index,
+					key: `${label.month}-${parsedLabels.indexOf(label)}`,
+					startIndex: parsedLabels.indexOf(label),
 				});
 			}
 		});
 
 		return segments;
-	}, [parsedLabels]);
+	})();
 
 	// Index into monthSegments for the current data point
-	const currentMonthIndex = useMemo(() => {
+	const currentMonthIndex = (() => {
 		if (currentIndex < 0 || currentIndex >= parsedLabels.length) {
 			return 0;
 		}
@@ -73,7 +72,7 @@ const DateTickerInner = memo(function DateTickerInner({
 			}
 		}
 		return 0;
-	}, [currentIndex, parsedLabels.length, monthSegments]);
+	})();
 
 	// Track previous month index
 	const prevMonthIndexRef = useRef(-1);
@@ -135,7 +134,7 @@ const DateTickerInner = memo(function DateTickerInner({
 			</div>
 		</div>
 	);
-});
+}
 
 export function DateTicker({ currentIndex, labels, visible }: DateTickerProps) {
 	if (!visible || labels.length === 0) {

@@ -175,14 +175,13 @@ export function GitHubCalendar({
 		if (!username) return;
 
 		let isMounted = true;
+		// react-doctor-disable-next-line react-hooks-js/set-state-in-effect
 		setLoading(true);
 		setError(null);
 
 		fetch(`https://github-contributions-api.jogruber.de/v4/${username}`)
 			.then((res) => {
-				if (!res.ok) {
-					throw new Error("Failed to fetch contributions");
-				}
+				if (!res.ok) throw new Error("Failed to fetch contributions");
 				return res.json();
 			})
 			.then((json) => {
@@ -585,12 +584,12 @@ export function ContributionLegend({
 }) {
 	const { resolvedTheme } = useTheme();
 
-	const borderRadius = useMemo(() => {
+	const borderRadius = (() => {
 		if (cellShape === "circle") return "50%";
 		if (cellShape === "rounded")
 			return `${Math.max(3, Math.floor(cellSize / 3))}px`;
 		return "2px";
-	}, [cellShape, cellSize]);
+	})();
 	const themes = resolvedTheme === "light" ? COLOR_THEMES_LIGHT : COLOR_THEMES;
 	const palette = colors ?? themes[colorScheme] ?? themes.green;
 	return (

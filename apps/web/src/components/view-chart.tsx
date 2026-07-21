@@ -5,7 +5,7 @@ import { curveNatural } from "@visx/curve";
 import { useEffect, useState } from "react";
 import AreaChart, { Area } from "./charts/area-chart";
 import Grid from "./charts/grid";
-import { ChartTooltip } from "./charts/tooltip";
+import { ChartTooltip } from "./charts/tooltip/chart-tooltip";
 import XAxis from "./charts/x-axis";
 import { YAxis } from "./charts/y-axis";
 

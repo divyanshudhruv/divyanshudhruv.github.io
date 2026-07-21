@@ -2,7 +2,7 @@
 
 import { ExternalLink } from "lucide-react";
 import * as m from "motion/react-m";
-import { useLayoutEffect, useState } from "react";
+import { useState } from "react";
 import { projectsData } from "@/resources/projects";
 import {
 	CutoutCard,
@@ -20,15 +20,9 @@ import {
 
 function ProjectCard() {
 	const stagger = useCutoutContentStaggerVariants();
-	const [randomProjects, setRandomProjects] = useState(() =>
-		[...projectsData].sort(() => 0.5 - 0.5).slice(0, 6),
+	const [randomProjects] = useState(() =>
+		projectsData.toSorted(() => Math.random() - 0.5).slice(0, 6),
 	);
-
-	useLayoutEffect(() => {
-		setRandomProjects(
-			[...projectsData].sort(() => Math.random() - 0.5).slice(0, 6),
-		);
-	}, []);
 
 	return (
 		<div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-2">
@@ -56,9 +50,10 @@ function ProjectCard() {
 						<CutoutCardInsetLabel className="bottom-0 left-0 rounded-tr-[20px] bg-stone-50 px-5 py-3 dark:bg-stone-900">
 							<span className="font-semibold text-[11px] text-stone-500 uppercase tracking-widest">
 								{project.date instanceof Date
-									? project.date.toLocaleDateString("default", {
+									? project.date.toLocaleDateString("en-US", {
 											month: "short",
 											year: "numeric",
+											timeZone: "UTC",
 										})
 									: project.date}
 							</span>

@@ -7,7 +7,7 @@ import { AreaClosed, LinePath } from "@visx/shape";
 // biome-ignore lint/suspicious/noExplicitAny: d3 curve factory type
 type CurveFactory = any;
 
-import { useCallback, useId, useMemo, useRef, useState } from "react";
+import { useId, useRef, useState } from "react";
 import { AreaGradientDefs } from "./area-gradient-defs";
 import { chartCssVars, useChartStable, useYScale } from "./chart-context";
 import type { ChartPhase } from "./chart-phase";
@@ -106,7 +106,7 @@ function useAreaLoadingPulseState(
 		chartPhase === "exitingReady";
 	const [pulseEpoch, setPulseEpoch] = useState(0);
 
-	const handleLoadingPulseComplete = useCallback(() => {
+	const handleLoadingPulseComplete = () => {
 		if (pulseMode === "loop") {
 			window.setTimeout(() => {
 				setPulseEpoch((epoch) => epoch + 1);
@@ -114,7 +114,7 @@ function useAreaLoadingPulseState(
 			return;
 		}
 		notifyLoadingPulseComplete?.();
-	}, [notifyLoadingPulseComplete, pulseMode]);
+	};
 
 	return {
 		handleLoadingPulseComplete,
@@ -179,10 +179,10 @@ export function Area({
 		notifyLoadingPulseComplete,
 	);
 
-	const seriesIndex = useMemo(() => {
+	const seriesIndex = (() => {
 		const index = lines.findIndex((line) => line.dataKey === dataKey);
 		return index >= 0 ? index : 0;
-	}, [lines, dataKey]);
+	})();
 
 	const pathRef = useRef<SVGPathElement>(null);
 	const { pathLength, pathD } = usePathStrokeMetrics(pathRef, [
@@ -209,13 +209,10 @@ export function Area({
 	const resolvedStroke =
 		stroke || (isPatternFill ? chartCssVars.linePrimary : fill);
 
-	const getY = useCallback(
-		(d: Record<string, unknown>) => {
-			const value = d[dataKey];
-			return typeof value === "number" ? (yScale(value) ?? 0) : 0;
-		},
-		[dataKey, yScale],
-	);
+	const getY = (d: Record<string, unknown>) => {
+		const value = d[dataKey];
+		return typeof value === "number" ? (yScale(value) ?? 0) : 0;
+	};
 
 	const hasDashTail = resolveDashTailBounds(dashFromIndex, data.length);
 	// The stroke gradient is only emitted when at least one edge fades, so fall

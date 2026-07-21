@@ -1,17 +1,16 @@
 "use client";
+("use memo");
 
 import { scaleLinear, scaleTime } from "@visx/scale";
 import { bisector, extent } from "d3";
 import type { Transition } from "motion/react";
+
 import {
 	Children,
 	cloneElement,
 	isValidElement,
-	memo,
 	type ReactElement,
 	type ReactNode,
-	useCallback,
-	useMemo,
 } from "react";
 import {
 	DEFAULT_ANIMATION_EASING,
@@ -212,7 +211,7 @@ export function TimeSeriesChartInner(props: TimeSeriesChartInnerProps) {
 	return <TimeSeriesChartCore {...props} />;
 }
 
-const TimeSeriesChartCore = memo(function TimeSeriesChartCore({
+function TimeSeriesChartCore({
 	width,
 	height,
 	data,
@@ -247,27 +246,24 @@ const TimeSeriesChartCore = memo(function TimeSeriesChartCore({
 	const innerWidth = width - margin.left - margin.right;
 	const innerHeight = height - margin.top - margin.bottom;
 
-	const resolveYDomain = useCallback(
-		(sourceData: Record<string, unknown>[], dataKeys: string[]) => {
-			const axisGroups = groupLinesByYAxisId(lines);
-			const usesDefaultOnly =
-				axisGroups.size === 1 && axisGroups.has(DEFAULT_Y_AXIS_ID);
-			const domainMax =
-				usesDefaultOnly && yScaleDomainMax != null
-					? yScaleDomainMax
-					: undefined;
-			return resolveTimeSeriesYDomain(sourceData, dataKeys, domainMax);
-		},
-		[lines, yScaleDomainMax],
-	);
+	const resolveYDomain = (sourceData: Record<string, unknown>[], dataKeys: string[]) => {
+		const axisGroups = groupLinesByYAxisId(lines);
+		const usesDefaultOnly =
+			axisGroups.size === 1 && axisGroups.has(DEFAULT_Y_AXIS_ID);
+		const domainMax =
+			usesDefaultOnly && yScaleDomainMax != null
+				? yScaleDomainMax
+				: undefined;
+		return resolveTimeSeriesYDomain(sourceData, dataKeys, domainMax);
+	};
 
-	const skeletonData = useMemo(() => {
+	const skeletonData = (() => {
 		const primaryKey = lines[0]?.dataKey ?? "value";
 		if (data.length === 0) {
 			return generateChartSkeletonData({ dataKey: primaryKey });
 		}
 		return generateChartSkeletonFromTarget(data, primaryKey);
-	}, [data, lines]);
+	})();
 
 	const {
 		chartPhase,
@@ -289,27 +285,18 @@ const TimeSeriesChartCore = memo(function TimeSeriesChartCore({
 		onPhaseChange,
 	});
 
-	const xAccessor = useCallback(
-		(d: Record<string, unknown>): Date => {
-			const value = d[xDataKey];
-			return value instanceof Date ? value : new Date(value as string | number);
-		},
-		[xDataKey],
-	);
+	const xAccessor = (d: Record<string, unknown>): Date => {
+		const value = d[xDataKey];
+		return value instanceof Date ? value : new Date(value as string | number);
+	};
 
-	const bisectDate = useMemo(
-		() => bisector<Record<string, unknown>, Date>((d) => xAccessor(d)).left,
-		[xAccessor],
-	);
+	const bisectDate = bisector<Record<string, unknown>, Date>((d) => xAccessor(d)).left;
 
-	const visiblePlotData = useMemo(() => {
-		if (!xDomain) {
-			return plotData;
-		}
-		return filterDataByXDomain(plotData, xDomain, xAccessor);
-	}, [plotData, xDomain, xAccessor]);
+	const visiblePlotData = !xDomain
+		? plotData
+		: filterDataByXDomain(plotData, xDomain, xAccessor);
 
-	const xScale = useMemo(() => {
+	const xScale = (() => {
 		const minTime = xDomain
 			? xDomain[0].getTime()
 			: (extent(plotData, (d) => xAccessor(d).getTime())[0] ?? 0);
@@ -321,20 +308,20 @@ const TimeSeriesChartCore = memo(function TimeSeriesChartCore({
 			range: [0, innerWidth],
 			domain: [minTime, maxTime],
 		});
-	}, [innerWidth, plotData, xAccessor, xDomain]);
+	})();
 
 	const seriesSourceData = xDomain ? plotData : visiblePlotData;
 
-	const renderData = useMemo(() => {
+	const renderData = (() => {
 		const valueKeys = lines.map((line) => line.dataKey);
 		return decimateTimeSeries(
 			seriesSourceData,
 			maxRenderPointsForWidth(innerWidth),
 			valueKeys,
 		);
-	}, [seriesSourceData, innerWidth, lines]);
+	})();
 
-	const columnWidth = useMemo(() => {
+	const columnWidth = (() => {
 		const slotCount =
 			xDomain && xDomainSlotCount != null
 				? xDomainSlotCount
@@ -343,26 +330,18 @@ const TimeSeriesChartCore = memo(function TimeSeriesChartCore({
 			return 0;
 		}
 		return innerWidth / (slotCount - 1);
-	}, [innerWidth, visiblePlotData.length, xDomain, xDomainSlotCount]);
+	})();
 
-	const yDomainSkeletonByAxis = useMemo(
-		() =>
-			computeYDomainsByAxis({
-				lines,
-				resolveDomain: (dataKeys) => resolveYDomain(skeletonData, dataKeys),
-			}),
-		[lines, resolveYDomain, skeletonData],
-	);
+	const yDomainSkeletonByAxis = computeYDomainsByAxis({
+		lines,
+		resolveDomain: (dataKeys) => resolveYDomain(skeletonData, dataKeys),
+	});
 
-	const yDomainTargetByAxis = useMemo(
-		() =>
-			computeYDomainsByAxis({
-				lines,
-				resolveDomain: (dataKeys) =>
-					resolveYDomain(xDomain ? visiblePlotData : data, dataKeys),
-			}),
-		[data, lines, resolveYDomain, visiblePlotData, xDomain],
-	);
+	const yDomainTargetByAxis = computeYDomainsByAxis({
+		lines,
+		resolveDomain: (dataKeys) =>
+			resolveYDomain(xDomain ? visiblePlotData : data, dataKeys),
+	});
 
 	const animatedYDomainsByAxis = useAnimatedYDomains({
 		chartPhase,
@@ -376,25 +355,18 @@ const TimeSeriesChartCore = memo(function TimeSeriesChartCore({
 
 	const yDomainsForScales = animatedYDomainsByAxis;
 
-	const yScales = useMemo(
-		() =>
-			buildYScalesFromDomains({
-				domainsByAxis: yDomainsForScales,
-				innerHeight,
-				lines,
-			}),
-		[yDomainsForScales, innerHeight, lines],
-	);
+	const yScales = buildYScalesFromDomains({
+		domainsByAxis: yDomainsForScales,
+		innerHeight,
+		lines,
+	});
 
 	const yScale = getPrimaryYScale(
 		yScales,
 		scaleLinear({ range: [innerHeight, 0], domain: [0, 100], nice: true }),
 	);
 
-	const dateLabels = useMemo(
-		() => visiblePlotData.map((d) => shortDateFmt.format(xAccessor(d))),
-		[visiblePlotData, xAccessor],
-	);
+	const dateLabels = visiblePlotData.map((d) => shortDateFmt.format(xAccessor(d)));
 
 	const canInteract = isLoaded && isChartInteractionPhase(chartPhase);
 
@@ -470,7 +442,7 @@ const TimeSeriesChartCore = memo(function TimeSeriesChartCore({
 			{children}
 		</ChartSvgRenderer>
 	);
-});
+}
 
 interface ChartSvgRendererProps {
 	animationDuration: number;
@@ -609,92 +581,48 @@ function ChartSvgRenderer(props: ChartSvgRendererProps) {
 		}
 	});
 
-	const contextValue = useMemo(
-		() => ({
-			data: visiblePlotData,
-			renderData,
-			xScale,
-			yScale,
-			yScales,
-			width,
-			height,
-			innerWidth,
-			innerHeight,
-			margin,
-			columnWidth,
-			tooltipData,
-			setTooltipData,
-			containerRef,
-			lines,
-			chartPhase,
-			chartStatus,
-			loadingLabel,
-			yDomainTweenDuration,
-			yDomainSkeletonByAxis,
-			yDomainTargetByAxis,
-			isLoaded,
-			animationDuration,
-			animationEasing,
-			enterTransition,
-			revealEpoch,
-			notifyLoadingPulseComplete,
-			xAccessor,
-			dateLabels,
-			xDomain,
-			xDomainSlotCount,
-			selection,
-			clearSelection,
-			composedBarDataKeys,
-			composedBarSize,
-			composedMaxBarSize,
-			composedBarGap,
-			composedStacked,
-			composedStackOffsets,
-			composedStackGap,
-		}),
-		[
-			visiblePlotData,
-			renderData,
-			xScale,
-			yScale,
-			yScales,
-			width,
-			height,
-			innerWidth,
-			innerHeight,
-			margin,
-			columnWidth,
-			tooltipData,
-			setTooltipData,
-			containerRef,
-			lines,
-			chartPhase,
-			chartStatus,
-			loadingLabel,
-			yDomainTweenDuration,
-			yDomainSkeletonByAxis,
-			yDomainTargetByAxis,
-			isLoaded,
-			animationDuration,
-			animationEasing,
-			enterTransition,
-			revealEpoch,
-			notifyLoadingPulseComplete,
-			xAccessor,
-			dateLabels,
-			xDomain,
-			xDomainSlotCount,
-			selection,
-			clearSelection,
-			composedBarDataKeys,
-			composedBarSize,
-			composedMaxBarSize,
-			composedBarGap,
-			composedStacked,
-			composedStackOffsets,
-			composedStackGap,
-		],
-	);
+	const contextValue = {
+		data: visiblePlotData,
+		renderData,
+		xScale,
+		yScale,
+		yScales,
+		width,
+		height,
+		innerWidth,
+		innerHeight,
+		margin,
+		columnWidth,
+		tooltipData,
+		setTooltipData,
+		containerRef,
+		lines,
+		chartPhase,
+		chartStatus,
+		loadingLabel,
+		yDomainTweenDuration,
+		yDomainSkeletonByAxis,
+		yDomainTargetByAxis,
+		isLoaded,
+		animationDuration,
+		animationEasing,
+		enterTransition,
+		revealEpoch,
+		notifyLoadingPulseComplete,
+		xAccessor,
+		dateLabels,
+		xDomain,
+		xDomainSlotCount,
+		selection,
+		clearSelection,
+		composedBarDataKeys,
+		composedBarSize,
+		composedMaxBarSize,
+		composedBarGap,
+		composedStacked,
+		composedStackOffsets,
+		composedStackGap,
+	};
 
 	const useClipReveal =
 		!staticPreview &&
@@ -712,36 +640,26 @@ function ChartSvgRenderer(props: ChartSvgRendererProps) {
 			duration: animationDuration / 1000,
 		} satisfies Transition);
 
-	const revealClipPadding = useMemo(() => {
-		if (!composedBarDataKeys?.length) {
-			return 0;
-		}
-		const barWidth = computeSeriesBarWidth({
-			columnWidth,
-			composedBarGap,
-			composedBarSize,
-			composedMaxBarSize,
-			dataLength: plotData.length,
-			innerWidth,
-			seriesCount: composedBarDataKeys.length,
-			stacked: composedStacked,
-		});
-		return computeSeriesBarRevealClipPadding({
-			barWidth,
-			gap: composedBarGap,
-			seriesCount: composedBarDataKeys.length,
-			stacked: composedStacked,
-		});
-	}, [
-		columnWidth,
-		composedBarDataKeys,
-		composedBarGap,
-		composedBarSize,
-		composedMaxBarSize,
-		composedStacked,
-		innerWidth,
-		plotData.length,
-	]);
+	const revealClipPadding = !composedBarDataKeys?.length
+		? 0
+		: (() => {
+				const barWidth = computeSeriesBarWidth({
+					columnWidth,
+					composedBarGap,
+					composedBarSize,
+					composedMaxBarSize,
+					dataLength: plotData.length,
+					innerWidth,
+					seriesCount: composedBarDataKeys.length,
+					stacked: composedStacked,
+				});
+				return computeSeriesBarRevealClipPadding({
+					barWidth,
+					gap: composedBarGap,
+					seriesCount: composedBarDataKeys.length,
+					stacked: composedStacked,
+				});
+			})();
 
 	return (
 		<ChartProvider value={contextValue}>

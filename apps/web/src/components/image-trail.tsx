@@ -116,10 +116,7 @@ const ImageTrail = ({
 	const [containerRef, animate] = useAnimate();
 	const zIndices = React.useRef<number[]>([]);
 
-	const clampedIntensity = useMemo(
-		() => Math.max(0.0001, Math.min(1, intensity)),
-		[intensity],
-	);
+	const clampedIntensity = Math.max(0.0001, Math.min(1, intensity));
 
 	useEffect(() => {
 		allImages.current = containerRef?.current?.querySelectorAll(

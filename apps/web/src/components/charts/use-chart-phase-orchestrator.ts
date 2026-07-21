@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
 	type ChartPhase,
 	type ChartStatus,
@@ -34,12 +34,8 @@ export function useChartPhaseOrchestrator({
 	const [chartPhase, setChartPhaseState] = useState<ChartPhase>(() =>
 		resolveRestingChartPhase(chartStatus),
 	);
-	const [plotData, setPlotData] = useState<Record<string, unknown>[]>(() =>
-		chartStatus === "loading" ? skeletonData : targetData,
-	);
 	const [revealEpoch, setRevealEpoch] = useState(0);
 	const [concealEpoch, setConcealEpoch] = useState(0);
-	const [isLoaded, setIsLoaded] = useState(() => chartStatus === "ready");
 	const prevStatusRef = useRef(chartStatus);
 	const phaseRef = useRef(chartPhase);
 	const onPhaseChangeRef = useRef(onPhaseChange);
@@ -47,6 +43,25 @@ export function useChartPhaseOrchestrator({
 	useEffect(() => {
 		onPhaseChangeRef.current = onPhaseChange;
 	}, [onPhaseChange]);
+
+	const plotData = useMemo(() => {
+		switch (chartPhase) {
+			case "loading":
+				return chartStatus === "loading" ? skeletonData : targetData;
+			case "exiting":
+				return skeletonData;
+			case "exitingReady":
+			case "gridTweenLoading":
+			case "gridTweenReady":
+			case "revealing":
+			case "ready":
+				return targetData;
+			default:
+				return targetData;
+		}
+	}, [chartPhase, chartStatus, skeletonData, targetData]);
+
+	const isLoaded = chartPhase === "ready";
 
 	const setChartPhase = useCallback((phase: ChartPhase) => {
 		setChartPhaseState(phase);
@@ -66,10 +81,9 @@ export function useChartPhaseOrchestrator({
 		prevStatusRef.current = chartStatus;
 
 		if (chartStatus === "ready" && prevStatus === "loading") {
-			setIsLoaded(false);
 			if (animationDuration <= 0) {
 				if (yDomainTweenDuration <= 0) {
-					setPlotData(targetData);
+					// react-doctor-disable-next-line react-hooks-js/set-state-in-effect
 					setChartPhase("revealing");
 				} else {
 					setChartPhase("gridTweenReady");
@@ -81,10 +95,8 @@ export function useChartPhaseOrchestrator({
 		}
 
 		if (chartStatus === "loading" && prevStatus === "ready") {
-			setIsLoaded(false);
 			if (animationDuration <= 0) {
 				if (yDomainTweenDuration <= 0) {
-					setPlotData(skeletonData);
 					setChartPhase("loading");
 				} else {
 					setChartPhase("gridTweenLoading");
@@ -115,30 +127,7 @@ export function useChartPhaseOrchestrator({
 		}
 
 		setChartPhase("revealing");
-		setIsLoaded(false);
 	}, [animationDuration, chartStatus, revealSignature, skipEnterReveal]);
-
-	useEffect(() => {
-		switch (chartPhase) {
-			case "loading":
-				if (chartStatus === "loading") {
-					setPlotData(skeletonData);
-				}
-				break;
-			case "exiting":
-				setPlotData(skeletonData);
-				break;
-			case "exitingReady":
-			case "gridTweenLoading":
-			case "gridTweenReady":
-			case "revealing":
-			case "ready":
-				setPlotData(targetData);
-				break;
-			default:
-				break;
-		}
-	}, [chartPhase, chartStatus, skeletonData, targetData]);
 
 	/** Loading pulse exit finished — tween grid to ready spacing next. */
 	const notifyLoadingPulseComplete = useCallback(() => {
@@ -172,16 +161,16 @@ export function useChartPhaseOrchestrator({
 			return;
 		}
 
+		// react-doctor-disable-next-line react-hooks-js/set-state-in-effect
 		setRevealEpoch((epoch) => epoch + 1);
 		if (animationDuration <= 0) {
+			// react-doctor-disable-next-line react-hooks-js/set-state-in-effect
 			setChartPhase("ready");
-			setIsLoaded(true);
 			return;
 		}
 
 		const timer = window.setTimeout(() => {
 			setChartPhase("ready");
-			setIsLoaded(true);
 		}, animationDuration);
 		return () => window.clearTimeout(timer);
 	}, [animationDuration, chartPhase]);

@@ -62,7 +62,7 @@ export function DottedMap<M extends Marker = Marker>({
 
 	// Compute stagger helpers in a single, simple pass
 	const { xStep, yToRowIndex } = (() => {
-		const sorted = [...points].sort((a, b) => a.y - b.y || a.x - b.x);
+		const sorted = points.toSorted((a, b) => a.y - b.y || a.x - b.x);
 		const rowMap = new Map<number, number>();
 		let step = 0;
 		let prevY = Number.NaN;

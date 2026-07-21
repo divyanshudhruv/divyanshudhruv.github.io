@@ -44,7 +44,7 @@ const Skiper41 = () => {
 
 			<div className="flex h-[calc(100vh-1rem)] w-full flex-col items-center overflow-scroll">
 				<div className="mt-42 grid content-start justify-items-center gap-6 text-center text-black">
-					<span className="relative max-w-[12ch] text-xs uppercase leading-tight opacity-40 after:absolute after:top-full after:left-1/2 after:h-16 after:w-px after:bg-gradient-to-b after:from-white after:to-black after:content-['']">
+					<span className="relative max-w-[12ch] text-xs uppercase leading-tight opacity-40 after:absolute after:top-full after:left-1/2 after:h-16 after:w-px after:bg-linear-to-b after:from-white after:to-black after:content-['']">
 						Scroll down to see the effect
 					</span>
 				</div>

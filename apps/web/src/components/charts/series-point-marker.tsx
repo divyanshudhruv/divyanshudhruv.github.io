@@ -92,7 +92,7 @@ export interface StaticSeriesPointMarkerProps extends SeriesPointMarkerStyle {
 	scale?: number;
 }
 
-export const StaticSeriesPointMarker = memo(function StaticSeriesPointMarker({
+export function StaticSeriesPointMarker({
 	cx,
 	cy,
 	scale = 1,
@@ -117,7 +117,7 @@ export const StaticSeriesPointMarker = memo(function StaticSeriesPointMarker({
 			/>
 		</g>
 	);
-});
+}
 
 export interface SeriesPointMarkerProps extends SeriesPointMarkerStyle {
 	dataKey: string;

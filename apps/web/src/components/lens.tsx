@@ -57,27 +57,27 @@ export function Lens({
 	const [mousePosition, setMousePosition] = useState<Position>(position);
 	const containerRef = useRef<HTMLDivElement>(null);
 
-	const currentPosition = useMemo(() => {
+	const currentPosition = (() => {
 		if (isStatic) return position;
 		if (defaultPosition && !isHovering) return defaultPosition;
 		return mousePosition;
-	}, [isStatic, position, defaultPosition, isHovering, mousePosition]);
+	})();
 
-	const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+	const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
 		const rect = e.currentTarget.getBoundingClientRect();
 		setMousePosition({
 			x: e.clientX - rect.left,
 			y: e.clientY - rect.top,
 		});
-	}, []);
+	};
 
-	const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+	const handleKeyDown = (e: React.KeyboardEvent) => {
 		if (e.key === "Escape") setIsHovering(false);
-	}, []);
+	};
 
 	const maskImage = `radial-gradient(circle ${lensSize / 2}px at ${currentPosition.x}px ${currentPosition.y}px, ${lensColor} 100%, transparent 100%)`;
 
-	const LensContent = useMemo(() => {
+	const LensContent = (() => {
 		const { x, y } = currentPosition;
 
 		return (
@@ -105,7 +105,7 @@ export function Lens({
 				</div>
 			</m.div>
 		);
-	}, [currentPosition, maskImage, zoomFactor, children, duration]);
+	})();
 
 	return (
 		<div

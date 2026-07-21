@@ -33,29 +33,26 @@ export function ShimmeringText({
 	const reducedMotion = useReducedMotion();
 	const stopped = isStopped || reducedMotion === true;
 
-	const createCharVariants = useCallback(
-		(charIndex: number): Variants => ({
-			running: {
-				color: ["var(--color)", "var(--shimmering-color)", "var(--color)"],
-				transition: {
-					duration,
-					repeat: Number.POSITIVE_INFINITY,
-					repeatType: "loop",
-					repeatDelay: text.length * 0.05,
-					delay: (charIndex * duration) / text.length,
-					ease: "easeInOut",
-				},
+	const createCharVariants = (charIndex: number): Variants => ({
+		running: {
+			color: ["var(--color)", "var(--shimmering-color)", "var(--color)"],
+			transition: {
+				duration,
+				repeat: Number.POSITIVE_INFINITY,
+				repeatType: "loop",
+				repeatDelay: text.length * 0.05,
+				delay: (charIndex * duration) / text.length,
+				ease: "easeInOut",
 			},
-			stopped: {
-				color: "var(--color)",
-				transition: {
-					duration: duration * 0.5,
-					ease: "easeOut",
-				},
+		},
+		stopped: {
+			color: "var(--color)",
+			transition: {
+				duration: duration * 0.5,
+				ease: "easeOut",
 			},
-		}),
-		[duration, text.length],
-	);
+		},
+	});
 
 	return (
 		<m.span

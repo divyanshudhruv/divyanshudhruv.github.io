@@ -2,7 +2,7 @@
 
 import { useSpring } from "motion/react";
 import * as m from "motion/react-m";
-import { memo, useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import {
 	resolveTooltipBoxMotion,
@@ -81,7 +81,7 @@ interface ChartTooltipInnerProps extends ChartTooltipProps {
 	container: HTMLElement;
 }
 
-const ChartTooltipInner = memo(function ChartTooltipInner({
+function ChartTooltipInner({
 	showDatePill = true,
 	showCrosshair = true,
 	showDots = true,
@@ -119,28 +119,17 @@ const ChartTooltipInner = memo(function ChartTooltipInner({
 
 	const isHorizontal = orientation === "horizontal";
 	const discreteInteraction = dateLabels.length > 60;
-	const boxMotion = useMemo(() => {
-		if (boxSpringConfig) {
-			return {
+	const boxMotion = boxSpringConfig
+		? {
 				animate: !discreteInteraction,
 				springConfig: boxSpringConfig,
-			};
-		}
-		if (matchCrosshair) {
-			return {
-				animate: !discreteInteraction,
-				springConfig: springConfig ?? tooltipSpring,
-			};
-		}
-		return resolveTooltipBoxMotion(damping);
-	}, [
-		boxSpringConfig,
-		damping,
-		discreteInteraction,
-		matchCrosshair,
-		springConfig,
-		tooltipSpring,
-	]);
+			}
+		: matchCrosshair
+			? {
+					animate: !discreteInteraction,
+					springConfig: springConfig ?? tooltipSpring,
+				}
+			: resolveTooltipBoxMotion(damping);
 
 	const visible = tooltipData !== null;
 	const x = tooltipData?.x ?? 0;
@@ -153,65 +142,46 @@ const ChartTooltipInner = memo(function ChartTooltipInner({
 		: 0;
 	const yWithMargin = firstLineY + margin.top;
 
-	const tooltipRows = useMemo(() => {
-		if (!tooltipData) {
-			return [];
+	const tooltipRows = !tooltipData
+		? []
+		: rowsRenderer
+			? rowsRenderer(tooltipData.point)
+			: lines.map((line) => ({
+					color: line.stroke,
+					label: line.dataKey,
+					value: (tooltipData.point[line.dataKey] as number) ?? 0,
+				}));
+
+	const resolveDotColor = (line: LineConfig, index: number): string => {
+		if (rowsRenderer && tooltipRows[index]?.color) {
+			return tooltipRows[index].color;
 		}
-
-		if (rowsRenderer) {
-			return rowsRenderer(tooltipData.point);
+		if (dotColorProp != null) {
+			if (typeof dotColorProp === "function" && tooltipData) {
+				return dotColorProp(tooltipData.point, line);
+			}
+			if (typeof dotColorProp === "string") {
+				return dotColorProp;
+			}
 		}
-
-		// Default: generate rows from registered lines
-		return lines.map((line) => ({
-			color: line.stroke,
-			label: line.dataKey,
-			value: (tooltipData.point[line.dataKey] as number) ?? 0,
-		}));
-	}, [tooltipData, lines, rowsRenderer]);
-
-	const resolveDotColor = useMemo(() => {
-		return (line: LineConfig, index: number): string => {
-			if (rowsRenderer && tooltipRows[index]?.color) {
-				return tooltipRows[index].color;
-			}
-			if (dotColorProp != null) {
-				if (typeof dotColorProp === "function" && tooltipData) {
-					return dotColorProp(tooltipData.point, line);
-				}
-				if (typeof dotColorProp === "string") {
-					return dotColorProp;
-				}
-			}
-			return line.stroke;
-		};
-	}, [dotColorProp, rowsRenderer, tooltipData, tooltipRows]);
+		return line.stroke;
+	};
 
 	// Resolve indicator color (static or from hovered point)
-	const indicatorColor = useMemo(() => {
-		if (indicatorColorProp == null) {
-			return chartCssVars.crosshair;
-		}
-		if (typeof indicatorColorProp === "function") {
-			return tooltipData
+	const indicatorColor = indicatorColorProp == null
+		? chartCssVars.crosshair
+		: typeof indicatorColorProp === "function"
+			? tooltipData
 				? indicatorColorProp(tooltipData.point)
-				: chartCssVars.crosshair;
-		}
-		return indicatorColorProp;
-	}, [indicatorColorProp, tooltipData]);
+				: chartCssVars.crosshair
+			: indicatorColorProp;
 
 	// Title from date or category
-	const title = useMemo(() => {
-		if (!tooltipData) {
-			return undefined;
-		}
-		// For bar charts (horizontal or vertical), use the category name
-		if (barXAccessor) {
-			return barXAccessor(tooltipData.point);
-		}
-		// For line/area charts, use the date
-		return weekdayDateFmt.format(xAccessor(tooltipData.point));
-	}, [tooltipData, barXAccessor, xAccessor]);
+	const title = !tooltipData
+		? undefined
+		: barXAccessor
+			? barXAccessor(tooltipData.point)
+			: weekdayDateFmt.format(xAccessor(tooltipData.point));
 
 	const tooltipContent = (
 		<>
@@ -308,7 +278,7 @@ const ChartTooltipInner = memo(function ChartTooltipInner({
 	);
 
 	return createPortal(tooltipContent, container);
-});
+}
 
 export function ChartTooltip(props: ChartTooltipProps) {
 	const { containerRef } = useChartStable();

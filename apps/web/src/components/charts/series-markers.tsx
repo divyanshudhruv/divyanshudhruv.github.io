@@ -1,6 +1,7 @@
 "use client";
+("use memo");
 
-import { type ReactNode, useCallback, useMemo } from "react";
+import { type ReactNode } from "react";
 import { clipRevealTransition } from "./animation";
 import {
 	defaultScatterColors,
@@ -72,10 +73,10 @@ export function SeriesMarkers({
 		lines,
 	} = useChartStable();
 
-	const seriesIndex = useMemo(() => {
+	const seriesIndex = (() => {
 		const index = lines.findIndex((line) => line.dataKey === dataKey);
 		return index >= 0 ? index : 0;
-	}, [lines, dataKey]);
+	})();
 
 	const seriesConfig = lines[seriesIndex];
 	const yScale = useYScale(seriesConfig?.yAxisId);
@@ -86,81 +87,50 @@ export function SeriesMarkers({
 	const resolvedFill = fill ?? seriesConfig?.stroke ?? seriesColor;
 	const resolvedStroke = stroke ?? resolvedFill;
 
-	const visualExtent = useMemo(
-		() =>
-			getSeriesMarkerVisualExtent({
-				radius,
-				strokeWidth,
-				ringGap,
-				outlineWidth,
-				showActiveHighlight,
-			}),
-		[radius, strokeWidth, ringGap, outlineWidth, showActiveHighlight],
-	);
+	const visualExtent = getSeriesMarkerVisualExtent({
+		radius,
+		strokeWidth,
+		ringGap,
+		outlineWidth,
+		showActiveHighlight,
+	});
 
 	const revealDurationSec =
 		clipRevealTransition(enterTransition).duration ?? animationDuration / 1000;
 	const enterDuration = 0.5;
 	const isRevealing = animate && !isLoaded;
 
-	const getY = useCallback(
-		(d: Record<string, unknown>) => {
-			const value = d[dataKey];
-			return typeof value === "number" ? (yScale(value) ?? 0) : null;
-		},
-		[dataKey, yScale],
-	);
+	const getY = (d: Record<string, unknown>) => {
+		const value = d[dataKey];
+		return typeof value === "number" ? (yScale(value) ?? 0) : null;
+	};
 
-	const points = useMemo<PointAt[]>(
-		() =>
-			data.flatMap((d, index) => {
-				const cy = getY(d);
-				if (cy === null) {
-					return [];
-				}
-				const cx = xScale(xAccessor(d)) ?? 0;
-				const leadingEdge = Math.max(0, cx - visualExtent);
-				const revealDelay =
-					innerWidth > 0 && isRevealing
-						? (leadingEdge / innerWidth) * revealDurationSec
-						: 0;
+	const points: PointAt[] = data.flatMap((d, index) => {
+		const cy = getY(d);
+		if (cy === null) {
+			return [];
+		}
+		const cx = xScale(xAccessor(d)) ?? 0;
+		const leadingEdge = Math.max(0, cx - visualExtent);
+		const revealDelay =
+			innerWidth > 0 && isRevealing
+				? (leadingEdge / innerWidth) * revealDurationSec
+				: 0;
 
-				return [{ index, cx, cy, revealDelay }];
-			}),
-		[
-			data,
-			getY,
-			xScale,
-			xAccessor,
-			innerWidth,
-			isRevealing,
-			revealDurationSec,
-			visualExtent,
-		],
-	);
+		return [{ index, cx, cy, revealDelay }];
+	});
 
 	// Memo so the inner <SeriesMarkersActiveHighlight> sees a stable prop and
 	// can be cheaply re-rendered on hover without re-creating the spread.
-	const markerStyle = useMemo<MarkerStyle>(
-		() => ({
-			fill: resolvedFill,
-			stroke: resolvedStroke,
-			strokeWidth,
-			ringGap,
-			outlineWidth,
-			outlineColor,
-			radius,
-		}),
-		[
-			resolvedFill,
-			resolvedStroke,
-			strokeWidth,
-			ringGap,
-			outlineWidth,
-			outlineColor,
-			radius,
-		],
-	);
+	const markerStyle: MarkerStyle = {
+		fill: resolvedFill,
+		stroke: resolvedStroke,
+		strokeWidth,
+		ringGap,
+		outlineWidth,
+		outlineColor,
+		radius,
+	};
 
 	if (isRevealing) {
 		return (

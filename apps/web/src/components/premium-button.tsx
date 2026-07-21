@@ -41,6 +41,51 @@ const PremiumButton = ({
 	);
 };
 
+const isArrow = (step: number, row: number, col: number) => {
+	const headX = step - 4;
+	if (row === 2) return col <= headX && col >= headX - 4;
+	if (row === 1 || row === 3) return col === headX - 1;
+	if (row === 0 || row === 4) return col === headX - 2;
+	return false;
+};
+
+const isX = (row: number, col: number, offset: number) => {
+	const c = col - offset;
+	return row === c || row + c === 4;
+};
+
+const isMail = (row: number, col: number, offset: number) => {
+	const c = col - offset;
+	if (row === 0 || row === 4) return c >= 0 && c <= 4;
+	if (row === 1) return c === 0 || c === 4 || c === 1 || c === 3;
+	if (row === 3) return c === 0 || c === 4;
+	if (row === 2) return c === 0 || c === 2 || c === 4;
+	return false;
+};
+
+const isLinkedInSquare = (row: number, col: number, offset: number) => {
+	const c = col - offset;
+	if (row === 0 || row === 4) return c >= 1 && c <= 3;
+	if (row === 1 || row === 3) return c >= 0 && c <= 4;
+	if (row === 2) return (c >= 0 && c <= 1) || (c >= 3 && c <= 4);
+	return false;
+};
+
+const isRepository = (row: number, col: number, offset: number) => {
+	const c = col - offset;
+	if (row === 0 || row === 2 || row === 4) return c >= 0 && c <= 4;
+	if (row === 1 || row === 3) return c === 0 || c === 4;
+	return false;
+};
+
+const isGlobe = (row: number, col: number, offset: number) => {
+	const c = col - offset;
+	if (row === 0 || row === 4) return c >= 1 && c <= 3;
+	if (row === 1 || row === 3) return c >= 0 && c <= 4 && c !== 2;
+	if (row === 2) return c === 0 || c === 4;
+	return false;
+};
+
 const Box = ({
 	boxColor,
 	pattern,
@@ -57,54 +102,9 @@ const Box = ({
 		return () => clearInterval(timer);
 	}, []);
 
-	const isArrow = (row: number, col: number) => {
-		const headX = step - 4;
-		if (row === 2) return col <= headX && col >= headX - 4;
-		if (row === 1 || row === 3) return col === headX - 1;
-		if (row === 0 || row === 4) return col === headX - 2;
-		return false;
-	};
-
-	const isX = (row: number, col: number, offset: number) => {
-		const c = col - offset;
-		return row === c || row + c === 4;
-	};
-
-	const isMail = (row: number, col: number, offset: number) => {
-		const c = col - offset;
-		if (row === 0 || row === 4) return c >= 0 && c <= 4;
-		if (row === 1) return c === 0 || c === 4 || c === 1 || c === 3;
-		if (row === 3) return c === 0 || c === 4;
-		if (row === 2) return c === 0 || c === 2 || c === 4;
-		return false;
-	};
-
-	const isLinkedInSquare = (row: number, col: number, offset: number) => {
-		const c = col - offset;
-		if (row === 0 || row === 4) return c >= 1 && c <= 3;
-		if (row === 1 || row === 3) return c >= 0 && c <= 4;
-		if (row === 2) return (c >= 0 && c <= 1) || (c >= 3 && c <= 4);
-		return false;
-	};
-
-	const isRepository = (row: number, col: number, offset: number) => {
-		const c = col - offset;
-		if (row === 0 || row === 2 || row === 4) return c >= 0 && c <= 4;
-		if (row === 1 || row === 3) return c === 0 || c === 4;
-		return false;
-	};
-
-	const isGlobe = (row: number, col: number, offset: number) => {
-		const c = col - offset;
-		if (row === 0 || row === 4) return c >= 1 && c <= 3;
-		if (row === 1 || row === 3) return c >= 0 && c <= 4 && c !== 2;
-		if (row === 2) return c === 0 || c === 4;
-		return false;
-	};
-
 	const isHighlighted = (row: number, col: number) => {
 		const offset = step - 4;
-		if (pattern === "arrow") return isArrow(row, col);
+		if (pattern === "arrow") return isArrow(step, row, col);
 		if (pattern === "x") return isX(row, col, offset);
 		if (pattern === "mail") return isMail(row, col, offset);
 		if (pattern === "linkedin") return isLinkedInSquare(row, col, offset);
