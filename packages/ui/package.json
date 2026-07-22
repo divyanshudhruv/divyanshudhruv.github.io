@@ -25,6 +25,8 @@
 		"clsx": "^2.1.1",
 		"framer-motion": "^12.42.2",
 		"gsap": "^3.15.0",
+		"lucide-react": "catalog:",
+		"next-themes": "catalog:",
 		"react": "catalog:",
 		"react-dom": "catalog:",
 		"shadcn": "^3.6.2",
