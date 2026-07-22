@@ -17,105 +17,80 @@ import SiteHeader from "@/components/sections/site-header";
 import SkillsSection from "@/components/sections/skills-section";
 import TimerSection from "@/components/sections/timer-section";
 export default function Home() {
-	return (
-		<>
-			<ProgressiveBlur position="top" backgroundColor="#f5f4f3" height="0px" />
-			<Flex
-				fillWidth
-				fitHeight
-				minWidth="100vw"
-				paddingX={1.5}
-				paddingY={1.5}
-				horizontal="center"
-				direction="column"
-				gap={1}
-				vertical="start"
-				className="h-[vh]"
-			>
-				<SiteHeader />{" "}
-				<Flex direction="column" fitHeight fillWidth>
-					<Flex
-						className="rounded-3xl bg-accent"
-						fillHeight
-						fillWidth
-						paddingX={2}
-						paddingY={2}
-						direction="column"
-						horizontal="center"
-						vertical="start"
-					>
-						{" "}
-						<Column
-							fillWidth
-							fillHeight
-							horizontal="start"
-							vertical="start"
-							maxWidth="s"
-							gap={4}
-						>
-							<HeroSection id="hero" />
-							<GitHubSection id="github" />
-							<PhotoGrid id="photo" />
-							<AboutSection id="about" />
-							<MapSection id="map" />
-							<SkillsSection id="skills" />
-							<ExperienceSection id="experience" />
-							<ProjectsSection id="projects" />
-							{/* <WidgetsSection id="widgets" />
+  return (
+    <>
+      <ProgressiveBlur position="top" backgroundColor="#f5f4f3" height="0px" />
+      <Flex
+        fillWidth
+        fitHeight
+        minWidth="100vw"
+        paddingX={1.5}
+        paddingY={1.5}
+        horizontal="center"
+        direction="column"
+        gap={1}
+        vertical="start"
+        className="h-[vh]"
+      >
+        <SiteHeader />{" "}
+        <Flex direction="column" fitHeight fillWidth>
+          <Flex
+            className="rounded-t-3xl rounded-b-0 bg-accent "
+            fillHeight
+            fillWidth
+            paddingX={2}
+            paddingY={2}
+            direction="column"
+            horizontal="center"
+            vertical="start"
+          >
+            {" "}
+            <Column
+              fillWidth
+              fillHeight
+              horizontal="start"
+              vertical="start"
+              maxWidth="s"
+              gap={4}
+            >
+              <HeroSection id="hero" />
+              <GitHubSection id="github" />
+              <PhotoGrid id="photo" />
+              <AboutSection id="about" />
+              <MapSection id="map" />
+              <SkillsSection id="skills" />
+              <ExperienceSection id="experience" />
+              <ProjectsSection id="projects" />
+              {/* <WidgetsSection id="widgets" />
           <AwardsSection id="awards" />
           <BlogsSection id="blogs" /> */}
-							<InsightsSection id="insights" />
-							<TimerSection id="timer" />
-							<CreditsFooter id="credits" />
-						</Column>
-					</Flex>
-					<Flex
-						fillWidth
-						className="relative rounded-3xl bg-accent"
-						overflowX="hidden"
-						overflowY="visible"
-						style={{ minHeight: "55svh", minWidth: "100%" }}
-					>
-						{
-							//  " NOT SURE ABOUT THE BELOW TO PUT OR NOT, SO I WILL KEEP IT COMMENTED LOL"
-						}
-						{/* <ImageTrail
-              threshold={60}
-              keyframes={{ opacity: [0, 1, 1, 0], scale: [1, 1, 0] }}
-              keyframesOptions={{
-                opacity: { duration: 1, times: [0, 0.001, 0.9, 1] },
-                scale: { duration: 1, times: [0, 0.8, 1] },
-              }}
-              style={{
-                position: "absolute",
-                inset: 0,
-                zIndex: 9,
-                backgroundColor: "transparent",
-              }}
-            >
-              {images.map((url, index) => (
-                <ImageTrailItem key={index + url}>
-                  <div className="relative h-full w-30 sm:w-38">
-                    <img src={url} alt="" className="object-cover" />
-                  </div>
-                </ImageTrailItem>
-              ))}
-            </ImageTrail> */}
-						<CrowdCanvas src="/images/peeps/all-peeps.png" rows={15} cols={7} />
-					</Flex>
-				</Flex>
-				<Flex fillWidth paddingBottom={0.75}>
-					<FluidGradientText text="divyanshudhruv" />
-				</Flex>
-			</Flex>
-			{/* <div className="relative h-[200vh] w-full bg-[#FAFDEE]">
+              <InsightsSection id="insights" />
+              <TimerSection id="timer" />
+              <CreditsFooter id="credits" />
+            </Column>
+          </Flex>
+          <Flex
+            fillWidth
+            className="relative rounded-t-0 rounded-b-3xl bg-accent "
+            overflowX="hidden"
+            overflowY="hidden"
+            style={{ minHeight: "60svh", minWidth: "100%" }}
+          >
+            <CrowdCanvas src="/images/peeps/all-peeps.png" rows={15} cols={7} />
+          </Flex>
+        </Flex>
+        <Flex fillWidth paddingBottom={0.75}>
+          <FluidGradientText text="divyanshudhruv" />
+        </Flex>
+      </Flex>
+      {/* <div className="relative h-[200vh] w-full bg-[#FAFDEE]">
         <Skiper19Line className="sticky top-0 h-screen w-full" />
       </div> */}
-			<ProgressiveBlur
-				position="bottom"
-				backgroundColor="#f5f4f3"
-				height="110px"
-			/>
-		</>
-	);
+      <ProgressiveBlur
+        position="bottom"
+        backgroundColor="#f5f4f3"
+        height="110px"
+      />
+    </>
+  );
 }

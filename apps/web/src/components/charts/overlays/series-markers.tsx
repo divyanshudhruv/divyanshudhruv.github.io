@@ -7,8 +7,8 @@ import {
 	useChartHover,
 	useChartStable,
 	useYScale,
-} from "../contexts/chart-context";
-import { clipRevealTransition } from "../utils/animation";
+} from "@/components/charts/contexts/chart-context";
+import { clipRevealTransition } from "@/components/charts/utils/animation";
 import { useChartLegendHover } from "./chart-legend-hover";
 import {
 	getSeriesMarkerVisualExtent,

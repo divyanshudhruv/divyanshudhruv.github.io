@@ -2,12 +2,12 @@
 
 import { cn } from "@homepage/ui/lib/utils";
 import * as m from "motion/react-m";
-import { ShimmeringText } from "../shimmering-text";
 import {
 	LINE_LOADING_PULSE_EASE,
 	LOADING_LABEL_EXIT_S,
 	LOADING_LABEL_EXIT_Y_PX,
-} from "./utils/line-loading-timing";
+} from "@/components/charts/utils/line-loading-timing";
+import { ShimmeringText } from "@/components/shimmering-text";
 
 export interface ChartLoadingLabelProps {
 	/** Label shown centered over the chart. */

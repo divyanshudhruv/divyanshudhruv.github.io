@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { useChartStable } from "../contexts/chart-context";
+import { useChartStable } from "@/components/charts/contexts/chart-context";
 
 interface TickableScale {
 	domain(): number[];

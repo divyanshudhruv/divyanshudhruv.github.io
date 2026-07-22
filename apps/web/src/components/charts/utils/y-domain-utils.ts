@@ -1,5 +1,5 @@
 import { scaleLinear } from "@visx/scale";
-import type { LineConfig } from "../contexts/chart-context";
+import type { LineConfig } from "@/components/charts/contexts/chart-context";
 import { type ChartPhase, Y_DOMAIN_TWEEN_SKIP_THRESHOLD } from "./chart-phase";
 import { groupLinesByYAxisId, normalizeYAxisId } from "./y-axis-scales";
 

@@ -8,15 +8,15 @@ import {
 	resolveTooltipBoxMotion,
 	type SpringConfig,
 	useChartConfig,
-} from "../contexts/chart-config-context";
+} from "@/components/charts/contexts/chart-config-context";
 import {
 	chartCssVars,
 	type LineConfig,
 	useChart,
 	useChartStable,
-} from "../contexts/chart-context";
-import { weekdayDateFmt } from "../utils/chart-formatters";
-import type { IndicatorFadeEdges } from "../utils/indicator-fade";
+} from "@/components/charts/contexts/chart-context";
+import { weekdayDateFmt } from "@/components/charts/utils/chart-formatters";
+import type { IndicatorFadeEdges } from "@/components/charts/utils/indicator-fade";
 import { DateTicker } from "./date-ticker";
 import { TooltipBox } from "./tooltip-box";
 import { TooltipContent, type TooltipRow } from "./tooltip-content";

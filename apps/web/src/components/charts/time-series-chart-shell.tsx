@@ -18,47 +18,47 @@ import {
 	type LineConfig,
 	type Margin,
 	type TooltipData,
-} from "./contexts/chart-context";
-import { useStaticChartPreview } from "./contexts/static-chart-preview-context";
-import { useAnimatedYDomains } from "./hooks/use-animated-y-domains";
+} from "@/components/charts/contexts/chart-context";
+import { useStaticChartPreview } from "@/components/charts/contexts/static-chart-preview-context";
+import { useAnimatedYDomains } from "@/components/charts/hooks/use-animated-y-domains";
 import {
 	type ChartSelection,
 	useChartInteraction,
-} from "./hooks/use-chart-interaction";
-import { useChartPhaseOrchestrator } from "./hooks/use-chart-phase-orchestrator";
-import { ChartRevealClip } from "./renderers/chart-reveal-clip";
+} from "@/components/charts/hooks/use-chart-interaction";
+import { useChartPhaseOrchestrator } from "@/components/charts/hooks/use-chart-phase-orchestrator";
+import { ChartRevealClip } from "@/components/charts/renderers/chart-reveal-clip";
 import {
 	DEFAULT_ANIMATION_EASING,
 	DEFAULT_CHART_ENTER_TRANSITION,
-} from "./utils/animation";
-import { shortDateFmt } from "./utils/chart-formatters";
+} from "@/components/charts/utils/animation";
+import { shortDateFmt } from "@/components/charts/utils/chart-formatters";
 import {
 	type ChartPhase,
 	type ChartStatus,
 	DEFAULT_CHART_STATUS,
 	DEFAULT_Y_DOMAIN_TWEEN_MS,
 	isChartInteractionPhase,
-} from "./utils/chart-phase";
+} from "@/components/charts/utils/chart-phase";
 import {
 	decimateTimeSeries,
 	maxRenderPointsForWidth,
-} from "./utils/decimate-time-series";
-import { filterDataByXDomain } from "./utils/filter-data-by-x-domain";
+} from "@/components/charts/utils/decimate-time-series";
+import { filterDataByXDomain } from "@/components/charts/utils/filter-data-by-x-domain";
 import {
 	generateChartSkeletonData,
 	generateChartSkeletonFromTarget,
-} from "./utils/generate-chart-skeleton-data";
+} from "@/components/charts/utils/generate-chart-skeleton-data";
 import {
 	computeSeriesBarRevealClipPadding,
 	computeSeriesBarWidth,
-} from "./utils/series-bar-layout";
+} from "@/components/charts/utils/series-bar-layout";
 import {
 	buildYScalesFromDomains,
 	DEFAULT_Y_AXIS_ID,
 	getPrimaryYScale,
 	groupLinesByYAxisId,
-} from "./utils/y-axis-scales";
-import { computeYDomainsByAxis } from "./utils/y-domain-utils";
+} from "@/components/charts/utils/y-axis-scales";
+import { computeYDomainsByAxis } from "@/components/charts/utils/y-domain-utils";
 
 function collectNumericExtents(
 	data: Record<string, unknown>[],
@@ -479,6 +479,14 @@ interface ChartSvgRendererProps {
 	yScales: Record<string, ReturnType<typeof scaleLinear<number>>>;
 }
 
+function renderClipExcluded(clipExcludedChildrenList: ReactNode) {
+	return <>{clipExcludedChildrenList}</>;
+}
+
+function renderOverlay(overlayChildrenList: ReactNode) {
+	return <>{overlayChildrenList}</>;
+}
+
 function ChartSvgRenderer(props: ChartSvgRendererProps) {
 	const {
 		animationDuration,
@@ -657,19 +665,11 @@ function ChartSvgRenderer(props: ChartSvgRendererProps) {
 		);
 	}
 
-	function renderClipExcluded(clipExcludedChildrenList: ReactNode) {
-		return <>{clipExcludedChildrenList}</>;
-	}
-
 	function renderClipRevealed(clipRevealedChildrenList: ReactNode) {
 		if (useClipReveal) {
 			return <g clipPath={`url(#${clipPathId})`}>{clipRevealedChildrenList}</g>;
 		}
 		return <>{clipRevealedChildrenList}</>;
-	}
-
-	function renderOverlay(overlayChildrenList: ReactNode) {
-		return <>{overlayChildrenList}</>;
 	}
 
 	return (

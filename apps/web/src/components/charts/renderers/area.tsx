@@ -12,19 +12,22 @@ import {
 	chartCssVars,
 	useChartStable,
 	useYScale,
-} from "../contexts/chart-context";
-import { SeriesDashTailOverlay } from "../overlays/series-dash-tail-overlay";
-import { SeriesHighlightLayer } from "../overlays/series-highlight-layer";
-import { SeriesHoverDim } from "../overlays/series-hover-dim";
-import { SeriesMarkers } from "../overlays/series-markers";
-import type { SeriesPointMarkerStyle } from "../overlays/series-point-marker";
-import type { ChartPhase } from "../utils/chart-phase";
-import { type FadeEdges, resolveFadeSides } from "../utils/fade-edges";
-import { LINE_LOADING_LOOP_PAUSE_MS } from "../utils/line-loading-timing";
+} from "@/components/charts/contexts/chart-context";
+import { SeriesDashTailOverlay } from "@/components/charts/overlays/series-dash-tail-overlay";
+import { SeriesHighlightLayer } from "@/components/charts/overlays/series-highlight-layer";
+import { SeriesHoverDim } from "@/components/charts/overlays/series-hover-dim";
+import { SeriesMarkers } from "@/components/charts/overlays/series-markers";
+import type { SeriesPointMarkerStyle } from "@/components/charts/overlays/series-point-marker";
+import type { ChartPhase } from "@/components/charts/utils/chart-phase";
+import {
+	type FadeEdges,
+	resolveFadeSides,
+} from "@/components/charts/utils/fade-edges";
+import { LINE_LOADING_LOOP_PAUSE_MS } from "@/components/charts/utils/line-loading-timing";
 import {
 	resolveDashTailBounds,
 	usePathStrokeMetrics,
-} from "../utils/path-stroke-utils";
+} from "@/components/charts/utils/path-stroke-utils";
 import { AreaGradientDefs } from "./area-gradient-defs";
 import {
 	type LineLoadingPulseMode,
@@ -315,7 +318,7 @@ export function Area({
 			<SeriesHighlightLayer
 				enabled={highlightEnabled}
 				height={innerHeight}
-				pathRef={pathRef}
+				pathD={pathD}
 				stroke={resolvedStroke}
 				strokeWidth={strokeWidth}
 			/>

@@ -7,8 +7,8 @@ import type {
 	LineConfig,
 	Margin,
 	TooltipData,
-} from "../contexts/chart-context";
-import { normalizeYAxisId } from "../utils/y-axis-scales";
+} from "@/components/charts/contexts/chart-context";
+import { normalizeYAxisId } from "@/components/charts/utils/y-axis-scales";
 import { useScheduledTooltip } from "./use-scheduled-tooltip";
 
 type ScaleTime = ReturnType<typeof scaleTime<number>>;

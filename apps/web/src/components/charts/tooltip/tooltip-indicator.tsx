@@ -6,13 +6,13 @@ import { useEffect } from "react";
 import {
 	type SpringConfig,
 	useChartConfig,
-} from "../contexts/chart-config-context";
-import { chartCssVars } from "../contexts/chart-context";
+} from "@/components/charts/contexts/chart-config-context";
+import { chartCssVars } from "@/components/charts/contexts/chart-context";
 import {
 	type IndicatorFadeEdges,
 	indicatorFadeGradientStops,
 	resolveVerticalFadeSides,
-} from "../utils/indicator-fade";
+} from "@/components/charts/utils/indicator-fade";
 
 export type IndicatorWidth =
 	| number // Pixel width

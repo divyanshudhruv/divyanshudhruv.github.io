@@ -2,7 +2,7 @@
 
 import type { Transition } from "motion/react";
 import * as m from "motion/react-m";
-import { clipRevealTransition } from "../utils/animation";
+import { clipRevealTransition } from "@/components/charts/utils/animation";
 
 export type ChartRevealClipMode = "reveal" | "conceal";
 

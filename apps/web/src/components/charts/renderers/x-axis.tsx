@@ -3,10 +3,13 @@
 import { cn } from "@homepage/ui/lib/utils";
 import { memo, useEffect, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
-import { useChart, useChartStable } from "../contexts/chart-context";
-import { shortDateFmt } from "../utils/chart-formatters";
-import { DEFAULT_Y_DOMAIN_TWEEN_MS } from "../utils/chart-phase";
-import { LINE_LOADING_PULSE_EASE } from "../utils/line-loading-timing";
+import {
+	useChart,
+	useChartStable,
+} from "@/components/charts/contexts/chart-context";
+import { shortDateFmt } from "@/components/charts/utils/chart-formatters";
+import { DEFAULT_Y_DOMAIN_TWEEN_MS } from "@/components/charts/utils/chart-phase";
+import { LINE_LOADING_PULSE_EASE } from "@/components/charts/utils/line-loading-timing";
 
 const X_AXIS_POSITION_TWEEN_MS = DEFAULT_Y_DOMAIN_TWEEN_MS;
 

@@ -4,7 +4,7 @@
 import {
 	resolveDashStartX,
 	resolveDashTailBounds,
-} from "../utils/path-stroke-utils";
+} from "@/components/charts/utils/path-stroke-utils";
 import { DashTailStroke } from "./dash-tail-stroke";
 
 interface SeriesDashTailOverlayProps {

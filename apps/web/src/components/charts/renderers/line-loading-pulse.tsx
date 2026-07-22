@@ -3,23 +3,26 @@
 import { animate, useMotionValue, useTransform } from "motion/react";
 import * as m from "motion/react-m";
 import { useEffect, useId } from "react";
-import { chartCssVars, useChartStable } from "../contexts/chart-context";
-import type { ChartPhase } from "../utils/chart-phase";
+import {
+	chartCssVars,
+	useChartStable,
+} from "@/components/charts/contexts/chart-context";
+import type { ChartPhase } from "@/components/charts/utils/chart-phase";
 import {
 	fadeGradientStops,
 	resolveFadeSides,
 	viewportFadeGradientAttrs,
-} from "../utils/fade-edges";
-import type { LineLoadingPulseMode } from "../utils/line-loading-pulse-utils";
+} from "@/components/charts/utils/fade-edges";
+import type { LineLoadingPulseMode } from "@/components/charts/utils/line-loading-pulse-utils";
 import {
 	LINE_LOADING_PULSE_CYCLE_S,
 	LINE_LOADING_PULSE_EASE,
-} from "../utils/line-loading-timing";
+} from "@/components/charts/utils/line-loading-timing";
 
 const CLIP_PADDING = 10;
 
-export type { LineLoadingPulseMode } from "../utils/line-loading-pulse-utils";
-export { resolveLineLoadingPulseMode } from "../utils/line-loading-pulse-utils";
+export type { LineLoadingPulseMode } from "@/components/charts/utils/line-loading-pulse-utils";
+export { resolveLineLoadingPulseMode } from "@/components/charts/utils/line-loading-pulse-utils";
 
 export interface LineLoadingPulseStrokeProps {
 	pathD: string;

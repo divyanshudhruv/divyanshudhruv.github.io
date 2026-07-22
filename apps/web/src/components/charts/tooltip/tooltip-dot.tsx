@@ -6,8 +6,8 @@ import { useEffect } from "react";
 import {
 	type SpringConfig,
 	useChartConfig,
-} from "../contexts/chart-config-context";
-import { chartCssVars } from "../contexts/chart-context";
+} from "@/components/charts/contexts/chart-config-context";
+import { chartCssVars } from "@/components/charts/contexts/chart-context";
 
 export interface TooltipDotProps {
 	x: number;

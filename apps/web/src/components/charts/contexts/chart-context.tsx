@@ -21,10 +21,13 @@ import {
 	type SetStateAction,
 	useContext,
 } from "react";
-import type { ChartSelection } from "../hooks/use-chart-interaction";
-import type { ChartPhase, ChartStatus } from "../utils/chart-phase";
-import { DEFAULT_Y_AXIS_ID } from "../utils/y-axis-scales";
-import type { YDomain } from "../utils/y-domain-utils";
+import type { ChartSelection } from "@/components/charts/hooks/use-chart-interaction";
+import type {
+	ChartPhase,
+	ChartStatus,
+} from "@/components/charts/utils/chart-phase";
+import { DEFAULT_Y_AXIS_ID } from "@/components/charts/utils/y-axis-scales";
+import type { YDomain } from "@/components/charts/utils/y-domain-utils";
 
 export { chartCssVars, defaultScatterColors } from "./chart-context-config";
 

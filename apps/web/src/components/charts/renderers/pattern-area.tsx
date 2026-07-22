@@ -2,7 +2,7 @@
 
 import { curveMonotoneX } from "@visx/curve";
 import { AreaClosed } from "@visx/shape";
-import { useChartStable } from "../contexts/chart-context";
+import { useChartStable } from "@/components/charts/contexts/chart-context";
 
 // biome-ignore lint/suspicious/noExplicitAny: d3 curve factory type
 type CurveFactory = any;

@@ -11,18 +11,21 @@ import {
 	useRef,
 	useState,
 } from "react";
-import { ChartLoadingLabel } from "./chart-loading-label";
-import type { LineConfig, Margin } from "./contexts/chart-context";
-import { Area, type AreaProps } from "./renderers/area";
-import { PatternArea } from "./renderers/pattern-area";
-import { TimeSeriesChartInner } from "./time-series-chart-shell";
+import type {
+	LineConfig,
+	Margin,
+} from "@/components/charts/contexts/chart-context";
+import { Area, type AreaProps } from "@/components/charts/renderers/area";
+import { PatternArea } from "@/components/charts/renderers/pattern-area";
 import {
 	type ChartPhase,
 	type ChartStatus,
 	DEFAULT_CHART_STATUS,
 	DEFAULT_Y_DOMAIN_TWEEN_MS,
 	resolveRestingChartPhase,
-} from "./utils/chart-phase";
+} from "@/components/charts/utils/chart-phase";
+import { ChartLoadingLabel } from "./chart-loading-label";
+import { TimeSeriesChartInner } from "./time-series-chart-shell";
 
 export interface AreaChartProps {
 	/** Data array - each item should have a date field and numeric values */
@@ -262,6 +265,6 @@ export function AreaChart({
 	);
 }
 
-export { Area, type AreaProps } from "./renderers/area";
+export { Area, type AreaProps } from "@/components/charts/renderers/area";
 
 export default AreaChart;

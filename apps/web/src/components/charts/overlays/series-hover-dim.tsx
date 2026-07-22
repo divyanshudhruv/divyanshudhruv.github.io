@@ -2,7 +2,7 @@
 
 import * as m from "motion/react-m";
 import type { ReactNode } from "react";
-import { useChartHover } from "../contexts/chart-context";
+import { useChartHover } from "@/components/charts/contexts/chart-context";
 import { useChartLegendHover } from "./chart-legend-hover";
 
 interface SeriesHoverDimProps {

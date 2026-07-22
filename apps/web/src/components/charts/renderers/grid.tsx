@@ -7,12 +7,12 @@ import {
 	chartCssVars,
 	useChartStable,
 	useYScale,
-} from "../contexts/chart-context";
-import { useGridShimmer } from "../hooks/use-grid-shimmer";
+} from "@/components/charts/contexts/chart-context";
+import { useGridShimmer } from "@/components/charts/hooks/use-grid-shimmer";
 import {
 	isLoadingChromePhase,
 	isLoadingGridChromePhase,
-} from "../utils/y-domain-utils";
+} from "@/components/charts/utils/y-domain-utils";
 
 const DEFAULT_SHIMMER_LENGTH_PX = 140;
 const DEFAULT_SHIMMER_SPEED = 1;

@@ -11,7 +11,7 @@ import {
 	LINE_LOADING_LOOP_PAUSE_MS,
 	LINE_LOADING_PULSE_CYCLE_S,
 	LINE_LOADING_PULSE_EASE,
-} from "../utils/line-loading-timing";
+} from "@/components/charts/utils/line-loading-timing";
 
 export interface UseGridShimmerOptions {
 	innerWidth: number;

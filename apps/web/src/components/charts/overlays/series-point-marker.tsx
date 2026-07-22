@@ -3,7 +3,7 @@
 import type { Variants } from "motion/react";
 import * as m from "motion/react-m";
 import { memo } from "react";
-import { DEFAULT_CHART_ENTER_TRANSITION } from "../utils/animation";
+import { DEFAULT_CHART_ENTER_TRANSITION } from "@/components/charts/utils/animation";
 
 export interface SeriesPointMarkerStyle {
 	/** Fill color for the inner circle */
@@ -189,4 +189,4 @@ export function SeriesPointMarker({
 
 SeriesPointMarker.chartPhase = "overlay" as const;
 
-export { getSeriesMarkerVisualExtent } from "../utils/series-point-marker-utils";
+export { getSeriesMarkerVisualExtent } from "@/components/charts/utils/series-point-marker-utils";

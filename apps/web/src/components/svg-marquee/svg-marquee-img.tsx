@@ -3,7 +3,7 @@
 import "./index.css";
 import { Flex } from "@once-ui-system/core";
 import React, { useEffect, useRef } from "react";
-import { artworks } from "../../content/artworks";
+import { artworks } from "@/content/artworks";
 import Card from "./marquee-card";
 
 type MarqueeAlongPathProps = {

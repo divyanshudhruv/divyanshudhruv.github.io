@@ -1,15 +1,14 @@
 "use client";
 
-import type { RefObject } from "react";
-import { useChartStable } from "../contexts/chart-context";
-import { useHighlightSegment } from "../hooks/use-highlight-segment";
-import { HighlightSegment } from "../renderers/highlight-segment";
+import { useChartStable } from "@/components/charts/contexts/chart-context";
+import { useHighlightSegment } from "@/components/charts/hooks/use-highlight-segment";
+import { HighlightSegment } from "@/components/charts/renderers/highlight-segment";
 
 interface SeriesHighlightLayerProps {
 	/** Caller already gated `showHighlight && showLine`; this just routes through. */
 	enabled: boolean;
 	height: number;
-	pathRef: RefObject<SVGPathElement | null>;
+	pathD: string | null;
 	stroke: string;
 	strokeWidth: number;
 }
@@ -25,7 +24,7 @@ interface SeriesHighlightLayerProps {
 export function SeriesHighlightLayer({
 	enabled,
 	height,
-	pathRef,
+	pathD,
 	stroke,
 	strokeWidth,
 }: SeriesHighlightLayerProps) {
@@ -34,7 +33,7 @@ export function SeriesHighlightLayer({
 	return (
 		<HighlightSegment
 			height={height}
-			pathRef={pathRef}
+			pathD={pathD}
 			stroke={stroke}
 			strokeWidth={strokeWidth}
 			visible={enabled && isActive && isLoaded}

@@ -9,7 +9,7 @@ import { createPortal } from "react-dom";
 import {
 	type SpringConfig,
 	useChartConfig,
-} from "../contexts/chart-config-context";
+} from "@/components/charts/contexts/chart-config-context";
 
 export interface TooltipBoxProps {
 	/** X position in pixels (relative to container) */

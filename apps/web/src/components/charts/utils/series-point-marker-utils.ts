@@ -1,4 +1,4 @@
-import type { SeriesPointMarkerStyle } from "../overlays/series-point-marker";
+import type { SeriesPointMarkerStyle } from "@/components/charts/overlays/series-point-marker";
 
 export function getSeriesMarkerVisualExtent(
 	style: Pick<

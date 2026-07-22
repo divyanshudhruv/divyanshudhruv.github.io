@@ -1,4 +1,4 @@
-import { artworks } from "../../content/artworks";
+import { artworks } from "@/content/artworks";
 
 type CardProps = {
 	index: number;
